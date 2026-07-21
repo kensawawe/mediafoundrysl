@@ -1,14 +1,14 @@
 export const hero = {
-  lines: ["Stories shape", "how the world", "sees us."],
+  lines: ["Every brand", "starts as raw", "material."],
   supporting:
-    "Crafting authentic stories from Sierra Leone and sharing them with the world.",
-  primaryCta: { label: "Tell us your story", href: "/#contact" },
-  secondaryCta: { label: "Explore our work", href: "/#work" },
+    "The Media Foundry is a creative agency and production company. We forge identity, campaigns and film in one studio — so nothing is lost between the idea and the final cut.",
+  primaryCta: { label: "Start a project", href: "/#contact" },
+  secondaryCta: { label: "See the work", href: "/work" },
 };
 
 export const brandStatement = {
   agencyLine:
-    "We are a creative media agency built to help organisations communicate through powerful storytelling.",
+    "Most agencies design the brand and hire someone else to film it. Most production companies just point the camera. We do both — strategy, design and production — built in the same studio, by the same team, from day one.",
   storytellerLine:
-    "Every nation has stories waiting to be told. We exist to capture the voices, moments and ideas that shape Sierra Leone.",
+    "That's the Foundry model: one continuous heat from raw idea to finished piece. No hand-offs. No dilution. No cold seams where a project loses its shape between departments.",
 };

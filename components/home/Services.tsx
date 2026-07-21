@@ -14,24 +14,24 @@ export function Services() {
   return (
     <Section>
       <Container>
-        <SlateTag>What We Do</SlateTag>
-        <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[0.98] tracking-tight sm:text-5xl">
-          Four pillars, one craft.
+        <SlateTag>Capabilities</SlateTag>
+        <h2 className="mt-4 max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+          Four departments. One floor.
         </h2>
 
         <div className="mt-14 border-t border-border-subtle">
           {services.map((service, i) => {
             const open = openIndex === i;
             return (
-              <FadeIn key={service.index} delay={i * 0.05}>
+              <FadeIn key={service.code} delay={i * 0.05}>
                 <button
                   type="button"
                   onClick={() => setOpenIndex(open ? -1 : i)}
                   className="focus-ring flex w-full items-center gap-6 border-b border-border-subtle py-7 text-left"
                   aria-expanded={open}
                 >
-                  <span className="font-mono text-sm text-accent-text">{service.index}</span>
-                  <span className="flex-1 font-display text-2xl tracking-tight sm:text-3xl">
+                  <span className="font-mono text-sm text-accent-text">{service.code}</span>
+                  <span className="flex-1 font-display text-2xl font-bold tracking-tight sm:text-3xl">
                     {service.title}
                   </span>
                   <span className="hidden font-body text-sm text-current/50 sm:block">

@@ -34,7 +34,27 @@ export function useInView<T extends HTMLElement = HTMLElement>(
     }, options);
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Fallback for the same backgrounded-pane case: if the tab is throttled
+    // hard enough that IntersectionObserver never delivers, a scroll/resize
+    // rect check still catches it.
+    function checkRect() {
+      const r = node!.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        setInView(true);
+        observer.disconnect();
+        window.removeEventListener("scroll", checkRect);
+        window.removeEventListener("resize", checkRect);
+      }
+    }
+    window.addEventListener("scroll", checkRect, { passive: true });
+    window.addEventListener("resize", checkRect);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", checkRect);
+      window.removeEventListener("resize", checkRect);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

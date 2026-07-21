@@ -8,14 +8,14 @@ export function ProcessJourney({ study }: { study: CaseStudy }) {
   return (
     <Section className="py-20 md:py-24">
       <Container>
-        <SlateTag>Creative Process & Production Journey</SlateTag>
+        <SlateTag>The Pour — Process & Production</SlateTag>
         <div className="mt-10 grid gap-x-8 gap-y-12 border-t border-border-subtle pt-10 sm:grid-cols-3">
           {study.process.map((step, i) => (
             <FadeIn key={step.title} delay={i * 0.08}>
               <span className="font-mono text-xs text-accent-text">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-2 font-display text-xl tracking-tight sm:text-2xl">
+              <h3 className="mt-2 font-display text-xl font-bold tracking-tight sm:text-2xl">
                 {step.title}
               </h3>
               <p className="mt-3 font-body text-sm text-current/65">{step.description}</p>

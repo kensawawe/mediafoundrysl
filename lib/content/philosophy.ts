@@ -1,35 +1,37 @@
-export type Highlight = {
-  index: string;
+export type Principle = {
+  /** A real foundry-process term, not an arbitrary A/B/C/D — each one maps
+   *  literally to the studio behaviour it names. */
+  tag: string;
   title: string;
   description: string;
 };
 
 export const philosophyStatement =
-  "Stories are not just created. They are crafted with purpose.";
+  "Good work isn't assembled. It's forged — under pressure, at the right temperature, by people who don't leave until it holds its shape.";
 
-export const highlights: Highlight[] = [
+export const highlights: Principle[] = [
   {
-    index: "A",
-    title: "Authenticity",
+    tag: "Temper",
+    title: "Discipline over decoration",
     description:
-      "We tell stories as they are lived, not as they're assumed to be — rooted in real people, places and context.",
+      "Craft that's been tested, not just styled. Every idea gets pressure-tested against the brief before it ships.",
   },
   {
-    index: "B",
-    title: "Collaboration",
+    tag: "Alloy",
+    title: "One team, every discipline",
     description:
-      "The best stories are built with the people they belong to. We work alongside our clients and subjects, not around them.",
+      "Strategists, designers and producers are the same team — not vendors handed the brief one after another.",
   },
   {
-    index: "C",
-    title: "Cultural understanding",
+    tag: "Pour",
+    title: "Built to finish, not just start",
     description:
-      "We know the language, rhythm and nuance of Sierra Leone — and bring that fluency to every frame.",
+      "We stay through production and delivery, not just the deck. Half-forged ideas don't leave the building.",
   },
   {
-    index: "D",
-    title: "Creative excellence",
+    tag: "Grain",
+    title: "Detail carries the work",
     description:
-      "Craft is non-negotiable. Every project is held to a standard that can stand on any stage in the world.",
+      "The difference between good and great is in the finish — the frame, the kerning, the cut. We don't skip it.",
   },
 ];

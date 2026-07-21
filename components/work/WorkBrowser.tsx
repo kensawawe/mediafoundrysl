@@ -22,7 +22,7 @@ export function WorkBrowser() {
             className={clsx(
               "focus-ring border px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] transition-colors",
               active === cat
-                ? "border-foreground bg-foreground text-background"
+                ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                 : "border-border-subtle hover:border-accent-text hover:text-accent-text",
             )}
           >

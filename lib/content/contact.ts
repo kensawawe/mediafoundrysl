@@ -1,7 +1,7 @@
 export const projectTypes = [
-  "Documentary",
-  "Brand Campaign",
-  "Photography",
-  "Podcast",
-  "Other",
+  "Brand Identity",
+  "Campaign",
+  "Film & Production",
+  "Digital",
+  "Something else",
 ] as const;

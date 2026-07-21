@@ -8,10 +8,14 @@ export function SlateTag({
   children,
   className,
   index,
+  tone = "default",
 }: {
   children: React.ReactNode;
   className?: string;
   index?: string;
+  /** Use "inverse" inside a Section tone="inverse" block so the accent
+   *  stays AA-contrast against the flipped background. */
+  tone?: "default" | "inverse";
 }) {
   return (
     <div
@@ -20,7 +24,11 @@ export function SlateTag({
         className,
       )}
     >
-      {index && <span className="text-accent-text">{index}</span>}
+      {index && (
+        <span className={tone === "inverse" ? "text-accent-text-inverse" : "text-accent-text"}>
+          {index}
+        </span>
+      )}
       <span>{children}</span>
     </div>
   );

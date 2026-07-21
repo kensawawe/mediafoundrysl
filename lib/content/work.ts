@@ -1,18 +1,18 @@
 export type WorkCategory =
-  | "Documentaries"
-  | "Brand Films"
+  | "Brand Identity"
   | "Campaigns"
+  | "Film & Production"
+  | "Digital"
   | "Photography"
-  | "Podcasts"
-  | "Social Content";
+  | "Social & Content";
 
 export const workCategories: WorkCategory[] = [
-  "Documentaries",
-  "Brand Films",
+  "Brand Identity",
   "Campaigns",
+  "Film & Production",
+  "Digital",
   "Photography",
-  "Podcasts",
-  "Social Content",
+  "Social & Content",
 ];
 
 export type WorkItem = {
@@ -29,79 +29,79 @@ export type WorkItem = {
 
 export const workItems: WorkItem[] = [
   {
-    slug: "nwrma-river-basin",
-    title: "The River Gave and the River Took",
-    category: "Documentaries",
+    slug: "northline-rebrand",
+    title: "Northline",
+    category: "Brand Identity",
     description:
-      "A feature documentary following communities along the NWRMA river basin as they adapt to a changing water system.",
-    client: "National Water Resources Management Agency",
-    variant: "video",
+      "A full identity system for a micromobility startup scaling from three cities to thirty.",
+    client: "Northline Mobility",
+    variant: "photo",
     size: "lg",
     hasCaseStudy: true,
   },
   {
-    slug: "cottage-industries-brand-film",
-    title: "Made By Hand",
-    category: "Brand Films",
+    slug: "verdant-brand-film",
+    title: "Verdant",
+    category: "Film & Production",
     description:
-      "A brand film for a Freetown textile cooperative, shot across three workshops over five days of production.",
+      "A brand film for a plant-based food company, shot across four working farms.",
     variant: "video",
     size: "md",
   },
   {
-    slug: "sea-salt-harvest-campaign",
-    title: "Sea Salt Harvest",
+    slug: "halyard-launch-campaign",
+    title: "Halyard",
     category: "Campaigns",
     description:
-      "A nationwide brand campaign for a coastal salt cooperative, built from real harvest-season testimony.",
-    client: "Sherbro Salt Collective",
+      "A category-defining launch campaign for an insurtech built for a new generation of boat owners.",
+    client: "Halyard Insurance",
     variant: "video",
     size: "md",
     hasCaseStudy: true,
   },
   {
-    slug: "portraits-of-freetown",
-    title: "Portraits of Freetown",
+    slug: "meridian-portraits",
+    title: "Meridian Health",
     category: "Photography",
     description:
-      "An ongoing photographic study of the people, trades and streets that shape the capital.",
+      "An ongoing photographic study of frontline clinicians for a healthcare network's people-first rebrand.",
     variant: "photo",
     size: "lg",
   },
   {
-    slug: "the-foundry-sessions",
-    title: "The Foundry Sessions",
-    category: "Podcasts",
+    slug: "cast-and-co-digital",
+    title: "Cast & Co.",
+    category: "Digital",
     description:
-      "Long-form conversations with Sierra Leonean founders, artists and organisers, recorded on location.",
+      "A commerce-ready site and design system for a direct-to-consumer homeware brand.",
     variant: "photo",
     size: "md",
     hasCaseStudy: true,
   },
   {
-    slug: "harvest-season-socials",
-    title: "Harvest Season",
-    category: "Social Content",
+    slug: "aster-social-series",
+    title: "Aster",
+    category: "Social & Content",
     description:
-      "A short-form content series built around a cocoa cooperative's harvest, made for reach and for record.",
+      "A short-form content system built for a beauty brand's always-on social calendar.",
     variant: "photo",
     size: "md",
   },
   {
-    slug: "public-health-voices",
-    title: "Every Clinic, Every Voice",
+    slug: "pennant-hotels-campaign",
+    title: "Pennant Hotels",
     category: "Campaigns",
     description:
-      "A public-health awareness campaign built from real patient and health-worker testimony across six districts.",
+      "A rebrand and launch campaign for a boutique hospitality group's first ten properties.",
     variant: "video",
     size: "md",
   },
   {
-    slug: "bunce-island-documentary-short",
-    title: "What the Island Remembers",
-    category: "Documentaries",
+    slug: "lowline-documentary",
+    title: "Lowline",
+    category: "Film & Production",
     description:
-      "A short documentary on memory, heritage and tourism at Bunce Island, told through the people who guide it.",
+      "A short documentary on the makers behind an independent audio-equipment manufacturer.",
     variant: "video",
     size: "md",
   },

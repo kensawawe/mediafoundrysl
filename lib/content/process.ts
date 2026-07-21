@@ -9,24 +9,24 @@ export const processStages: ProcessStage[] = [
     index: "01",
     title: "Discover",
     description:
-      "We listen first. Understanding the people, context and purpose behind every story before a single frame is planned.",
+      "We start by listening — to the brief, the market, the people the work has to speak to. No deck before the diagnosis.",
   },
   {
     index: "02",
-    title: "Develop",
+    title: "Design",
     description:
-      "Concepts, scripts and visual direction take shape — grounded in research and built for the audience we're reaching.",
+      "Strategy becomes shape: identity, concept, script. The idea is tested in the open before it's committed to production.",
   },
   {
     index: "03",
-    title: "Create",
+    title: "Produce",
     description:
-      "Production on location, wherever the story lives — from coastal villages to city studios — crafted with care.",
+      "Cameras, crew, edit bay. The same team that designed the idea builds it — on set, in the studio, frame by frame.",
   },
   {
     index: "04",
     title: "Deliver",
     description:
-      "Finished, polished and packaged for its platform — then shared with the audience it was made to reach.",
+      "Graded, mastered and packaged for its platform — handed off with everything the client needs to run with it.",
   },
 ];

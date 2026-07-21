@@ -39,7 +39,7 @@ function useTimecode(active: boolean) {
 }
 
 /**
- * Diegetic production-artifact placeholder for real Sierra Leone footage/photography.
+ * Diegetic production-artifact placeholder for real footage/photography.
  * Reads as "frame awaiting real media" — slate metadata, scanlines, registration
  * marks — rather than decorative gradient-blob filler.
  */
@@ -58,7 +58,7 @@ export function Slate({
   return (
     <div
       className={clsx(
-        "group relative isolate w-full overflow-hidden bg-slate-bg text-white",
+        "group relative isolate w-full overflow-hidden bg-ink text-paper",
         aspect,
         rounded && "rounded-sm",
         className,
@@ -70,7 +70,7 @@ export function Slate({
           className="animate-hero-breathe absolute -inset-[10%]"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 30%, rgba(30,181,58,0.22), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(0,114,198,0.22), transparent 55%)",
+              "radial-gradient(ellipse at 30% 30%, rgba(255,74,28,0.28), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(185,138,46,0.2), transparent 55%)",
             filter: "blur(50px)",
           }}
         />
@@ -141,7 +141,7 @@ export function Slate({
 
       <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
-          SL / {category ?? "FOOTAGE"} / PLACEHOLDER
+          {category ?? "FOOTAGE"} / PLACEHOLDER
           <span className="text-white/30"> — {label}</span>
         </p>
       </div>

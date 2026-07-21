@@ -1,22 +1,23 @@
 export const site = {
   name: "The Media Foundry",
   shortName: "Media Foundry",
-  tagline: "A Sierra Leonean creative media agency and production house.",
+  tagline: "An independent creative agency and production company.",
   description:
-    "The Media Foundry crafts authentic film, photography, podcasts and campaign content from Sierra Leone, for the world.",
-  email: "hello@themediafoundry.sl",
-  location: "Freetown, Sierra Leone",
+    "The Media Foundry designs brands and produces the film, photography and content that carries them into the world — strategy, design and production, run by one studio from first spark to final cut.",
+  email: "hello@themediafoundry.com",
+  location: "London — New York",
   social: [
-    { label: "Instagram", href: "https://instagram.com/themediafoundrysl" },
-    { label: "LinkedIn", href: "https://linkedin.com/company/themediafoundrysl" },
-    { label: "YouTube", href: "https://youtube.com/@themediafoundrysl" },
+    { label: "Instagram", href: "https://instagram.com/themediafoundry" },
+    { label: "LinkedIn", href: "https://linkedin.com/company/themediafoundry" },
+    { label: "Vimeo", href: "https://vimeo.com/themediafoundry" },
   ],
   // Placeholder contact details — swap for real values before launch.
   formspreeEndpoint: "https://formspree.io/f/PLACEHOLDER",
 };
 
 export const navLinks = [
-  { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Studio", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Journal", href: "/journal" },
 ];

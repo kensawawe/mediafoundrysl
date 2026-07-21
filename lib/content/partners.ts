@@ -1,12 +1,14 @@
-export type PartnerSlot = {
+export type SectorSlot = {
   label: string;
 };
 
-export const partnerSlots: PartnerSlot[] = [
-  { label: "NGO Partner" },
-  { label: "Development Partner" },
-  { label: "Brand Partner" },
-  { label: "Government Agency" },
-  { label: "International Organisation" },
-  { label: "Community Partner" },
+export const sectorSlots: SectorSlot[] = [
+  { label: "Technology" },
+  { label: "Hospitality & Travel" },
+  { label: "Financial Services" },
+  { label: "Health & Wellness" },
+  { label: "Retail & CPG" },
+  { label: "Entertainment" },
+  { label: "Non-Profit" },
+  { label: "Education" },
 ];

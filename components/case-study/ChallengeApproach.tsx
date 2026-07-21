@@ -10,14 +10,14 @@ export function ChallengeApproach({ study }: { study: CaseStudy }) {
       <Container>
         <div className="grid gap-12 sm:grid-cols-2 sm:gap-16">
           <FadeIn>
-            <SlateTag className="text-white/60">The Challenge</SlateTag>
-            <p className="mt-5 font-body text-base leading-relaxed text-white/80 sm:text-lg">
+            <SlateTag tone="inverse" className="text-current/60">The Challenge</SlateTag>
+            <p className="mt-5 font-body text-base leading-relaxed text-current/80 sm:text-lg">
               {study.challenge}
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <SlateTag className="text-white/60">Our Approach</SlateTag>
-            <p className="mt-5 font-body text-base leading-relaxed text-white/80 sm:text-lg">
+            <SlateTag tone="inverse" className="text-current/60">Our Approach</SlateTag>
+            <p className="mt-5 font-body text-base leading-relaxed text-current/80 sm:text-lg">
               {study.approach}
             </p>
           </FadeIn>

@@ -18,133 +18,135 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "nwrma-river-basin",
-    title: "The River Gave and the River Took",
-    category: "Documentaries",
-    client: "National Water Resources Management Agency",
+    slug: "northline-rebrand",
+    title: "Northline",
+    category: "Brand Identity",
+    client: "Northline Mobility",
     year: "2025",
-    heroMedia: { variant: "video", label: "NWRMA river basin, dry season" },
+    heroMedia: { variant: "photo", label: "Northline fleet, launch markets" },
     overview:
-      "A feature-length documentary following three communities along the NWRMA river basin as shifting rainfall patterns and upstream development reshape how they farm, fish and live with water. Commissioned to document not just infrastructure, but the people whose lives run alongside it.",
+      "A full identity system for a micromobility startup preparing to scale from three cities to thirty — built to work on a scooter deck, a phone screen and a city permit application with equal clarity.",
     challenge:
-      "NWRMA needed a film that could sit in front of both international funding partners and the communities it serves — technical enough to be credible, human enough to be believed. Most water-management documentation is either dry policy footage or disconnected from the people actually affected.",
+      "Northline's existing mark was designed for one city and one product. As the company prepared a thirty-city expansion and a second vehicle line, they needed an identity system flexible enough to hold new products and markets without a redesign every eighteen months.",
     approach:
-      "We spent three weeks embedded across two riverside villages before filming began, building trust with community leaders, fishers and farmers so the camera could arrive as a familiar presence rather than an outside crew. Interviews were conducted in Krio and Temne, with the agency's technical narrative woven around lived testimony rather than the other way around.",
+      "We built the identity around a single modular mark that could be cropped, tiled and recoloured by market without losing legibility at ten centimetres or ten metres. Type, colour and motion were specified as a system, not a style guide — with rules for exactly when and how each part was allowed to flex.",
     process: [
       {
-        title: "Pre-production & access",
+        title: "Audit & workshops",
         description:
-          "Community entry through local liaisons, scouting river access points across two dry-season and one wet-season visit to capture the basin's full cycle.",
+          "Three weeks auditing every existing touchpoint — fleet decals, app, permit filings — before a line was drawn, to find what was actually working.",
       },
       {
-        title: "Principal photography",
+        title: "System design",
         description:
-          "Twelve days on location across three communities, shot handheld and on a stabilised gimbal to move between intimate testimony and wide landscape context.",
+          "Identity, type and colour system built and stress-tested against real use cases: low-light decals, city signage restrictions, app icon legibility.",
       },
       {
-        title: "Edit & sound design",
+        title: "Rollout toolkit",
         description:
-          "A six-week edit built around community voice first, agency data second — original score composed with local instrumentation.",
+          "A living brand system — templates, motion presets and fleet specifications — handed to Northline's in-house team to run without us.",
       },
     ],
     outcome:
-      "Delivered as a 38-minute feature cut plus three short-form extracts for NWRMA's funding partners. The film screened at a regional water-policy forum and became the agency's primary tool for community briefings.",
+      "Delivered as a full identity system with a 40-page usage guide and a Figma-native component library. Northline's operations team now ships new-market branding in-house in under a week, down from six.",
     gallery: [
-      { variant: "video", label: "Fishers at dawn, upper basin", category: "Documentary" },
-      { variant: "photo", label: "Community elder interview" },
-      { variant: "video", label: "Aerial, river confluence" },
-      { variant: "photo", label: "Children at the water's edge" },
+      { variant: "photo", label: "Identity system, primary marks", category: "Brand" },
+      { variant: "photo", label: "Fleet decal application" },
+      { variant: "video", label: "Motion identity reel" },
+      { variant: "photo", label: "App icon & UI type system" },
     ],
     impact: [
-      { stat: "38 MIN", label: "Feature runtime" },
-      { stat: "3", label: "Communities documented" },
-      { stat: "12 DAYS", label: "Principal photography" },
+      { stat: "30", label: "Markets the system now supports" },
+      { stat: "6→1", label: "Weeks to ship new-market branding" },
+      { stat: "1", label: "Modular mark, zero redesigns since" },
     ],
   },
   {
-    slug: "sea-salt-harvest-campaign",
-    title: "Sea Salt Harvest",
+    slug: "halyard-launch-campaign",
+    title: "Halyard",
     category: "Campaigns",
-    client: "Sherbro Salt Collective",
+    client: "Halyard Insurance",
     year: "2025",
-    heroMedia: { variant: "video", label: "Salt pans at low tide, Sherbro coast" },
+    heroMedia: { variant: "video", label: "Halyard launch film, marina" },
     overview:
-      "A nationwide brand campaign for a coastal salt-producing cooperative, built to shift perception of artisanal Sierra Leonean salt from commodity to craft — ahead of the collective's first export contracts.",
+      "A category-defining launch campaign for an insurtech bringing boat insurance to a generation of owners who'd never buy it the old way — built to run across broadcast, social and the point of sale.",
     challenge:
-      "The cooperative's product was excellent but invisible — sold in unbranded sacks at local markets with no story attached. They needed a campaign that could carry the same product into premium retail and export buyers without losing what made it authentic.",
+      "Marine insurance advertising looks the same everywhere: navy, brass, a retired admiral. Halyard needed to launch into that category and read as something else entirely, without losing the credibility a first-time buyer needs to see.",
     approach:
-      "Rather than build a campaign around finished packaging, we built it around process — the tidal timing, the hand-raking, the drying racks — treating the harvest itself as the brand story. Testimony from three generations of one harvesting family anchored the campaign's emotional core.",
+      "We treated the campaign as a production problem first and a media plan second — writing and shooting a hero film built around real boat owners, then breaking it into forty-plus cutdowns engineered for the exact platforms Halyard's underwriting data said its buyers were on.",
     process: [
       {
-        title: "Field research",
+        title: "Strategy & script",
         description:
-          "A full harvest-season cycle observed and logged before any brief was written, to ground the campaign in real production rhythm rather than assumption.",
+          "Positioning and campaign architecture built from underwriting and customer-interview data, not category convention.",
       },
       {
-        title: "Concept & shoot",
+        title: "Production",
         description:
-          "A five-day shoot timed to tidal low-water windows, capturing harvest, drying and packing across two cooperative sites.",
+          "A five-day shoot across two coastal locations, cast entirely with real boat owners rather than actors.",
       },
       {
-        title: "Campaign roll-out",
+        title: "Media system",
         description:
-          "A hero film, six short-form cutdowns and a photography set delivered for retail partners, social and export-facing decks.",
+          "One hero film re-cut into 40+ platform-specific versions, each engineered to its channel's aspect ratio and attention span.",
       },
     ],
     outcome:
-      "The campaign became the cooperative's primary sales asset for its first export negotiations and drove a measurable uplift in domestic premium-retail placement within the following quarter.",
+      "The campaign became Halyard's primary acquisition asset at launch, run across broadcast, paid social and point-of-sale video — and set the visual template the brand still uses for every campaign since.",
     gallery: [
-      { variant: "photo", label: "Hand-raking at low tide", category: "Campaign" },
-      { variant: "video", label: "Drying racks, golden hour" },
-      { variant: "photo", label: "Three generations, one family" },
-      { variant: "photo", label: "Packed for export" },
+      { variant: "video", label: "Hero film, 60s cut", category: "Campaign" },
+      { variant: "photo", label: "Production still, marina shoot" },
+      { variant: "video", label: "Social cutdown, 15s" },
+      { variant: "photo", label: "Owner casting, on location" },
     ],
     impact: [
-      { stat: "6", label: "Short-form cutdowns" },
-      { stat: "2", label: "Cooperative sites filmed" },
-      { stat: "1ST", label: "Export contract secured" },
+      { stat: "40+", label: "Platform-specific cutdowns delivered" },
+      { stat: "5 DAYS", label: "Principal photography" },
+      { stat: "1ST", label: "Category launch campaign for the brand" },
     ],
   },
   {
-    slug: "the-foundry-sessions",
-    title: "The Foundry Sessions",
-    category: "Podcasts",
-    year: "2024–ongoing",
-    heroMedia: { variant: "photo", label: "Studio setup, Freetown" },
+    slug: "cast-and-co-digital",
+    title: "Cast & Co.",
+    category: "Digital",
+    client: "Cast & Co.",
+    year: "2024",
+    heroMedia: { variant: "photo", label: "Cast & Co. product studio" },
     overview:
-      "An ongoing long-form interview podcast produced in-house, built to give Sierra Leonean founders, artists and organisers a platform with production values usually reserved for international media.",
+      "A commerce-ready site and design system for a direct-to-consumer homeware brand outgrowing its original template store — built to carry a fast-expanding catalogue without the site outgrowing its own brand.",
     challenge:
-      "Independent podcasting in Sierra Leone typically means a phone mic and inconsistent releases. To attract the calibre of guest the show wanted, it needed to sound and feel like a credible, recurring editorial product from day one — not a pilot.",
+      "Cast & Co.'s catalogue had tripled in a year, and their storefront hadn't kept pace — a templated build that couldn't express the material quality of the product or scale past a few hundred SKUs without breaking its own layout.",
     approach:
-      "We built a modest but broadcast-grade studio setup, established a repeatable recording and edit pipeline, and treated the first season as a proof of format — booking guests through direct relationships before opening to pitches.",
+      "We designed a component-driven system before we designed a single page — modular product, story and collection templates built to hold thousands of SKUs at the same visual standard as the hero launch pieces.",
     process: [
       {
-        title: "Format & studio build",
+        title: "System architecture",
         description:
-          "A fixed two-camera, multi-mic setup designed for a 90-minute turnaround per episode, built once and reused for consistency.",
+          "A component library and content model built first, so every future page inherits the same craft without custom design work.",
       },
       {
-        title: "Recording rhythm",
+        title: "Design & build",
         description:
-          "A standing weekly recording slot with a three-episode buffer, so release schedule never depends on any single guest's availability.",
+          "Full storefront redesign across product, collection, story and checkout templates, built on a headless commerce stack.",
       },
       {
-        title: "Distribution",
+        title: "Photography direction",
         description:
-          "Full episodes plus a short-form clip package cut for social from every session, extending each conversation's reach well past the audio feed.",
+          "An in-house photography system specified so new products can be shot and published without a re-brief every time.",
       },
     ],
     outcome:
-      "Now in its second season, with a guest list spanning founders, musicians and civic organisers, and a growing library that doubles as an oral record of Sierra Leone's creative and entrepreneurial scene.",
+      "Launched with over 1,200 SKUs live on day one at a consistent visual standard, with a component system Cast & Co.'s team now extends without design support for net-new product lines.",
     gallery: [
-      { variant: "photo", label: "Guest recording, season 2", category: "Podcast" },
-      { variant: "photo", label: "Studio detail" },
-      { variant: "video", label: "Clip package, episode 14" },
+      { variant: "photo", label: "Storefront, product detail template", category: "Digital" },
+      { variant: "photo", label: "Collection page, modular grid" },
+      { variant: "photo", label: "Checkout flow" },
+      { variant: "video", label: "Site walkthrough" },
     ],
     impact: [
-      { stat: "2", label: "Seasons produced" },
-      { stat: "90 MIN", label: "Studio turnaround" },
-      { stat: "WEEKLY", label: "Recording rhythm" },
+      { stat: "1,200+", label: "SKUs live at launch" },
+      { stat: "4", label: "Modular template types" },
+      { stat: "0", label: "Design hours needed per new SKU" },
     ],
   },
 ];

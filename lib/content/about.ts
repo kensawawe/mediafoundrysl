@@ -1,33 +1,33 @@
 export const aboutHero = {
-  eyebrow: "About",
-  title: "A storytelling house, built from Sierra Leone.",
+  eyebrow: "Studio",
+  title: "A creative agency and a production company. Under one roof.",
 };
 
 export const whoWeAre = {
   title: "Who We Are",
   body:
-    "The Media Foundry is a creative media agency and production house based in Freetown. We work across film, photography, podcasts, brand storytelling, campaign content and documentary production — for organisations who understand that how a story is told matters as much as the story itself.",
+    "The Media Foundry is an independent creative agency and production company. We build brands and we produce the film, photography and content that carries them into the world — strategy, design and production, run by one team from first spark to final cut.",
 };
 
 export const ourPhilosophy = {
   title: "Our Philosophy",
   body:
-    "Stories shape how people see the world. We don't treat that as a slogan — it's the standard every project is held to. We exist to discover, craft and amplify the stories that matter, with the same rigour and craft you'd expect from any world-class production house, anywhere.",
+    "We don't believe in handing work down a chain of specialists who never talk to each other. The best work happens when the people who write the strategy are still in the room when it's shot — so nothing gets lost in the hand-off, and nothing cools before it ships.",
 };
 
-export const whyStorytellingMatters = {
-  title: "Why Storytelling Matters",
+export const whyOneRoof = {
+  title: "Why We Work This Way",
   body:
-    "Every nation has stories waiting to be told, and the way those stories are told shapes how the world understands the people behind them. Sierra Leone's creative industry is world-class — what's often missing isn't talent, it's the infrastructure to tell those stories at the standard they deserve. That's the gap The Media Foundry exists to close.",
+    "Split attention produces split results — an agency that designs the idea and a production company that just films it, with no one accountable for whether the finished thing actually works. We built The Media Foundry to close that gap: one studio, one standard, from strategy through delivery.",
 };
 
 export const ourApproach = {
   title: "Our Approach",
   body:
-    "We listen before we film. Every project starts with understanding the people, context and purpose behind a story — not a shot list. That means real time on location, real relationships with the people we're filming, and a production process built around getting the story right rather than getting it fast.",
+    "Every project starts with a diagnosis, not a deck. We spend real time understanding the market, the audience and the constraints before a single concept is proposed — then stay through production, post and delivery, so the idea that gets approved is the idea that ships.",
 };
 
 export const ourVision = {
   title: "Our Vision",
-  body: "To build a world-class storytelling ecosystem from Sierra Leone.",
+  body: "To prove that an agency and a production company are stronger as one studio than as two vendors.",
 };

@@ -47,12 +47,12 @@ export function Contact() {
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
             <SlateTag>Start Here</SlateTag>
-            <h2 className="mt-4 font-display text-5xl leading-[0.92] tracking-tight sm:text-6xl md:text-7xl">
-              Tell us your story.
+            <h2 className="mt-4 font-display text-5xl font-black uppercase leading-[0.88] tracking-tight sm:text-6xl md:text-7xl">
+              Start a project.
             </h2>
             <p className="mt-6 max-w-xs font-body text-sm text-current/60">
-              Documentary, campaign, podcast or something in between — walk us
-              through it and we&apos;ll follow up within two working days.
+              Brand, campaign, film or something in between — walk us through
+              it and we&apos;ll follow up within two working days.
             </p>
             <a
               href={`mailto:${site.email}`}
@@ -76,7 +76,7 @@ export function Contact() {
                     className={clsx(
                       "focus-ring border px-4 py-2 font-body text-sm transition-colors",
                       projectType === type
-                        ? "border-foreground bg-foreground text-background"
+                        ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                         : "border-border-subtle hover:border-accent-text hover:text-accent-text",
                     )}
                   >
@@ -106,9 +106,9 @@ export function Contact() {
                   placeholder="Your name"
                 />
               </Field>
-              <Field label="Organisation">
+              <Field label="Company">
                 <input
-                  name="organisation"
+                  name="company"
                   type="text"
                   className="focus-ring w-full border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
                   placeholder="Optional"
@@ -122,7 +122,7 @@ export function Contact() {
                 required
                 type="email"
                 className="focus-ring w-full border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
-                placeholder="you@organisation.com"
+                placeholder="you@company.com"
               />
             </Field>
 

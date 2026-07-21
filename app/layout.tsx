@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Anton, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Big_Shoulders, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { EmberTrail } from "@/components/ui/EmberTrail";
 import { site } from "@/lib/content/site";
 import "./globals.css";
 
-const anton = Anton({
-  variable: "--font-anton",
+const bigShoulders = Big_Shoulders({
+  variable: "--font-big-shoulders",
   subsets: ["latin"],
-  weight: "400",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
 });
 
@@ -23,12 +23,12 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
-const title = `${site.name} — Sierra Leone Creative & Media Agency`;
+const title = `${site.name} — Creative Agency & Production Company`;
 
 export const metadata: Metadata = {
   title,
   description: site.description,
-  metadataBase: new URL("https://www.themediafoundry.sl"),
+  metadataBase: new URL("https://www.themediafoundry.com"),
   openGraph: {
     title,
     description: site.description,
@@ -52,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${anton.variable} ${inter.variable} ${plexMono.variable}`}
+      className={`${bigShoulders.variable} ${instrumentSans.variable} ${plexMono.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider
@@ -61,6 +61,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <EmberTrail />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

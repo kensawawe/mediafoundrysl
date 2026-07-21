@@ -21,7 +21,7 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
               {study.category}
               {study.client ? ` — ${study.client}` : ""}
             </SlateTag>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[0.95] tracking-tight sm:text-6xl md:text-7xl">
+            <h1 className="mt-4 max-w-3xl font-display text-4xl font-black uppercase leading-[0.9] tracking-tight sm:text-6xl md:text-7xl">
               {study.title}
             </h1>
           </div>

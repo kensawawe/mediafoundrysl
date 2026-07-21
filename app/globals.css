@@ -1,43 +1,57 @@
 @import "tailwindcss";
 
+/*
+  The Media Foundry — design tokens.
+
+  Concept: a foundry casts raw material into permanent shape under heat and
+  pressure. Everything reads as CAST (hard edges, no border-radius, fixed
+  ink/paper blocks) except the signature "molten" elements — the pour
+  cursor, the pour reveal, the ignite rule — which are the only things
+  allowed to curve or flow. That contrast is the visual idea.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --surface: #f4f4f2;
-  --surface-2: #ececea;
-  --border-subtle: rgba(0, 0, 0, 0.12);
-  --border-strong: rgba(0, 0, 0, 0.85);
+  --background: #f2ecdf;
+  --foreground: #14120f;
+  --surface: #eae1cc;
+  --surface-2: #e2d7be;
+  --border-subtle: rgba(20, 18, 15, 0.14);
+  --border-strong: rgba(20, 18, 15, 0.85);
 
-  /* Light mode: blue is the text-safe workhorse accent (4.97:1 on white).
-     Green fails AA as small text on white (2.72:1) — fill/border only. */
-  --accent-text: #0072c6;
-  --accent-text-ink: #005a9e;
-  --accent-fill: #1eb53a;
-  --accent-fill-ink: #000000;
+  /* accent-text: AA-safe on the CURRENT theme's default background.
+     accent-text-inverse: AA-safe on a tone="inverse" section (opposite bg). */
+  --accent-text: #b8360f;
+  --accent-text-inverse: #ff7a4d;
+  --accent-fill: #ff4a1c;
+  --accent-fill-ink: #14120f;
 
-  --navy: #060644;
-  --nav-bg: rgba(255, 255, 255, 0.82);
-  --slate-bg: #060614;
+  --brass: #a9791f;
+  --steel: #6b6a63;
+
+  --ink: #14120f;
+  --paper: #f2ecdf;
+  --nav-bg: rgba(242, 236, 223, 0.86);
 }
 
 .dark {
-  --background: #060644;
-  --foreground: #ffffff;
-  --surface: #0b0b52;
-  --surface-2: #0f0f5e;
-  --border-subtle: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.9);
+  --background: #14120f;
+  --foreground: #f2ecdf;
+  --surface: #1c1914;
+  --surface-2: #242019;
+  --border-subtle: rgba(242, 236, 223, 0.14);
+  --border-strong: rgba(242, 236, 223, 0.9);
 
-  /* Dark mode: green is the text-safe workhorse accent (7.73:1 on navy).
-     Blue moves to large type / dividers / chips only. */
-  --accent-text: #1eb53a;
-  --accent-text-ink: #35d454;
-  --accent-fill: #0072c6;
-  --accent-fill-ink: #ffffff;
+  --accent-text: #ff7a4d;
+  --accent-text-inverse: #b8360f;
+  --accent-fill: #ff4a1c;
+  --accent-fill-ink: #14120f;
 
-  --navy: #060644;
-  --nav-bg: rgba(6, 6, 68, 0.78);
-  --slate-bg: #020208;
+  --brass: #d8a83e;
+  --steel: #a6a398;
+
+  --ink: #14120f;
+  --paper: #f2ecdf;
+  --nav-bg: rgba(20, 18, 15, 0.82);
 }
 
 @theme inline {
@@ -48,13 +62,15 @@
   --color-border-subtle: var(--border-subtle);
   --color-border-strong: var(--border-strong);
   --color-accent-text: var(--accent-text);
-  --color-accent-text-ink: var(--accent-text-ink);
+  --color-accent-text-inverse: var(--accent-text-inverse);
   --color-accent-fill: var(--accent-fill);
   --color-accent-fill-ink: var(--accent-fill-ink);
-  --color-navy: var(--navy);
-  --color-slate-bg: var(--slate-bg);
-  --font-display: var(--font-anton);
-  --font-body: var(--font-inter);
+  --color-brass: var(--brass);
+  --color-steel: var(--steel);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --font-display: var(--font-big-shoulders);
+  --font-body: var(--font-instrument-sans);
   --font-mono: var(--font-plex-mono);
 }
 
@@ -67,6 +83,19 @@ body {
   color: var(--foreground);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
   transition: background-color 0.4s ease, color 0.4s ease;
+  position: relative;
+}
+
+/* Fixed full-viewport grain — the "sand mould" texture behind every section. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
@@ -87,12 +116,60 @@ body {
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--accent-text);
+  outline: 2px solid var(--accent-fill);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
-/* Slate placeholder texture — scan-line, broadcast-monitor cue */
+/* Ingot rule — the brass hairline that opens most sections, drawn in on
+   scroll (see IgniteRule component) rather than sitting static. */
+.ingot-rule {
+  height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+}
+
+/* Pour overlay — the hover state for every work thumbnail: an ember wash
+   "poured" down over the frame, revealing the title in the liquid. Pure
+   CSS so it stays instant on hover with no JS in the loop. */
+.pour-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(165deg, #ff5a29 0%, #b8360f 100%);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.group:hover .pour-overlay,
+.group:focus-visible .pour-overlay {
+  clip-path: inset(0 0 0 0);
+}
+
+.pour-overlay > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease 0.12s, transform 0.35s ease 0.12s;
+}
+
+.group:hover .pour-overlay > *,
+.group:focus-visible .pour-overlay > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pour-overlay {
+    transition: none;
+  }
+  .pour-overlay > * {
+    transition: none;
+  }
+}
+
+/* Slate placeholder texture — production-monitor scanline cue, reused for
+   the diegetic media placeholders until real footage/photography lands. */
 .slate-scanlines {
   background-image: repeating-linear-gradient(
     180deg,
@@ -133,10 +210,17 @@ body {
   animation: rec-pulse 1.6s ease-in-out infinite;
 }
 
-@keyframes ticker {
-  0% {
-    content: "00:00:00:00";
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
   }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 34s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

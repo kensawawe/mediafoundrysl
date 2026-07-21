@@ -6,14 +6,13 @@ import {
   ourApproach,
   ourPhilosophy,
   whoWeAre,
-  whyStorytellingMatters,
+  whyOneRoof,
 } from "@/lib/content/about";
 import { site } from "@/lib/content/site";
 
 export const metadata: Metadata = {
-  title: `About — ${site.name}`,
-  description:
-    "The Media Foundry is a creative media agency and production house based in Freetown, Sierra Leone.",
+  title: `Studio — ${site.name}`,
+  description: site.description,
 };
 
 export default function AboutPage() {
@@ -22,7 +21,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutBlock index="01" title={whoWeAre.title} body={whoWeAre.body} />
       <AboutBlock index="02" title={ourPhilosophy.title} body={ourPhilosophy.body} tone="inverse" />
-      <AboutBlock index="03" title={whyStorytellingMatters.title} body={whyStorytellingMatters.body} />
+      <AboutBlock index="03" title={whyOneRoof.title} body={whyOneRoof.body} />
       <AboutBlock index="04" title={ourApproach.title} body={ourApproach.body} />
       <OurVision />
     </>

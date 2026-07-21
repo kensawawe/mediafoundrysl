@@ -16,7 +16,7 @@ export function Section({
       id={id}
       className={clsx(
         "py-24 md:py-32",
-        tone === "inverse" && "bg-navy text-white",
+        tone === "inverse" && "bg-foreground text-background",
         className,
       )}
     >

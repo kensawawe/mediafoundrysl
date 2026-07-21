@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
@@ -15,13 +16,18 @@ export function AboutBlock({
 }) {
   return (
     <div
-      className={`border-b border-border-subtle py-16 md:py-20 ${
-        tone === "inverse" ? "bg-navy text-white" : ""
-      }`}
+      className={clsx(
+        "border-b border-border-subtle py-16 md:py-20",
+        tone === "inverse" && "bg-foreground text-background",
+      )}
     >
       <Container>
         <div className="grid gap-6 md:grid-cols-[1fr_2.4fr] md:gap-16">
-          <SlateTag index={index} className={tone === "inverse" ? "text-white/60" : undefined}>
+          <SlateTag
+            index={index}
+            tone={tone}
+            className={tone === "inverse" ? "text-current/60" : undefined}
+          >
             {title}
           </SlateTag>
           <FadeIn>

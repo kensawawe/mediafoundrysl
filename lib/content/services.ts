@@ -1,5 +1,7 @@
 export type Service = {
-  index: string;
+  /** Department code, foundry-floor shorthand rather than a sequence number —
+   *  these four run in parallel, not in order. */
+  code: string;
   title: string;
   description: string;
   examples: string[];
@@ -7,47 +9,47 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    index: "01",
-    title: "Production",
-    description: "Turning ideas into finished media.",
+    code: "BR",
+    title: "Brand & Identity",
+    description: "Positioning, naming and identity systems built to hold up at any scale.",
     examples: [
-      "Documentary production",
-      "Video production",
-      "Photography",
-      "Podcast production",
+      "Brand strategy",
+      "Naming & verbal identity",
+      "Visual identity systems",
+      "Brand guidelines",
+    ],
+  },
+  {
+    code: "CP",
+    title: "Campaigns & Digital",
+    description: "Ideas built to travel — across platforms, formats and audiences.",
+    examples: [
+      "Campaign concepting",
+      "Art direction",
+      "Web & digital design",
+      "Social systems",
+    ],
+  },
+  {
+    code: "FM",
+    title: "Film & Production",
+    description: "Full production, in-house — from pre-production to final grade.",
+    examples: [
       "Brand films",
+      "Documentary",
+      "Commercial production",
+      "Post & sound design",
     ],
   },
   {
-    index: "02",
-    title: "Creative",
-    description: "Building the story behind the content.",
+    code: "ST",
+    title: "Strategy & Content",
+    description: "The thinking that gives everything else a reason to exist.",
     examples: [
-      "Concept development",
-      "Story development",
-      "Scripts",
-      "Visual direction",
-    ],
-  },
-  {
-    index: "03",
-    title: "Strategy",
-    description: "Making stories purposeful.",
-    examples: [
+      "Audience & market strategy",
       "Content strategy",
-      "Brand storytelling",
-      "Campaign strategy",
-      "Audience development",
-    ],
-  },
-  {
-    index: "04",
-    title: "Development",
-    description: "Helping stories reach audiences.",
-    examples: [
-      "Website integration",
-      "Social media packaging",
-      "Digital experiences",
+      "Copywriting",
+      "Producer support",
     ],
   },
 ];
