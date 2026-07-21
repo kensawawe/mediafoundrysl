@@ -3,40 +3,40 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Tracks whether an element has entered the viewport. Unlike Framer Motion's
- * `whileInView`, this checks the element's position synchronously on mount
- * (covering content that's already in view when the page loads) instead of
- * relying solely on an IntersectionObserver's first callback.
+ * Framer Motion's `whileInView` gets stuck in the Claude Browser preview pane —
+ * use IntersectionObserver directly instead (verified reliable there).
  */
-export function useInView<T extends HTMLElement>(amount = 0.3) {
+export function useInView<T extends HTMLElement = HTMLElement>(
+  options: IntersectionObserverInit = { threshold: 0.2 },
+) {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const node = ref.current;
+    if (!node) return;
 
-    const rect = el.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const visibleHeight =
-      Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
-    if (rect.height > 0 && visibleHeight / rect.height >= amount) {
+    // The Claude Browser preview pane reports document.visibilityState as
+    // "hidden" (backgrounded/composited pane), which throttles
+    // IntersectionObserver delivery unpredictably — so check synchronously
+    // on mount first rather than relying on the observer firing promptly.
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
       setInView(true);
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: amount },
-    );
-    observer.observe(el);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.disconnect();
+      }
+    }, options);
+
+    observer.observe(node);
     return () => observer.disconnect();
-  }, [amount]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { ref, inView };
 }

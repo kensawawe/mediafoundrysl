@@ -4,38 +4,58 @@
   --background: #ffffff;
   --foreground: #000000;
   --surface: #f4f4f2;
-  --border-subtle: rgba(0, 0, 0, 0.1);
-  --accent-green: #1eb53a;
-  --accent-green-ink: #157a32;
-  --accent-blue: #0072c6;
+  --surface-2: #ececea;
+  --border-subtle: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.85);
+
+  /* Light mode: blue is the text-safe workhorse accent (4.97:1 on white).
+     Green fails AA as small text on white (2.72:1) — fill/border only. */
+  --accent-text: #0072c6;
+  --accent-text-ink: #005a9e;
+  --accent-fill: #1eb53a;
+  --accent-fill-ink: #000000;
+
   --navy: #060644;
-  --nav-bg: rgba(255, 255, 255, 0.72);
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --slate-bg: #060614;
 }
 
 .dark {
   --background: #060644;
   --foreground: #ffffff;
-  --surface: #0c0c56;
-  --border-subtle: rgba(255, 255, 255, 0.12);
-  --accent-green: #1eb53a;
-  --accent-green-ink: #1eb53a;
-  --accent-blue: #2f9bef;
+  --surface: #0b0b52;
+  --surface-2: #0f0f5e;
+  --border-subtle: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.9);
+
+  /* Dark mode: green is the text-safe workhorse accent (7.73:1 on navy).
+     Blue moves to large type / dividers / chips only. */
+  --accent-text: #1eb53a;
+  --accent-text-ink: #35d454;
+  --accent-fill: #0072c6;
+  --accent-fill-ink: #ffffff;
+
   --navy: #060644;
-  --nav-bg: rgba(6, 6, 68, 0.65);
+  --nav-bg: rgba(6, 6, 68, 0.78);
+  --slate-bg: #020208;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-border-subtle: var(--border-subtle);
-  --color-accent-green: var(--accent-green);
-  --color-accent-green-ink: var(--accent-green-ink);
-  --color-accent-blue: var(--accent-blue);
+  --color-border-strong: var(--border-strong);
+  --color-accent-text: var(--accent-text);
+  --color-accent-text-ink: var(--accent-text-ink);
+  --color-accent-fill: var(--accent-fill);
+  --color-accent-fill-ink: var(--accent-fill-ink);
   --color-navy: var(--navy);
+  --color-slate-bg: var(--slate-bg);
   --font-display: var(--font-anton);
   --font-body: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-plex-mono);
 }
 
 html {
@@ -50,21 +70,16 @@ body {
 }
 
 ::selection {
-  background: var(--accent-green);
-  color: #000000;
+  background: var(--accent-fill);
+  color: var(--accent-fill-ink);
 }
 
 .font-display {
   font-family: var(--font-display), sans-serif;
 }
 
-.font-serif {
-  font-family: var(--font-serif), serif;
-}
-
-.text-outline {
-  -webkit-text-stroke: 1px currentColor;
-  color: transparent;
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
 }
 
 .focus-ring {
@@ -72,57 +87,56 @@ body {
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-@keyframes drift-a {
-  0% {
-    transform: translate(-8%, -6%) scale(1);
-  }
-  50% {
-    transform: translate(6%, 8%) scale(1.15);
-  }
-  100% {
-    transform: translate(-8%, -6%) scale(1);
-  }
+/* Slate placeholder texture — scan-line, broadcast-monitor cue */
+.slate-scanlines {
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
-@keyframes drift-b {
-  0% {
-    transform: translate(10%, 5%) scale(1.1);
-  }
-  50% {
-    transform: translate(-6%, -10%) scale(0.95);
-  }
-  100% {
-    transform: translate(10%, 5%) scale(1.1);
-  }
-}
-
-@keyframes pulse-ring {
+@keyframes hero-breathe {
   0%,
   100% {
+    opacity: 0.5;
     transform: scale(1);
-    opacity: 0.6;
   }
   50% {
-    transform: scale(1.08);
-    opacity: 1;
+    opacity: 0.85;
+    transform: scale(1.06);
   }
 }
 
-.animate-drift-a {
-  animation: drift-a 26s ease-in-out infinite;
+.animate-hero-breathe {
+  animation: hero-breathe 12s ease-in-out infinite;
 }
 
-.animate-drift-b {
-  animation: drift-b 32s ease-in-out infinite;
+@keyframes rec-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
-.animate-pulse-ring {
-  animation: pulse-ring 3.2s ease-in-out 3;
+.animate-rec-pulse {
+  animation: rec-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ticker {
+  0% {
+    content: "00:00:00:00";
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

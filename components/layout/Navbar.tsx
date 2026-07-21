@@ -1,124 +1,121 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import clsx from "clsx";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  AnimatePresence,
-} from "framer-motion";
-import { ThemeToggle } from "./ThemeToggle";
-
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/#contact", label: "Contact" },
-];
+import { navLinks } from "@/lib/content/site";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export function Navbar() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const lastY = useRef(0);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    setScrolled(latest > 40);
-    if (menuOpen) {
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const diff = y - lastY.current;
+    setScrolled(y > 40);
+    if (y < 80) {
       setHidden(false);
-      return;
-    }
-    if (latest > previous && latest > 160) {
+    } else if (diff > 4) {
       setHidden(true);
-    } else {
+      setMenuOpen(false);
+    } else if (diff < -4) {
       setHidden(false);
     }
+    lastY.current = y;
   });
 
   return (
-    <motion.header
-      animate={{ y: hidden ? "-100%" : "0%" }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className={clsx(
-        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-        scrolled || menuOpen
-          ? "border-border-subtle bg-[var(--nav-bg)] backdrop-blur-md"
-          : "border-transparent bg-transparent",
-      )}
-    >
-      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-6 py-4 md:px-10 lg:px-16">
-        <Link
-          href="/"
-          onClick={() => setMenuOpen(false)}
-          className="focus-ring font-display text-lg tracking-tight text-foreground"
-        >
-          THE MEDIA FOUNDRY
-        </Link>
+    <>
+      <motion.header
+        animate={{ y: hidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
+        className={clsx(
+          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
+          scrolled
+            ? "border-border-subtle bg-nav-bg backdrop-blur-md"
+            : "border-transparent bg-transparent",
+        )}
+      >
+        <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-6 md:h-20 md:px-10 lg:px-16">
+          <Link
+            href="/"
+            className="focus-ring font-display text-lg tracking-tight md:text-xl"
+            onClick={() => setMenuOpen(false)}
+          >
+            THE MEDIA FOUNDRY
+          </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="focus-ring font-body text-sm font-medium text-foreground/75 transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <ThemeToggle />
-        </nav>
+          <nav className="hidden items-center gap-10 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="focus-ring font-body text-sm uppercase tracking-[0.1em] transition-colors hover:text-accent-text"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <ThemeToggle />
+          </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="focus-ring relative flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full"
+            onClick={() => setMenuOpen((o) => !o)}
+            className="focus-ring flex flex-col gap-1.5 md:hidden"
           >
             <span
               className={clsx(
-                "h-px w-6 bg-foreground transition-transform duration-300",
+                "h-px w-6 bg-current transition-transform duration-300",
                 menuOpen && "translate-y-[3.5px] rotate-45",
               )}
             />
             <span
               className={clsx(
-                "h-px w-6 bg-foreground transition-transform duration-300",
+                "h-px w-6 bg-current transition-transform duration-300",
                 menuOpen && "-translate-y-[3.5px] -rotate-45",
               )}
             />
           </button>
         </div>
-      </div>
+      </motion.header>
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-border-subtle bg-[var(--nav-bg)] backdrop-blur-md md:hidden"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-background px-8 md:hidden"
           >
-            <div className="flex flex-col gap-1 px-6 py-6">
-              {links.map((link) => (
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.href}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 * i }}
+              >
                 <Link
-                  key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="focus-ring py-3 font-display text-2xl text-foreground"
+                  className="focus-ring font-display text-4xl"
                 >
                   {link.label}
                 </Link>
-              ))}
+              </motion.div>
+            ))}
+            <div className="pt-4">
+              <ThemeToggle />
             </div>
-          </motion.nav>
+          </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }

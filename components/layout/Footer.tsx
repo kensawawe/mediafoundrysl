@@ -1,77 +1,73 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/#contact", label: "Contact" },
-];
-
-const social = [
-  { href: "https://instagram.com", label: "Instagram" },
-  { href: "https://linkedin.com", label: "LinkedIn" },
-  { href: "https://youtube.com", label: "YouTube" },
-];
+import { navLinks, site } from "@/lib/content/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border-subtle bg-background py-16">
+    <footer className="border-t border-border-subtle py-16">
       <Container>
-        <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-display text-3xl leading-none tracking-tight text-foreground md:text-4xl">
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <Link href="/" className="focus-ring font-display text-2xl tracking-tight">
               THE MEDIA FOUNDRY
-            </p>
-            <p className="mt-4 max-w-sm font-body text-sm text-foreground/60">
-              A creative media agency telling Sierra Leone&rsquo;s stories
-              through authentic content — for the world.
-            </p>
+            </Link>
+            <p className="mt-4 font-body text-sm text-current/60">{site.tagline}</p>
           </div>
 
-          <div className="flex flex-wrap gap-x-12 gap-y-8">
+          <div className="flex flex-wrap gap-12 md:gap-20">
             <div className="flex flex-col gap-3">
-              <span className="font-body text-xs font-medium uppercase tracking-[0.2em] text-foreground/40">
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-current/40">
                 Navigate
               </span>
-              {links.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="focus-ring w-fit font-body text-sm text-foreground/75 transition-colors hover:text-foreground"
+                  className="focus-ring font-body text-sm hover:text-accent-text"
                 >
                   {link.label}
                 </Link>
               ))}
+              <Link href="/journal" className="focus-ring font-body text-sm hover:text-accent-text">
+                Journal
+              </Link>
+              <Link href="/careers" className="focus-ring font-body text-sm hover:text-accent-text">
+                Careers
+              </Link>
             </div>
 
             <div className="flex flex-col gap-3">
-              <span className="font-body text-xs font-medium uppercase tracking-[0.2em] text-foreground/40">
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-current/40">
                 Connect
               </span>
               <a
-                href="mailto:hello@themediafoundry.sl"
-                className="font-body text-sm text-foreground/75 transition-colors hover:text-foreground"
+                href={`mailto:${site.email}`}
+                className="focus-ring font-body text-sm hover:text-accent-text"
               >
-                hello@themediafoundry.sl
+                {site.email}
               </a>
-              {social.map((item) => (
+              {site.social.map((s) => (
                 <a
-                  key={item.href}
-                  href={item.href}
+                  key={s.label}
+                  href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="focus-ring w-fit font-body text-sm text-foreground/75 transition-colors hover:text-foreground"
+                  className="focus-ring font-body text-sm hover:text-accent-text"
                 >
-                  {item.label}
+                  {s.label}
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-border-subtle pt-6 text-xs text-foreground/40 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} The Media Foundry. Freetown, Sierra Leone.</p>
-          <p>Craft. Story. Impact.</p>
+        <div className="mt-16 flex flex-col-reverse items-start justify-between gap-4 border-t border-border-subtle pt-6 md:flex-row md:items-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-current/40">
+            © {new Date().getFullYear()} The Media Foundry — {site.location}
+          </p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-current/40">
+            Craft. Story. Impact.
+          </p>
         </div>
       </Container>
     </footer>

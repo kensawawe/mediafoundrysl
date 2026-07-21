@@ -1,26 +1,31 @@
-import { Section, Eyebrow } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
 import { partnerSlots } from "@/lib/content/partners";
 
 export function Partners() {
   return (
-    <Section className="border-b border-border-subtle">
-      <Eyebrow>Trusted by</Eyebrow>
-      <h2 className="mt-4 max-w-xl font-display text-3xl leading-[1.05] tracking-tight text-foreground sm:text-4xl md:text-5xl">
-        Space reserved for the organisations we&rsquo;ll tell stories with.
-      </h2>
+    <Section>
+      <Container>
+        <SlateTag>Who We Work With</SlateTag>
+        <p className="mt-4 max-w-lg font-body text-sm text-current/60">
+          Space reserved for the NGOs, brands, organisations and development
+          partners we&apos;ll build with next.
+        </p>
 
-      <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-        {partnerSlots.map((slot, i) => (
-          <FadeIn key={slot.label} delay={i * 0.05}>
-            <div className="flex aspect-[3/2] items-center justify-center rounded-lg border border-dashed border-border-subtle px-4 text-center">
-              <span className="font-body text-xs uppercase tracking-[0.15em] text-foreground/35">
-                {slot.label}
-              </span>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
+        <div className="mt-12 grid grid-cols-2 gap-px border border-border-subtle bg-border-subtle sm:grid-cols-3 md:grid-cols-6">
+          {partnerSlots.map((slot, i) => (
+            <FadeIn key={slot.label} delay={i * 0.04}>
+              <div className="flex aspect-[3/2] items-center justify-center bg-background px-4 text-center">
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-current/35">
+                  {slot.label}
+                </span>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </Container>
     </Section>
   );
 }

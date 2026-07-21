@@ -1,50 +1,51 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll } from "framer-motion";
-import { Section, Eyebrow } from "@/components/ui/Section";
-import { FadeIn } from "@/components/ui/RevealText";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { SlateTag } from "@/components/ui/SlateTag";
 import { processStages } from "@/lib/content/process";
 
 export function Process() {
-  const ref = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.75", "end 0.6"],
+    target: trackRef,
+    offset: ["start 0.8", "end 0.4"],
   });
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <Section className="border-b border-border-subtle">
-      <Eyebrow>How we work</Eyebrow>
-      <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[0.95] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-        From idea to impact.
-      </h2>
+    <Section id="process">
+      <Container>
+        <SlateTag>How We Work</SlateTag>
+        <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[0.98] tracking-tight sm:text-5xl">
+          Discover. Develop. Create. Deliver.
+        </h2>
 
-      <div ref={ref} className="relative mt-20">
-        <div className="absolute left-4 top-0 h-full w-px bg-border-subtle md:left-0 md:top-4 md:h-px md:w-full">
+        <div ref={trackRef} className="relative mt-16 pl-8 md:pl-12">
+          <div className="absolute left-0 top-1 h-full w-px bg-border-subtle md:left-0" />
           <motion.div
-            style={{ scaleY: scrollYProgress }}
-            className="h-full w-full origin-top bg-accent-green-ink md:origin-left"
+            style={{ scaleY }}
+            className="absolute left-0 top-1 h-full w-px origin-top bg-accent-text"
           />
-        </div>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-8">
-          {processStages.map((stage, i) => (
-            <FadeIn key={stage.index} delay={i * 0.1} className="relative pl-12 md:pl-0">
-              <span className="absolute left-0 top-0 h-2 w-2 -translate-x-[3.5px] rounded-full bg-accent-green-ink md:relative md:mb-8 md:block md:translate-x-0" />
-              <span className="block font-body text-xs uppercase tracking-[0.25em] text-foreground/40">
-                {stage.index}
-              </span>
-              <h3 className="mt-3 font-display text-2xl tracking-tight text-foreground md:text-3xl">
-                {stage.title}
-              </h3>
-              <p className="mt-3 font-body text-sm leading-relaxed text-foreground/60">
-                {stage.description}
-              </p>
-            </FadeIn>
-          ))}
+          <div className="flex flex-col gap-16">
+            {processStages.map((stage) => (
+              <div key={stage.index} className="relative">
+                <span className="absolute -left-8 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-current md:-left-12" />
+                <span className="font-mono text-xs text-accent-text">{stage.index}</span>
+                <h3 className="mt-2 font-display text-3xl tracking-tight sm:text-4xl">
+                  {stage.title}
+                </h3>
+                <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
+                  {stage.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

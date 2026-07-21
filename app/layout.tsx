@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Anton, Inter, Playfair_Display } from "next/font/google";
+import { Anton, Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { site } from "@/lib/content/site";
 import "./globals.css";
 
 const anton = Anton({
@@ -16,31 +17,29 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  style: ["italic"],
-  weight: ["500", "600"],
+  weight: ["400", "500"],
 });
 
-const title = "The Media Foundry — Sierra Leone Creative & Media Agency";
-const description =
-  "The Media Foundry crafts authentic film, photography, podcasts and campaign content from Sierra Leone, for the world.";
+const title = `${site.name} — Sierra Leone Creative & Media Agency`;
 
 export const metadata: Metadata = {
   title,
-  description,
+  description: site.description,
+  metadataBase: new URL("https://www.themediafoundry.sl"),
   openGraph: {
     title,
-    description,
+    description: site.description,
     type: "website",
     locale: "en_US",
-    siteName: "The Media Foundry",
+    siteName: site.name,
   },
   twitter: {
     card: "summary_large_image",
     title,
-    description,
+    description: site.description,
   },
 };
 
@@ -53,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${anton.variable} ${inter.variable} ${playfair.variable}`}
+      className={`${anton.variable} ${inter.variable} ${plexMono.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider

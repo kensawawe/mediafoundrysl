@@ -1,79 +1,51 @@
 "use client";
 
-import type { ElementType, ReactNode } from "react";
-import { motion } from "framer-motion";
 import clsx from "clsx";
-import { useInView } from "./useInView";
-
-type RevealTextProps = {
-  children: ReactNode;
-  as?: ElementType;
-  className?: string;
-  delay?: number;
-};
-
-/** Clips a block upward into view; use RevealLines for per-line stagger. */
-export function RevealText({
-  children,
-  as: Tag = "div",
-  className,
-  delay = 0,
-}: RevealTextProps) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.4);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-      animate={inView ? { clipPath: "inset(0 0 0% 0)", opacity: 1 } : undefined}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      <Tag>{children}</Tag>
-    </motion.div>
-  );
-}
+import { motion } from "framer-motion";
+import { useInView } from "@/components/ui/useInView";
+import { framerEase } from "@/lib/motion/easing";
 
 /**
- * Reveals an array of lines/words with a staggered upward clip animation.
- * Set `onMount` for above-the-fold content that should animate immediately
- * rather than waiting on a scroll-triggered viewport check.
+ * Line-level clip-path wipe — reads as a slate closing on a scene rather than
+ * a generic fade/slide. Used for headline-weight text only.
  */
 export function RevealLines({
   lines,
   className,
   lineClassName,
-  as: Tag = "span",
-  stagger = 0.08,
   baseDelay = 0,
+  stagger = 0.1,
   onMount = false,
 }: {
   lines: string[];
   className?: string;
   lineClassName?: string;
-  as?: ElementType;
-  stagger?: number;
   baseDelay?: number;
+  stagger?: number;
   onMount?: boolean;
 }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.4);
-  const animate = onMount || inView;
+  const { ref, inView } = useInView({ threshold: 0.4 });
+  const show = onMount || inView;
 
   return (
     <span ref={ref} className={clsx("block", className)}>
       {lines.map((line, i) => (
-        <span key={line + i} className="block overflow-hidden">
+        <span key={line} className="block overflow-hidden">
           <motion.span
-            initial={{ y: "110%", opacity: 0 }}
-            animate={animate ? { y: "0%", opacity: 1 } : undefined}
+            className={clsx("block", lineClassName)}
+            initial={{ clipPath: "inset(0 0 100% 0)", y: 24 }}
+            animate={
+              show
+                ? { clipPath: "inset(0 0 0% 0)", y: 0 }
+                : { clipPath: "inset(0 0 100% 0)", y: 24 }
+            }
             transition={{
               duration: 0.9,
+              ease: framerEase,
               delay: baseDelay + i * stagger,
-              ease: [0.22, 1, 0.36, 1],
             }}
-            className={clsx("block", lineClassName)}
           >
-            <Tag>{line}</Tag>
+            {line}
           </motion.span>
         </span>
       ))}
@@ -81,26 +53,27 @@ export function RevealLines({
   );
 }
 
+/** Simple scroll-triggered fade-up for body copy / paragraphs / cards. */
 export function FadeIn({
   children,
   className,
   delay = 0,
-  y = 24,
+  y = 14,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   delay?: number;
   y?: number;
 }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.3);
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
+      initial={{ opacity: 0, y }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+      transition={{ duration: 0.7, ease: framerEase, delay }}
     >
       {children}
     </motion.div>

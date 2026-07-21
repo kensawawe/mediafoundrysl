@@ -1,23 +1,23 @@
 import { Hero } from "@/components/home/Hero";
 import { BrandStatement } from "@/components/home/BrandStatement";
-import { FeaturedWork } from "@/components/home/FeaturedWork";
+import { WorkWall } from "@/components/home/WorkWall";
 import { Services } from "@/components/home/Services";
 import { Process } from "@/components/home/Process";
-import { WhyMediaFoundry } from "@/components/home/WhyMediaFoundry";
+import { Philosophy } from "@/components/home/Philosophy";
 import { Partners } from "@/components/home/Partners";
-import { ContactSection } from "@/components/home/ContactSection";
+import { Contact } from "@/components/home/Contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <BrandStatement />
-      <FeaturedWork />
+      <WorkWall />
       <Services />
       <Process />
-      <WhyMediaFoundry />
+      <Philosophy />
       <Partners />
-      <ContactSection />
+      <Contact />
     </>
   );
 }
