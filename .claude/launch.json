@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "media-foundry-dev",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-ken-Ken-Claude/fd570261-ba18-407d-882a-d5a9c7ae88a6/scratchpad/run-dev.sh"
+      ],
+      "port": 3000
+    }
+  ]
+}

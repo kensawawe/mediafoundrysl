@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #f4f4f2;
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --accent-green: #1eb53a;
+  --accent-green-ink: #157a32;
+  --accent-blue: #0072c6;
+  --navy: #060644;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+}
+
+.dark {
+  --background: #060644;
+  --foreground: #ffffff;
+  --surface: #0c0c56;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --accent-green: #1eb53a;
+  --accent-green-ink: #1eb53a;
+  --accent-blue: #2f9bef;
+  --navy: #060644;
+  --nav-bg: rgba(6, 6, 68, 0.65);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border-subtle: var(--border-subtle);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-ink: var(--accent-green-ink);
+  --color-accent-blue: var(--accent-blue);
+  --color-navy: var(--navy);
+  --font-display: var(--font-anton);
+  --font-body: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--accent-green);
+  color: #000000;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), serif;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@keyframes drift-a {
+  0% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+  50% {
+    transform: translate(6%, 8%) scale(1.15);
+  }
+  100% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+}
+
+@keyframes drift-b {
+  0% {
+    transform: translate(10%, 5%) scale(1.1);
+  }
+  50% {
+    transform: translate(-6%, -10%) scale(0.95);
+  }
+  100% {
+    transform: translate(10%, 5%) scale(1.1);
+  }
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.animate-drift-a {
+  animation: drift-a 26s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: drift-b 32s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 3.2s ease-in-out 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
