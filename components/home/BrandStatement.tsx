@@ -8,7 +8,7 @@ export function BrandStatement() {
   return (
     <Section>
       <Container>
-        <IgniteRule />
+        <IgniteRule lineColor="var(--accent-fill)" />
         <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-16">
           <FadeIn>
             <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-[2.6vw]">

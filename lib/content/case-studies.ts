@@ -61,91 +61,89 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    slug: "halyard-launch-campaign",
-    title: "Halyard",
-    category: "Campaigns",
-    client: "Halyard Insurance",
+    slug: "the-feminist-cohort",
+    title: "The Feminist Cohort",
+    category: "Activation",
     year: "2025",
-    heroMedia: { variant: "video", label: "Halyard launch film, marina" },
+    heroMedia: { variant: "photo", label: "The Feminist Cohort, launch activation" },
     overview:
-      "A category-defining launch campaign for an insurtech bringing boat insurance to a generation of owners who'd never buy it the old way — built to run across broadcast, social and the point of sale.",
+      "A brand identity and live launch activation for The Feminist Cohort, built to turn a community that had only ever met online into a room full of people who already knew each other's work.",
     challenge:
-      "Marine insurance advertising looks the same everywhere: navy, brass, a retired admiral. Halyard needed to launch into that category and read as something else entirely, without losing the credibility a first-time buyer needs to see.",
+      "The Cohort's community lived entirely online — years of conversation, mutual support and shared language with no shared physical space to match it. Their first in-person gathering needed to feel like a homecoming, not a conference, without an existing brand or event infrastructure to build it on.",
     approach:
-      "We treated the campaign as a production problem first and a media plan second — writing and shooting a hero film built around real boat owners, then breaking it into forty-plus cutdowns engineered for the exact platforms Halyard's underwriting data said its buyers were on.",
+      "We designed the identity and the activation as one brief: a mark built from the community's own members — a chain of member silhouettes forming the Cohort's 'C' — then carried that same idea of people carrying each other forward into every touchpoint of the launch event itself.",
     process: [
       {
-        title: "Strategy & script",
+        title: "Identity & mark",
         description:
-          "Positioning and campaign architecture built from underwriting and customer-interview data, not category convention.",
+          "A logotype built from illustrated member silhouettes rather than an abstract symbol, so the brand mark was literally made of the community it represents.",
       },
       {
-        title: "Production",
+        title: "Activation design",
         description:
-          "A five-day shoot across two coastal locations, cast entirely with real boat owners rather than actors.",
+          "Signage, seating and a live mural extended the same figures-in-motion motif from the mark out into the physical room.",
       },
       {
-        title: "Media system",
+        title: "On-site production",
         description:
-          "One hero film re-cut into 40+ platform-specific versions, each engineered to its channel's aspect ratio and attention span.",
+          "A full crew documenting the activation live, turning the one-night event into a recurring content library for the Cohort's own channels.",
       },
     ],
     outcome:
-      "The campaign became Halyard's primary acquisition asset at launch, run across broadcast, paid social and point-of-sale video — and set the visual template the brand still uses for every campaign since.",
+      "Delivered as a complete identity system plus a fully produced launch activation, the event became the template for The Feminist Cohort's ongoing chapter meetups, with the mark now recognised across their community as their own.",
     gallery: [
-      { variant: "video", label: "Hero film, 60s cut", category: "Campaign" },
-      { variant: "photo", label: "Production still, marina shoot" },
-      { variant: "video", label: "Social cutdown, 15s" },
-      { variant: "photo", label: "Owner casting, on location" },
+      { variant: "photo", label: "Activation signage, entrance", category: "Activation" },
+      { variant: "video", label: "Launch night recap film" },
+      { variant: "photo", label: "Live mural in progress" },
+      { variant: "photo", label: "Attendees, chapter meetup" },
     ],
     impact: [
-      { stat: "40+", label: "Platform-specific cutdowns delivered" },
-      { stat: "5 DAYS", label: "Principal photography" },
-      { stat: "1ST", label: "Category launch campaign for the brand" },
+      { stat: "1", label: "Identity system built from the community itself" },
+      { stat: "150+", label: "Members at the launch activation" },
+      { stat: "1ST", label: "In-person gathering for the Cohort" },
     ],
   },
   {
-    slug: "cast-and-co-digital",
-    title: "Cast & Co.",
-    category: "Digital",
-    client: "Cast & Co.",
-    year: "2024",
-    heroMedia: { variant: "photo", label: "Cast & Co. product studio" },
+    slug: "slmda",
+    title: "Sierra Leone Medical & Dental Association",
+    category: "Cinematography & Photography",
+    year: "2025",
+    heroMedia: { variant: "photo", label: "SLMDA annual conference, Freetown" },
     overview:
-      "A commerce-ready site and design system for a direct-to-consumer homeware brand outgrowing its original template store — built to carry a fast-expanding catalogue without the site outgrowing its own brand.",
+      "A cinematography and photography commission for the Sierra Leone Medical & Dental Association, documenting the country's medical professionals at work and at their annual gathering.",
     challenge:
-      "Cast & Co.'s catalogue had tripled in a year, and their storefront hadn't kept pace — a templated build that couldn't express the material quality of the product or scale past a few hundred SKUs without breaking its own layout.",
+      "SLMDA's professional community had never been documented at the standard of the work its members actually do — decades of practice with no visual record built to represent it to government, donors or the public.",
     approach:
-      "We designed a component-driven system before we designed a single page — modular product, story and collection templates built to hold thousands of SKUs at the same visual standard as the hero launch pieces.",
+      "We treated it as an editorial assignment, not an event recap — embedding with practitioners across hospitals and clinics before the conference, then covering the gathering itself as the culmination of that longer story rather than the whole of it.",
     process: [
       {
-        title: "System architecture",
+        title: "Field access",
         description:
-          "A component library and content model built first, so every future page inherits the same craft without custom design work.",
+          "Two weeks embedded across hospitals and clinics, building the trust needed to photograph practitioners mid-practice rather than posed.",
       },
       {
-        title: "Design & build",
+        title: "Conference coverage",
         description:
-          "Full storefront redesign across product, collection, story and checkout templates, built on a headless commerce stack.",
+          "Full cinematography and photography coverage of the annual conference, from keynote sessions to the delegates between them.",
       },
       {
-        title: "Photography direction",
+        title: "Edit & delivery",
         description:
-          "An in-house photography system specified so new products can be shot and published without a re-brief every time.",
+          "A curated still archive plus a short film cut for SLMDA's own use across membership communications and public health partners.",
       },
     ],
     outcome:
-      "Launched with over 1,200 SKUs live on day one at a consistent visual standard, with a component system Cast & Co.'s team now extends without design support for net-new product lines.",
+      "Delivered as a full photographic archive and a short documentary film, now used by SLMDA in its own communications with government and international health partners — the association's first visual record built to that standard.",
     gallery: [
-      { variant: "photo", label: "Storefront, product detail template", category: "Digital" },
-      { variant: "photo", label: "Collection page, modular grid" },
-      { variant: "photo", label: "Checkout flow" },
-      { variant: "video", label: "Site walkthrough" },
+      { variant: "photo", label: "Practitioner, district hospital", category: "Photography" },
+      { variant: "video", label: "Conference recap film" },
+      { variant: "photo", label: "Delegates, annual conference" },
+      { variant: "photo", label: "Clinical documentation, field visit" },
     ],
     impact: [
-      { stat: "1,200+", label: "SKUs live at launch" },
-      { stat: "4", label: "Modular template types" },
-      { stat: "0", label: "Design hours needed per new SKU" },
+      { stat: "2 WEEKS", label: "Embedded field access" },
+      { stat: "1ST", label: "Visual archive of this standard for the association" },
+      { stat: "1", label: "Short documentary film delivered" },
     ],
   },
 ];

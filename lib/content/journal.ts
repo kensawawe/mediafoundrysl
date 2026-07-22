@@ -32,7 +32,8 @@ export const articles: Article[] = [
   {
     title: "Casting Real People, Not Actors",
     category: "Production",
-    excerpt: "Notes from the Halyard shoot on why we cast boat owners instead of talent.",
+    excerpt:
+      "Notes from The Feminist Cohort activation on why we pointed the camera at the real room instead of staging one.",
     readTime: "5 min",
     date: "January 2026",
   },

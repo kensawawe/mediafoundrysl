@@ -5,7 +5,10 @@ export type WorkCategory =
   | "Digital"
   | "Photography"
   | "Social & Content"
-  | "Music Video";
+  | "Music Video"
+  | "Video Podcast"
+  | "Activation"
+  | "Cinematography & Photography";
 
 export const workCategories: WorkCategory[] = [
   "Brand Identity",
@@ -15,6 +18,9 @@ export const workCategories: WorkCategory[] = [
   "Photography",
   "Social & Content",
   "Music Video",
+  "Video Podcast",
+  "Activation",
+  "Cinematography & Photography",
 ];
 
 export type WorkItem = {
@@ -31,6 +37,10 @@ export type WorkItem = {
   restingImage?: string;
   /** Shown inside the pour-wash hover reveal, alongside title/category. */
   hoverImage?: string;
+  /** "contain" for a logo lockup that needs breathing room on a white
+   *  field; "cover" for a full-bleed photographic thumbnail. Defaults to
+   *  "cover". */
+  imageFit?: "contain" | "cover";
 };
 
 export const workItems: WorkItem[] = [
@@ -45,45 +55,54 @@ export const workItems: WorkItem[] = [
     hasCaseStudy: true,
     restingImage: "/rokel.jpg",
     hoverImage: "/headerlogo.png",
+    imageFit: "contain",
   },
   {
-    slug: "verdant-brand-film",
-    title: "Verdant",
-    category: "Film & Production",
-    description:
-      "A brand film for a plant-based food company, shot across four working farms.",
-    variant: "video",
-    size: "md",
-  },
-  {
-    slug: "halyard-launch-campaign",
-    title: "Halyard",
+    slug: "conex-campaign",
+    title: "Conex",
     category: "Campaigns",
-    description:
-      "A category-defining launch campaign for an insurtech built for a new generation of boat owners.",
-    client: "Halyard Insurance",
+    description: "A brand campaign for Conex, launched around a bold new mark built to command attention.",
     variant: "video",
     size: "md",
-    hasCaseStudy: true,
+    restingImage: "/conex.jpg",
+    hoverImage: "/conex%20logo.png",
   },
   {
-    slug: "meridian-portraits",
-    title: "Meridian Health",
-    category: "Photography",
+    slug: "the-feminist-cohort",
+    title: "The Feminist Cohort",
+    category: "Activation",
     description:
-      "An ongoing photographic study of frontline clinicians for a healthcare network's people-first rebrand.",
-    variant: "photo",
-    size: "lg",
-  },
-  {
-    slug: "cast-and-co-digital",
-    title: "Cast & Co.",
-    category: "Digital",
-    description:
-      "A commerce-ready site and design system for a direct-to-consumer homeware brand.",
+      "A brand identity and launch activation for a community collective, built from the members it represents.",
     variant: "photo",
     size: "md",
     hasCaseStudy: true,
+    restingImage: "/The%20Feminist%20Cohort.jpg",
+    hoverImage: "/femco%20logo.png",
+    imageFit: "contain",
+  },
+  {
+    slug: "afta-di-wisul",
+    title: "Afta Di Wisul",
+    category: "Video Podcast",
+    description:
+      "A weekly video podcast breaking down the beautiful game, built into a show identity of its own.",
+    variant: "video",
+    size: "lg",
+    restingImage: "/after%201.jpg",
+    hoverImage: "/wisul.png",
+  },
+  {
+    slug: "slmda",
+    title: "Sierra Leone Medical & Dental Association",
+    category: "Cinematography & Photography",
+    description:
+      "A cinematography and photography commission documenting the country's medical professionals at work and at their annual gathering.",
+    variant: "photo",
+    size: "md",
+    hasCaseStudy: true,
+    restingImage: "/SLMDA%20banner.jpg",
+    hoverImage: "/fSLMDA-logo.png",
+    imageFit: "contain",
   },
   {
     slug: "aster-social-series",

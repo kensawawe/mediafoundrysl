@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Slate } from "@/components/ui/Slate";
 import { PourOverlay } from "@/components/ui/PourOverlay";
 import type { WorkItem } from "@/lib/content/work";
@@ -9,14 +10,24 @@ import type { WorkItem } from "@/lib/content/work";
  */
 export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) {
   if (item.restingImage) {
+    const fit = item.imageFit ?? "cover";
     return (
       <>
-        <div className={`relative isolate w-full overflow-hidden bg-white ${aspect}`}>
+        <div
+          className={clsx(
+            "relative isolate w-full overflow-hidden",
+            fit === "contain" ? "bg-white" : "bg-ink",
+            aspect,
+          )}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
           <img
             src={item.restingImage}
             alt={item.title}
-            className="absolute inset-0 h-full w-full object-contain p-10"
+            className={clsx(
+              "absolute inset-0 h-full w-full",
+              fit === "contain" ? "object-contain p-10" : "object-cover",
+            )}
           />
         </div>
         <PourOverlay>
