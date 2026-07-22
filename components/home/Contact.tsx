@@ -4,7 +4,6 @@ import { useState } from "react";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { Button } from "@/components/ui/Button";
 import { projectTypes } from "@/lib/content/contact";
 import { site } from "@/lib/content/site";
@@ -46,8 +45,7 @@ export function Contact() {
       <Container>
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
-            <SlateTag>Start Here</SlateTag>
-            <h2 className="mt-4 font-display text-5xl font-black uppercase leading-[0.88] tracking-tight sm:text-6xl md:text-7xl">
+            <h2 className="font-display text-5xl font-black uppercase leading-[0.88] tracking-tight sm:text-6xl md:text-7xl">
               Start a project.
             </h2>
             <p className="mt-6 max-w-xs font-body text-sm text-current/60">

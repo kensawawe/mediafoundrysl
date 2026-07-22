@@ -1,6 +1,5 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
 import { sectorSlots } from "@/lib/content/partners";
 
@@ -8,8 +7,7 @@ export function Partners() {
   return (
     <Section>
       <Container>
-        <SlateTag>Where We&apos;ve Worked</SlateTag>
-        <p className="mt-4 max-w-lg font-body text-sm text-current/60">
+        <p className="max-w-lg font-body text-sm text-current/60">
           Sectors we&apos;ve built brand, campaign and production work for — across
           startups, established brands and mission-driven organisations.
         </p>

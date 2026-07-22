@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { Slate } from "@/components/ui/Slate";
 import { PourOverlay } from "@/components/ui/PourOverlay";
 import { FadeIn } from "@/components/ui/RevealText";
@@ -21,10 +20,7 @@ export function WorkWall() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <SlateTag tone="inverse" className="text-current/60">
-              Featured Work
-            </SlateTag>
-            <h2 className="mt-4 font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl">
+            <h2 className="font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl">
               The Cast Wall
             </h2>
           </div>

@@ -4,7 +4,6 @@ import { useState } from "react";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
 import { services } from "@/lib/content/services";
 
@@ -14,8 +13,7 @@ export function Services() {
   return (
     <Section>
       <Container>
-        <SlateTag>Capabilities</SlateTag>
-        <h2 className="mt-4 max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+        <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
           Four departments. One floor.
         </h2>
 

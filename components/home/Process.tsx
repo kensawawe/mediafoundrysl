@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { processStages } from "@/lib/content/process";
 
 export function Process() {
@@ -18,8 +17,7 @@ export function Process() {
   return (
     <Section id="process">
       <Container>
-        <SlateTag>How We Work</SlateTag>
-        <h2 className="mt-4 max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+        <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
           Discover. Design. Produce. Deliver.
         </h2>
 
