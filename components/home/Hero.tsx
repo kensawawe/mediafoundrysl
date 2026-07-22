@@ -90,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 max-w-md font-body text-base text-paper/70 md:text-lg"
+            className="mt-8 max-w-md font-body text-base font-semibold text-white md:text-lg"
           >
             {hero.supporting}
           </motion.p>
