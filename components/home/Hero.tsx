@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -22,7 +22,7 @@ export function Hero() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        videoRef.current?.play();
+        videoRef.current?.play().catch(() => {});
 
         gsap.to(mediaRef.current, {
           scale: 1.12,
@@ -47,6 +47,34 @@ export function Hero() {
     },
     { scope: sectionRef },
   );
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    // iOS can silently block attribute-based autoplay (Low Power Mode, Low
+    // Data Mode) even with muted/playsInline set correctly — but it still
+    // allows play() from within a genuine user gesture. Start on the first
+    // touch/scroll/click anywhere on the page so it starts the instant a
+    // real visitor does anything, rather than requiring a tap on the video.
+    const unlock = () => {
+      if (video.paused) video.play().catch(() => {});
+    };
+
+    window.addEventListener("touchstart", unlock, { once: true, passive: true });
+    window.addEventListener("scroll", unlock, { once: true, passive: true });
+    window.addEventListener("click", unlock, { once: true });
+
+    return () => {
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("scroll", unlock);
+      window.removeEventListener("click", unlock);
+    };
+  }, []);
 
   return (
     <section
