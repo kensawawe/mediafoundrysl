@@ -26,7 +26,7 @@ export function WorkWall() {
           <Button
             href="/work"
             variant="outline"
-            className="border-current/30 text-current hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+            className="border-current/30! text-current! hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
           >
             View all work
           </Button>
