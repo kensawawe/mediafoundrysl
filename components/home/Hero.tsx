@@ -69,7 +69,13 @@ export function Hero() {
           aria-hidden
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%)",
+            // Extra-dark band at the very top keeps the nav/logo legible
+            // regardless of what the looping video is showing there —
+            // sky, road and foliage all cycle through at very different
+            // brightness levels. Settles back to the original tone by the
+            // time it reaches the headline.
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 8%, rgba(0,0,0,0.15) 16%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7) 100%)",
           }}
         />
       </div>
