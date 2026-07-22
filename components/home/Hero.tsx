@@ -56,6 +56,7 @@ export function Hero() {
       <div ref={mediaRef} className="absolute inset-0">
         <video
           ref={videoRef}
+          autoPlay
           muted
           loop
           playsInline
