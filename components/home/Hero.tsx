@@ -68,7 +68,7 @@ export function Hero() {
         </video>
         <div
           aria-hidden
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             // Extra-dark band at the very top keeps the nav/logo legible
             // regardless of what the looping video is showing there —
@@ -81,7 +81,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 w-full px-6 pb-20 pt-40 md:px-10 md:pb-24 lg:px-16">
+      <div className="pointer-events-none relative z-10 w-full px-6 pb-20 pt-40 md:px-10 md:pb-24 lg:px-16">
         <div className="max-w-5xl">
           <h1 className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper">
             <RevealLines
@@ -113,7 +113,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="pointer-events-auto mt-10 flex flex-wrap items-center gap-4"
           >
             <Magnetic>
               <Button
