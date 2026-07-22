@@ -7,10 +7,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border-subtle bg-foreground text-background">
       <Container className="py-20 md:py-28">
-        <div className="flex flex-col gap-6">
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-current/50">
-            Start Here
-          </span>
+        <div className="flex flex-col">
           <Magnetic strength={0.18} className="inline-block w-fit">
             <a
               href={`mailto:${site.email}`}
