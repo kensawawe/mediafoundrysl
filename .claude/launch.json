@@ -4,9 +4,7 @@
     {
       "name": "media-foundry-dev",
       "runtimeExecutable": "/bin/bash",
-      "runtimeArgs": [
-        "/private/tmp/claude-501/-Users-ken-Ken-Claude/81661da9-85b1-4aeb-a8fd-24eddf0b150b/scratchpad/run-dev.sh"
-      ],
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-ken-Ken-Claude/7fce16f7-09a8-40df-8aba-097278091039/scratchpad/run-dev.sh"],
       "port": 3000,
       "autoPort": true
     }
