@@ -17,8 +17,9 @@
 *.tsbuildinfo
 
 # Raw video source uploads — keep locally for re-cutting, never commit
-# (large, unoptimized; the compressed web-ready output goes in public/ instead)
-public/Freetown.mov
+# (large, unoptimized; the compressed web-ready output goes in public/ instead).
+# Deliberately kept OUTSIDE public/ so `next build` never copies it into out/.
+/raw-footage/
 .DS_Store
 .env*
 .next/
