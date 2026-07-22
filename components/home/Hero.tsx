@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Slate } from "@/components/ui/Slate";
 import { RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -16,12 +15,15 @@ gsap.registerPlugin(ScrollTrigger);
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        videoRef.current?.play();
+
         gsap.to(mediaRef.current, {
           scale: 1.12,
           yPercent: 8,
@@ -35,6 +37,12 @@ export function Hero() {
         });
       });
 
+      // Respect reduced-motion: leave the video paused on its poster frame
+      // rather than autoplaying a moving background.
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        videoRef.current?.pause();
+      });
+
       return () => mm.revert();
     },
     { scope: sectionRef },
@@ -46,13 +54,23 @@ export function Hero() {
       className="relative flex h-[100svh] min-h-[640px] w-full items-end overflow-hidden bg-ink"
     >
       <div ref={mediaRef} className="absolute inset-0">
-        <Slate
-          label="Studio floor — brand and film in production"
-          variant="video"
-          aspect="aspect-auto h-full"
-          atmospheric
-          grainOpacity={0.05}
-          className="h-full"
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-freetown-poster.jpg"
+          className="h-full w-full object-cover"
+        >
+          <source src="/hero-freetown.mp4" type="video/mp4" />
+        </video>
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%)",
+          }}
         />
       </div>
 
