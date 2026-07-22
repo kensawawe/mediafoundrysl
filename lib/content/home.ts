@@ -1,5 +1,6 @@
 export const hero = {
-  lines: ["Every brand", "starts as raw", "material."],
+  lines: ["Stories move people"],
+  linesSecondary: ["We make them", "impossible to ignore."],
   supporting:
     "The Media Foundry is a Creative Agency and a Production Company. We craft identity, campaigns and film in one studio, so nothing is lost between the idea and the final cut.",
   primaryCta: { label: "Start a project", href: "/#contact" },
