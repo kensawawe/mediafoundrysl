@@ -20,10 +20,10 @@
 
   /* accent-text: AA-safe on the CURRENT theme's default background.
      accent-text-inverse: AA-safe on a tone="inverse" section (opposite bg). */
-  --accent-text: #b8360f;
-  --accent-text-inverse: #ff7a4d;
-  --accent-fill: #ff4a1c;
-  --accent-fill-ink: #14120f;
+  --accent-text: #2445c0;
+  --accent-text-inverse: #5b8dff;
+  --accent-fill: #2451d6;
+  --accent-fill-ink: #f2ecdf;
 
   --brass: #a9791f;
   --steel: #6b6a63;
@@ -41,10 +41,10 @@
   --border-subtle: rgba(242, 236, 223, 0.14);
   --border-strong: rgba(242, 236, 223, 0.9);
 
-  --accent-text: #ff7a4d;
-  --accent-text-inverse: #b8360f;
-  --accent-fill: #ff4a1c;
-  --accent-fill-ink: #14120f;
+  --accent-text: #5b8dff;
+  --accent-text-inverse: #2445c0;
+  --accent-fill: #2451d6;
+  --accent-fill-ink: #f2ecdf;
 
   --brass: #d8a83e;
   --steel: #a6a398;
@@ -128,7 +128,7 @@ body::after {
   transform-origin: left;
 }
 
-/* Pour overlay — the hover state for every work thumbnail: an ember wash
+/* Pour overlay — the hover state for every work thumbnail: a molten wash
    "poured" down over the frame, revealing the title in the liquid. Pure
    CSS so it stays instant on hover with no JS in the loop. */
 .pour-overlay {
@@ -137,7 +137,7 @@ body::after {
   z-index: 10;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(165deg, #ff5a29 0%, #b8360f 100%);
+  background: linear-gradient(165deg, #3f6bff 0%, #1a3fb0 100%);
   clip-path: inset(100% 0 0 0);
   transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 }

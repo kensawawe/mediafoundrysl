@@ -53,8 +53,8 @@ export function IgniteRule({ className }: { className?: string }) {
         aria-hidden
         className="absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0"
         style={{
-          background: "radial-gradient(circle, #ffb37a 0%, #ff4a1c 60%, transparent 100%)",
-          boxShadow: "0 0 10px 2px rgba(255,74,28,0.7)",
+          background: "radial-gradient(circle, #8fb3ff 0%, #2451d6 60%, transparent 100%)",
+          boxShadow: "0 0 10px 2px rgba(36,81,214,0.7)",
         }}
       />
     </div>

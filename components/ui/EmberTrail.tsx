@@ -5,10 +5,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 /**
- * The studio's one signature "molten" element: a soft ember glow that trails
- * the cursor with viscous lag, like heat rather than a pointer. Everything
- * else on the site is hard-edged and cast; this is the only thing that
- * flows — desktop pointer only, and off entirely under reduced-motion.
+ * The studio's one signature "molten" element: a soft blue-hot glow that
+ * trails the cursor with viscous lag, like heat rather than a pointer.
+ * Everything else on the site is hard-edged and cast; this is the only
+ * thing that flows — desktop pointer only, and off entirely under
+ * reduced-motion.
  */
 export function EmberTrail() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -55,7 +56,7 @@ export function EmberTrail() {
       className="pointer-events-none fixed left-0 top-0 z-30 hidden h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 opacity-0 mix-blend-plus-lighter [@media(pointer:fine)]:block"
       style={{
         background:
-          "radial-gradient(circle, rgba(255,74,28,0.22) 0%, rgba(255,74,28,0.07) 40%, transparent 72%)",
+          "radial-gradient(circle, rgba(36,81,214,0.24) 0%, rgba(36,81,214,0.08) 40%, transparent 72%)",
         filter: "blur(10px)",
         borderRadius: "9999px",
       }}

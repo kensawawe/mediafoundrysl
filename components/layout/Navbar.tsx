@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import clsx from "clsx";
 import { navLinks } from "@/lib/content/site";
@@ -11,17 +12,26 @@ import { Button } from "@/components/ui/Button";
 
 export function Navbar() {
   const pathname = usePathname();
+  const { resolvedTheme } = useTheme();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const lastY = useRef(0);
+
+  useEffect(() => setMounted(true), []);
 
   // The homepage hero is a fixed dark (ink) frame — while the transparent
   // navbar floats over it, force light text. Every other page's top section
   // sits on the theme's normal background, so the default ink/paper text
   // already has correct contrast there.
   const overDarkHero = pathname === "/" && !scrolled;
+  // The logo has a white variant (for dark surfaces) and a dark variant
+  // (for light surfaces) instead of a backing plate — pick whichever
+  // matches what's actually behind the navbar: always dark over the hero,
+  // otherwise whatever the current theme's background is.
+  const onDarkSurface = overDarkHero || (mounted && resolvedTheme === "dark");
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const diff = y - lastY.current;
@@ -53,10 +63,17 @@ export function Navbar() {
         <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-6 md:h-20 md:px-10 lg:px-16">
           <Link
             href="/"
-            className="focus-ring font-display text-lg font-black uppercase tracking-tight md:text-xl"
+            className="focus-ring inline-flex items-center"
             onClick={() => setMenuOpen(false)}
           >
-            The Media Foundry
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+            <img
+              src={onDarkSurface ? "/logo-white.png" : "/logo-dark.png"}
+              alt="The Media Foundry"
+              width={1516}
+              height={176}
+              className="h-[18px] w-auto md:h-[22px]"
+            />
           </Link>
 
           <nav className="hidden items-center gap-9 md:flex">

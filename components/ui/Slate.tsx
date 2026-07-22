@@ -70,7 +70,7 @@ export function Slate({
           className="animate-hero-breathe absolute -inset-[10%]"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 30%, rgba(255,74,28,0.28), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(185,138,46,0.2), transparent 55%)",
+              "radial-gradient(ellipse at 30% 30%, rgba(36,81,214,0.3), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(185,138,46,0.2), transparent 55%)",
             filter: "blur(50px)",
           }}
         />
@@ -113,7 +113,8 @@ export function Slate({
       {variant === "video" && (
         <>
           <div className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] tracking-wider text-white/80">
-            <span className="animate-rec-pulse h-1.5 w-1.5 rounded-full bg-accent-fill" />
+            {/* Recording light stays red regardless of the site accent — that's a fixed broadcast convention, not a decorative color. */}
+            <span className="animate-rec-pulse h-1.5 w-1.5 rounded-full bg-red-500" />
             REC {timecode}
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
