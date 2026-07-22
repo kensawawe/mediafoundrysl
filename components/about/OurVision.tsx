@@ -8,7 +8,7 @@ export function OurVision() {
   return (
     <Section tone="inverse">
       <Container>
-        <SlateTag tone="inverse" className="text-current/60">
+        <SlateTag tone="inverse" className="!text-[22px] !text-current">
           {ourVision.title}
         </SlateTag>
         <FadeIn>

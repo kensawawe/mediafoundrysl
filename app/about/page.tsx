@@ -19,10 +19,10 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutBlock index="01" title={whoWeAre.title} body={whoWeAre.body} />
-      <AboutBlock index="02" title={ourPhilosophy.title} body={ourPhilosophy.body} tone="inverse" />
-      <AboutBlock index="03" title={whyOneRoof.title} body={whyOneRoof.body} />
-      <AboutBlock index="04" title={ourApproach.title} body={ourApproach.body} />
+      <AboutBlock title={whoWeAre.title} body={whoWeAre.body} />
+      <AboutBlock title={ourPhilosophy.title} body={ourPhilosophy.body} tone="inverse" />
+      <AboutBlock title={whyOneRoof.title} body={whyOneRoof.body} />
+      <AboutBlock title={ourApproach.title} body={ourApproach.body} />
       <OurVision />
     </>
   );

@@ -37,9 +37,9 @@ export const articles: Article[] = [
     date: "January 2026",
   },
   {
-    title: "A Brand System Built for Thirty Cities",
+    title: "A Brand System Built to Flex",
     category: "Brand",
-    excerpt: "How we designed Northline's identity to flex without a redesign.",
+    excerpt: "What it actually takes to design an identity that scales across markets without a redesign every year.",
     readTime: "7 min",
     date: "November 2025",
   },

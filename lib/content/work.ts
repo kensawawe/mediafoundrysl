@@ -4,7 +4,8 @@ export type WorkCategory =
   | "Film & Production"
   | "Digital"
   | "Photography"
-  | "Social & Content";
+  | "Social & Content"
+  | "Music Video";
 
 export const workCategories: WorkCategory[] = [
   "Brand Identity",
@@ -13,6 +14,7 @@ export const workCategories: WorkCategory[] = [
   "Digital",
   "Photography",
   "Social & Content",
+  "Music Video",
 ];
 
 export type WorkItem = {
@@ -25,19 +27,24 @@ export type WorkItem = {
   /** Contact-sheet grid sizing — a few frames read as "hero" cells among standard ones. */
   size?: "lg" | "md";
   hasCaseStudy?: boolean;
+  /** Real client assets, when we have them, in place of the placeholder Slate frame. */
+  restingImage?: string;
+  /** Shown inside the pour-wash hover reveal, alongside title/category. */
+  hoverImage?: string;
 };
 
 export const workItems: WorkItem[] = [
   {
-    slug: "northline-rebrand",
-    title: "Northline",
-    category: "Brand Identity",
+    slug: "rokel-commercial-bank",
+    title: "Rokel Commercial Bank",
+    category: "Music Video",
     description:
-      "A full identity system for a micromobility startup scaling from three cities to thirty.",
-    client: "Northline Mobility",
-    variant: "photo",
+      "A music-video-style brand anthem film for Sierra Leone's oldest commercial bank, built to reach a new generation of customers.",
+    variant: "video",
     size: "lg",
     hasCaseStudy: true,
+    restingImage: "/rokel.jpg",
+    hoverImage: "/headerlogo.png",
   },
   {
     slug: "verdant-brand-film",

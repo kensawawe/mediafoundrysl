@@ -4,12 +4,10 @@ import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
 
 export function AboutBlock({
-  index,
   title,
   body,
   tone = "default",
 }: {
-  index: string;
   title: string;
   body: string;
   tone?: "default" | "inverse";
@@ -23,11 +21,12 @@ export function AboutBlock({
     >
       <Container>
         <div className="grid gap-6 md:grid-cols-[1fr_2.4fr] md:gap-16">
-          <SlateTag
-            index={index}
-            tone={tone}
-            className={tone === "inverse" ? "text-current/60" : undefined}
-          >
+          {/* Full-opacity current-color at 2x size — text-current already
+              resolves to the correct contrast (pale on dark sections, ink
+              on light ones) since it inherits from this block's own
+              foreground/background swap, so it stays legible in both
+              tones and both themes without hardcoding a fixed color. */}
+          <SlateTag tone={tone} className="!text-[22px] !text-current">
             {title}
           </SlateTag>
           <FadeIn>

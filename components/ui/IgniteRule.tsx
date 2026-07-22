@@ -12,7 +12,14 @@ import { useInView } from "@/components/ui/useInView";
  * metal, poured once" motif into a recurring structural device rather
  * than a static divider.
  */
-export function IgniteRule({ className }: { className?: string }) {
+export function IgniteRule({
+  className,
+  lineColor,
+}: {
+  className?: string;
+  /** Overrides the default brass line color for this instance only. */
+  lineColor?: string;
+}) {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.6 });
   const lineRef = useRef<HTMLDivElement>(null);
   const sparkRef = useRef<HTMLSpanElement>(null);
@@ -47,7 +54,11 @@ export function IgniteRule({ className }: { className?: string }) {
 
   return (
     <div ref={ref} className={clsx("relative w-full", className)}>
-      <div ref={lineRef} className="ingot-rule w-full" />
+      <div
+        ref={lineRef}
+        className="ingot-rule w-full"
+        style={lineColor ? { background: lineColor } : undefined}
+      />
       <span
         ref={sparkRef}
         aria-hidden

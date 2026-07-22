@@ -5,7 +5,7 @@ export const site = {
   description:
     "The Media Foundry designs brands and produces the film, photography and content that carries them into the world — strategy, design and production, run by one studio from first spark to final cut.",
   email: "hello@themediafoundry.com",
-  location: "London — New York",
+  location: "Freetown, Sierra Leone",
   social: [
     { label: "Instagram", href: "https://instagram.com/themediafoundry" },
     { label: "LinkedIn", href: "https://linkedin.com/company/themediafoundry" },

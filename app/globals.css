@@ -136,7 +136,9 @@ body::after {
   inset: 0;
   z-index: 10;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
   background: linear-gradient(165deg, #3f6bff 0%, #1a3fb0 100%);
   clip-path: inset(100% 0 0 0);
   transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.3, 1);

@@ -18,47 +18,46 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "northline-rebrand",
-    title: "Northline",
-    category: "Brand Identity",
-    client: "Northline Mobility",
+    slug: "rokel-commercial-bank",
+    title: "Rokel Commercial Bank",
+    category: "Music Video",
     year: "2025",
-    heroMedia: { variant: "photo", label: "Northline fleet, launch markets" },
+    heroMedia: { variant: "video", label: "Rokel Commercial Bank, anthem film" },
     overview:
-      "A full identity system for a micromobility startup preparing to scale from three cities to thirty — built to work on a scooter deck, a phone screen and a city permit application with equal clarity.",
+      "A music-video-style brand anthem for Sierra Leone's oldest commercial bank, built to modernise its image for a generation of customers who'd never associate banking with anything they'd choose to watch.",
     challenge:
-      "Northline's existing mark was designed for one city and one product. As the company prepared a thirty-city expansion and a second vehicle line, they needed an identity system flexible enough to hold new products and markets without a redesign every eighteen months.",
+      "Bank marketing looks the same everywhere: a boardroom, a handshake, a voiceover about trust. Rokel Commercial Bank needed to reach a younger, mobile-first customer base without spending the goodwill built over seventy years as the country's oldest bank.",
     approach:
-      "We built the identity around a single modular mark that could be cropped, tiled and recoloured by market without losing legibility at ten centimetres or ten metres. Type, colour and motion were specified as a system, not a style guide — with rules for exactly when and how each part was allowed to flex.",
+      "We wrote and produced the campaign as a music video first and a bank commercial second — an original anthem track, a cast of real customers and staff, and a visual identity built around the bank's existing mark rather than a generic finance-ad palette.",
     process: [
       {
-        title: "Audit & workshops",
+        title: "Track & script",
         description:
-          "Three weeks auditing every existing touchpoint — fleet decals, app, permit filings — before a line was drawn, to find what was actually working.",
+          "An original song commissioned and scored before a single frame was planned, so the film could be cut to the music rather than the music fitted to the film.",
       },
       {
-        title: "System design",
+        title: "Production",
         description:
-          "Identity, type and colour system built and stress-tested against real use cases: low-light decals, city signage restrictions, app icon legibility.",
+          "A multi-location shoot across branches, city streets and customer homes, cast with real account holders and frontline staff instead of actors.",
       },
       {
-        title: "Rollout toolkit",
+        title: "Edit & grade",
         description:
-          "A living brand system — templates, motion presets and fleet specifications — handed to Northline's in-house team to run without us.",
+          "A rhythm-led edit built around the track's structure, graded to feel like a music video release rather than a corporate reel.",
       },
     ],
     outcome:
-      "Delivered as a full identity system with a 40-page usage guide and a Figma-native component library. Northline's operations team now ships new-market branding in-house in under a week, down from six.",
+      "Delivered as a full-length anthem film plus a cutdown for broadcast and social, the film became Rokel Commercial Bank's primary brand piece for its youth-focused account launch, running across television, cinema and social platforms.",
     gallery: [
-      { variant: "photo", label: "Identity system, primary marks", category: "Brand" },
-      { variant: "photo", label: "Fleet decal application" },
-      { variant: "video", label: "Motion identity reel" },
-      { variant: "photo", label: "App icon & UI type system" },
+      { variant: "video", label: "Anthem film, full cut", category: "Music Video" },
+      { variant: "photo", label: "On location, branch shoot" },
+      { variant: "video", label: "Broadcast cutdown, 30s" },
+      { variant: "photo", label: "Cast, real account holders" },
     ],
     impact: [
-      { stat: "30", label: "Markets the system now supports" },
-      { stat: "6→1", label: "Weeks to ship new-market branding" },
-      { stat: "1", label: "Modular mark, zero redesigns since" },
+      { stat: "1", label: "Original anthem track produced" },
+      { stat: "3", label: "Cities filmed across" },
+      { stat: "1ST", label: "Youth-focused account campaign for the brand" },
     ],
   },
   {

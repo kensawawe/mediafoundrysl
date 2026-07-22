@@ -24,8 +24,7 @@ export default function CareersPage() {
     <>
       <div className="pt-32 pb-16 md:pt-40 md:pb-20">
         <Container>
-          <SlateTag>{careersHero.eyebrow}</SlateTag>
-          <h1 className="mt-5 max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
             <RevealLines lines={[careersHero.title]} onMount />
           </h1>
           <p className="mt-8 max-w-lg font-body text-lg leading-relaxed text-current/70 sm:text-xl">
@@ -36,7 +35,7 @@ export default function CareersPage() {
 
       <Section className="pt-0">
         <Container>
-          <IgniteRule />
+          <IgniteRule lineColor="var(--accent-fill)" />
           <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-3">
             {pillars.map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.08}>
@@ -54,10 +53,7 @@ export default function CareersPage() {
 
       <Section tone="inverse">
         <Container>
-          <SlateTag tone="inverse" className="text-current/60">
-            Benefits
-          </SlateTag>
-          <h2 className="mt-4 max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+          <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
             Built to last, same as the work.
           </h2>
 
@@ -80,8 +76,7 @@ export default function CareersPage() {
 
       <Section>
         <Container>
-          <SlateTag>Open Roles</SlateTag>
-          <h2 className="mt-4 max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+          <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
             Find your next role.
           </h2>
 

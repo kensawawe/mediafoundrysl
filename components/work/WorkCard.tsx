@@ -1,7 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { Slate } from "@/components/ui/Slate";
-import { PourOverlay } from "@/components/ui/PourOverlay";
+import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
 import type { WorkItem } from "@/lib/content/work";
 
@@ -12,20 +11,10 @@ export function WorkCard({ item, delay = 0 }: { item: WorkItem; delay?: number }
   return (
     <FadeIn delay={delay} className={clsx(isLarge && "sm:col-span-2 sm:row-span-2")}>
       <Link href={href} className="focus-ring group relative block">
-        <Slate
-          label={item.title}
-          category={item.category}
-          variant={item.variant}
+        <WorkThumb
+          item={item}
           aspect={isLarge ? "aspect-square sm:aspect-[4/3]" : "aspect-[4/5] sm:aspect-square"}
         />
-        <PourOverlay>
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/70">
-            {item.category}
-          </span>
-          <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
-            {item.title}
-          </h3>
-        </PourOverlay>
         <div className="mt-3 flex items-start justify-between gap-3">
           <div>
             <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">

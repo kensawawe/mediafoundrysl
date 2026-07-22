@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Slate } from "@/components/ui/Slate";
-import { PourOverlay } from "@/components/ui/PourOverlay";
+import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { workItems } from "@/lib/content/work";
@@ -46,20 +45,10 @@ export function WorkWall() {
                   href={item.hasCaseStudy ? `/work/${item.slug}` : "/work"}
                   className="focus-ring group relative block"
                 >
-                  <Slate
-                    label={item.title}
-                    category={item.category}
-                    variant={item.variant}
+                  <WorkThumb
+                    item={item}
                     aspect={isLarge ? "aspect-square md:aspect-[4/3]" : "aspect-[4/5] md:aspect-square"}
                   />
-                  <PourOverlay>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/70">
-                      {item.category}
-                    </span>
-                    <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
-                      {item.title}
-                    </h3>
-                  </PourOverlay>
                   <div className="mt-3 flex items-baseline justify-between gap-3">
                     <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">
                       {item.title}

@@ -1,9 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { Container } from "@/components/ui/Container";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { navLinks, site } from "@/lib/content/site";
 
 export function Footer() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // The footer always uses the theme-swapped foreground/background pair
+  // (bg-foreground/text-background), so its actual surface is the
+  // *opposite* of the page's normal one: dark in light theme, light in
+  // dark theme. Pick the logo variant that stays legible on whichever
+  // that resolves to. Default to the light-theme assumption pre-mount to
+  // match the server-rendered markup (ThemeProvider's defaultTheme).
+  const onDarkSurface = !mounted || resolvedTheme === "light";
+
   return (
     <footer className="border-t border-border-subtle bg-foreground text-background">
       <Container className="py-20 md:py-28">
@@ -22,8 +39,15 @@ export function Footer() {
 
         <div className="mt-20 flex flex-col gap-12 border-t border-current/15 pt-12 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <Link href="/" className="focus-ring font-display text-xl font-black uppercase tracking-tight">
-              The Media Foundry
+            <Link href="/" className="focus-ring inline-flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+              <img
+                src={onDarkSurface ? "/logo-white.png" : "/logo-dark.png"}
+                alt="The Media Foundry"
+                width={1516}
+                height={176}
+                className="h-[18px] w-auto"
+              />
             </Link>
             <p className="mt-4 font-body text-sm text-current/55">{site.tagline}</p>
           </div>
@@ -77,7 +101,7 @@ export function Footer() {
             © {new Date().getFullYear()} The Media Foundry — {site.location}
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-current/40">
-            Forge. Frame. Finish.
+            Craft. Story. Impact.
           </p>
         </div>
       </Container>
