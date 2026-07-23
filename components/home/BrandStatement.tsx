@@ -16,7 +16,7 @@ export function BrandStatement() {
             </p>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-current/50 sm:text-4xl md:text-[2.6vw]">
+            <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-accent-text sm:text-4xl md:text-[2.6vw]">
               {brandStatement.storytellerLine}
             </p>
           </FadeIn>
