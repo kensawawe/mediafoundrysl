@@ -11,8 +11,7 @@ export const site = {
     { label: "LinkedIn", href: "https://linkedin.com/company/themediafoundry" },
     { label: "Vimeo", href: "https://vimeo.com/themediafoundry" },
   ],
-  // Placeholder contact details — swap for real values before launch.
-  formspreeEndpoint: "https://formspree.io/f/PLACEHOLDER",
+  formspreeEndpoint: "https://formspree.io/f/xzdnajwo",
 };
 
 export const navLinks = [
