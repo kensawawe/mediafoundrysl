@@ -95,15 +95,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-
-        <div className="mt-16 flex flex-col-reverse items-start justify-between gap-4 border-t border-current/15 pt-6 md:flex-row md:items-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-current/40">
-            © {new Date().getFullYear()} The Media Foundry — {site.location}
-          </p>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-current/40">
-            Craft. Story. Impact.
-          </p>
-        </div>
       </Container>
     </footer>
   );
