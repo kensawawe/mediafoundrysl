@@ -225,6 +225,21 @@ body::after {
   animation: marquee-scroll 34s linear infinite;
 }
 
+@keyframes gradient-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-drift {
+  background-size: 220% 220%;
+  animation: gradient-drift 9s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
