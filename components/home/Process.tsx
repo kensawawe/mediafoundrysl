@@ -82,10 +82,7 @@ export function Process() {
                   <span className="relative z-10 flex h-8 w-8 items-center justify-center border border-accent-fill bg-background">
                     <StageIcon title={stage.title} className="h-4 w-4 text-accent-text" />
                   </span>
-                  <span className="mt-4 block font-mono text-xs text-accent-text">
-                    {stage.index}
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl font-bold tracking-tight lg:text-3xl">
+                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight lg:text-3xl">
                     {stage.title}
                   </h3>
                   <p className="mt-3 font-body text-sm text-current/65">{stage.description}</p>
@@ -115,8 +112,7 @@ export function Process() {
                   <span className="absolute -left-8 -top-1 flex h-8 w-8 -translate-x-1/2 items-center justify-center border border-accent-fill bg-background">
                     <StageIcon title={stage.title} className="h-4 w-4 text-accent-text" />
                   </span>
-                  <span className="font-mono text-xs text-accent-text">{stage.index}</span>
-                  <h3 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                  <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
                     {stage.title}
                   </h3>
                   <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
