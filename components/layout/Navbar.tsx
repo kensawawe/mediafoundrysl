@@ -76,7 +76,7 @@ export function Navbar() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-9 md:flex">
+          <nav className="hidden items-center gap-9 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -107,7 +107,7 @@ export function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="focus-ring flex flex-col gap-1.5 md:hidden"
+            className="focus-ring flex flex-col gap-1.5 lg:hidden"
           >
             <span
               className={clsx(
@@ -132,7 +132,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-background px-8 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-background px-8 lg:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.div
