@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
-import { Magnetic } from "@/components/ui/Magnetic";
 import { hero } from "@/lib/content/home";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -143,15 +142,13 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="pointer-events-auto mt-10 flex flex-wrap items-center gap-4"
           >
-            <Magnetic>
-              <Button
-                href={hero.primaryCta.href}
-                variant="primary"
-                className="border-paper bg-paper text-ink hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
-              >
-                {hero.primaryCta.label}
-              </Button>
-            </Magnetic>
+            <Button
+              href={hero.primaryCta.href}
+              variant="primary"
+              className="border-paper bg-paper text-ink hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+            >
+              {hero.primaryCta.label}
+            </Button>
             <Button
               href={hero.secondaryCta.href}
               variant="outline"
