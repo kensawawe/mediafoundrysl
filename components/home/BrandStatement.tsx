@@ -9,7 +9,7 @@ export function BrandStatement() {
     <Section>
       <Container>
         <IgniteRule lineColor="var(--accent-fill)" />
-        <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-16">
+        <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-16">
           <FadeIn>
             <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-[2.6vw]">
               {brandStatement.agencyLine}
@@ -18,6 +18,11 @@ export function BrandStatement() {
           <FadeIn delay={0.15}>
             <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-accent-text sm:text-4xl md:text-[2.6vw]">
               {brandStatement.storytellerLine}
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <p className="font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-[2.6vw]">
+              {brandStatement.overheadLine}
             </p>
           </FadeIn>
         </div>
