@@ -105,13 +105,16 @@ export const workItems: WorkItem[] = [
     imageFit: "contain",
   },
   {
-    slug: "aster-social-series",
-    title: "Aster",
+    slug: "rotary-international",
+    title: "Rotary",
     category: "Social & Content",
     description:
-      "A short-form content system built for a beauty brand's always-on social calendar.",
+      "A short-form content system built for Rotary International's always-on social calendar.",
     variant: "photo",
     size: "md",
+    restingImage: "/ritt.png",
+    hoverImage: "/rot%20png.png",
+    imageFit: "contain",
   },
   {
     slug: "pennant-hotels-campaign",
