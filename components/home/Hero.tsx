@@ -136,6 +136,15 @@ export function Hero() {
             {hero.supporting}
           </motion.p>
 
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="mt-3 max-w-md font-body text-sm italic text-white/70 md:text-base"
+          >
+            {hero.supportingKrio}
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
