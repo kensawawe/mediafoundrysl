@@ -10,6 +10,9 @@ import { site } from "@/lib/content/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const fieldBoxClasses =
+  "focus-ring w-full border border-border-subtle bg-accent-fill/[0.07] px-3.5 py-2.5 font-body text-base outline-none transition-colors placeholder:text-current/35 hover:border-accent-text focus-visible:border-accent-fill focus-visible:bg-accent-fill/[0.12]";
+
 export function Contact() {
   const [projectType, setProjectType] = useState<string>(projectTypes[0]);
   const [status, setStatus] = useState<Status>("idle");
@@ -89,7 +92,7 @@ export function Contact() {
                 name="description"
                 required
                 rows={4}
-                className="focus-ring w-full resize-none border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
+                className={clsx(fieldBoxClasses, "resize-none")}
                 placeholder="Tell us what you have in mind…"
               />
             </Field>
@@ -100,7 +103,7 @@ export function Contact() {
                   name="name"
                   required
                   type="text"
-                  className="focus-ring w-full border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
+                  className={fieldBoxClasses}
                   placeholder="Your name"
                 />
               </Field>
@@ -108,7 +111,7 @@ export function Contact() {
                 <input
                   name="company"
                   type="text"
-                  className="focus-ring w-full border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
+                  className={fieldBoxClasses}
                   placeholder="Optional"
                 />
               </Field>
@@ -119,7 +122,7 @@ export function Contact() {
                 name="email"
                 required
                 type="email"
-                className="focus-ring w-full border-0 border-b border-border-subtle bg-transparent py-2 font-body text-base outline-none placeholder:text-current/30"
+                className={fieldBoxClasses}
                 placeholder="you@company.com"
               />
             </Field>
