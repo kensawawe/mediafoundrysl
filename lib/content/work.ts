@@ -26,6 +26,9 @@ export const workCategories: WorkCategory[] = [
 export type WorkItem = {
   slug: string;
   title: string;
+  /** Shorter stand-in for `title` inside the hover overlay, when the full
+   *  name is long enough to push the layout around. */
+  hoverTitle?: string;
   category: WorkCategory;
   description: string;
   client?: string;
@@ -70,6 +73,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "the-feminist-cohort",
     title: "The Feminist Cohort",
+    hoverTitle: "FemCo",
     category: "Activation",
     description:
       "A brand identity and launch activation for a community collective, built from the members it represents.",
@@ -94,6 +98,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "slmda",
     title: "Sierra Leone Medical & Dental Association",
+    hoverTitle: "SLMDA",
     category: "Cinematography & Photography",
     description:
       "A cinematography and photography commission documenting the country's medical professionals at work and at their annual gathering.",
