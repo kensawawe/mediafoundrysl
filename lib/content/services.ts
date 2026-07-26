@@ -9,47 +9,40 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    code: "BR",
-    title: "Brand & Identity",
-    description: "Positioning, naming and identity systems built to hold up at any scale.",
+    code: "PR",
+    title: "Production",
+    description: "Creating high-quality visual and audio content from start to finish.",
     examples: [
-      "Brand strategy",
-      "Naming & verbal identity",
-      "Visual identity systems",
-      "Brand guidelines",
+      "Podcasts (Audio & Video)",
+      "Documentary Production",
+      "Testimonial Videos",
+      "Product Advertisements",
+      "Brand Campaign Videos",
     ],
   },
   {
-    code: "CP",
-    title: "Campaigns & Digital",
-    description: "Ideas built to travel — across platforms, formats and audiences.",
+    code: "CR",
+    title: "Creative",
+    description: "Developing the ideas and creative direction behind every project.",
     examples: [
-      "Campaign concepting",
-      "Art direction",
-      "Web & digital design",
-      "Social systems",
-    ],
-  },
-  {
-    code: "FM",
-    title: "Film & Production",
-    description: "Full production, in-house — from pre-production to final grade.",
-    examples: [
-      "Brand films",
-      "Documentary",
-      "Commercial production",
-      "Post & sound design",
+      "Concept Development",
+      "Creative Direction",
+      "Scriptwriting",
+      "Campaign Design",
+      "Graphic Design",
     ],
   },
   {
     code: "ST",
-    title: "Strategy & Content",
-    description: "The thinking that gives everything else a reason to exist.",
-    examples: [
-      "Audience & market strategy",
-      "Content strategy",
-      "Copywriting",
-      "Producer support",
-    ],
+    title: "Strategy",
+    description:
+      "Helping clients build campaigns that reach the right audience with the right message.",
+    examples: ["Content Architecture", "Advertising Campaign Strategy", "Distribution Planning"],
+  },
+  {
+    code: "DV",
+    title: "Development",
+    description: "Extending content beyond production into digital experiences.",
+    examples: ["Website Builds", "Podcast Launch Services", "Personal Branding"],
   },
 ];

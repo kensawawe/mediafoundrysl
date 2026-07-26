@@ -7,6 +7,52 @@ import { Section } from "@/components/ui/Section";
 import { FadeIn } from "@/components/ui/RevealText";
 import { services } from "@/lib/content/services";
 
+function DepartmentIcon({ title, className }: { title: string; className?: string }) {
+  const shared = {
+    stroke: "currentColor",
+    strokeWidth: 1.4,
+    strokeLinecap: "square" as const,
+    strokeLinejoin: "miter" as const,
+    fill: "none",
+  };
+
+  switch (title) {
+    case "Production":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <rect x="2" y="5.5" width="12" height="8" {...shared} />
+          <path d="M5.5 5.5L7 3h2l1.5 2.5" {...shared} />
+          <circle cx="8" cy="9.5" r="2.1" {...shared} />
+        </svg>
+      );
+    case "Creative":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
+          <path d="M8.5 4.5l3 3" {...shared} />
+        </svg>
+      );
+    case "Strategy":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <circle cx="8" cy="8" r="5.5" {...shared} />
+          <circle cx="8" cy="8" r="2.4" {...shared} />
+          <circle cx="8" cy="8" r="0.6" fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case "Development":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <rect x="2" y="3.5" width="12" height="8" {...shared} />
+          <path d="M2 6h12" {...shared} />
+          <path d="M6 13.5h4" {...shared} />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export function Services() {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -25,15 +71,20 @@ export function Services() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(open ? -1 : i)}
-                  className="focus-ring flex w-full items-center gap-6 border-b border-border-subtle py-7 text-left"
+                  className="focus-ring flex w-full items-start gap-5 border-b border-border-subtle py-7 text-left sm:items-center sm:gap-6"
                   aria-expanded={open}
                 >
-                  <span className="font-mono text-sm text-accent-text">{service.code}</span>
-                  <span className="flex-1 font-display text-2xl font-bold tracking-tight sm:text-3xl">
-                    {service.title}
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-accent-fill/40 text-accent-text">
+                    <DepartmentIcon title={service.title} className="h-4 w-4" />
                   </span>
-                  <span className="hidden font-body text-sm text-current/50 sm:block">
-                    {service.description}
+                  <span className="font-mono text-sm text-accent-text">{service.code}</span>
+                  <span className="flex-1">
+                    <span className="block font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                      {service.title}
+                    </span>
+                    <span className="mt-1 block max-w-md font-body text-sm text-current/50">
+                      {service.description}
+                    </span>
                   </span>
                   <span
                     aria-hidden
@@ -52,9 +103,12 @@ export function Services() {
                   )}
                 >
                   <div className="min-h-0">
-                    <ul className="flex flex-wrap gap-x-8 gap-y-2 pb-8 pl-12 font-body text-sm text-current/70">
+                    <ul className="grid grid-cols-1 gap-x-8 gap-y-3 pb-8 pl-14 font-body text-sm text-current/70 sm:grid-cols-2 sm:pl-[4.75rem]">
                       {service.examples.map((ex) => (
-                        <li key={ex}>{ex}</li>
+                        <li key={ex} className="flex items-baseline gap-2.5">
+                          <span aria-hidden className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill" />
+                          {ex}
+                        </li>
                       ))}
                     </ul>
                   </div>
