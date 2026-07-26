@@ -77,7 +77,6 @@ export function Services() {
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-accent-fill/40 text-accent-text">
                     <DepartmentIcon title={service.title} className="h-4 w-4" />
                   </span>
-                  <span className="font-mono text-sm text-accent-text">{service.code}</span>
                   <span className="flex-1">
                     <span className="block font-display text-2xl font-bold tracking-tight sm:text-3xl">
                       {service.title}
