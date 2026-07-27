@@ -118,9 +118,9 @@ export function Footer() {
               href={`mailto:${site.email}`}
               className="focus-ring font-display text-[13vw] font-black uppercase leading-[0.88] tracking-tight hover:text-accent-text-inverse sm:text-[8vw] md:text-[6vw]"
             >
-              Let&rsquo;s cast
+              Ready to craft something different?
               <br />
-              something.
+              Good, so are we.
             </a>
           </Magnetic>
         </div>
