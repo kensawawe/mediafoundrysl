@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Button } from "@/components/ui/Button";
@@ -92,7 +93,16 @@ export function Footer() {
   // that resolves to. Default to the light-theme assumption pre-mount to
   // match the server-rendered markup (ThemeProvider's defaultTheme).
   const onDarkSurface = !mounted || resolvedTheme === "light";
-  const featuredQuote = testimonials.find((t) => t.id === "rotary") ?? testimonials[0];
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setQuoteIndex((i) => (i + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
+
+  const featuredQuote = testimonials[quoteIndex];
 
   const socialIcons = [
     { label: "Email", href: `mailto:${site.email}` },
@@ -143,16 +153,26 @@ export function Footer() {
             </nav>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 bg-ink p-8 text-paper">
+          <div className="flex flex-col justify-between gap-8 overflow-hidden bg-ink p-8 text-paper">
             <span aria-hidden className="font-display text-4xl leading-none text-paper/30">
               &ldquo;
             </span>
-            <p className="font-body text-base leading-relaxed text-paper/85">
-              {featuredQuote.quote}
-            </p>
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-paper/50">
-              {featuredQuote.name}
-            </span>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={featuredQuote.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <p className="font-body text-base leading-relaxed text-paper/85">
+                  {featuredQuote.quote}
+                </p>
+                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.16em] text-paper/50">
+                  {featuredQuote.name}
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           <div className="flex flex-col justify-between gap-8 bg-accent-fill p-8 text-white">
