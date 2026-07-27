@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Big_Shoulders, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Big_Shoulders, Instrument_Sans, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -17,10 +17,10 @@ const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["700", "900"],
 });
 
 const title = `${site.name} — Creative Agency & Production Company`;
@@ -52,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bigShoulders.variable} ${instrumentSans.variable} ${plexMono.variable}`}
+      className={`${bigShoulders.variable} ${instrumentSans.variable} ${inter.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider

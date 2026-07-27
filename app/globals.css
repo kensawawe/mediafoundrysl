@@ -71,7 +71,7 @@
   --color-paper: var(--paper);
   --font-display: var(--font-big-shoulders);
   --font-body: var(--font-instrument-sans);
-  --font-mono: var(--font-plex-mono);
+  --font-mono: var(--font-inter);
 }
 
 html {
@@ -108,8 +108,8 @@ body::after {
 }
 
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-weight: 700;
+  font-family: var(--font-mono), ui-sans-serif, sans-serif;
+  font-weight: 900;
 }
 
 .focus-ring {
