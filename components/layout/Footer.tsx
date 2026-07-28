@@ -116,11 +116,14 @@ export function Footer() {
           <Magnetic strength={0.18} className="inline-block w-fit">
             <a
               href={`mailto:${site.email}`}
-              className="focus-ring font-display text-[13vw] font-black uppercase leading-[0.88] tracking-tight hover:text-accent-text-inverse sm:text-[8vw] md:text-[6vw]"
+              className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text-inverse"
             >
-              Ready to craft something different?
-              <br />
-              Good, so are we.
+              <span className="block leading-[0.95] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
+                Ready to craft something different?
+              </span>
+              <span className="block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
+                Good, so are we.
+              </span>
             </a>
           </Magnetic>
         </div>
