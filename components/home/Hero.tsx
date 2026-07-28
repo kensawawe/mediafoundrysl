@@ -112,18 +112,11 @@ export function Hero() {
         <div className="max-w-5xl">
           <h1 className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper">
             <RevealLines
-              lines={[...hero.lines]}
+              lines={[...hero.lines, ...hero.linesSecondary]}
               baseDelay={0.3}
               stagger={0.12}
               onMount
-              className="text-[15vw] sm:text-[10vw] md:text-[8vw] lg:text-[7.2vw]"
-            />
-            <RevealLines
-              lines={[...hero.linesSecondary]}
-              baseDelay={0.42}
-              stagger={0.12}
-              onMount
-              className="mt-1 text-[10vw] sm:text-[6.67vw] md:text-[5.33vw] lg:text-[4.8vw]"
+              className="text-[6.5vw] sm:text-[6.2vw] md:text-[5vw] lg:text-[4.5vw]"
             />
           </h1>
 
