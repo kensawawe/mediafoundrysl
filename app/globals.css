@@ -130,7 +130,7 @@ body::after {
 }
 
 /* Pour overlay — the hover state for every work thumbnail: a molten wash
-   "poured" down over the frame, revealing the title in the liquid. Pure
+   cross-dissolving over the frame, revealing the title in the liquid. Pure
    CSS so it stays instant on hover with no JS in the loop. */
 .pour-overlay {
   position: absolute;
@@ -141,13 +141,13 @@ body::after {
   align-items: flex-start;
   justify-content: flex-end;
   background: linear-gradient(165deg, #3f6bff 0%, #1a3fb0 100%);
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+  opacity: 0;
+  transition: opacity 0.45s ease;
 }
 
 .group:hover .pour-overlay,
 .group:focus-visible .pour-overlay {
-  clip-path: inset(0 0 0 0);
+  opacity: 1;
 }
 
 .pour-overlay > * {
