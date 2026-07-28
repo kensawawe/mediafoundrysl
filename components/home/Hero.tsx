@@ -111,12 +111,25 @@ export function Hero() {
       <div className="pointer-events-none relative z-10 w-full px-6 pb-20 pt-40 md:px-10 md:pb-24 lg:px-16">
         <div className="max-w-5xl">
           <h1 className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper">
+            {/* "Media That Moves Change." renders ~1.98% wider than "Stories
+                That Move People." at matched font size (measured via glyph
+                range width, not the RevealLines wrapper span). Both lines
+                are left-aligned by default, so sizing the second line down
+                by that exact ratio makes the trailing periods land flush
+                on the right too, not just the leading letters on the left. */}
             <RevealLines
-              lines={[...hero.lines, ...hero.linesSecondary]}
+              lines={[...hero.lines]}
               baseDelay={0.3}
               stagger={0.12}
               onMount
-              className="text-[6.5vw] sm:text-[6.2vw] md:text-[5vw] lg:text-[4.5vw]"
+              className="text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[6.75vw]"
+            />
+            <RevealLines
+              lines={[...hero.linesSecondary]}
+              baseDelay={0.42}
+              stagger={0.12}
+              onMount
+              className="mt-1 text-[9.552vw] sm:text-[9.12vw] md:text-[7.354vw] lg:text-[6.622vw]"
             />
           </h1>
 
