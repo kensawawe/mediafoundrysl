@@ -128,7 +128,7 @@ export function Footer() {
           </Magnetic>
         </div>
 
-        <div className="mt-16 grid gap-px border border-current/15 bg-current/15 md:grid-cols-4">
+        <div className="mt-16 grid gap-px border border-current/15 bg-current/15 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col justify-between gap-8 bg-background p-8 text-foreground">
             <Link href="/" className="focus-ring inline-flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
