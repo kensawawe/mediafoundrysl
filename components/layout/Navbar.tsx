@@ -27,11 +27,15 @@ export function Navbar() {
   // sits on the theme's normal background, so the default ink/paper text
   // already has correct contrast there.
   const overDarkHero = pathname === "/" && !scrolled;
-  // The logo has a white variant (for dark surfaces) and a dark variant
-  // (for light surfaces) instead of a backing plate — pick whichever
-  // matches what's actually behind the navbar: always dark over the hero,
-  // otherwise whatever the current theme's background is.
-  const onDarkSurface = overDarkHero || (mounted && resolvedTheme === "dark");
+  // The mobile menu overlay sits *under* the still-transparent header but
+  // *over* the hero, painted in the theme's own background color — so once
+  // it's open, the hero override no longer reflects what's actually behind
+  // the header chrome. Fall back to the current theme instead, or the logo/
+  // hamburger render in the hero's light color against the menu's light-
+  // theme panel and disappear.
+  const onDarkBackground = menuOpen
+    ? mounted && resolvedTheme === "dark"
+    : overDarkHero || (mounted && resolvedTheme === "dark");
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const diff = y - lastY.current;
@@ -57,7 +61,7 @@ export function Navbar() {
           scrolled
             ? "border-border-subtle bg-nav-bg backdrop-blur-md"
             : "border-transparent bg-transparent",
-          overDarkHero ? "text-paper" : "text-foreground",
+          onDarkBackground ? "text-paper" : "text-foreground",
         )}
       >
         <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-6 md:h-20 md:px-10 lg:px-16">
@@ -68,7 +72,7 @@ export function Navbar() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
             <img
-              src={onDarkSurface ? "/logo-white.png" : "/logo-dark.png"}
+              src={onDarkBackground ? "/logo-white.png" : "/logo-dark.png"}
               alt="The Media Foundry"
               width={1516}
               height={176}
