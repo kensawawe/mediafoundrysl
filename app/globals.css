@@ -11,10 +11,10 @@
 */
 
 :root {
-  --background: #f2ecdf;
+  --background: #ffffff;
   --foreground: #14120f;
-  --surface: #eae1cc;
-  --surface-2: #e2d7be;
+  --surface: #f3f3f3;
+  --surface-2: #e9e9e9;
   --border-subtle: rgba(20, 18, 15, 0.14);
   --border-strong: rgba(20, 18, 15, 0.85);
 
@@ -23,34 +23,34 @@
   --accent-text: #2445c0;
   --accent-text-inverse: #5b8dff;
   --accent-fill: #2451d6;
-  --accent-fill-ink: #f2ecdf;
+  --accent-fill-ink: #ffffff;
 
   --brass: #a9791f;
   --steel: #6b6a63;
 
   --ink: #14120f;
-  --paper: #f2ecdf;
-  --nav-bg: rgba(242, 236, 223, 0.86);
+  --paper: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.86);
 }
 
 .dark {
   --background: #14120f;
-  --foreground: #f2ecdf;
+  --foreground: #ffffff;
   --surface: #1c1914;
   --surface-2: #242019;
-  --border-subtle: rgba(242, 236, 223, 0.14);
-  --border-strong: rgba(242, 236, 223, 0.9);
+  --border-subtle: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.9);
 
   --accent-text: #5b8dff;
   --accent-text-inverse: #2445c0;
   --accent-fill: #2451d6;
-  --accent-fill-ink: #f2ecdf;
+  --accent-fill-ink: #ffffff;
 
   --brass: #d8a83e;
   --steel: #a6a398;
 
   --ink: #14120f;
-  --paper: #f2ecdf;
+  --paper: #ffffff;
   --nav-bg: rgba(20, 18, 15, 0.82);
 }
 
