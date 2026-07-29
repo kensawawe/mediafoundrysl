@@ -8,8 +8,8 @@ const track = [...lap, ...lap];
 
 export function HeroLogoMarquee() {
   return (
-    <div className="ml-auto max-w-sm text-right sm:max-w-md md:max-w-lg">
-      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/60">
+    <div>
+      <p className="text-right font-mono text-[10px] uppercase tracking-[0.16em] text-paper/60">
         Trusted by organizations across Sierra Leone
       </p>
 
