@@ -109,7 +109,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="pointer-events-none relative z-10 w-full px-6 pb-20 pt-40 md:px-10 md:pb-24 lg:px-16">
+      <div className="pointer-events-none relative z-10 w-full px-6 pb-36 pt-40 md:px-10 md:pb-40 lg:px-16">
         <div className="max-w-5xl">
           <h1 className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper">
             {/* "Media That Moves Change." renders ~1.98% wider than "Stories
@@ -174,16 +174,19 @@ export function Hero() {
             </Button>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
-          className="pointer-events-auto mt-14 md:mt-16"
-        >
-          <HeroLogoMarquee />
-        </motion.div>
       </div>
+
+      {/* Pinned to the section's true bottom edge, independent of the
+          headline column's own pb-20/24 — the marquee sits well below the
+          CTA row rather than sharing its bottom margin. */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.3 }}
+        className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 px-6 pb-6 md:px-10 md:pb-8 lg:px-16"
+      >
+        <HeroLogoMarquee />
+      </motion.div>
     </section>
   );
 }

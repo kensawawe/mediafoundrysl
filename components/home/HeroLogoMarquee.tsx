@@ -19,14 +19,21 @@ export function HeroLogoMarquee() {
             <div
               key={`${client.id}-${i}`}
               aria-hidden={i >= lap.length}
-              className="flex shrink-0 items-center gap-3 border border-white/15 bg-paper/95 px-5 py-3"
+              className="flex shrink-0 items-center gap-3 px-5 py-3"
             >
               {/* Client marks are icon-only (no wordmark baked in), so the
                   name is set as real text alongside rather than alt text —
-                  illegible as a tiny abstract icon alone at marquee scale. */}
+                  illegible as a tiny abstract icon alone at marquee scale.
+                  Drop-shadow keeps both legible with no card behind them,
+                  since the video's brightness varies underneath. */}
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
-              <img src={client.logo} alt="" aria-hidden className="h-7 w-7 object-contain sm:h-8 sm:w-8" />
-              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.1em] text-ink/80">
+              <img
+                src={client.logo}
+                alt=""
+                aria-hidden
+                className="h-7 w-7 object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] sm:h-8 sm:w-8"
+              />
+              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.1em] text-paper [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
                 {client.name}
               </span>
             </div>
