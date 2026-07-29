@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Big_Shoulders, Instrument_Sans, Inter } from "next/font/google";
+import { Big_Shoulders, Instrument_Sans, Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -21,6 +21,12 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["700", "900"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  style: ["italic"],
 });
 
 const title = `${site.name} — Creative Agency & Production Company`;
@@ -52,7 +58,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bigShoulders.variable} ${instrumentSans.variable} ${inter.variable}`}
+      className={`${bigShoulders.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider

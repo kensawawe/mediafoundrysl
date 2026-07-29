@@ -53,6 +53,35 @@ export function RevealLines({
   );
 }
 
+/** Horizontal left-to-right clip-path wipe — reads as the word being
+ *  written on, rather than a fade or vertical wipe. */
+export function WriteOn({
+  children,
+  className,
+  delay = 0,
+  duration = 1,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  duration?: number;
+}) {
+  const { ref, inView } = useInView<HTMLSpanElement>({ threshold: 0.3 });
+
+  return (
+    <span ref={ref} className="inline-block overflow-hidden">
+      <motion.span
+        className={clsx("inline-block", className)}
+        initial={{ clipPath: "inset(0 100% 0 0)" }}
+        animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
+        transition={{ duration, ease: framerEase, delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
 /** Simple scroll-triggered fade-up for body copy / paragraphs / cards. */
 export function FadeIn({
   children,

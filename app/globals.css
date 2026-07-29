@@ -72,6 +72,7 @@
   --font-display: var(--font-big-shoulders);
   --font-body: var(--font-instrument-sans);
   --font-mono: var(--font-inter);
+  --font-serif: var(--font-playfair);
 }
 
 html {
@@ -110,6 +111,11 @@ body::after {
 .font-mono {
   font-family: var(--font-mono), ui-sans-serif, sans-serif;
   font-weight: 900;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
 }
 
 .focus-ring {
