@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
+import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
 import { hero } from "@/lib/content/home";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,7 +79,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-[100svh] min-h-[640px] w-full items-end overflow-hidden bg-ink"
+      className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-ink"
     >
       <div ref={mediaRef} className="absolute inset-0">
         <video
@@ -173,6 +174,15 @@ export function Hero() {
             </Button>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+          className="pointer-events-auto mt-14 md:mt-16"
+        >
+          <HeroLogoMarquee />
+        </motion.div>
       </div>
     </section>
   );
