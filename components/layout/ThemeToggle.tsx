@@ -7,18 +7,18 @@ import clsx from "clsx";
 
 const iconShared = {
   stroke: "currentColor",
-  strokeWidth: 1.6,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
+  strokeWidth: 1.4,
+  strokeLinecap: "square" as const,
+  strokeLinejoin: "miter" as const,
   fill: "none",
 };
 
 function SunIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-3 w-3 text-white/90">
-      <circle cx="12" cy="12" r="4.4" fill="currentColor" stroke="none" />
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5">
+      <circle cx="8" cy="8" r="2.6" {...iconShared} />
       <path
-        d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8M18.6 18.6l-1.8-1.8M7.2 7.2 5.4 5.4"
+        d="M8 1.5v1.8M8 12.7v1.8M14.5 8h-1.8M3.3 8H1.5M12.4 3.6l-1.3 1.3M4.9 11.1l-1.3 1.3M12.4 12.4l-1.3-1.3M4.9 4.9 3.6 3.6"
         {...iconShared}
       />
     </svg>
@@ -27,11 +27,10 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-3 w-3 text-white/90">
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5">
       <path
-        d="M20.2 14.8A8.6 8.6 0 1 1 9.2 3.8a6.9 6.9 0 0 0 11 11Z"
-        fill="currentColor"
-        stroke="none"
+        d="M13.2 9.6A5.6 5.6 0 1 1 6.4 2.8a4.5 4.5 0 0 0 6.8 6.8Z"
+        {...iconShared}
       />
     </svg>
   );
@@ -52,45 +51,10 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={clsx(
-        "focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center border border-white/15",
+        "focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center border border-border-strong bg-transparent text-foreground transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
         className,
       )}
-      style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02) 45%, rgba(0,0,0,0.4) 100%)",
-        backdropFilter: "blur(6px)",
-        WebkitBackdropFilter: "blur(6px)",
-      }}
     >
-      {/* inset glass shading */}
-      <span
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          boxShadow: "inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -1px 2px rgba(0,0,0,0.35)",
-        }}
-      />
-
-      {/* pulse glow on toggle */}
-      <motion.span
-        aria-hidden
-        className="absolute inset-0"
-        initial={false}
-        animate={{
-          boxShadow: isDark
-            ? [
-                "0 0 0px 0px rgba(36,81,214,0)",
-                "0 0 8px 2px rgba(36,81,214,0.65)",
-                "0 0 5px 1px rgba(36,81,214,0.5)",
-              ]
-            : [
-                "0 0 0px 0px rgba(255,255,255,0)",
-                "0 0 6px 1.5px rgba(255,255,255,0.5)",
-                "0 0 4px 1px rgba(255,255,255,0.35)",
-              ],
-        }}
-        transition={{ duration: 0.5, times: [0, 0.6, 1] }}
-      />
-
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={isDark ? "moon" : "sun"}
@@ -98,7 +62,7 @@ export function ThemeToggle({ className }: { className?: string }) {
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           exit={{ opacity: 0, scale: 0.5, rotate: 30 }}
           transition={{ duration: 0.22 }}
-          className="relative z-10 flex items-center justify-center"
+          className="relative flex items-center justify-center"
         >
           {isDark ? <MoonIcon /> : <SunIcon />}
         </motion.span>
