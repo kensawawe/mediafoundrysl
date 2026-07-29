@@ -229,7 +229,7 @@ body::after {
 }
 
 .animate-marquee {
-  animation: marquee-scroll 34s linear infinite;
+  animation: marquee-scroll 37.4s linear infinite;
 }
 
 @keyframes gradient-drift {
