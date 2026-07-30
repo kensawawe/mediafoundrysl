@@ -8,7 +8,7 @@ const track = [...lap, ...lap];
 
 export function HeroLogoMarquee() {
   return (
-    <div>
+    <div className="opacity-80">
       <p className="text-right font-mono text-[10px] uppercase tracking-[0.16em] text-paper/60">
         Trusted by organizations across Sierra Leone
       </p>
