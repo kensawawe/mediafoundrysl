@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { KineticGridBackground } from "@/components/home/KineticGridBackground";
 import { BrandStatement } from "@/components/home/BrandStatement";
 import { WorkWall } from "@/components/home/WorkWall";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <KineticGridBackground />
       <BrandStatement />
       <WorkWall />
       <Testimonials />
