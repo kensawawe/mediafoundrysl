@@ -45,8 +45,17 @@ export function GradientBlurTrail() {
     const dpr = window.devicePixelRatio || 1;
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      // <canvas> is a replaced element — without this, its CSS box defaults
+      // to the width/height *attributes* above (the DPR-scaled buffer size),
+      // ignoring the fixed/inset-0 stretch entirely. That silently doubled
+      // the rendered canvas size and threw off every draw coordinate,
+      // which is why the glow was landing well off from the real cursor.
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resizeCanvas();
