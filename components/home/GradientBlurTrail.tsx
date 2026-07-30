@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const RADIUS = 60;
+const RADIUS = 12; // 80% smaller than the original 60px
 const OPACITY_DECAY = 0.025;
 
 // Brand colors sampled straight from the logo mark (green dot, blue "o")
