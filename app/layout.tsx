@@ -3,7 +3,7 @@ import { Big_Shoulders, Instrument_Sans, Inter, Playfair_Display } from "next/fo
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { EmberTrail } from "@/components/ui/EmberTrail";
+import { CursorEffect } from "@/components/layout/CursorEffect";
 import { site } from "@/lib/content/site";
 import "./globals.css";
 
@@ -67,7 +67,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <EmberTrail />
+          <CursorEffect />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
