@@ -123,14 +123,21 @@ export function Hero() {
               baseDelay={0.3}
               stagger={0.12}
               onMount
-              className="text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[6.75vw]"
+              // lg: is a fixed px value, not vw, from here up — the parent
+              // is capped at max-w-5xl (1024px), so it stops growing past
+              // that width while vw sizing keeps tracking the *viewport*.
+              // Past ~1350px that mismatch let the text outgrow its fixed
+              // container and wrap. Freezing at the exact size computed for
+              // viewport=1024 (where container and viewport width still
+              // coincide) keeps it correct for any wider desktop too.
+              className="text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[69.12px]"
             />
             <RevealLines
               lines={[...hero.linesSecondary]}
               baseDelay={0.42}
               stagger={0.12}
               onMount
-              className="mt-1 text-[9.552vw] sm:text-[9.12vw] md:text-[7.354vw] lg:text-[6.622vw]"
+              className="mt-1 text-[9.552vw] sm:text-[9.12vw] md:text-[7.354vw] lg:text-[67.81px]"
             />
           </h1>
 
@@ -147,7 +154,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-3 max-w-md font-body text-sm italic text-white/70 md:text-base"
+            className="mt-3 max-w-md font-body text-base font-semibold italic text-white/70 md:text-lg"
           >
             {hero.supportingKrio}
           </motion.p>

@@ -13,8 +13,10 @@ export function HeroLogoMarquee() {
         Trusted by organizations across Sierra Leone
       </p>
 
-      <div className="group relative mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="animate-marquee flex w-max items-center gap-3 group-hover:[animation-play-state:paused]">
+      {/* No group-hover pause here, unlike the Team section's carousel —
+          this one keeps scrolling regardless of hover. */}
+      <div className="relative mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="animate-marquee flex w-max items-center gap-3">
           {track.map((client, i) => (
             <div
               key={`${client.id}-${i}`}
