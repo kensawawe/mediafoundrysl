@@ -229,7 +229,17 @@ body::after {
 }
 
 .animate-marquee {
-  animation: marquee-scroll 37.4s linear infinite;
+  /* Longhand, not the `animation` shorthand — the shorthand implicitly
+     sets animation-play-state: running as part of itself, and since this
+     rule lives outside Tailwind's own @layer, it wins over the
+     group-hover:[animation-play-state:paused] utility regardless of
+     specificity or hover state (unlayered CSS always beats layered CSS
+     per the Cascade Layers spec). Longhand here never touches
+     play-state, so the utility is the only thing that ever sets it. */
+  animation-name: marquee-scroll;
+  animation-duration: 37.4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes gradient-drift {
