@@ -28,6 +28,11 @@ export function GradientBlurTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const hasMovedRef = useRef(false);
+  // Position a blob was last spawned at — spawning only when the cursor has
+  // actually moved since then keeps a stationary cursor from stacking a new
+  // full-opacity blob on the same spot every frame (which saturated to a
+  // white dot via the additive blending, even while not moving).
+  const lastSpawnRef = useRef({ x: -9999, y: -9999 });
   const circsRef = useRef<
     Array<{ col: [number, number, number]; x: number; y: number; grd: CanvasGradient; alpha: number }>
   >([]);
@@ -71,15 +76,19 @@ export function GradientBlurTrail() {
       ctx.globalCompositeOperation = "lighter";
 
       if (hasMovedRef.current) {
-        const col = pickColor();
         const { x, y } = mouseRef.current;
-        circsRef.current.push({
-          col,
-          x,
-          y,
-          grd: ctx.createRadialGradient(x, y, 0, x, y, RADIUS),
-          alpha: 1,
-        });
+        const last = lastSpawnRef.current;
+        if (x !== last.x || y !== last.y) {
+          const col = pickColor();
+          circsRef.current.push({
+            col,
+            x,
+            y,
+            grd: ctx.createRadialGradient(x, y, 0, x, y, RADIUS),
+            alpha: 1,
+          });
+          lastSpawnRef.current = { x, y };
+        }
       }
 
       const keep: typeof circsRef.current = [];
