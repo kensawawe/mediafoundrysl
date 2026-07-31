@@ -45,7 +45,7 @@ export function Team() {
                       rather than competing with it. */}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent px-4 pb-4 pt-12">
                     <h3 className="font-display text-lg font-bold tracking-tight text-white">{member.name}</h3>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+                    <p className="mt-0.5 font-mono text-[8px] uppercase tracking-[0.08em] text-white/70">
                       {member.role}
                     </p>
                   </div>
