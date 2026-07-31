@@ -128,19 +128,22 @@ export function Slate({
         </>
       )}
 
-      {variant === "photo" && (
-        <div className="absolute bottom-4 left-4 font-mono text-[10px] tracking-wider text-white/60">
-          f/2.8 · 1/250 · ISO 400
-        </div>
-      )}
-
       {category && (
         <span className="absolute right-4 top-4 border border-white/25 bg-black/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 backdrop-blur-sm">
           {category}
         </span>
       )}
 
-      <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
+      {/* Both captions stack in normal flow (not independently
+          absolutely-positioned) so they never overlap regardless of how
+          many lines either wraps to on a narrow tile — a fixed offset
+          between two absolute blocks can't account for that. */}
+      <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1">
+        {variant === "photo" && (
+          <div className="font-mono text-[10px] tracking-wider text-white/60">
+            f/2.8 · 1/250 · ISO 400
+          </div>
+        )}
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
           {category ?? "FOOTAGE"} / PLACEHOLDER
           <span className="text-white/30"> — {label}</span>

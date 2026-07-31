@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutBlock } from "@/components/about/AboutBlock";
 import { OurVision } from "@/components/about/OurVision";
+import { Team } from "@/components/about/Team";
 import {
   ourApproach,
   ourPhilosophy,
@@ -24,6 +25,7 @@ export default function AboutPage() {
       <AboutBlock title={whyOneRoof.title} body={whyOneRoof.body} />
       <AboutBlock title={ourApproach.title} body={ourApproach.body} />
       <OurVision />
+      <Team />
     </>
   );
 }
