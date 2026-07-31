@@ -22,7 +22,16 @@ export function Team() {
             {track.map((member, i) => (
               <div key={`${member.id}-${i}`} aria-hidden={i >= lap.length} className="w-56 shrink-0 sm:w-64">
                 <div className="aspect-[4/5] overflow-hidden border border-border-subtle">
-                  <Slate label={member.name} variant="photo" aspect="h-full" className="w-full" grainOpacity={0.05} />
+                  {member.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                    />
+                  ) : (
+                    <Slate label={member.name} variant="photo" aspect="h-full" className="w-full" grainOpacity={0.05} />
+                  )}
                 </div>
                 <div className="mt-3">
                   <h3 className="font-display text-lg font-bold tracking-tight">{member.name}</h3>
