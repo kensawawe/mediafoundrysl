@@ -44,11 +44,11 @@ function SocialIcon({ label, className }: { label: string; className?: string })
           <path d="M8.4 12v-2.6c0-1.3.9-1.8 1.8-1.8s1.8.5 1.8 1.8V12" {...iconShared} />
         </svg>
       );
-    case "Vimeo":
+    case "Facebook":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="2" width="12" height="12" {...iconShared} />
-          <path d="M4.5 6.2l2.3 4.2 4.7-6" {...iconShared} />
+          <path d="M6 5h3.4v1.2H7.4v1.4H9v1.2H7.4V12H6z" fill="currentColor" stroke="none" />
         </svg>
       );
     default:

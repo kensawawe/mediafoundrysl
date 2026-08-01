@@ -7,9 +7,9 @@ export const site = {
   email: "collab@themediafoundrysl.com",
   location: "Freetown, Sierra Leone",
   social: [
-    { label: "Instagram", href: "https://instagram.com/themediafoundry" },
-    { label: "LinkedIn", href: "https://linkedin.com/company/themediafoundry" },
-    { label: "Vimeo", href: "https://vimeo.com/themediafoundry" },
+    { label: "Instagram", href: "https://www.instagram.com/the_media_foundry/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/the-media-foundry-sl/" },
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61574995861393" },
   ],
   formspreeEndpoint: "https://formspree.io/f/xzdnajwo",
 };
