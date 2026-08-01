@@ -1,8 +1,10 @@
 export const careersHero = {
   eyebrow: "Careers",
-  title: "Build here.",
-  statement:
-    "We hire slowly, trust completely, and give people real ownership over the work — not just a seat near it.",
+  title: "Come build something meaningful.",
+  statement: [
+    "We are building a place for people who believe stories can move culture, inspire change, and connect communities.",
+    "We're looking for curious minds and passionate creators who want to do meaningful work, and help us tell the stories that shape Sierra Leone and beyond.",
+  ],
 };
 
 export type Pillar = {
@@ -12,54 +14,19 @@ export type Pillar = {
 
 export const pillars: Pillar[] = [
   {
-    title: "Work that leaves the building",
+    title: "Stories Worth Telling",
     description:
-      "Every project ships — no case studies that only exist in a portfolio deck. If we make it, it runs.",
+      "Every project is an opportunity to capture something real. We create work that lives beyond campaigns, screens, and deadlines.",
   },
   {
-    title: "One team, not a chain of hand-offs",
+    title: "Collaboration Is Our Craft",
     description:
-      "Strategists, designers and producers work the same brief from day one, in the same room.",
+      "Great ideas aren't built alone. We bring storytellers, strategists, designers, and producers together to create work stronger than any one person could make.",
   },
   {
-    title: "Craft over hours",
+    title: "Quality Over Quantity And Without Compromise",
     description:
-      "We measure the work by whether it holds up, not by how late the lights stayed on to finish it.",
-  },
-];
-
-export type BenefitGroup = {
-  title: string;
-  items: string[];
-};
-
-export const benefitGroups: BenefitGroup[] = [
-  {
-    title: "Health & Time",
-    items: [
-      "Private health cover",
-      "25 days PTO, plus studio closures",
-      "Paid parental leave",
-      "Mental health support",
-    ],
-  },
-  {
-    title: "Money & Growth",
-    items: [
-      "Profit-share pool",
-      "Annual learning stipend",
-      "Kit & equipment allowance",
-      "Transparent pay bands",
-    ],
-  },
-  {
-    title: "How We Work",
-    items: [
-      "Hybrid by default",
-      "Quarterly studio gathering",
-      "Freelance network for surge production",
-      "Flexible hours around shoot schedules",
-    ],
+      "We don't chase perfection through endless hours. We chase excellence through care, intention, and attention to every detail. We focus on what we can do best instead of trying to do everything.",
   },
 ];
 
@@ -73,13 +40,10 @@ export type Role = {
 export const departments = ["All", "Creative", "Production", "Strategy", "Operations"] as const;
 
 export const roles: Role[] = [
-  { title: "Senior Brand Designer", department: "Creative", type: "Full-time", location: "London / Hybrid" },
-  { title: "Director of Photography", department: "Production", type: "Freelance", location: "New York / On location" },
-  { title: "Copywriter", department: "Creative", type: "Full-time", location: "Remote" },
-  { title: "Producer, Brand Film", department: "Production", type: "Full-time", location: "London / Hybrid" },
-  { title: "Strategy Director", department: "Strategy", type: "Full-time", location: "Remote" },
-  { title: "Motion Designer", department: "Creative", type: "Freelance", location: "Remote" },
-  { title: "Studio Operations Manager", department: "Operations", type: "Full-time", location: "New York / Hybrid" },
+  { title: "Videographer", department: "Production", type: "Full-time", location: "Freetown / On location" },
+  { title: "Graphic Designer", department: "Creative", type: "Full-time", location: "Freetown" },
+  { title: "Content & Social Media Manager", department: "Strategy", type: "Full-time", location: "Freetown" },
+  { title: "Studio Operations Manager", department: "Operations", type: "Full-time", location: "Freetown" },
 ];
 
 export type ApplicationStep = {

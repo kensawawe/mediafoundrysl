@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/Button";
 import { RolesList } from "@/components/careers/RolesList";
 import {
   applicationSteps,
-  benefitGroups,
   careersHero,
   pillars,
 } from "@/lib/content/careers";
@@ -16,7 +15,7 @@ import { site } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: `Careers — ${site.name}`,
-  description: careersHero.statement,
+  description: careersHero.statement.join(" "),
 };
 
 export default function CareersPage() {
@@ -24,12 +23,14 @@ export default function CareersPage() {
     <>
       <div className="pt-32 pb-16 md:pt-40 md:pb-20">
         <Container>
-          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl lg:max-w-none lg:whitespace-nowrap lg:text-[58px]">
             <RevealLines lines={[careersHero.title]} onMount />
           </h1>
-          <p className="mt-8 max-w-lg font-body text-lg leading-relaxed text-current/70 sm:text-xl">
-            {careersHero.statement}
-          </p>
+          <div className="mt-8 flex max-w-lg flex-col gap-4 font-body text-lg leading-relaxed text-current/70 sm:text-xl">
+            {careersHero.statement.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </Container>
       </div>
 
@@ -51,33 +52,10 @@ export default function CareersPage() {
         </Container>
       </Section>
 
-      <Section tone="inverse">
-        <Container>
-          <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-            Built to last, same as the work.
-          </h2>
-
-          <div className="mt-14 grid gap-x-8 gap-y-12 border-t border-current/15 pt-12 sm:grid-cols-3">
-            {benefitGroups.map((group, i) => (
-              <FadeIn key={group.title} delay={i * 0.08}>
-                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-accent-text-inverse">
-                  {group.title}
-                </h3>
-                <ul className="mt-4 flex flex-col gap-2 font-body text-sm text-current/75 sm:text-base">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </FadeIn>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
       <Section>
         <Container>
           <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-            Find your next role.
+            Craft the future with us. Apply here.
           </h2>
 
           <div className="mt-14">
