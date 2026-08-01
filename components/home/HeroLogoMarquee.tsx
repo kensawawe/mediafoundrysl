@@ -9,19 +9,19 @@ const track = [...lap, ...lap];
 export function HeroLogoMarquee() {
   return (
     <div className="opacity-80">
-      <p className="text-right font-mono text-[10px] uppercase tracking-[0.16em] text-paper/60">
+      <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-paper/60 sm:text-[10px] sm:tracking-[0.16em]">
         Trusted by organizations across Sierra Leone
       </p>
 
       {/* No group-hover pause here, unlike the Team section's carousel —
           this one keeps scrolling regardless of hover. */}
-      <div className="relative mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <div className="relative mt-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="animate-marquee flex w-max items-center gap-3">
           {track.map((client, i) => (
             <div
               key={`${client.id}-${i}`}
               aria-hidden={i >= lap.length}
-              className="flex shrink-0 items-center gap-3 px-5 py-3"
+              className="flex shrink-0 items-center gap-3 px-5 py-1"
             >
               {/* Client marks are icon-only (no wordmark baked in), so the
                   name is set as real text alongside rather than alt text —
