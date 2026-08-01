@@ -6,11 +6,7 @@ import { IgniteRule } from "@/components/ui/IgniteRule";
 import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { RolesList } from "@/components/careers/RolesList";
-import {
-  applicationSteps,
-  careersHero,
-  pillars,
-} from "@/lib/content/careers";
+import { applicationSteps, careersHero, pillars } from "@/lib/content/careers";
 import { site } from "@/lib/content/site";
 
 export const metadata: Metadata = {

@@ -55,19 +55,21 @@ export const applicationSteps: ApplicationStep[] = [
   {
     title: "Apply",
     description:
-      "Send your portfolio or reel. We read every one — no ATS filter deciding before a person does.",
+      "Share your portfolio, reel, CV, or any work you're proud of. We review every application ourselves because great talent deserves a real conversation, not an automated filter.",
   },
   {
-    title: "Intro call",
+    title: "Get to Know Each Other",
     description:
-      "A short call with our team to talk through the role, your work and what you're looking for next.",
+      "If we think there's a good fit, we'll invite you to a relaxed conversation. We'll talk about your experience, your ambitions, and the kind of work that excites you, while giving you the chance to learn more about us.",
   },
   {
-    title: "Team session",
-    description: "Meet the people you'd actually work with. A working session, not a trivia panel.",
+    title: "Create Together",
+    description:
+      "Depending on the role, you may meet the wider team or complete a short practical exercise. We're not interested in trick questions. We want to see how you think, collaborate, and approach creative challenges.",
   },
   {
-    title: "Offer",
-    description: "If it's a fit both ways, we move fast — an offer within days, not months.",
+    title: "Welcome to the Foundry",
+    description:
+      "If it feels like the right fit for both of us, we'll move quickly with an offer and everything you need to get started. Then it's time to create work that matters, together.",
   },
 ];

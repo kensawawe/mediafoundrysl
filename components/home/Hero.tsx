@@ -22,8 +22,6 @@ export function Hero() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        videoRef.current?.play().catch(() => {});
-
         gsap.to(mediaRef.current, {
           scale: 1.12,
           yPercent: 8,
@@ -56,23 +54,45 @@ export function Hero() {
       return;
     }
 
-    // iOS can silently block attribute-based autoplay (Low Power Mode, Low
-    // Data Mode) even with muted/playsInline set correctly — but it still
-    // allows play() from within a genuine user gesture. Start on the first
-    // touch/scroll/click anywhere on the page so it starts the instant a
-    // real visitor does anything, rather than requiring a tap on the video.
-    const unlock = () => {
+    // Belt-and-suspenders: some mobile browsers only honor muted autoplay
+    // when the property (not just the attribute) is set before play() is
+    // requested.
+    video.muted = true;
+
+    const attemptPlay = () => {
       if (video.paused) video.play().catch(() => {});
     };
 
-    window.addEventListener("touchstart", unlock, { once: true, passive: true });
-    window.addEventListener("scroll", unlock, { once: true, passive: true });
-    window.addEventListener("click", unlock, { once: true });
+    // The initial attribute-based autoplay can silently fail on mobile if
+    // the video isn't buffered enough yet at parse time — retry once real
+    // data is available, not just once on mount.
+    attemptPlay();
+    video.addEventListener("loadedmetadata", attemptPlay);
+    video.addEventListener("canplay", attemptPlay);
+
+    // iOS can also silently block autoplay outright (Low Power Mode, Low
+    // Data Mode) even with muted/playsInline set correctly — but it still
+    // allows play() from within a genuine user gesture. Retry on the first
+    // touch/scroll/click anywhere on the page so it starts the instant a
+    // real visitor does anything, rather than requiring a tap on the video.
+    window.addEventListener("touchstart", attemptPlay, { once: true, passive: true });
+    window.addEventListener("scroll", attemptPlay, { once: true, passive: true });
+    window.addEventListener("click", attemptPlay, { once: true });
+
+    // Backgrounding a tab (app switch, lock screen) can also drop playback —
+    // pick it back up once the page is visible again.
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") attemptPlay();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
-      window.removeEventListener("touchstart", unlock);
-      window.removeEventListener("scroll", unlock);
-      window.removeEventListener("click", unlock);
+      video.removeEventListener("loadedmetadata", attemptPlay);
+      video.removeEventListener("canplay", attemptPlay);
+      window.removeEventListener("touchstart", attemptPlay);
+      window.removeEventListener("scroll", attemptPlay);
+      window.removeEventListener("click", attemptPlay);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
