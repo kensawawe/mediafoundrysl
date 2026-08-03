@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { useInView } from "@/components/ui/useInView";
@@ -51,6 +53,213 @@ function StageIcon({ title, className }: { title: string; className?: string }) 
   }
 }
 
+function Arrow({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      className={clsx(direction === "left" && "rotate-180")}
+    >
+      <path
+        d="M2 8h11.5M8.5 3l5 5-5 5"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="square"
+      />
+    </svg>
+  );
+}
+
+// Arc layout: the active stage centers at the top, the rest fan out either
+// side by shortest wrap-around distance. VISIBLE_COUNT is derived from the
+// stage count itself (not a separate windowing cap) since all four stages
+// stay on screen at once — this is a rotating arc, not a windowed carousel.
+// Two size sets: the tablet range (md, 768–1023px) is narrow enough that the
+// full desktop radius would push the receding outer card past the viewport
+// edge, so it gets a tighter arc; lg (1024px+) gets the full-size version.
+const ARC_SIZES = {
+  compact: { radiusX: 200, radiusY: 85, card: "h-40 w-56 p-5", icon: "h-5 w-5", title: "text-xl", body: "text-xs" },
+  full: { radiusX: 340, radiusY: 150, card: "h-56 w-80 p-7", icon: "h-7 w-7", title: "text-3xl", body: "text-sm" },
+};
+
+function getArcPosition(
+  index: number,
+  activeIndex: number,
+  total: number,
+  radiusX: number,
+  radiusY: number,
+) {
+  const half = Math.floor(total / 2);
+  let offset = index - activeIndex;
+
+  if (offset > half) offset -= total;
+  if (offset < -half) offset += total;
+
+  const angle = (offset / total) * Math.PI;
+  const x = Math.sin(angle) * radiusX;
+  const y = -Math.cos(angle) * radiusY;
+
+  const distance = Math.abs(offset);
+  const maxDistance = half + 1;
+  const scale = Math.max(0, 1 - (distance / maxDistance) * 0.3);
+  const opacity = Math.max(0.35, 1 - (distance / maxDistance) * 0.65);
+  const zIndex = total - distance;
+
+  return { x, y, scale, opacity, zIndex };
+}
+
+function ProcessArcCarousel() {
+  const total = processStages.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsCompact(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const size = isCompact ? ARC_SIZES.compact : ARC_SIZES.full;
+
+  const goTo = useCallback(
+    (index: number) => setActiveIndex(((index % total) + total) % total),
+    [total],
+  );
+  const next = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+  const prev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, 4000);
+    return () => clearInterval(id);
+  }, [paused, next]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    el.addEventListener("keydown", handler);
+    return () => el.removeEventListener("keydown", handler);
+  }, [next, prev]);
+
+  return (
+    <div
+      ref={containerRef}
+      tabIndex={0}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Our process"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      className="outline-none"
+    >
+      <div
+        className={clsx(
+          "relative mx-auto w-full transition-[height] duration-300",
+          isCompact ? "h-[320px] max-w-xl" : "h-[440px] max-w-3xl",
+        )}
+      >
+        <AnimatePresence>
+          {processStages.map((stage, i) => {
+            const pos = getArcPosition(i, activeIndex, total, size.radiusX, size.radiusY);
+            const isActive = i === activeIndex;
+
+            return (
+              <motion.button
+                key={stage.index}
+                type="button"
+                layout
+                initial={false}
+                animate={{ x: pos.x, y: pos.y, scale: pos.scale, opacity: pos.opacity, zIndex: pos.zIndex }}
+                transition={{ duration: 0.6, ease: framerEase }}
+                onClick={() => goTo(i)}
+                aria-label={stage.title}
+                aria-selected={isActive}
+                role="option"
+                className={clsx(
+                  "focus-ring absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-start justify-between border text-left transition-colors duration-300",
+                  size.card,
+                  isActive
+                    ? "border-accent-fill bg-accent-fill text-white"
+                    : "border-border-subtle bg-surface text-current",
+                )}
+              >
+                <StageIcon
+                  title={stage.title}
+                  className={clsx(size.icon, isActive ? "text-white" : "text-accent-text")}
+                />
+                <div>
+                  <h3 className={clsx("font-display font-bold tracking-tight", size.title)}>
+                    {stage.title}
+                  </h3>
+                  <p
+                    className={clsx(
+                      "mt-3 line-clamp-3 font-body leading-relaxed",
+                      size.body,
+                      isActive ? "text-white/75" : "text-current/60",
+                    )}
+                  >
+                    {stage.description}
+                  </p>
+                </div>
+              </motion.button>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-6">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous stage"
+          className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+        >
+          <Arrow direction="left" />
+        </button>
+
+        <div className="flex items-center gap-2" role="tablist">
+          {processStages.map((stage, i) => (
+            <button
+              key={stage.index}
+              type="button"
+              role="tab"
+              aria-selected={i === activeIndex}
+              aria-label={`Go to ${stage.title}`}
+              onClick={() => goTo(i)}
+              className={clsx(
+                "h-1.5 transition-all duration-300",
+                i === activeIndex ? "w-6 bg-accent-fill" : "w-1.5 border border-border-strong",
+              )}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next stage"
+          className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+        >
+          <Arrow direction="right" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function Process() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
@@ -62,36 +271,12 @@ export function Process() {
         </h2>
 
         <div ref={ref} className="mt-16">
-          {/* Desktop: the process reads left to right, in order. */}
-          <div className="relative hidden md:block">
-            <div className="absolute left-0 right-0 top-4 h-px bg-border-subtle" />
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 1.5, ease: framerEase }}
-              className="absolute left-0 right-0 top-4 h-px origin-left bg-accent-fill"
-            />
-            <div className="grid grid-cols-4 gap-x-8">
-              {processStages.map((stage, i) => (
-                <motion.div
-                  key={stage.index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.32, ease: framerEase }}
-                >
-                  <span className="relative z-10 flex h-8 w-8 items-center justify-center border border-accent-fill bg-background">
-                    <StageIcon title={stage.title} className="h-4 w-4 text-accent-text" />
-                  </span>
-                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight lg:text-3xl">
-                    {stage.title}
-                  </h3>
-                  <p className="mt-3 font-body text-sm text-current/65">{stage.description}</p>
-                </motion.div>
-              ))}
-            </div>
+          {/* Desktop/tablet: a rotating arc, the active stage centered up top. */}
+          <div className="hidden md:block">
+            <ProcessArcCarousel />
           </div>
 
-          {/* Mobile: not enough width for four columns, so the same order reads top to bottom. */}
+          {/* Mobile: not enough width for the arc, so the same order reads top to bottom. */}
           <div className="relative pl-8 md:hidden">
             <div className="absolute left-0 top-1 h-full w-px bg-border-subtle" />
             <motion.div
