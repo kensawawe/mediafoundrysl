@@ -15,7 +15,7 @@ import { workItems } from "@/lib/content/work";
  */
 export function WorkWall() {
   return (
-    <Section id="work" tone="inverse">
+    <Section id="work">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

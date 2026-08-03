@@ -86,13 +86,11 @@ export function Footer() {
 
   useEffect(() => setMounted(true), []);
 
-  // The footer always uses the theme-swapped foreground/background pair
-  // (bg-foreground/text-background), so its actual surface is the
-  // *opposite* of the page's normal one: dark in light theme, light in
-  // dark theme. Pick the logo variant that stays legible on whichever
-  // that resolves to. Default to the light-theme assumption pre-mount to
-  // match the server-rendered markup (ThemeProvider's defaultTheme).
-  const onDarkSurface = !mounted || resolvedTheme === "light";
+  // The footer sits on the page's normal background (no theme inversion),
+  // so its surface is dark exactly when the resolved theme is dark. Default
+  // to the light-theme assumption pre-mount to match the server-rendered
+  // markup (ThemeProvider's defaultTheme).
+  const onDarkSurface = mounted && resolvedTheme === "dark";
   const [quoteIndex, setQuoteIndex] = useState(0);
 
   useEffect(() => {
@@ -110,13 +108,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border-subtle bg-foreground text-background">
+    <footer className="border-t border-border-subtle">
       <Container className="py-20 md:py-28">
         <div className="flex flex-col">
           <Magnetic strength={0.18} className="inline-block w-fit">
             <a
               href={`mailto:${site.email}`}
-              className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text-inverse"
+              className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text"
             >
               <span className="block leading-[0.95] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
                 Ready to craft something different?
@@ -133,7 +131,7 @@ export function Footer() {
             <Link href="/" className="focus-ring inline-flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
               <img
-                src={onDarkSurface ? "/logo-dark.png" : "/logo-white.png"}
+                src={onDarkSurface ? "/logo-white.png" : "/logo-dark.png"}
                 alt="The Media Foundry"
                 width={1516}
                 height={176}
@@ -156,8 +154,8 @@ export function Footer() {
             </nav>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 overflow-hidden bg-ink p-8 text-paper">
-            <span aria-hidden className="font-display text-4xl leading-none text-paper/30">
+          <div className="flex flex-col justify-between gap-8 overflow-hidden bg-background p-8 text-foreground">
+            <span aria-hidden className="font-display text-4xl leading-none text-foreground/20">
               &ldquo;
             </span>
             <AnimatePresence mode="wait">
@@ -169,31 +167,27 @@ export function Footer() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                <p className="font-body text-base leading-relaxed text-paper/85">
+                <p className="font-body text-base leading-relaxed text-foreground/85">
                   {featuredQuote.quote}
                 </p>
-                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.16em] text-paper/50">
+                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/50">
                   {featuredQuote.name}
                 </span>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 bg-accent-fill p-8 text-white">
+          <div className="flex flex-col justify-between gap-8 bg-background p-8 text-foreground">
             <div>
               <span className="font-display text-2xl font-bold tracking-tight">
                 Start a project
               </span>
-              <p className="mt-3 font-body text-sm text-white/80">
+              <p className="mt-3 font-body text-sm text-foreground/70">
                 Brand, campaign, film or something in between — tell us what you have in mind
                 and we&rsquo;ll follow up within two working days.
               </p>
             </div>
-            <Button
-              href="/#contact"
-              variant="primary"
-              className="border-white bg-white text-ink hover:border-ink hover:bg-ink hover:text-white"
-            >
+            <Button href="/#contact" variant="primary">
               Let&rsquo;s talk
             </Button>
           </div>

@@ -21,7 +21,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <AboutBlock title={whoWeAre.title} body={whoWeAre.body} />
-      <AboutBlock title={ourPhilosophy.title} body={ourPhilosophy.body} tone="inverse" />
+      <AboutBlock title={ourPhilosophy.title} body={ourPhilosophy.body} />
       <AboutBlock title={whyOneRoof.title} body={whyOneRoof.body} />
       <AboutBlock title={ourApproach.title} body={ourApproach.body} />
       <OurVision />

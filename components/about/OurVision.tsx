@@ -6,9 +6,9 @@ import { ourVision } from "@/lib/content/about";
 
 export function OurVision() {
   return (
-    <Section tone="inverse">
+    <Section>
       <Container>
-        <SlateTag tone="inverse" className="!text-[22px] !text-current">
+        <SlateTag className="!text-[22px] !text-current">
           {ourVision.title}
         </SlateTag>
         <FadeIn>

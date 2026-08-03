@@ -6,17 +6,17 @@ import type { CaseStudy } from "@/lib/content/case-studies";
 
 export function ChallengeApproach({ study }: { study: CaseStudy }) {
   return (
-    <Section className="py-20 md:py-24" tone="inverse">
+    <Section className="py-20 md:py-24">
       <Container>
         <div className="grid gap-12 sm:grid-cols-2 sm:gap-16">
           <FadeIn>
-            <SlateTag tone="inverse" className="text-current/60">The Challenge</SlateTag>
+            <SlateTag className="text-current/60">The Challenge</SlateTag>
             <p className="mt-5 font-body text-base leading-relaxed text-current/80 sm:text-lg">
               {study.challenge}
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <SlateTag tone="inverse" className="text-current/60">Our Approach</SlateTag>
+            <SlateTag className="text-current/60">Our Approach</SlateTag>
             <p className="mt-5 font-body text-base leading-relaxed text-current/80 sm:text-lg">
               {study.approach}
             </p>
