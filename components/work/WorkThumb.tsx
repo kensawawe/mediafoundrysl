@@ -16,7 +16,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
         <div
           className={clsx(
             "relative isolate w-full overflow-hidden",
-            fit === "contain" ? "bg-white" : "bg-ink",
+            fit === "contain" ? "border border-border-strong bg-white" : "bg-ink",
             aspect,
           )}
         >
