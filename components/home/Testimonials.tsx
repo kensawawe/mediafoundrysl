@@ -51,8 +51,10 @@ export function Testimonials() {
   }, [index, total]);
 
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <Container>
+        <div aria-hidden className="border-t border-current/15 mb-12" />
+
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
             What clients say
@@ -90,11 +92,12 @@ export function Testimonials() {
                   exit={{ opacity: 0, scale: 0.94 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className={clsx(
-                    "relative flex w-full flex-col justify-between overflow-hidden border p-8 md:w-1/3",
+                    "relative flex w-full flex-col justify-between overflow-hidden border p-8 transition-opacity duration-500",
                     position !== "center" && "hidden md:flex",
+                    isCenter ? "md:w-2/5 lg:w-1/3" : "md:w-3/10 lg:w-1/3",
                     isCenter
                       ? "z-10 border-accent-fill bg-accent-fill text-white"
-                      : "border-border-subtle bg-surface text-current",
+                      : "border-border-subtle bg-surface text-current md:opacity-70 lg:opacity-100",
                   )}
                 >
                   {!isCenter && (
@@ -111,7 +114,7 @@ export function Testimonials() {
                   )}
                   <p
                     className={clsx(
-                      "font-body text-base leading-relaxed sm:text-lg",
+                      "font-body text-base leading-relaxed sm:text-lg md:text-sm lg:text-lg",
                       !isCenter && "text-current/70",
                     )}
                   >

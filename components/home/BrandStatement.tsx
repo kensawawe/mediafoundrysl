@@ -6,7 +6,7 @@ import { brandStatement } from "@/lib/content/home";
 
 export function BrandStatement() {
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <Container>
         <IgniteRule lineColor="var(--accent-fill)" />
         <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-16">

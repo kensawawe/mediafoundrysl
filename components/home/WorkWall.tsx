@@ -15,8 +15,10 @@ import { workItems } from "@/lib/content/work";
  */
 export function WorkWall() {
   return (
-    <Section id="work">
+    <Section id="work" className="pb-0 md:pb-0">
       <Container>
+        <div aria-hidden className="border-t border-current/15 mb-12" />
+
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 className="font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl">

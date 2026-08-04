@@ -264,11 +264,15 @@ export function Process() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
   return (
-    <Section id="process">
+    <Section id="process" className="pb-0 md:pb-0">
       <Container>
+        <div aria-hidden className="border-t border-current/15 mb-12" />
+
         <div ref={ref}>
-          {/* Desktop/tablet: a rotating arc, the active stage centered up top. */}
-          <div className="hidden md:block">
+          {/* Desktop/tablet: a rotating arc, the active stage centered up top.
+              Extra top clearance since the arc's curve lifts the centered
+              card well above the track box's own top edge. */}
+          <div className="hidden md:block md:mt-28">
             <ProcessArcCarousel />
           </div>
 

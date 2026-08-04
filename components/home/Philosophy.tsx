@@ -5,8 +5,10 @@ import { highlights, philosophyStatement } from "@/lib/content/philosophy";
 
 export function Philosophy() {
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <Container>
+        <div aria-hidden className="border-t border-current/15 mb-12" />
+
         <p className="max-w-3xl font-display text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
           {philosophyStatement}
         </p>

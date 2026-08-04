@@ -46,6 +46,8 @@ export function Contact() {
   return (
     <Section id="contact">
       <Container>
+        <div aria-hidden className="border-t border-current/15 mb-12" />
+
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
             <h2 className="font-display text-5xl font-black uppercase leading-[0.88] tracking-tight sm:text-6xl md:text-7xl">
