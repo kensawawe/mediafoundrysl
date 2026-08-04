@@ -41,6 +41,7 @@ export const departments = ["All", "Creative", "Production", "Strategy", "Operat
 
 export const roles: Role[] = [
   { title: "Videographer", department: "Production", type: "Full-time", location: "Freetown / On location" },
+  { title: "Editor", department: "Production", type: "Full-time", location: "Freetown" },
   { title: "Graphic Designer", department: "Creative", type: "Full-time", location: "Freetown" },
   { title: "Content & Social Media Manager", department: "Strategy", type: "Full-time", location: "Freetown" },
   { title: "Studio Operations Manager", department: "Operations", type: "Full-time", location: "Freetown" },
