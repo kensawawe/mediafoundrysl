@@ -168,7 +168,7 @@ function ProcessArcCarousel() {
       <div
         className={clsx(
           "relative mx-auto w-full transition-[height] duration-300",
-          isCompact ? "h-[320px] max-w-xl" : "h-[440px] max-w-3xl",
+          isCompact ? "h-[260px] max-w-xl" : "h-[360px] max-w-3xl",
         )}
       >
         <AnimatePresence>
@@ -220,7 +220,7 @@ function ProcessArcCarousel() {
         </AnimatePresence>
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-6">
+      <div className="mt-2 flex items-center justify-center gap-6">
         <button
           type="button"
           onClick={prev}
@@ -266,11 +266,7 @@ export function Process() {
   return (
     <Section id="process">
       <Container>
-        <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-          Discover. Design. Produce. Deliver.
-        </h2>
-
-        <div ref={ref} className="mt-16">
+        <div ref={ref}>
           {/* Desktop/tablet: a rotating arc, the active stage centered up top. */}
           <div className="hidden md:block">
             <ProcessArcCarousel />
