@@ -45,4 +45,28 @@ export const services: Service[] = [
     description: "Extending content beyond production into digital experiences.",
     examples: ["Website Builds", "Podcast Launch Services", "Personal Branding"],
   },
+  {
+    code: "DG",
+    title: "Distribution & Growth",
+    description: "Getting finished work in front of the right audience, then proving it worked.",
+    examples: [
+      "Social Media Strategy",
+      "Paid Media Campaigns",
+      "Community Management",
+      "Performance Tracking",
+      "Content Repurposing",
+    ],
+  },
+  {
+    code: "RI",
+    title: "Research & Insights",
+    description: "Digging into the audience, culture and facts a story needs to hold up.",
+    examples: [
+      "Audience Insights",
+      "Cultural Research",
+      "Community Interviews",
+      "Impact Measurement",
+      "Story Discovery",
+    ],
+  },
 ];

@@ -48,6 +48,21 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
           <path d="M6 13.5h4" {...shared} />
         </svg>
       );
+    case "Distribution & Growth":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <circle cx="3.5" cy="12.5" r="1.3" fill="currentColor" stroke="none" />
+          <path d="M6.5 12.5c0-2.8 2.2-5 5-5" {...shared} />
+          <path d="M6.5 12.5c0-4.7 3.8-8.5 8.5-8.5" {...shared} />
+        </svg>
+      );
+    case "Research & Insights":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
+          <path d="M13 13l-3.6-3.6" {...shared} />
+        </svg>
+      );
     default:
       return null;
   }
@@ -66,7 +81,7 @@ export function Departments() {
     <Section>
       <Container>
         <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-          Four departments. One floor.
+          Six departments. One floor.
         </h2>
 
         <div className="mt-14 border-t border-border-subtle">

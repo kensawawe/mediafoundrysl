@@ -6,7 +6,7 @@ import { Slate } from "@/components/ui/Slate";
 import { WriteOn } from "@/components/ui/RevealText";
 import { services } from "@/lib/content/services";
 
-const COLS = 2;
+const COLS = 3;
 const ROWS = Math.ceil(services.length / COLS);
 
 /** Active track gets 3fr, every other track on that axis gets 1fr; no
@@ -34,7 +34,7 @@ function useHoverCapable() {
 }
 
 /**
- * Department grid — four hover-expanding frames, each resting on just its
+ * Department grid — six hover-expanding frames, each resting on just its
  * title (write-on reveal) and swapping to its description + example
  * services on hover (see the accordion version on the Work page for the
  * same detail in a non-visual layout). Hovering a tile grows it via CSS
