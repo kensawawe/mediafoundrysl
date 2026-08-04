@@ -74,10 +74,7 @@ export default function CareersPage() {
           <div className="mt-10 grid gap-x-8 gap-y-12 border-t border-current/15 pt-10 sm:grid-cols-4">
             {applicationSteps.map((step, i) => (
               <FadeIn key={step.title} delay={i * 0.08}>
-                <span className="font-mono text-xs text-accent-text">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 font-display text-xl font-bold tracking-tight sm:text-2xl">
+                <h3 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
                   {step.title}
                 </h3>
                 <p className="mt-3 font-body text-sm text-current/65">{step.description}</p>
