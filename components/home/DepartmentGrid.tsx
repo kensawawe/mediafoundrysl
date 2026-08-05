@@ -48,7 +48,7 @@ export function DepartmentGrid() {
 
   return (
     <div
-      className="grid h-[420px] gap-3 sm:h-[520px] md:h-[600px] md:gap-4"
+      className="grid aspect-[3/2] gap-3 sm:aspect-auto sm:h-[520px] md:h-[600px] md:gap-4"
       style={{
         gridTemplateRows: trackSizes(activeRow, ROWS),
         gridTemplateColumns: trackSizes(activeCol, COLS),
