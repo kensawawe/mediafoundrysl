@@ -21,7 +21,7 @@ export const startAProjectLabel = "Start a project";
 
 export const navLinks = [
   { label: "Work", href: "/work" },
-  { label: "Studio", href: "/about" },
+  { label: "The Foundry", href: "/about" },
   { label: "Careers", href: "/careers" },
   { label: "Journal", href: "/journal" },
 ];

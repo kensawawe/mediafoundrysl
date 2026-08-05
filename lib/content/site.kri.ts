@@ -18,7 +18,7 @@ export const startAProjectLabel = "Stat Wan Projɛkt";
 
 export const navLinks = [
   { label: "Wok", href: "/work" },
-  { label: "Studio", href: "/about" },
+  { label: "Di Foundry", href: "/about" },
   { label: "Jɔb Dɛn", href: "/careers" },
   { label: "Jɔɔnal", href: "/journal" },
 ];
