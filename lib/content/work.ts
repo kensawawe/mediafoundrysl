@@ -151,12 +151,15 @@ export const workItems: WorkItem[] = [
     hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
   },
   {
-    slug: "lowline-documentary",
-    title: "Lowline",
-    category: "Film & Production",
-    description:
-      "A short documentary on the makers behind an independent audio-equipment manufacturer.",
-    variant: "video",
+    slug: "the-leonean",
+    title: "The Leonean",
+    category: "Digital",
+    description: "A digital magazine — stories, culture and ideas from Sierra Leone and beyond.",
+    variant: "photo",
     size: "md",
+    restingImage: "/Leonean.png",
+    hoverImage: "/leonean-logo.png",
+    imageFit: "contain",
+    hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
   },
 ];

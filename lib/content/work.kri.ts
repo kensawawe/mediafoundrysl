@@ -104,12 +104,15 @@ export const workItems: WorkItem[] = [
     hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
   },
   {
-    slug: "lowline-documentary",
-    title: "Lowline",
-    category: "Film & Production",
-    description:
-      "Wan shɔt dokyumɛntari pan di meka dɛn bihaynd wan independent odio-ɛkwipmɛnt manyufakcha.",
-    variant: "video",
+    slug: "the-leonean",
+    title: "The Leonean",
+    category: "Digital",
+    description: "Wan dijital magazin — stori, kɔlcha, ɛn aydiya dɛn frɔm Salone ɛn pas.",
+    variant: "photo",
     size: "md",
+    restingImage: "/Leonean.png",
+    hoverImage: "/leonean-logo.png",
+    imageFit: "contain",
+    hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
   },
 ];
