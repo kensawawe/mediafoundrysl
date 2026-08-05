@@ -40,31 +40,21 @@ export function WorkWall() {
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {workItems.slice(0, 6).map((item, i) => {
-            const isLarge = item.size === "lg";
-            return (
-              <FadeIn
-                key={item.slug}
-                delay={i * 0.05}
-                className={isLarge ? "col-span-2 row-span-2" : "col-span-1"}
+          {workItems.slice(0, 6).map((item, i) => (
+            <FadeIn key={item.slug} delay={i * 0.05}>
+              <Link
+                href={item.hasCaseStudy ? `/work/${item.slug}` : "/work"}
+                className="focus-ring group relative block"
               >
-                <Link
-                  href={item.hasCaseStudy ? `/work/${item.slug}` : "/work"}
-                  className="focus-ring group relative block"
-                >
-                  <WorkThumb
-                    item={item}
-                    aspect={isLarge ? "aspect-square md:aspect-[4/3]" : "aspect-[4/5] md:aspect-square"}
-                  />
-                  <div className="mt-3 flex items-baseline justify-between gap-3">
-                    <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">
-                      {item.title}
-                    </h3>
-                  </div>
-                </Link>
-              </FadeIn>
-            );
-          })}
+                <WorkThumb item={item} aspect="aspect-[4/5] md:aspect-square" />
+                <div className="mt-3 flex items-baseline justify-between gap-3">
+                  <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">
+                    {item.title}
+                  </h3>
+                </div>
+              </Link>
+            </FadeIn>
+          ))}
         </div>
       </Container>
     </Section>
