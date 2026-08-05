@@ -50,14 +50,16 @@ export function JournalPageBody() {
                   href={`/journal/${article.slug}`}
                   className="focus-ring group grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-2 sm:gap-10"
                 >
-                  <p className="max-w-xl font-body text-sm text-current/65 sm:text-base">
-                    {article.excerpt}
-                  </p>
-                  <div className="sm:text-right">
+                  <div>
                     <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
                       {article.title}
                     </h2>
-                    <div className="mt-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50 sm:justify-end">
+                    <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <div className="sm:text-right">
+                    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50 sm:justify-end">
                       <span>{article.author.name}</span>
                       <span>—</span>
                       <span>{article.date}</span>
