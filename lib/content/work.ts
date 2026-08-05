@@ -145,7 +145,7 @@ export const workItems: WorkItem[] = [
     variant: "video",
     size: "md",
     restingImage: "/F.png",
-    hoverImage: "/gfkbfg.png",
+    hoverImage: "/futures.png",
     imageFit: "contain",
     imagePadding: "p-0 scale-110",
     hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
