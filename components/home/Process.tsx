@@ -77,42 +77,45 @@ function Arrow({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-// Arc layout: the active stage centers at the top, the rest fan out either
-// side by shortest wrap-around distance. VISIBLE_COUNT is derived from the
-// stage count itself (not a separate windowing cap) since all four stages
-// stay on screen at once — this is a rotating arc, not a windowed carousel.
-// Two size sets: the tablet range (md, 768–1023px) is narrow enough that the
-// full desktop radius would push the receding outer card past the viewport
-// edge, so it gets a tighter arc; lg (1024px+) gets the full-size version.
+// Cross layout: all four stages stay on screen at once, one per cardinal
+// position (top/left/bottom/right) — this is a rotating cross, not a
+// windowed carousel. Two size sets: the tablet range (md, 768–1023px) is
+// narrow enough that the full desktop radius would push the left/right
+// cards past the viewport edge, so it gets a tighter spread; lg (1024px+)
+// gets the full-size version.
 const ARC_SIZES = {
   compact: { radiusX: 200, radiusY: 85, card: "h-40 w-56 p-5", icon: "h-5 w-5", title: "text-xl", body: "text-xs" },
   full: { radiusX: 340, radiusY: 150, card: "h-56 w-80 p-7", icon: "h-7 w-7", title: "text-3xl", body: "text-sm" },
 };
 
-function getArcPosition(
+// Cross layout: the active stage sits top-front; the other three sit at
+// left/bottom/right, cycling one step per rotation in that order (so
+// advancing "next" sends the current top stage to the left, not the
+// right). Assumes exactly 4 stages — one per cardinal position — which
+// matches processStages' fixed 4-stage content (and StageIcon, which only
+// defines icons for indices "01"-"04").
+function getCrossPosition(
   index: number,
   activeIndex: number,
   total: number,
   radiusX: number,
   radiusY: number,
 ) {
-  const half = Math.floor(total / 2);
-  let offset = index - activeIndex;
+  const stepsSinceActive = ((activeIndex - index) % total + total) % total;
 
-  if (offset > half) offset -= total;
-  if (offset < -half) offset += total;
-
-  const angle = (offset / total) * Math.PI;
-  const x = Math.sin(angle) * radiusX;
-  const y = -Math.cos(angle) * radiusY;
-
-  const distance = Math.abs(offset);
-  const maxDistance = half + 1;
-  const scale = Math.max(0, 1 - (distance / maxDistance) * 0.3);
-  const opacity = Math.max(0.35, 1 - (distance / maxDistance) * 0.65);
-  const zIndex = total - distance;
-
-  return { x, y, scale, opacity, zIndex };
+  switch (stepsSinceActive) {
+    case 0: // top — active, front
+      return { x: 0, y: -radiusY, scale: 1, opacity: 1, zIndex: 4 };
+    case 1: // left — was active one step ago
+      return { x: -radiusX, y: 0, scale: 0.85, opacity: 0.7, zIndex: 2 };
+    case 2: // bottom — directly opposite, furthest back. A shorter throw
+      // than top's radiusY (rather than a mirrored full radiusY) both
+      // reads as "receding into the distance" and keeps the card from
+      // dropping low enough to collide with the controls below the track.
+      return { x: 0, y: radiusY * 0.55, scale: 0.7, opacity: 0.5, zIndex: 1 };
+    default: // right — becomes active next
+      return { x: radiusX, y: 0, scale: 0.85, opacity: 0.7, zIndex: 2 };
+  }
 }
 
 function ProcessArcCarousel({ processStages }: { processStages: typeof processStagesEn }) {
@@ -172,12 +175,12 @@ function ProcessArcCarousel({ processStages }: { processStages: typeof processSt
       <div
         className={clsx(
           "relative mx-auto w-full transition-[height] duration-300",
-          isCompact ? "h-[260px] max-w-xl" : "h-[360px] max-w-3xl",
+          isCompact ? "h-[300px] max-w-xl" : "h-[440px] max-w-3xl",
         )}
       >
         <AnimatePresence>
           {processStages.map((stage, i) => {
-            const pos = getArcPosition(i, activeIndex, total, size.radiusX, size.radiusY);
+            const pos = getCrossPosition(i, activeIndex, total, size.radiusX, size.radiusY);
             const isActive = i === activeIndex;
 
             return (
