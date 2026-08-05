@@ -29,7 +29,7 @@ export function Outcome({ study }: { study: CaseStudy }) {
               <span className="font-display text-3xl font-black text-accent-text sm:text-4xl">
                 {item.stat}
               </span>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-current/50">
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
                 {item.label}
               </p>
             </FadeIn>

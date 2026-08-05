@@ -68,7 +68,7 @@ export function Contact() {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-10">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-current/50">
+              <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
                 {copy.createPrompt}
               </span>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -151,7 +151,7 @@ export function Contact() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-current/50">
+      <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
         {label}
       </span>
       {children}

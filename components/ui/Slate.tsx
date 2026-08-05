@@ -129,7 +129,7 @@ export function Slate({
       )}
 
       {category && (
-        <span className="absolute right-4 top-4 border border-white/25 bg-black/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 backdrop-blur-sm">
+        <span className="absolute right-4 top-4 border border-white/25 bg-black/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.03em] text-white/80 backdrop-blur-sm">
           {category}
         </span>
       )}
@@ -144,7 +144,7 @@ export function Slate({
             f/2.8 · 1/250 · ISO 400
           </div>
         )}
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
+        <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-white/50">
           {category ?? "FOOTAGE"} / PLACEHOLDER
           <span className="text-white/30"> — {label}</span>
         </p>

@@ -16,7 +16,7 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
       <Container>
         <Link
           href="/work"
-          className="focus-ring font-mono text-xs uppercase tracking-[0.14em] text-current/50 hover:text-accent-text"
+          className="focus-ring font-mono text-xs uppercase tracking-[0.03em] text-current/50 hover:text-accent-text"
         >
           {copy.backToWork}
         </Link>

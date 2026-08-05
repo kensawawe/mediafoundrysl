@@ -132,7 +132,7 @@ export function Footer() {
                 <p className="font-body text-base leading-relaxed text-foreground/85">
                   {featuredQuote.quote}
                 </p>
-                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/50">
+                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.03em] text-foreground/50">
                   {featuredQuote.name}
                 </span>
               </motion.div>
@@ -162,7 +162,7 @@ export function Footer() {
                 className="focus-ring group flex flex-col items-center justify-center gap-2 p-6 text-foreground/70 transition-colors hover:text-accent-text"
               >
                 <SocialIcon platform={s.platform} className="h-5 w-5" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.03em]">
                   {s.label}
                 </span>
               </a>
@@ -170,7 +170,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em] text-current/45 md:flex-row md:items-center">
+        <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.03em] text-current/45 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} The Media Foundry</span>
           <span className="flex items-center gap-3">
             <span>{copy.workingGlobally}</span>

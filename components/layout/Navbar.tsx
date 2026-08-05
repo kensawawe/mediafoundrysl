@@ -91,7 +91,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "focus-ring font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:text-accent-text",
+                  "focus-ring font-mono text-xs uppercase tracking-[0.03em] transition-colors hover:text-accent-text",
                   overDarkHero ? "text-paper" : "text-current/70",
                 )}
               >

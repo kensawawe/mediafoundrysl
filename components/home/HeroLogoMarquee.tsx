@@ -15,7 +15,7 @@ export function HeroLogoMarquee() {
 
   return (
     <div className="opacity-80">
-      <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-paper/60 sm:text-[10px] sm:tracking-[0.16em]">
+      <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-paper/60 sm:text-[10px] sm:tracking-[0.03em]">
         {trustedByLabel}
       </p>
 

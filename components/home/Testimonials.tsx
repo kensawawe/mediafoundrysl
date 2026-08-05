@@ -131,7 +131,7 @@ export function Testimonials() {
                       </p>
                       <p
                         className={clsx(
-                          "mt-1 font-mono text-[11px] uppercase tracking-[0.14em]",
+                          "mt-1 font-mono text-[11px] uppercase tracking-[0.03em]",
                           isCenter ? "text-white/60" : "text-current/50",
                         )}
                       >

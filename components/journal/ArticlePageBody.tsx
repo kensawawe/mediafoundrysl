@@ -60,7 +60,7 @@ export function ArticlePageBody({ article }: { article: Article }) {
         <Container>
           <Link
             href="/journal"
-            className="focus-ring font-mono text-xs uppercase tracking-[0.14em] text-current/50 hover:text-accent-text"
+            className="focus-ring font-mono text-xs uppercase tracking-[0.03em] text-current/50 hover:text-accent-text"
           >
             {journalCopy.backToJournal}
           </Link>
@@ -73,7 +73,7 @@ export function ArticlePageBody({ article }: { article: Article }) {
             <h1 className="mt-4 max-w-3xl font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-6xl md:text-7xl">
               {translated.title}
             </h1>
-            <span className="mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
+            <span className="mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.03em] text-current/40">
               {translated.readTime} {readSuffix}
             </span>
           </div>
@@ -81,7 +81,7 @@ export function ArticlePageBody({ article }: { article: Article }) {
           <div className="mt-10 flex items-center gap-4 border-y border-border-subtle py-6">
             <AuthorAvatar name={translated.author.name} image={translated.author.image} />
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-current/40">
+              <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-current/40">
                 {journalCopy.writtenBy}
               </p>
               <p className="font-display text-base font-bold tracking-tight">{translated.author.name}</p>

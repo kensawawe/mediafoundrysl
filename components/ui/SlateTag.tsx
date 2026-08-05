@@ -16,7 +16,7 @@ export function SlateTag({
   return (
     <div
       className={clsx(
-        "flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-current/60",
+        "flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.03em] text-current/60",
         className,
       )}
     >

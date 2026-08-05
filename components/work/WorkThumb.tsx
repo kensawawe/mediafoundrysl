@@ -40,7 +40,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
               className="mb-3 h-16 w-16 object-contain sm:h-20 sm:w-20"
             />
           )}
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/70">
+          <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
             {item.category}
           </span>
           <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
@@ -55,7 +55,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
     <>
       <Slate label={item.title} category={item.category} variant={item.variant} aspect={aspect} />
       <PourOverlay>
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/70">
+        <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
           {item.category}
         </span>
         <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
