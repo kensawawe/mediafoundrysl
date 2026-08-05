@@ -57,6 +57,9 @@ export type WorkItem = {
    *  (e.g. a poster/cover-art asset that should read larger than a small
    *  logo mark). Defaults to "p-10". */
   imagePadding?: string;
+  /** Overrides the default size of hoverImage inside the pour-wash reveal.
+   *  Defaults to "h-16 w-16 sm:h-20 sm:w-20". */
+  hoverImageSize?: string;
 };
 
 export const workItems: WorkItem[] = [
@@ -145,6 +148,7 @@ export const workItems: WorkItem[] = [
     hoverImage: "/gfkbfg.png",
     imageFit: "contain",
     imagePadding: "p-0 scale-110",
+    hoverImageSize: "h-24 w-24 sm:h-28 sm:w-28",
   },
   {
     slug: "lowline-documentary",
