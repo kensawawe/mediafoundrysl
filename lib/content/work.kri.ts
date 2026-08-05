@@ -91,13 +91,15 @@ export const workItems: WorkItem[] = [
     imageFit: "contain",
   },
   {
-    slug: "pennant-hotels-campaign",
-    title: "Pennant Hotels",
-    category: "Campaigns",
-    description:
-      "Wan ribrand ɛn lɔnch kampen fɔ wan butik hɔspitaliti grup in fɔs tɛn prɔpati dɛn.",
+    slug: "foundations-and-futures",
+    title: "Foundations & Futures",
+    category: "Video Podcast",
+    description: "Wan pɔdkast sirii we Di Media Foundry prodyus, we Ken Saro-Wiwa Fofana de os.",
     variant: "video",
     size: "md",
+    restingImage: "/F.png",
+    hoverImage: "/gfkbfg.png",
+    imageFit: "contain",
   },
   {
     slug: "lowline-documentary",

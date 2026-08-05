@@ -131,13 +131,15 @@ export const workItems: WorkItem[] = [
     imageFit: "contain",
   },
   {
-    slug: "pennant-hotels-campaign",
-    title: "Pennant Hotels",
-    category: "Campaigns",
-    description:
-      "A rebrand and launch campaign for a boutique hospitality group's first ten properties.",
+    slug: "foundations-and-futures",
+    title: "Foundations & Futures",
+    category: "Video Podcast",
+    description: "A podcast series produced by The Media Foundry, hosted by Ken Saro-Wiwa Fofana.",
     variant: "video",
     size: "md",
+    restingImage: "/F.png",
+    hoverImage: "/gfkbfg.png",
+    imageFit: "contain",
   },
   {
     slug: "lowline-documentary",
