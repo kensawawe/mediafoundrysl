@@ -41,7 +41,7 @@ export function HeroLogoMarquee() {
                 aria-hidden
                 className="h-7 w-7 object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] sm:h-8 sm:w-8"
               />
-              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.1em] text-paper [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.03em] text-paper [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
                 {client.name}
               </span>
             </div>
