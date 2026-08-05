@@ -54,12 +54,12 @@ export function JournalPageBody() {
                     </p>
                   </div>
                   <div className="sm:text-right">
-                    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50 sm:justify-end">
+                    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.03em] text-current/50 sm:justify-end">
                       <span>{article.author.name}</span>
                       <span>—</span>
                       <span>{article.date}</span>
                     </div>
-                    <span className="mt-3 block font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
+                    <span className="mt-3 block font-mono text-[11px] uppercase tracking-[0.03em] text-current/40">
                       {article.readTime} {readSuffix}
                     </span>
                   </div>
