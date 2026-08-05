@@ -48,21 +48,21 @@ export function JournalPageBody() {
               <FadeIn key={article.slug} delay={i * 0.06}>
                 <Link
                   href={`/journal/${article.slug}`}
-                  className="focus-ring group grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-[1fr_2fr] sm:gap-10"
+                  className="focus-ring group grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-2 sm:gap-10"
                 >
-                  <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50">
-                    <span className="text-accent-text">{article.category}</span>
-                    <span>—</span>
-                    <span>{article.date}</span>
-                  </div>
-                  <div>
+                  <p className="max-w-xl font-body text-sm text-current/65 sm:text-base">
+                    {article.excerpt}
+                  </p>
+                  <div className="sm:text-right">
                     <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
                       {article.title}
                     </h2>
-                    <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
-                      {article.excerpt}
-                    </p>
-                    <div className="mt-3 flex items-center gap-3">
+                    <div className="mt-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50 sm:justify-end">
+                      <span>{article.author.name}</span>
+                      <span>—</span>
+                      <span>{article.date}</span>
+                    </div>
+                    <div className="mt-3 flex items-center gap-3 sm:justify-end">
                       <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
                         {article.readTime} {readSuffix}
                       </span>
