@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { IgniteRule } from "@/components/ui/IgniteRule";
 import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
@@ -30,8 +29,7 @@ export function JournalPageBody() {
     <>
       <div className="pt-32 pb-16 md:pt-40 md:pb-20">
         <Container>
-          <SlateTag>{journalHero.eyebrow}</SlateTag>
-          <h1 className="mt-5 max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
             <RevealLines lines={[journalHero.title]} onMount />
           </h1>
           <p className="mt-8 max-w-md font-body text-base text-current/60 sm:text-lg">
