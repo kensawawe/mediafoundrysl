@@ -23,9 +23,6 @@ function subscribeHoverCapable(callback: () => void) {
   return () => mql.removeEventListener("change", callback);
 }
 
-/** Assume hover-capable until the client confirms otherwise — matches the
- *  server-rendered markup, and touch devices correct to tap-to-expand
- *  as soon as this reads real media-query state. */
 function useHoverCapable() {
   return useSyncExternalStore(
     subscribeHoverCapable,
@@ -34,13 +31,6 @@ function useHoverCapable() {
   );
 }
 
-/**
- * Department grid — six hover-expanding frames, each resting on its plain
- * photo and swapping to its description + example services on hover (see
- * the accordion version on the Work page for the same detail in a
- * non-visual layout). Hovering a tile grows it via CSS grid track sizing;
- * on touch, where there's no hover, tapping does both.
- */
 export function DepartmentGrid() {
   const services = useTranslated(servicesEn, servicesKri);
   const ROWS = Math.ceil(services.length / COLS);
@@ -51,9 +41,6 @@ export function DepartmentGrid() {
 
   useEffect(() => setMounted(true), []);
 
-  // Photo tiles need more definition against a white page than the default
-  // hairline border gives — bump width and contrast in light mode only;
-  // dark mode already reads fine against the black background.
   const isLight = !mounted || resolvedTheme !== "dark";
 
   const activeRow = active === null ? null : Math.floor(active / COLS);
@@ -67,6 +54,7 @@ export function DepartmentGrid() {
         gridTemplateColumns: trackSizes(activeCol, COLS),
         transition:
           "grid-template-rows 0.5s cubic-bezier(0.65,0,0.35,1), grid-template-columns 0.5s cubic-bezier(0.65,0,0.35,1)",
+        contain: "layout",
       }}
     >
       {services.map((service, i) => {
@@ -91,7 +79,7 @@ export function DepartmentGrid() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
             ) : (

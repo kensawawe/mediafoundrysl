@@ -64,7 +64,7 @@ export const services: Service[] = [
       "Performance Tracking",
       "Content Repurposing",
     ],
-    image: "/5.png",
+    image: "/5.jpg",
   },
   {
     code: "RI",
@@ -77,6 +77,6 @@ export const services: Service[] = [
       "Impact Measurement",
       "Story Discovery",
     ],
-    image: "/6.png",
+    image: "/6.jpg",
   },
 ];
