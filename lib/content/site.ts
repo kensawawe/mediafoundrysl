@@ -35,5 +35,4 @@ export const footerCopy = {
   startProjectBody:
     "Brand, campaign, film or something in between — tell us what you have in mind and we'll follow up within two working days.",
   letsTalk: "Let's talk",
-  workingGlobally: "Working globally",
 };

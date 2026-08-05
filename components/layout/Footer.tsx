@@ -16,26 +16,41 @@ import { useTranslated } from "@/lib/content/useTranslated";
 
 function LocalClock() {
   const [time, setTime] = useState<string | null>(null);
+  const [date, setDate] = useState<string | null>(null);
 
   useEffect(() => {
     const update = () => {
+      const now = new Date();
       setTime(
         new Intl.DateTimeFormat("en-GB", {
           timeZone: "Africa/Freetown",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
           hour12: false,
-        }).format(new Date()),
+        }).format(now),
+      );
+      // Month spelled out (not numeric) so it can't be misread as DD/MM
+      // vs MM/DD depending on the visitor's own country's convention.
+      setDate(
+        new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Africa/Freetown",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }).format(now),
       );
     };
     update();
-    const id = setInterval(update, 1000);
+    const id = setInterval(update, 30000);
     return () => clearInterval(id);
   }, []);
 
   // Reserve the width from mount so hydration doesn't shift layout.
-  return <span suppressHydrationWarning>{time ?? "00:00:00"}</span>;
+  return (
+    <span suppressHydrationWarning>
+      {time ?? "00:00"} · {date ?? "1 January 1970"}
+    </span>
+  );
 }
 
 export function Footer() {
@@ -173,8 +188,6 @@ export function Footer() {
         <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.03em] text-current/45 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} The Media Foundry</span>
           <span className="flex items-center gap-3">
-            <span>{copy.workingGlobally}</span>
-            <span aria-hidden>·</span>
             <span>{site.location}</span>
             <span aria-hidden>·</span>
             <LocalClock />

@@ -32,5 +32,4 @@ export const footerCopy = {
   startProjectBody:
     "Brand, kampen, film, ɔ sɔntin in betwin — tɛl wi wetin de na yu maynd ɛn wi go folop insay tu wok de.",
   letsTalk: "Mek Wi Tɔk",
-  workingGlobally: "De Wok Wɔldwayd",
 };
