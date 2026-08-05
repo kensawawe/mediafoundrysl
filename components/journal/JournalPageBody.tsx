@@ -37,7 +37,7 @@ export function JournalPageBody() {
 
       <Section className="pt-0">
         <Container>
-          <IgniteRule />
+          <IgniteRule lineColor="#1eb53a" />
           <div className="mt-4 divide-y divide-border-subtle">
             {articles.map((article, i) => (
               <FadeIn key={article.slug} delay={i * 0.06}>
