@@ -1,21 +1,17 @@
-export const servicesSectionHeading = "Six departments. One floor.";
+import type { Service } from "./services";
 
-export type Service = {
-  /** Department code, foundry-floor shorthand rather than a sequence number —
-   *  these four run in parallel, not in order. */
-  code: string;
-  title: string;
-  description: string;
-  examples: string[];
-  /** Falls back to the Slate placeholder (components/ui/Slate.tsx) when omitted. */
-  image?: string;
-};
+export const servicesSectionHeading = "Siks Dipatmɛnt Dɛn. Wan Flɔ.";
 
+// Example service labels (Podcasts, Documentary Production, etc.) are kept
+// in English across both languages — these read as standard business-service
+// terms even in Krio-speaking professional contexts, and forcing a
+// translation risked sounding stilted. Flag for review if you'd rather
+// have them translated too.
 export const services: Service[] = [
   {
     code: "PR",
-    title: "Production",
-    description: "Creating high-quality visual and audio content from start to finish.",
+    title: "Prɔdɔkshɔn",
+    description: "De krieet ay-kwaliti vizhwal ɛn odio kɔntɛnt frɔm stat te fineʃ.",
     examples: [
       "Podcasts (Audio & Video)",
       "Documentary Production",
@@ -27,8 +23,8 @@ export const services: Service[] = [
   },
   {
     code: "CR",
-    title: "Creative",
-    description: "Developing the ideas and creative direction behind every project.",
+    title: "Kriyetiv",
+    description: "De divɛlɔp di aydiya dɛn ɛn kriyetiv dirɛkshɔn bihaynd ɛvri projɛkt.",
     examples: [
       "Concept Development",
       "Creative Direction",
@@ -40,23 +36,23 @@ export const services: Service[] = [
   },
   {
     code: "ST",
-    title: "Strategy",
+    title: "Stratiji",
     description:
-      "Helping clients build campaigns that reach the right audience with the right message.",
+      "De ɛp klayɛnt dɛn bil kampen dɛn we de rich di rayt odiens wit di rayt mɛsej.",
     examples: ["Content Architecture", "Advertising Campaign Strategy", "Distribution Planning"],
     image: "/3.jpg",
   },
   {
     code: "DV",
-    title: "Development",
-    description: "Extending content beyond production into digital experiences.",
+    title: "Divɛlɔpmɛnt",
+    description: "De ɛkstɛnd kɔntɛnt pas prɔdɔkshɔn go insay digital ɛkspiriɛns.",
     examples: ["Website Builds", "Podcast Launch Services", "Personal Branding"],
     image: "/4.jpg",
   },
   {
     code: "DG",
-    title: "Distribution & Growth",
-    description: "Getting finished work in front of the right audience, then proving it worked.",
+    title: "Distribyushɔn Ɛn Grot",
+    description: "De get fineʃ wok na frɔnt di rayt odiens, dɛn pruv se i wok.",
     examples: [
       "Social Media Strategy",
       "Paid Media Campaigns",
@@ -68,8 +64,8 @@ export const services: Service[] = [
   },
   {
     code: "RI",
-    title: "Research & Insights",
-    description: "Digging into the audience, culture and facts a story needs to hold up.",
+    title: "Risɛch Ɛn Insayt",
+    description: "De dig go insay di odiens, kɔlcha, ɛn fakt dɛn we wan stori nid fɔ ol ɔp.",
     examples: [
       "Audience Insights",
       "Cultural Research",
