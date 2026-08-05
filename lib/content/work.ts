@@ -53,6 +53,10 @@ export type WorkItem = {
    *  field; "cover" for a full-bleed photographic thumbnail. Defaults to
    *  "cover". */
   imageFit?: "contain" | "cover";
+  /** Overrides the default inset padding around a "contain"-fit image
+   *  (e.g. a poster/cover-art asset that should read larger than a small
+   *  logo mark). Defaults to "p-10". */
+  imagePadding?: string;
 };
 
 export const workItems: WorkItem[] = [
@@ -140,6 +144,7 @@ export const workItems: WorkItem[] = [
     restingImage: "/F.png",
     hoverImage: "/gfkbfg.png",
     imageFit: "contain",
+    imagePadding: "p-2",
   },
   {
     slug: "lowline-documentary",

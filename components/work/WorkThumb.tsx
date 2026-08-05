@@ -26,7 +26,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
             alt={item.title}
             className={clsx(
               "absolute inset-0 h-full w-full",
-              fit === "contain" ? "object-contain p-10" : "object-cover",
+              fit === "contain" ? clsx("object-contain", item.imagePadding ?? "p-10") : "object-cover",
             )}
           />
         </div>
