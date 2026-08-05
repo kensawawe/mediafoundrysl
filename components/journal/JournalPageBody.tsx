@@ -8,13 +8,11 @@ import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
   articles as articlesEn,
   journalHero as journalHeroEn,
-  journalCopy as journalCopyEn,
   readSuffix as readSuffixEn,
 } from "@/lib/content/journal";
 import {
   articles as articlesKri,
   journalHero as journalHeroKri,
-  journalCopy as journalCopyKri,
   readSuffix as readSuffixKri,
 } from "@/lib/content/journal.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -22,7 +20,6 @@ import { useTranslated } from "@/lib/content/useTranslated";
 export function JournalPageBody() {
   const journalHero = useTranslated(journalHeroEn, journalHeroKri);
   const articles = useTranslated(articlesEn, articlesKri);
-  const journalCopy = useTranslated(journalCopyEn, journalCopyKri);
   const readSuffix = useTranslated(readSuffixEn, readSuffixKri);
 
   return (
@@ -46,7 +43,7 @@ export function JournalPageBody() {
               <FadeIn key={article.slug} delay={i * 0.06}>
                 <Link
                   href={`/journal/${article.slug}`}
-                  className="focus-ring group grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-2 sm:gap-10"
+                  className="focus-ring grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-2 sm:gap-10"
                 >
                   <div>
                     <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
@@ -62,14 +59,9 @@ export function JournalPageBody() {
                       <span>—</span>
                       <span>{article.date}</span>
                     </div>
-                    <div className="mt-3 flex items-center gap-3 sm:justify-end">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
-                        {article.readTime} {readSuffix}
-                      </span>
-                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent-text opacity-0 transition-opacity group-hover:opacity-100">
-                        {journalCopy.readArticle}
-                      </span>
-                    </div>
+                    <span className="mt-3 block font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
+                      {article.readTime} {readSuffix}
+                    </span>
                   </div>
                 </Link>
               </FadeIn>
