@@ -9,10 +9,10 @@ export const hero = {
 };
 
 export const brandStatement = {
-  agencyLine:
-    "Bɔku ejɛnsi dɛn de dizayn di kampen ɔ di brand ɛn dɛn go ayɛa ɔda pipul fɔ film am. Bɔku prɔdɔkshɔn kɔmpani dɛn jɔs de pɔynt di kamra. Wi de du bot. Frɔm stratiji, dizayn, te rich prɔdɔkshɔn, ɔl na di sem studio, na di sem tim, frɔm di fɔs de.",
-  storytellerLine:
-    "Na dat na di Media Foundry in we: wan kriyetiv fyaya we nɔ de stɔp frɔm di fɔs aydiya te rich di las pis. Nɔ initi wok pas to pas, nɔ wek daun, nɔ kol tem we projɛkt de lɔs in shep bitwin tim dɛn.",
-  overheadLine:
-    "Yu ful kriyetiv ɛn midiya tim, wίtaut di trɔbul fɔ bil wan ɔ ayɛa tu.",
+  designOnlyLine:
+    "Bɔku ejɛnsi dɛn de dizayn di kampen ɔ di brand ɛn dɛn go ayɛa ɔda pipul fɔ film am, we de limit dɛn vizhɔn ɛn kɔntrol.",
+  productionOnlyLine:
+    "Bɔku prɔdɔkshɔn kɔmpani dɛn jɔs de pɔynt di kamra wίtaut ɔndastand di sol fɔ di projɛkt.",
+  bothLine:
+    "Wi de du bot. Frɔm stratiji, dizayn, te rich prɔdɔkshɔn, ɔl na di sem studio, na di sem tim, frɔm di fɔs de.",
 };

@@ -9,10 +9,10 @@ export const hero = {
 };
 
 export const brandStatement = {
-  agencyLine:
-    "Most agencies design the campaign or the brand and hire someone else to film it. Most production companies just point the camera. We do both. From strategy, design, to production, all built in the same studio, by the same team, from day one.",
-  storytellerLine:
-    "That's The Media Foundry's model: one continuous creative fire from the raw idea to the finished piece. No hand-offs or dilution or cold periods where a project loses its shape between teams.",
-  overheadLine:
-    "Your full creative and media team, without the overhead of building one or hiring two.",
+  designOnlyLine:
+    "Most agencies design the campaign or the brand and hire someone else to film it, limiting their vision and control.",
+  productionOnlyLine:
+    "Most production companies just point the camera without understanding the soul of the project.",
+  bothLine:
+    "We do both. From strategy, design, to production, all built in the same studio, by the same team, from day one.",
 };
