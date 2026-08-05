@@ -43,7 +43,7 @@ export function SocialIcon({ platform, className }: { platform: string; classNam
           <path d="M6 5h3.4v1.2H7.4v1.4H9v1.2H7.4V12H6z" fill="currentColor" stroke="none" />
         </svg>
       );
-    case "twitter":
+    case "x":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="2" width="12" height="12" {...iconShared} />
@@ -52,6 +52,21 @@ export function SocialIcon({ platform, className }: { platform: string; classNam
             fill="currentColor"
             stroke="none"
           />
+        </svg>
+      );
+    case "tiktok":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <rect x="2" y="2" width="12" height="12" {...iconShared} />
+          <circle cx="6.1" cy="10.3" r="1.6" {...iconShared} />
+          <path d="M7.7 10.3v-7c.3 1.6 1.6 2.8 3.2 3v1.3" {...iconShared} />
+        </svg>
+      );
+    case "youtube":
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <rect x="2" y="2" width="12" height="12" {...iconShared} />
+          <path d="M6.6 5.6l4 2.4-4 2.4z" fill="currentColor" stroke="none" />
         </svg>
       );
     default:

@@ -20,7 +20,7 @@ export type Author = {
   image?: string;
   // Left empty until real profile links are supplied — never fabricate a
   // social URL for a named person.
-  socials: { platform: "instagram" | "linkedin" | "facebook" | "twitter"; href: string }[];
+  socials: { platform: "instagram" | "tiktok" | "youtube" | "linkedin" | "facebook" | "x"; href: string }[];
 };
 
 export type Article = {
