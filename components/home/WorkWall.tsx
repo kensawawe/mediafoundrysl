@@ -11,9 +11,9 @@ import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/conten
 import { useTranslated } from "@/lib/content/useTranslated";
 
 /**
- * "The Cast Wall" — asymmetric contact-sheet grid (a few hero-sized cells
- * among standard ones). Hover pours an ember wash over each frame — the
- * signature reveal used consistently across every work thumbnail.
+ * "The Cast Wall" — uniform contact-sheet grid. Hover pours an ember wash
+ * over each frame — the signature reveal used consistently across every
+ * work thumbnail.
  */
 export function WorkWall() {
   const workItems = useTranslated(workItemsEn, workItemsKri);
@@ -40,7 +40,7 @@ export function WorkWall() {
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {workItems.slice(0, 6).map((item, i) => (
+          {workItems.slice(0, 8).map((item, i) => (
             <FadeIn key={item.slug} delay={i * 0.05}>
               <Link
                 href={item.hasCaseStudy ? `/work/${item.slug}` : "/work"}
