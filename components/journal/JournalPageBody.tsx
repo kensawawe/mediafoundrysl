@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
@@ -8,11 +9,13 @@ import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
   articles as articlesEn,
   journalHero as journalHeroEn,
+  journalCopy as journalCopyEn,
   readSuffix as readSuffixEn,
 } from "@/lib/content/journal";
 import {
   articles as articlesKri,
   journalHero as journalHeroKri,
+  journalCopy as journalCopyKri,
   readSuffix as readSuffixKri,
 } from "@/lib/content/journal.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -20,6 +23,7 @@ import { useTranslated } from "@/lib/content/useTranslated";
 export function JournalPageBody() {
   const journalHero = useTranslated(journalHeroEn, journalHeroKri);
   const articles = useTranslated(articlesEn, articlesKri);
+  const journalCopy = useTranslated(journalCopyEn, journalCopyKri);
   const readSuffix = useTranslated(readSuffixEn, readSuffixKri);
 
   return (
@@ -41,8 +45,11 @@ export function JournalPageBody() {
           <IgniteRule />
           <div className="mt-4 divide-y divide-border-subtle">
             {articles.map((article, i) => (
-              <FadeIn key={article.title} delay={i * 0.06}>
-                <div className="grid gap-3 py-10 sm:grid-cols-[1fr_2fr] sm:gap-10">
+              <FadeIn key={article.slug} delay={i * 0.06}>
+                <Link
+                  href={`/journal/${article.slug}`}
+                  className="focus-ring group grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-[1fr_2fr] sm:gap-10"
+                >
                   <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-current/50">
                     <span className="text-accent-text">{article.category}</span>
                     <span>—</span>
@@ -55,11 +62,16 @@ export function JournalPageBody() {
                     <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
                       {article.excerpt}
                     </p>
-                    <span className="mt-3 inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
-                      {article.readTime} {readSuffix}
-                    </span>
+                    <div className="mt-3 flex items-center gap-3">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-current/40">
+                        {article.readTime} {readSuffix}
+                      </span>
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent-text opacity-0 transition-opacity group-hover:opacity-100">
+                        {journalCopy.readArticle}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
