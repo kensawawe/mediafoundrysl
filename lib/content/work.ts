@@ -144,7 +144,7 @@ export const workItems: WorkItem[] = [
     restingImage: "/F.png",
     hoverImage: "/gfkbfg.png",
     imageFit: "contain",
-    imagePadding: "p-2",
+    imagePadding: "p-0 scale-110",
   },
   {
     slug: "lowline-documentary",
