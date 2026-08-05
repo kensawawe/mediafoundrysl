@@ -7,9 +7,13 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { useInView } from "@/components/ui/useInView";
 import { framerEase } from "@/lib/motion/easing";
-import { processStages } from "@/lib/content/process";
+import { processStages as processStagesEn } from "@/lib/content/process";
+import { processStages as processStagesKri } from "@/lib/content/process.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
-function StageIcon({ title, className }: { title: string; className?: string }) {
+// Keyed by the language-invariant stage index, not the (translated) title —
+// a title switch would silently drop every icon once translated.
+function StageIcon({ index, className }: { index: string; className?: string }) {
   const shared = {
     stroke: "currentColor",
     strokeWidth: 1.4,
@@ -18,22 +22,22 @@ function StageIcon({ title, className }: { title: string; className?: string }) 
     fill: "none",
   };
 
-  switch (title) {
-    case "Discover":
+  switch (index) {
+    case "01":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
           <path d="M13 13l-3.6-3.6" {...shared} />
         </svg>
       );
-    case "Design":
+    case "02":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
           <path d="M8.5 4.5l3 3" {...shared} />
         </svg>
       );
-    case "Produce":
+    case "03":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="5.5" width="12" height="8" {...shared} />
@@ -41,7 +45,7 @@ function StageIcon({ title, className }: { title: string; className?: string }) 
           <circle cx="8" cy="9.5" r="2.1" {...shared} />
         </svg>
       );
-    case "Deliver":
+    case "04":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2.5" y="7.5" width="11" height="6" {...shared} />
@@ -111,7 +115,7 @@ function getArcPosition(
   return { x, y, scale, opacity, zIndex };
 }
 
-function ProcessArcCarousel() {
+function ProcessArcCarousel({ processStages }: { processStages: typeof processStagesEn }) {
   const total = processStages.length;
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -197,7 +201,7 @@ function ProcessArcCarousel() {
                 )}
               >
                 <StageIcon
-                  title={stage.title}
+                  index={stage.index}
                   className={clsx(size.icon, isActive ? "text-white" : "text-accent-text")}
                 />
                 <div>
@@ -261,6 +265,7 @@ function ProcessArcCarousel() {
 }
 
 export function Process() {
+  const processStages = useTranslated(processStagesEn, processStagesKri);
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
   return (
@@ -273,7 +278,7 @@ export function Process() {
               Extra top clearance since the arc's curve lifts the centered
               card well above the track box's own top edge. */}
           <div className="hidden md:block md:mt-28">
-            <ProcessArcCarousel />
+            <ProcessArcCarousel processStages={processStages} />
           </div>
 
           {/* Mobile: not enough width for the arc, so the same order reads top to bottom. */}
@@ -295,7 +300,7 @@ export function Process() {
                   transition={{ duration: 0.5, delay: 0.25 + i * 0.32, ease: framerEase }}
                 >
                   <span className="absolute -left-8 -top-1 flex h-8 w-8 -translate-x-1/2 items-center justify-center border border-accent-fill bg-background">
-                    <StageIcon title={stage.title} className="h-4 w-4 text-accent-text" />
+                    <StageIcon index={stage.index} className="h-4 w-4 text-accent-text" />
                   </span>
                   <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
                     {stage.title}

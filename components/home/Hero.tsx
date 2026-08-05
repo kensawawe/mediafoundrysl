@@ -8,11 +8,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
-import { hero } from "@/lib/content/home";
+import { hero as heroEn } from "@/lib/content/home";
+import { hero as heroKri } from "@/lib/content/home.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
+  const hero = useTranslated(heroEn, heroKri);
   const sectionRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);

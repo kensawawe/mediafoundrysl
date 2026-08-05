@@ -1,8 +1,13 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { RevealLines } from "@/components/ui/RevealText";
-import { aboutHero } from "@/lib/content/about";
+import { aboutHero as aboutHeroEn } from "@/lib/content/about";
+import { aboutHero as aboutHeroKri } from "@/lib/content/about.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function AboutHero() {
+  const aboutHero = useTranslated(aboutHeroEn, aboutHeroKri);
   return (
     <div className="pt-32 pb-16 md:pt-40 md:pb-20">
       <Container>

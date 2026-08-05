@@ -1,5 +1,15 @@
 import type { WorkCategory } from "@/lib/content/work";
 
+export const caseStudyCopy = {
+  backToWork: "← Back to work",
+  overview: "Overview",
+  theChallenge: "The Challenge",
+  ourApproach: "Our Approach",
+  processHeading: "The Pour — Process & Production",
+  finalOutcome: "Final Outcome",
+  gallery: "Gallery",
+};
+
 export type CaseStudy = {
   slug: string;
   title: string;

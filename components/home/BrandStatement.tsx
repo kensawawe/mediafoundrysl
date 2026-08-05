@@ -1,10 +1,15 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { IgniteRule } from "@/components/ui/IgniteRule";
 import { FadeIn } from "@/components/ui/RevealText";
-import { brandStatement } from "@/lib/content/home";
+import { brandStatement as brandStatementEn } from "@/lib/content/home";
+import { brandStatement as brandStatementKri } from "@/lib/content/home.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function BrandStatement() {
+  const brandStatement = useTranslated(brandStatementEn, brandStatementKri);
   return (
     <Section className="pb-0 md:pb-0">
       <Container>

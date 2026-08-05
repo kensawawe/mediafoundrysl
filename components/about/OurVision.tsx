@@ -1,10 +1,15 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
-import { ourVision } from "@/lib/content/about";
+import { ourVision as ourVisionEn } from "@/lib/content/about";
+import { ourVision as ourVisionKri } from "@/lib/content/about.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function OurVision() {
+  const ourVision = useTranslated(ourVisionEn, ourVisionKri);
   return (
     <Section>
       <Container>

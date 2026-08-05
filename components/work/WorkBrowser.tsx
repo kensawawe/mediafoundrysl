@@ -3,9 +3,16 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { WorkCard } from "@/components/work/WorkCard";
-import { workCategories, workItems, type WorkCategory } from "@/lib/content/work";
+import { workCategories, workCopy as workCopyEn, workItems as workItemsEn, type WorkCategory } from "@/lib/content/work";
+import { workCopy as workCopyKri, workItems as workItemsKri } from "@/lib/content/work.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
+// Category taxonomy (the filter pills) is intentionally kept in English in
+// both languages — see the note in work.kri.ts — so only the card content
+// and empty-state copy are translated here.
 export function WorkBrowser() {
+  const workItems = useTranslated(workItemsEn, workItemsKri);
+  const copy = useTranslated(workCopyEn, workCopyKri);
   const [active, setActive] = useState<WorkCategory | "All">("All");
 
   const filtered =
@@ -38,9 +45,7 @@ export function WorkBrowser() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="mt-16 font-mono text-sm text-current/50">
-          No work in this category yet.
-        </p>
+        <p className="mt-16 font-mono text-sm text-current/50">{copy.emptyCategory}</p>
       )}
     </div>
   );

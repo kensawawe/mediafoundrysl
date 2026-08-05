@@ -1,3 +1,6 @@
+export const trustedByLabel = "Trusted by organizations across Sierra Leone";
+export const whatClientsSay = "What clients say";
+
 export type Testimonial = {
   id: string;
   quote: string;

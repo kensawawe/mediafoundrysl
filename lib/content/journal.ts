@@ -5,6 +5,8 @@ export const journalHero = {
     "Writing on craft, production and the studio's way of working — new pieces roughly twice a month.",
 };
 
+export const readSuffix = "read";
+
 export type Article = {
   title: string;
   category: string;

@@ -1,3 +1,5 @@
+export const teamSectionLabel = "The Team";
+
 export type TeamMember = {
   id: string;
   name: string;

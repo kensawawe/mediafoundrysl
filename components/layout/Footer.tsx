@@ -7,8 +7,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Button } from "@/components/ui/Button";
-import { navLinks, site } from "@/lib/content/site";
-import { testimonials } from "@/lib/content/testimonials";
+import { footerCopy as footerCopyEn, navLinks as navLinksEn, site as siteEn } from "@/lib/content/site";
+import { footerCopy as footerCopyKri, navLinks as navLinksKri, site as siteKri } from "@/lib/content/site.kri";
+import { testimonials as testimonialsEn } from "@/lib/content/testimonials";
+import { testimonials as testimonialsKri } from "@/lib/content/testimonials.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 const iconShared = {
   stroke: "currentColor",
@@ -18,16 +21,18 @@ const iconShared = {
   fill: "none",
 };
 
-function SocialIcon({ label, className }: { label: string; className?: string }) {
-  switch (label) {
-    case "Email":
+// Keyed by the language-invariant platform id, not the (translated) label —
+// a label switch would silently drop every icon once translated.
+function SocialIcon({ platform, className }: { platform: string; className?: string }) {
+  switch (platform) {
+    case "email":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="1.5" y="3.5" width="13" height="9" {...iconShared} />
           <path d="M1.5 4l6.5 5 6.5-5" {...iconShared} />
         </svg>
       );
-    case "Instagram":
+    case "instagram":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="2" width="12" height="12" {...iconShared} />
@@ -35,7 +40,7 @@ function SocialIcon({ label, className }: { label: string; className?: string })
           <circle cx="11.4" cy="4.6" r="0.6" fill="currentColor" stroke="none" />
         </svg>
       );
-    case "LinkedIn":
+    case "linkedin":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="2" width="12" height="12" {...iconShared} />
@@ -44,7 +49,7 @@ function SocialIcon({ label, className }: { label: string; className?: string })
           <path d="M8.4 12v-2.6c0-1.3.9-1.8 1.8-1.8s1.8.5 1.8 1.8V12" {...iconShared} />
         </svg>
       );
-    case "Facebook":
+    case "facebook":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="2" width="12" height="12" {...iconShared} />
@@ -81,6 +86,10 @@ function LocalClock() {
 }
 
 export function Footer() {
+  const site = useTranslated(siteEn, siteKri);
+  const navLinks = useTranslated(navLinksEn, navLinksKri);
+  const copy = useTranslated(footerCopyEn, footerCopyKri);
+  const testimonials = useTranslated(testimonialsEn, testimonialsKri);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -98,13 +107,13 @@ export function Footer() {
       setQuoteIndex((i) => (i + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(id);
-  }, []);
+  }, [testimonials.length]);
 
   const featuredQuote = testimonials[quoteIndex];
 
   const socialIcons = [
-    { label: "Email", href: `mailto:${site.email}` },
-    ...site.social.map((s) => ({ label: s.label, href: s.href })),
+    { platform: "email", label: copy.emailLabel, href: `mailto:${site.email}` },
+    ...site.social,
   ];
 
   return (
@@ -117,10 +126,10 @@ export function Footer() {
               className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text"
             >
               <span className="block leading-[0.95] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
-                Ready to craft something different?
+                {copy.ctaLine1}
               </span>
               <span className="block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
-                Good, so are we.
+                {copy.ctaLine2}
               </span>
             </a>
           </Magnetic>
@@ -149,7 +158,7 @@ export function Footer() {
                 </Link>
               ))}
               <Link href="/#contact" className="focus-ring font-body text-sm text-foreground/70 hover:text-accent-text">
-                Contact
+                {copy.contact}
               </Link>
             </nav>
           </div>
@@ -180,29 +189,26 @@ export function Footer() {
           <div className="flex flex-col justify-between gap-8 bg-background p-8 text-foreground">
             <div>
               <span className="font-display text-2xl font-bold tracking-tight">
-                Start a project
+                {copy.startProjectHeading}
               </span>
-              <p className="mt-3 font-body text-sm text-foreground/70">
-                Brand, campaign, film or something in between — tell us what you have in mind
-                and we&rsquo;ll follow up within two working days.
-              </p>
+              <p className="mt-3 font-body text-sm text-foreground/70">{copy.startProjectBody}</p>
             </div>
             <Button href="/#contact" variant="primary">
-              Let&rsquo;s talk
+              {copy.letsTalk}
             </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-px bg-current/15 [&>a]:bg-background">
             {socialIcons.map((s) => (
               <a
-                key={s.label}
+                key={s.platform}
                 href={s.href}
-                target={s.label === "Email" ? undefined : "_blank"}
-                rel={s.label === "Email" ? undefined : "noreferrer"}
+                target={s.platform === "email" ? undefined : "_blank"}
+                rel={s.platform === "email" ? undefined : "noreferrer"}
                 aria-label={s.label}
                 className="focus-ring group flex flex-col items-center justify-center gap-2 p-6 text-foreground/70 transition-colors hover:text-accent-text"
               >
-                <SocialIcon label={s.label} className="h-5 w-5" />
+                <SocialIcon platform={s.platform} className="h-5 w-5" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
                   {s.label}
                 </span>
@@ -214,7 +220,7 @@ export function Footer() {
         <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em] text-current/45 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} The Media Foundry</span>
           <span className="flex items-center gap-3">
-            <span>Working globally</span>
+            <span>{copy.workingGlobally}</span>
             <span aria-hidden>·</span>
             <span>{site.location}</span>
             <span aria-hidden>·</span>

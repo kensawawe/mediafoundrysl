@@ -1,14 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { FadeIn } from "@/components/ui/RevealText";
-import { departments, roles } from "@/lib/content/careers";
+import { departments as departmentsEn, roles as rolesEn, careersPageCopy as copyEn } from "@/lib/content/careers";
+import { departments as departmentsKri, roles as rolesKri, careersPageCopy as copyKri } from "@/lib/content/careers.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 import { site } from "@/lib/content/site";
 
 export function RolesList() {
-  const [active, setActive] = useState<(typeof departments)[number]>("All");
-  const filtered = active === "All" ? roles : roles.filter((r) => r.department === active);
+  const departments = useTranslated(departmentsEn, departmentsKri);
+  const roles = useTranslated(rolesEn, rolesKri);
+  const copy = useTranslated(copyEn, copyKri);
+  // The first entry in `departments` is always the "show everything" filter
+  // (English "All" / Krio "Ɔl") — using it by position rather than a
+  // hardcoded string keeps this language-agnostic, and resetting on
+  // language change avoids filtering to a department label from the
+  // previous language that no longer matches any role.
+  const [active, setActive] = useState<string>(departments[0]);
+
+  useEffect(() => {
+    setActive(departments[0]);
+  }, [departments]);
+
+  const filtered = active === departments[0] ? roles : roles.filter((r) => r.department === active);
 
   return (
     <div>
@@ -50,7 +65,7 @@ export function RolesList() {
                 {role.location}
               </span>
               <span className="col-span-2 font-mono text-xs uppercase tracking-[0.1em] text-accent-text opacity-0 transition-opacity group-hover:opacity-100 sm:col-span-1">
-                Apply →
+                {copy.applyLink}
               </span>
             </a>
           </FadeIn>
@@ -58,9 +73,7 @@ export function RolesList() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="mt-10 font-mono text-sm text-current/50">
-          No open roles in this department right now.
-        </p>
+        <p className="mt-10 font-mono text-sm text-current/50">{copy.noRolesInDepartment}</p>
       )}
     </div>
   );

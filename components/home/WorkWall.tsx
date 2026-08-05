@@ -6,7 +6,9 @@ import { Section } from "@/components/ui/Section";
 import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
-import { workItems } from "@/lib/content/work";
+import { workItems as workItemsEn, workCopy as workCopyEn } from "@/lib/content/work";
+import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/content/work.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 /**
  * "The Cast Wall" — asymmetric contact-sheet grid (a few hero-sized cells
@@ -14,6 +16,9 @@ import { workItems } from "@/lib/content/work";
  * signature reveal used consistently across every work thumbnail.
  */
 export function WorkWall() {
+  const workItems = useTranslated(workItemsEn, workItemsKri);
+  const copy = useTranslated(workCopyEn, workCopyKri);
+
   return (
     <Section id="work" className="pb-0 md:pb-0">
       <Container>
@@ -22,7 +27,7 @@ export function WorkWall() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 className="font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl">
-              The Cast Wall
+              {copy.castWallHeading}
             </h2>
           </div>
           <Button
@@ -30,7 +35,7 @@ export function WorkWall() {
             variant="outline"
             className="border-current/30! text-current! hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
           >
-            View all work
+            {copy.viewAllWork}
           </Button>
         </div>
 

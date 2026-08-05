@@ -1,3 +1,12 @@
+export const workCopy = {
+  castWallHeading: "The Cast Wall",
+  viewAllWork: "View all work",
+  emptyCategory: "No work in this category yet.",
+  whatWeCast: "What we've cast.",
+  workIndexIntro:
+    "A working record of brand identity, campaigns, film and production, digital and photography — browse by discipline.",
+};
+
 export type WorkCategory =
   | "Brand Identity"
   | "Campaigns"

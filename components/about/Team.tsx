@@ -1,21 +1,27 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { Slate } from "@/components/ui/Slate";
-import { teamMembers } from "@/lib/content/team";
-
-/** Two laps, looped twice — same seamless-marquee approach as
- *  HeroLogoMarquee. A fixed-width scrolling row (rather than the
- *  previous staggered multi-column grid) stays visually consistent at
- *  any viewport width instead of needing per-breakpoint column tuning. */
-const lap = [...teamMembers, ...teamMembers];
-const track = [...lap, ...lap];
+import { teamMembers as teamMembersEn, teamSectionLabel as teamSectionLabelEn } from "@/lib/content/team";
+import { teamMembers as teamMembersKri, teamSectionLabel as teamSectionLabelKri } from "@/lib/content/team.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function Team() {
+  const teamMembers = useTranslated(teamMembersEn, teamMembersKri);
+  const teamSectionLabel = useTranslated(teamSectionLabelEn, teamSectionLabelKri);
+  // Two laps, looped twice — same seamless-marquee approach as
+  // HeroLogoMarquee. A fixed-width scrolling row (rather than the previous
+  // staggered multi-column grid) stays visually consistent at any viewport
+  // width instead of needing per-breakpoint column tuning.
+  const lap = [...teamMembers, ...teamMembers];
+  const track = [...lap, ...lap];
+
   return (
     <Section>
       <Container>
-        <SlateTag className="mb-10 md:mb-14">The Team</SlateTag>
+        <SlateTag className="mb-10 md:mb-14">{teamSectionLabel}</SlateTag>
 
         <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
           {/* animate-marquee is shared with HeroLogoMarquee on the homepage —

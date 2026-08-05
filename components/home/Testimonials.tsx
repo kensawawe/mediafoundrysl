@@ -5,7 +5,9 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { testimonials } from "@/lib/content/testimonials";
+import { testimonials as testimonialsEn, whatClientsSay as whatClientsSayEn } from "@/lib/content/testimonials";
+import { testimonials as testimonialsKri, whatClientsSay as whatClientsSayKri } from "@/lib/content/testimonials.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 function Arrow({ direction }: { direction: "left" | "right" }) {
   return (
@@ -28,6 +30,8 @@ function Arrow({ direction }: { direction: "left" | "right" }) {
 }
 
 export function Testimonials() {
+  const testimonials = useTranslated(testimonialsEn, testimonialsKri);
+  const whatClientsSay = useTranslated(whatClientsSayEn, whatClientsSayKri);
   const [index, setIndex] = useState(0);
   const total = testimonials.length;
 
@@ -48,7 +52,7 @@ export function Testimonials() {
       { item: testimonials[index], position: "center" as const },
       { item: testimonials[right], position: "right" as const },
     ];
-  }, [index, total]);
+  }, [index, total, testimonials]);
 
   return (
     <Section className="pb-0 md:pb-0">
@@ -57,7 +61,7 @@ export function Testimonials() {
 
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-            What clients say
+            {whatClientsSay}
           </h2>
           <div className="flex items-center gap-2">
             <button

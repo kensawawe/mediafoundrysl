@@ -1,14 +1,20 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
-import type { CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyEn, type CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyKri } from "@/lib/content/case-studies.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function ProcessJourney({ study }: { study: CaseStudy }) {
+  const copy = useTranslated(copyEn, copyKri);
+
   return (
     <Section className="py-20 md:py-24">
       <Container>
-        <SlateTag>The Pour — Process & Production</SlateTag>
+        <SlateTag>{copy.processHeading}</SlateTag>
         <div className="mt-10 grid gap-x-8 gap-y-12 border-t border-border-subtle pt-10 sm:grid-cols-3">
           {study.process.map((step, i) => (
             <FadeIn key={step.title} delay={i * 0.08}>

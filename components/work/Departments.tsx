@@ -5,9 +5,13 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { FadeIn } from "@/components/ui/RevealText";
-import { services } from "@/lib/content/services";
+import { services as servicesEn, servicesSectionHeading as headingEn } from "@/lib/content/services";
+import { services as servicesKri, servicesSectionHeading as headingKri } from "@/lib/content/services.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
-function DepartmentIcon({ title, className }: { title: string; className?: string }) {
+// Keyed by the language-invariant department code, not the (translated)
+// title — a title switch would silently drop every icon once translated.
+function DepartmentIcon({ code, className }: { code: string; className?: string }) {
   const shared = {
     stroke: "currentColor",
     strokeWidth: 1.4,
@@ -16,8 +20,8 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
     fill: "none",
   };
 
-  switch (title) {
-    case "Production":
+  switch (code) {
+    case "PR":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="5.5" width="12" height="8" {...shared} />
@@ -25,14 +29,14 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
           <circle cx="8" cy="9.5" r="2.1" {...shared} />
         </svg>
       );
-    case "Creative":
+    case "CR":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
           <path d="M8.5 4.5l3 3" {...shared} />
         </svg>
       );
-    case "Strategy":
+    case "ST":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <circle cx="8" cy="8" r="5.5" {...shared} />
@@ -40,7 +44,7 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
           <circle cx="8" cy="8" r="0.6" fill="currentColor" stroke="none" />
         </svg>
       );
-    case "Development":
+    case "DV":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="3.5" width="12" height="8" {...shared} />
@@ -48,7 +52,7 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
           <path d="M6 13.5h4" {...shared} />
         </svg>
       );
-    case "Distribution & Growth":
+    case "DG":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <circle cx="3.5" cy="12.5" r="1.3" fill="currentColor" stroke="none" />
@@ -56,7 +60,7 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
           <path d="M6.5 12.5c0-4.7 3.8-8.5 8.5-8.5" {...shared} />
         </svg>
       );
-    case "Research & Insights":
+    case "RI":
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
@@ -75,13 +79,15 @@ function DepartmentIcon({ title, className }: { title: string; className?: strin
  * department — stays available somewhere on the site.
  */
 export function Departments() {
+  const services = useTranslated(servicesEn, servicesKri);
+  const heading = useTranslated(headingEn, headingKri);
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
     <Section>
       <Container>
         <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-          Six departments. One floor.
+          {heading}
         </h2>
 
         <div className="mt-14 border-t border-border-subtle">
@@ -96,7 +102,7 @@ export function Departments() {
                   aria-expanded={open}
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-accent-fill/40 text-accent-text">
-                    <DepartmentIcon title={service.title} className="h-4 w-4" />
+                    <DepartmentIcon code={service.code} className="h-4 w-4" />
                   </span>
                   <span className="flex-1">
                     <span className="block font-display text-2xl font-bold tracking-tight sm:text-3xl">

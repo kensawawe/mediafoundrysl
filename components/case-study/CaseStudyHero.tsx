@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Slate } from "@/components/ui/Slate";
 import { SlateTag } from "@/components/ui/SlateTag";
-import type { CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyEn, type CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyKri } from "@/lib/content/case-studies.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function CaseStudyHero({ study }: { study: CaseStudy }) {
+  const copy = useTranslated(copyEn, copyKri);
+
   return (
     <div className="pt-28 md:pt-32">
       <Container>
@@ -12,7 +18,7 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
           href="/work"
           className="focus-ring font-mono text-xs uppercase tracking-[0.14em] text-current/50 hover:text-accent-text"
         >
-          ← Back to work
+          {copy.backToWork}
         </Link>
 
         <div className="mt-6 flex flex-wrap items-end justify-between gap-6">

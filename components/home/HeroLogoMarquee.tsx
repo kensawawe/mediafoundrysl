@@ -1,16 +1,22 @@
-import { testimonials } from "@/lib/content/testimonials";
+"use client";
 
-/** Three laps of the real client set, looped twice for the marquee track —
- *  five logos alone wouldn't fill a wide desktop viewport before the seam,
- *  so tripling each lap keeps the loop seamless at any width. */
-const lap = [...testimonials, ...testimonials, ...testimonials];
-const track = [...lap, ...lap];
+import { testimonials as testimonialsEn, trustedByLabel as trustedByLabelEn } from "@/lib/content/testimonials";
+import { testimonials as testimonialsKri, trustedByLabel as trustedByLabelKri } from "@/lib/content/testimonials.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function HeroLogoMarquee() {
+  const testimonials = useTranslated(testimonialsEn, testimonialsKri);
+  const trustedByLabel = useTranslated(trustedByLabelEn, trustedByLabelKri);
+  // Three laps of the real client set, looped twice for the marquee track —
+  // five logos alone wouldn't fill a wide desktop viewport before the seam,
+  // so tripling each lap keeps the loop seamless at any width.
+  const lap = [...testimonials, ...testimonials, ...testimonials];
+  const track = [...lap, ...lap];
+
   return (
     <div className="opacity-80">
       <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-paper/60 sm:text-[10px] sm:tracking-[0.16em]">
-        Trusted by organizations across Sierra Leone
+        {trustedByLabel}
       </p>
 
       {/* No group-hover pause here, unlike the Team section's carousel —

@@ -7,6 +7,16 @@ export const careersHero = {
   ],
 };
 
+export const careersPageCopy = {
+  rolesHeading: "Craft the future with us. Apply here.",
+  noRoleListed: "Don't see the right role listed?",
+  introduceYourself: "Introduce yourself anyway",
+  howToApply: "How to Apply",
+  applyNow: "Apply now",
+  applyLink: "Apply →",
+  noRolesInDepartment: "No open roles in this department right now.",
+};
+
 export type Pillar = {
   title: string;
   description: string;
@@ -32,12 +42,17 @@ export const pillars: Pillar[] = [
 
 export type Role = {
   title: string;
-  department: "Creative" | "Production" | "Strategy" | "Operations";
+  // A plain string, not a literal union — the Krio translation uses its own
+  // department labels, which must line up with the `departments` filter
+  // list below rather than the English literal values.
+  department: string;
   type: "Full-time" | "Freelance";
   location: string;
 };
 
-export const departments = ["All", "Creative", "Production", "Strategy", "Operations"] as const;
+// Plain string[], not `as const` — the Krio list holds different literal
+// values, and both must share the same type for useTranslated.
+export const departments: string[] = ["All", "Creative", "Production", "Strategy", "Operations"];
 
 export const roles: Role[] = [
   { title: "Videographer", department: "Production", type: "Full-time", location: "Freetown / On location" },

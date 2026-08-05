@@ -1,9 +1,16 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { FadeIn } from "@/components/ui/RevealText";
-import { highlights, philosophyStatement } from "@/lib/content/philosophy";
+import { highlights as highlightsEn, philosophyStatement as philosophyStatementEn } from "@/lib/content/philosophy";
+import { highlights as highlightsKri, philosophyStatement as philosophyStatementKri } from "@/lib/content/philosophy.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function Philosophy() {
+  const philosophyStatement = useTranslated(philosophyStatementEn, philosophyStatementKri);
+  const highlights = useTranslated(highlightsEn, highlightsKri);
+
   return (
     <Section className="pb-0 md:pb-0">
       <Container>

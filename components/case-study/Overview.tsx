@@ -1,15 +1,21 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
-import type { CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyEn, type CaseStudy } from "@/lib/content/case-studies";
+import { caseStudyCopy as copyKri } from "@/lib/content/case-studies.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 
 export function Overview({ study }: { study: CaseStudy }) {
+  const copy = useTranslated(copyEn, copyKri);
+
   return (
     <Section className="py-20 md:py-24">
       <Container>
         <div className="grid gap-10 md:grid-cols-[1fr_2fr] md:gap-16">
-          <SlateTag>Overview</SlateTag>
+          <SlateTag>{copy.overview}</SlateTag>
           <FadeIn>
             <p className="max-w-2xl font-display text-2xl font-bold leading-[1.15] tracking-tight sm:text-3xl">
               {study.overview}

@@ -6,11 +6,16 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import clsx from "clsx";
-import { navLinks } from "@/lib/content/site";
+import { navLinks as navLinksEn, startAProjectLabel as startAProjectLabelEn } from "@/lib/content/site";
+import { navLinks as navLinksKri, startAProjectLabel as startAProjectLabelKri } from "@/lib/content/site.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { Button } from "@/components/ui/Button";
 
 export function Navbar() {
+  const navLinks = useTranslated(navLinksEn, navLinksKri);
+  const startAProjectLabel = useTranslated(startAProjectLabelEn, startAProjectLabelKri);
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
   const { scrollY } = useScroll();
@@ -93,6 +98,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <LanguageToggle />
             <ThemeToggle />
             <Button
               href="/#contact"
@@ -102,7 +108,7 @@ export function Navbar() {
                 overDarkHero && "border-paper bg-paper text-ink hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
               )}
             >
-              Start a project
+              {startAProjectLabel}
             </Button>
           </nav>
 
@@ -161,8 +167,9 @@ export function Navbar() {
               className="flex items-center gap-6 pt-4"
             >
               <Button href="/#contact" variant="primary" onClick={() => setMenuOpen(false)}>
-                Start a project
+                {startAProjectLabel}
               </Button>
+              <LanguageToggle />
               <ThemeToggle />
             </motion.div>
           </motion.div>

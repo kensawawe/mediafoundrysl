@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Instrument_Sans, Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { LanguageProvider } from "@/components/layout/LanguageProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CursorEffect } from "@/components/layout/CursorEffect";
@@ -67,10 +68,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <CursorEffect />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <LanguageProvider>
+            <CursorEffect />
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
