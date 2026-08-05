@@ -52,7 +52,13 @@ export const articles: Article[] = [
       name: "Ken Saro-Wiwa Fofana",
       role: "Founder & Creative Director",
       image: "/ken.JPG",
-      socials: [],
+      socials: [
+        { platform: "instagram", href: "https://www.instagram.com/ken_saro_wiwa_/" },
+        { platform: "youtube", href: "https://www.youtube.com/@Ken_SaroWiwa" },
+        { platform: "linkedin", href: "https://www.linkedin.com/in/ken-saro-wiwa-fofana-7b99b6108/" },
+        { platform: "facebook", href: "https://www.facebook.com/ken.fofana" },
+        { platform: "x", href: "https://x.com/Ken_SaroWiwa" },
+      ],
     },
   },
   {
