@@ -37,7 +37,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
               src={item.hoverImage}
               alt=""
               aria-hidden
-              className={clsx("mb-3 object-contain", item.hoverImageSize ?? "h-16 w-16 sm:h-20 sm:w-20")}
+              className={clsx("object-contain", item.hoverImageSize ?? "mb-3 h-16 w-16 sm:h-20 sm:w-20")}
             />
           )}
           <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
