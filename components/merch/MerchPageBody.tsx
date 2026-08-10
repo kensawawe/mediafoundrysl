@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
@@ -10,6 +13,8 @@ import {
   merchItems as merchItemsEn,
   merchHero as merchHeroEn,
   merchCopy as merchCopyEn,
+  merchCategories,
+  formatPrice,
 } from "@/lib/content/merch";
 import {
   merchItems as merchItemsKri,
@@ -22,6 +27,12 @@ export function MerchPageBody() {
   const merchHero = useTranslated(merchHeroEn, merchHeroKri);
   const merchItems = useTranslated(merchItemsEn, merchItemsKri);
   const copy = useTranslated(merchCopyEn, merchCopyKri);
+  // "All" sits first by position (language-agnostic), same convention as
+  // the careers department filter.
+  const filters = [copy.all, ...merchCategories];
+  const [active, setActive] = useState<string>(copy.all);
+
+  const filtered = active === copy.all ? merchItems : merchItems.filter((item) => item.category === active);
 
   return (
     <>
@@ -40,27 +51,55 @@ export function MerchPageBody() {
       <Section className="pt-0">
         <Container>
           <IgniteRule />
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4">
-            {merchItems.map((item, i) => (
+
+          <div className="mt-10 flex flex-wrap gap-2">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActive(filter)}
+                className={clsx(
+                  "focus-ring border px-4 py-2 font-mono text-xs uppercase tracking-[0.03em] transition-colors",
+                  active === filter
+                    ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
+                    : "border-border-subtle hover:border-accent-text hover:text-accent-text",
+                )}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* isolate + generous row-gap keeps a hovered card's scale-up
+              from visually overlapping the row below it, since the scale
+              transform doesn't participate in grid layout/reflow. */}
+          <div className="isolate mt-8 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
+            {filtered.map((item, i) => (
               <FadeIn key={item.slug} delay={i * 0.04}>
-                {/* Fixed white/ink pairing (not theme tokens) — the product
-                    card is meant to read like a catalogue print regardless
-                    of the site's own light/dark toggle, matching the
-                    existing "contain"-logo card treatment elsewhere. */}
-                <div className="group border border-border-strong bg-white p-3 pb-5 text-center">
-                  <div className="overflow-hidden transition-transform duration-500 ease-out group-hover:scale-105">
-                    <Slate
-                      label={item.name}
-                      variant="photo"
-                      aspect="aspect-square"
-                      grainOpacity={0.05}
-                    />
+                <Link
+                  href={`/merch/${item.slug}`}
+                  className="focus-ring group relative block text-center transition-transform duration-250 ease-out hover:z-10 hover:scale-[1.03]"
+                >
+                  {/* Fixed white/ink pairing (not theme tokens) — the
+                      product card is meant to read like a catalogue print
+                      regardless of the site's own light/dark toggle,
+                      matching the existing "contain"-logo card treatment
+                      elsewhere. */}
+                  <div className="border border-border-strong bg-white p-3 pb-5 transition-colors duration-250 group-hover:border-accent-fill">
+                    <div className="overflow-hidden">
+                      <Slate
+                        label={item.name}
+                        variant="photo"
+                        aspect="aspect-[4/5]"
+                        grainOpacity={0.05}
+                      />
+                    </div>
+                    <h3 className="mt-4 font-display text-base italic font-bold uppercase tracking-tight text-ink sm:text-lg">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 font-mono text-sm text-ink/60">{formatPrice(item.price)}</p>
                   </div>
-                  <h3 className="mt-4 font-display text-base italic font-bold uppercase tracking-tight text-ink sm:text-lg">
-                    {item.name}
-                  </h3>
-                  <p className="mt-1 font-body text-sm text-ink/50">{copy.comingSoon}</p>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>

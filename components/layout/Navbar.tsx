@@ -11,13 +11,39 @@ import { navLinks as navLinksKri, startAProjectLabel as startAProjectLabelKri } 
 import { useTranslated } from "@/lib/content/useTranslated";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
+import { CartDrawer } from "@/components/layout/CartDrawer";
+import { useCart } from "@/components/layout/CartProvider";
 import { Button } from "@/components/ui/Button";
 
-// Dev-only preview link for the not-yet-public merch catalogue. Reading
-// NODE_ENV here (rather than a runtime toggle) means Next's bundler dead-
-// code-eliminates this branch entirely on a production build — the link
-// isn't just hidden, it never ships in the deployed JS at all.
+// Dev-only preview link (and cart icon) for the not-yet-public merch
+// catalogue. Reading NODE_ENV here (rather than a runtime toggle) means
+// Next's bundler dead-code-eliminates this branch entirely on a
+// production build — it isn't just hidden, it never ships in the
+// deployed JS at all.
 const showMerchLink = process.env.NODE_ENV === "development";
+
+function CartIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 16 16" className={className} aria-hidden>
+      <path
+        d="M4 5.5h8l-.6 8H4.6z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        fill="none"
+      />
+      <path
+        d="M5.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        fill="none"
+      />
+    </svg>
+  );
+}
 
 export function Navbar() {
   const navLinks = useTranslated(navLinksEn, navLinksKri);
@@ -26,9 +52,11 @@ export function Navbar() {
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
   const { scrollY } = useScroll();
+  const { count } = useCart();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const lastY = useRef(0);
 
@@ -107,6 +135,21 @@ export function Navbar() {
             ))}
             <LanguageToggle />
             <ThemeToggle />
+            {showMerchLink && (
+              <button
+                type="button"
+                aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
+                onClick={() => setCartOpen(true)}
+                className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center"
+              >
+                <CartIcon className="h-4 w-4" />
+                {count > 0 && (
+                  <span className="absolute -right-1.5 -top-1.5 flex h-3.5 w-3.5 items-center justify-center bg-accent-fill font-mono text-[9px] font-bold text-accent-fill-ink">
+                    {count}
+                  </span>
+                )}
+              </button>
+            )}
             <Button
               href="/#contact"
               variant="primary"
@@ -178,10 +221,30 @@ export function Navbar() {
               </Button>
               <LanguageToggle />
               <ThemeToggle />
+              {showMerchLink && (
+                <button
+                  type="button"
+                  aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setCartOpen(true);
+                  }}
+                  className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center"
+                >
+                  <CartIcon className="h-4 w-4" />
+                  {count > 0 && (
+                    <span className="absolute -right-1.5 -top-1.5 flex h-3.5 w-3.5 items-center justify-center bg-accent-fill font-mono text-[9px] font-bold text-accent-fill-ink">
+                      {count}
+                    </span>
+                  )}
+                </button>
+              )}
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {showMerchLink && <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />}
     </>
   );
 }
