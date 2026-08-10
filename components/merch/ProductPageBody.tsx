@@ -174,7 +174,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
               <span className="font-mono text-xs uppercase tracking-[0.03em] text-current/60">
                 {copy.quantity}
               </span>
-              <div className="mt-3 flex items-center border border-border-strong">
+              <div className="mt-3 flex w-fit items-center border border-border-strong">
                 <button
                   type="button"
                   aria-label="Decrease quantity"
