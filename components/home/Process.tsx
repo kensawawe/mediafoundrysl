@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { Slate } from "@/components/ui/Slate";
 import { useInView } from "@/components/ui/useInView";
 import { framerEase } from "@/lib/motion/easing";
 import { processStages as processStagesEn } from "@/lib/content/process";
@@ -23,21 +24,28 @@ function StageIcon({ index, className }: { index: string; className?: string }) 
   };
 
   switch (index) {
-    case "01":
+    case "01": // Discover — magnifying glass
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
           <path d="M13 13l-3.6-3.6" {...shared} />
         </svg>
       );
-    case "02":
+    case "02": // Design — pen
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
           <path d="M8.5 4.5l3 3" {...shared} />
         </svg>
       );
-    case "03":
+    case "03": // Develop — blueprint / planning doc
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <rect x="3" y="2.5" width="10" height="11" {...shared} />
+          <path d="M5.5 5.5h5M5.5 8h5M5.5 10.5h3" {...shared} />
+        </svg>
+      );
+    case "04": // Produce — camera
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2" y="5.5" width="12" height="8" {...shared} />
@@ -45,11 +53,19 @@ function StageIcon({ index, className }: { index: string; className?: string }) 
           <circle cx="8" cy="9.5" r="2.1" {...shared} />
         </svg>
       );
-    case "04":
+    case "05": // Deliver — package handoff
       return (
         <svg viewBox="0 0 16 16" className={className} aria-hidden>
           <rect x="2.5" y="7.5" width="11" height="6" {...shared} />
           <path d="M8 7.5V2M8 2L5.7 4.3M8 2l2.3 2.3" {...shared} />
+        </svg>
+      );
+    case "06": // Amplify — broadcast signal
+      return (
+        <svg viewBox="0 0 16 16" className={className} aria-hidden>
+          <circle cx="4" cy="12" r="1.3" fill="currentColor" stroke="none" />
+          <path d="M4 12C4 8 7 5 11 5" {...shared} />
+          <path d="M4 12C4 6 8.5 2.5 14 2.5" {...shared} />
         </svg>
       );
     default:
@@ -57,212 +73,69 @@ function StageIcon({ index, className }: { index: string; className?: string }) 
   }
 }
 
-function Arrow({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      className={clsx(direction === "left" && "rotate-180")}
-    >
-      <path
-        d="M2 8h11.5M8.5 3l5 5-5 5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="square"
-      />
-    </svg>
-  );
-}
-
-// Cross layout: all four stages stay on screen at once, one per cardinal
-// position (top/left/bottom/right) — this is a rotating cross, not a
-// windowed carousel. Two size sets: the tablet range (md, 768–1023px) is
-// narrow enough that the full desktop radius would push the left/right
-// cards past the viewport edge, so it gets a tighter spread; lg (1024px+)
-// gets the full-size version.
-const ARC_SIZES = {
-  compact: { radiusX: 200, radiusY: 85, card: "h-40 w-56 p-5", icon: "h-5 w-5", title: "text-xl", body: "text-xs" },
-  full: { radiusX: 340, radiusY: 150, card: "h-56 w-80 p-7", icon: "h-7 w-7", title: "text-3xl", body: "text-sm" },
-};
-
-// Cross layout: the active stage sits top-front; the other three sit at
-// left/bottom/right, cycling one step per rotation in that order (so
-// advancing "next" sends the current top stage to the left, not the
-// right). Assumes exactly 4 stages — one per cardinal position — which
-// matches processStages' fixed 4-stage content (and StageIcon, which only
-// defines icons for indices "01"-"04").
-function getCrossPosition(
-  index: number,
-  activeIndex: number,
-  total: number,
-  radiusX: number,
-  radiusY: number,
-) {
-  const stepsSinceActive = ((activeIndex - index) % total + total) % total;
-
-  switch (stepsSinceActive) {
-    case 0: // top — active, front
-      return { x: 0, y: -radiusY, scale: 1, opacity: 1, zIndex: 4 };
-    case 1: // left — was active one step ago
-      return { x: -radiusX, y: 0, scale: 0.85, opacity: 0.7, zIndex: 2 };
-    case 2: // bottom — directly opposite, furthest back. A shorter throw
-      // than top's radiusY (rather than a mirrored full radiusY) both
-      // reads as "receding into the distance" and keeps the card from
-      // dropping low enough to collide with the controls below the track.
-      return { x: 0, y: radiusY * 0.55, scale: 0.7, opacity: 0.5, zIndex: 1 };
-    default: // right — becomes active next
-      return { x: radiusX, y: 0, scale: 0.85, opacity: 0.7, zIndex: 2 };
-  }
-}
-
-function ProcessArcCarousel({ processStages }: { processStages: typeof processStagesEn }) {
-  const total = processStages.length;
+// Desktop/tablet: a horizontal image accordion — one wide panel, the rest
+// collapsed to narrow strips, expanding on hover/focus. Row width is
+// constant regardless of which panel is active (activeWidth + 5 *
+// inactiveWidth + 5 * gap), sized to clear the container at the md
+// breakpoint (768px viewport, 80px of Container padding) with room to
+// spare, so it never needs its own responsive size sets the way the old
+// arc carousel did.
+function ProcessAccordion({ processStages }: { processStages: typeof processStagesEn }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const update = () => setIsCompact(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  const size = isCompact ? ARC_SIZES.compact : ARC_SIZES.full;
-
-  const goTo = useCallback(
-    (index: number) => setActiveIndex(((index % total) + total) % total),
-    [total],
-  );
-  const next = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
-  const prev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(next, 4000);
-    return () => clearInterval(id);
-  }, [paused, next]);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
-    };
-    el.addEventListener("keydown", handler);
-    return () => el.removeEventListener("keydown", handler);
-  }, [next, prev]);
 
   return (
-    <div
-      ref={containerRef}
-      tabIndex={0}
-      role="region"
-      aria-roledescription="carousel"
-      aria-label="Our process"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-      className="outline-none"
-    >
-      <div
-        className={clsx(
-          "relative mx-auto w-full transition-[height] duration-300",
-          isCompact ? "h-[300px] max-w-xl" : "h-[440px] max-w-3xl",
-        )}
-      >
-        <AnimatePresence>
-          {processStages.map((stage, i) => {
-            const pos = getCrossPosition(i, activeIndex, total, size.radiusX, size.radiusY);
-            const isActive = i === activeIndex;
-
-            return (
-              <motion.button
-                key={stage.index}
-                type="button"
-                layout
-                initial={false}
-                animate={{ x: pos.x, y: pos.y, scale: pos.scale, opacity: pos.opacity, zIndex: pos.zIndex }}
-                transition={{ duration: 0.6, ease: framerEase }}
-                onClick={() => goTo(i)}
-                aria-label={stage.title}
-                aria-selected={isActive}
-                role="option"
-                className={clsx(
-                  "focus-ring absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-start justify-between border text-left transition-colors duration-300",
-                  size.card,
-                  isActive
-                    ? "border-accent-fill bg-accent-fill text-white"
-                    : "border-border-subtle bg-surface text-current",
-                )}
-              >
-                <StageIcon
-                  index={stage.index}
-                  className={clsx(size.icon, isActive ? "text-white" : "text-accent-text")}
-                />
-                <div>
-                  <h3 className={clsx("font-display font-bold tracking-tight", size.title)}>
-                    {stage.title}
-                  </h3>
-                  <p
-                    className={clsx(
-                      "mt-3 line-clamp-3 font-body leading-relaxed",
-                      size.body,
-                      isActive ? "text-white/75" : "text-current/60",
-                    )}
-                  >
-                    {stage.description}
-                  </p>
-                </div>
-              </motion.button>
-            );
-          })}
-        </AnimatePresence>
-      </div>
-
-      <div className="mt-2 flex items-center justify-center gap-6">
-        <button
-          type="button"
-          onClick={prev}
-          aria-label="Previous stage"
-          className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
-        >
-          <Arrow direction="left" />
-        </button>
-
-        <div className="flex items-center gap-2" role="tablist">
-          {processStages.map((stage, i) => (
-            <button
-              key={stage.index}
-              type="button"
-              role="tab"
-              aria-selected={i === activeIndex}
-              aria-label={`Go to ${stage.title}`}
-              onClick={() => goTo(i)}
-              className={clsx(
-                "h-1.5 transition-all duration-300",
-                i === activeIndex ? "w-6 bg-accent-fill" : "w-1.5 border border-border-strong",
-              )}
+    <div className="flex justify-center gap-2 overflow-x-auto">
+      {processStages.map((stage, i) => {
+        const isActive = i === activeIndex;
+        return (
+          <button
+            key={stage.index}
+            type="button"
+            onMouseEnter={() => setActiveIndex(i)}
+            onFocus={() => setActiveIndex(i)}
+            onClick={() => setActiveIndex(i)}
+            aria-label={stage.title}
+            aria-selected={isActive}
+            role="option"
+            className={clsx(
+              "group relative h-[450px] shrink-0 overflow-hidden border border-border-subtle text-left transition-[width] duration-700 ease-in-out focus-ring",
+              isActive ? "w-[340px]" : "w-12",
+            )}
+          >
+            <Slate
+              label={stage.title}
+              variant="photo"
+              aspect="h-full"
+              grainOpacity={0.08}
+              caption={false}
+              className="absolute inset-0"
             />
-          ))}
-        </div>
+            <div aria-hidden className="absolute inset-0 bg-ink/55" />
 
-        <button
-          type="button"
-          onClick={next}
-          aria-label="Next stage"
-          className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
-        >
-          <Arrow direction="right" />
-        </button>
-      </div>
+            <span className="absolute left-4 top-4">
+              <StageIcon index={stage.index} className="h-6 w-6 text-paper" />
+            </span>
+
+            {isActive ? (
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-paper/60">
+                  {stage.index}
+                </span>
+                <h3 className="mt-1 font-display text-2xl font-bold tracking-tight text-paper">
+                  {stage.title}
+                </h3>
+                <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-paper/75">
+                  {stage.description}
+                </p>
+              </div>
+            ) : (
+              <span className="absolute bottom-8 left-1/2 origin-center -translate-x-1/2 rotate-90 whitespace-nowrap font-display text-sm font-bold uppercase tracking-tight text-paper">
+                {stage.title}
+              </span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -277,14 +150,12 @@ export function Process() {
         <div aria-hidden className="border-t border-current/15 mb-12" />
 
         <div ref={ref}>
-          {/* Desktop/tablet: a rotating arc, the active stage centered up top.
-              Extra top clearance since the arc's curve lifts the centered
-              card well above the track box's own top edge. */}
-          <div className="hidden md:block md:mt-28">
-            <ProcessArcCarousel processStages={processStages} />
+          {/* Desktop/tablet: hover-expand image accordion. */}
+          <div className="hidden md:block">
+            <ProcessAccordion processStages={processStages} />
           </div>
 
-          {/* Mobile: not enough width for the arc, so the same order reads top to bottom. */}
+          {/* Mobile: not enough width for the accordion, so the same order reads top to bottom. */}
           <div className="relative pl-8 md:hidden">
             <div className="absolute left-0 top-1 h-full w-px bg-border-subtle" />
             <motion.div

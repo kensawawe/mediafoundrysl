@@ -13,6 +13,8 @@ type SlateProps = {
   /** Reserve the continuously-atmospheric breathing vignette for the hero only. */
   atmospheric?: boolean;
   grainOpacity?: number;
+  /** Hide the built-in exif/label caption for callers supplying their own overlay text. */
+  caption?: boolean;
 };
 
 const grainSvg =
@@ -52,6 +54,7 @@ export function Slate({
   rounded = false,
   atmospheric = false,
   grainOpacity = 0.06,
+  caption = true,
 }: SlateProps) {
   const timecode = useTimecode(variant === "video");
 
@@ -138,17 +141,19 @@ export function Slate({
           absolutely-positioned) so they never overlap regardless of how
           many lines either wraps to on a narrow tile — a fixed offset
           between two absolute blocks can't account for that. */}
-      <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1">
-        {variant === "photo" && (
-          <div className="font-mono text-[10px] tracking-wider text-white/60">
-            f/2.8 · 1/250 · ISO 400
-          </div>
-        )}
-        <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-white/50">
-          {category ?? "FOOTAGE"} / PLACEHOLDER
-          <span className="text-white/30"> — {label}</span>
-        </p>
-      </div>
+      {caption && (
+        <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1">
+          {variant === "photo" && (
+            <div className="font-mono text-[10px] tracking-wider text-white/60">
+              f/2.8 · 1/250 · ISO 400
+            </div>
+          )}
+          <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-white/50">
+            {category ?? "FOOTAGE"} / PLACEHOLDER
+            <span className="text-white/30"> — {label}</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
