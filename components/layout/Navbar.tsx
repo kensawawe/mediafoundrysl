@@ -13,8 +13,15 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { Button } from "@/components/ui/Button";
 
+// Dev-only preview link for the not-yet-public merch catalogue. Reading
+// NODE_ENV here (rather than a runtime toggle) means Next's bundler dead-
+// code-eliminates this branch entirely on a production build — the link
+// isn't just hidden, it never ships in the deployed JS at all.
+const showMerchLink = process.env.NODE_ENV === "development";
+
 export function Navbar() {
   const navLinks = useTranslated(navLinksEn, navLinksKri);
+  const displayNavLinks = showMerchLink ? [...navLinks, { label: "Merch", href: "/merch" }] : navLinks;
   const startAProjectLabel = useTranslated(startAProjectLabelEn, startAProjectLabelKri);
   const pathname = usePathname();
   const { resolvedTheme } = useTheme();
@@ -86,7 +93,7 @@ export function Navbar() {
           </Link>
 
           <nav className="hidden items-center gap-9 lg:flex">
-            {navLinks.map((link) => (
+            {displayNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -144,7 +151,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-background px-8 lg:hidden"
           >
-            {navLinks.map((link, i) => (
+            {displayNavLinks.map((link, i) => (
               <motion.div
                 key={link.href}
                 initial={{ opacity: 0, y: 16 }}
@@ -163,7 +170,7 @@ export function Navbar() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 * navLinks.length }}
+              transition={{ duration: 0.4, delay: 0.05 * displayNavLinks.length }}
               className="flex items-center gap-6 pt-4"
             >
               <Button href="/#contact" variant="primary" onClick={() => setMenuOpen(false)}>
