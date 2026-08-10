@@ -42,7 +42,7 @@ export function MerchPageBody() {
         </Container>
       </div>
 
-      <Section className="pt-0">
+      <Section className="pt-0 md:pt-0">
         <Container>
           <div className="flex flex-wrap gap-2">
             {filters.map((filter) => (
