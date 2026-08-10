@@ -4,6 +4,12 @@ export type ProcessStage = {
   description: string;
 };
 
+export const processIntro = {
+  title: "The Forge",
+  description:
+    "The Forge is our six-stage process for turning ideas into impactful stories.",
+};
+
 export const processStages: ProcessStage[] = [
   {
     index: "01",

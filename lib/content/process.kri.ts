@@ -1,5 +1,11 @@
 import type { ProcessStage } from "./process";
 
+export const processIntro = {
+  title: "The Forge",
+  description:
+    "Di Fɔj na wi siks-stej prosɛs fɔ ton aydiya dɛn to tori we gɛt pawa.",
+};
+
 export const processStages: ProcessStage[] = [
   {
     index: "01",
