@@ -75,7 +75,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
 
         <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Gallery */}
-          <div>
+          <div className="min-w-0">
             <div className="flex gap-4">
               <div className="hidden w-20 shrink-0 flex-col gap-3 sm:flex">
                 {translated.images.map((angle, i) => (
