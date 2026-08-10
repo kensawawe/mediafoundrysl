@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AboutHero } from "@/components/about/AboutHero";
-import { AboutBlocks } from "@/components/about/AboutBlocks";
-import { OurVision } from "@/components/about/OurVision";
+import { AboutAccordion } from "@/components/about/AboutAccordion";
 import { Team } from "@/components/about/Team";
 import { site } from "@/lib/content/site";
 
@@ -16,8 +15,7 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutBlocks />
-      <OurVision />
+      <AboutAccordion />
       <Team />
     </>
   );
