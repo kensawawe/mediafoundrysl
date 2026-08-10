@@ -5,7 +5,6 @@ import Link from "next/link";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { Slate } from "@/components/ui/Slate";
 import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
@@ -35,10 +34,9 @@ export function MerchPageBody() {
 
   return (
     <>
-      <div className="pt-32 pb-4 md:pt-40 md:pb-6">
+      <div className="pt-28 pb-4 md:pt-32 md:pb-6">
         <Container>
-          <SlateTag>{merchHero.eyebrow}</SlateTag>
-          <h1 className="mt-5 max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
             <RevealLines lines={[merchHero.title]} onMount />
           </h1>
         </Container>
