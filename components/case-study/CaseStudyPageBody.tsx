@@ -2,8 +2,6 @@
 
 import { CaseStudyHero } from "@/components/case-study/CaseStudyHero";
 import { Overview } from "@/components/case-study/Overview";
-import { ChallengeApproach } from "@/components/case-study/ChallengeApproach";
-import { ProcessJourney } from "@/components/case-study/ProcessJourney";
 import { Gallery } from "@/components/case-study/Gallery";
 import { Outcome } from "@/components/case-study/Outcome";
 import { caseStudies as caseStudiesEn, type CaseStudy } from "@/lib/content/case-studies";
@@ -21,8 +19,6 @@ export function CaseStudyPageBody({ study }: { study: CaseStudy }) {
     <>
       <CaseStudyHero study={translated} />
       <Overview study={translated} />
-      <ChallengeApproach study={translated} />
-      <ProcessJourney study={translated} />
       <Gallery study={translated} />
       <Outcome study={translated} />
     </>
