@@ -6,28 +6,28 @@ export const aboutHero = {
 export const whoWeAre = {
   title: "Who We Are",
   body:
-    "The Media Foundry is an independent creative agency and production company. We build brands and we produce the film, photography and content that carries them into the world — strategy, design and production, run by one team from first spark to final cut.",
+    "The Media Foundry is an independent creative studio and production company based in Sierra Leone. We build brands and produce the films, photography and content that bring them to life — combining strategy, design and production under one roof, from first spark to final cut.",
 };
 
 export const ourPhilosophy = {
   title: "Our Philosophy",
   body:
-    "We don't believe in handing work down a chain of specialists who never talk to each other. The best work happens when the people who write the strategy are still in the room when it's shot — so nothing gets lost in the hand-off, and nothing cools before it ships.",
+    "Great ideas lose power when they pass through too many hands. We keep the people shaping the strategy close to the people making the work, so every decision stays connected to the original ambition — and every detail earns its place.",
 };
 
 export const whyOneRoof = {
   title: "Why We Work This Way",
   body:
-    "Split attention produces split results — an agency that designs the idea and a production company that just films it, with no one accountable for whether the finished thing actually works. We built The Media Foundry to close that gap: one studio, one standard, from strategy through delivery.",
+    "In a fast-moving market, split attention creates split results. One partner develops the idea; another is asked to execute it, often without the context to make it matter. We built The Media Foundry to close that gap: one studio, one accountable team, and one clear standard from strategy to delivery.",
 };
 
 export const ourApproach = {
   title: "Our Approach",
   body:
-    "Every project starts with a diagnosis, not a deck. We spend real time understanding the market, the audience and the constraints before a single concept is proposed — then stay through production, post and delivery, so the idea that gets approved is the idea that ships.",
+    "Every project begins with understanding: the people you need to reach, the reality of your market and the constraints worth designing around. Then we turn that insight into ideas made to travel — through production, post-production and delivery — without losing what made them strong in the first place.",
 };
 
 export const ourVision = {
   title: "Our Vision",
-  body: "To prove that an agency and a production company are stronger as one studio than as two vendors.",
+  body: "To show that Sierra Leonean brands and stories can be built and produced to a world-class standard by one connected studio.",
 };

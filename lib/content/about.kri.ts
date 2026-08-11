@@ -6,28 +6,28 @@ export const aboutHero = {
 export const whoWeAre = {
   title: "Udat Wi De",
   body:
-    "Di Media Foundry na wan independent kriyetiv ejɛnsi ɛn prɔdɔkshɔn kɔmpani. Wi de bil brand dɛn ɛn wi de prɔdyus di film, foto, ɛn kɔntɛnt we de kyari dɛn go na di wɔl — stratiji, dizayn, ɛn prɔdɔkshɔn, wan tim de ran am frɔm di fɔs spak te rich di las kɔt.",
+    "Di Media Foundry na wan independent kriyetiv studio ɛn prɔdɔkshɔn kɔmpani we de na Salone. Wi de bil brand dɛn ɛn prɔdyus di film dɛn, foto, ɛn kɔntɛnt we de brin dɛn to layf — wi kɔmbayn stratiji, dizayn, ɛn prɔdɔkshɔn ɔnda wan ruf, frɔm di fɔs spak te rich di las kɔt.",
 };
 
 export const ourPhilosophy = {
   title: "Wi Filɔsɔfi",
   body:
-    "Wi nɔ biliv fɔ pas wok dɔŋ wan lɔŋ chen ɔv spɛshalist dɛn we nɔ de tɔk to dɛnsɛf. Di bɛst wok de apin we di pipul dɛn we rayt di stratiji stil de na di rum we dɛn de shut — so nɔtin nɔ go lɔs na di ɔva, ɛn nɔtin nɔ go kol bifo i dɔn ship.",
+    "Big aydiya dɛn de lɔs dɛn pawa we dɛn pas tru tumɔch an. Wi de kip di pipul dɛn we de shep di stratiji klos to di pipul dɛn we de du di wok, so ɛvri disizhɔn de stil kɔnɛkt to di orijinal ambishɔn — ɛn ɛvri ditel gɛt gud rizin fɔ de dɛn.",
 };
 
 export const whyOneRoof = {
   title: "Wetin Mek Wi De Wok Lɛkɛ Dis",
   body:
-    "Split atenshɔn de brin split rizɔlt — wan ejɛnsi we dizayn di aydiya ɛn wan prɔdɔkshɔn kɔmpani we jɔs film am, ɛn nobɔdi nɔ responsibul if di tin we dɔn dɔn actually wok. Wi bil Di Media Foundry fɔ klos dat gap: wan studio, wan stanad, frɔm stratiji te rich delivri.",
+    "Na wan makit we de muv fast, split atenshɔn de mek split rizɔlt. Wan pattna de divɛlɔp di aydiya; dɛn aks ɔda wan fɔ ɛksikyut am, ɔltɛm wítaut di kɔntɛks fɔ mek i mata. Wi bil Di Media Foundry fɔ klos dat gap: wan studio, wan tim we responsibul, ɛn wan kliya stanad frɔm stratiji te rich delivri.",
 };
 
 export const ourApproach = {
   title: "Wi Aprowch",
   body:
-    "Ɛvri projɛkt de stat wit diagnosis, nɔ wit dɛk. Wi de tek tru tem fɔ ɔndastan di makit, di odiens, ɛn di konstrent dɛn bifo wi propoz eni konsɛpt — dɛn wi de tap tru prɔdɔkshɔn, post, ɛn delivri, so di aydiya we dɛn apruv na di aydiya we ship.",
+    "Ɛvri projɛkt de stat wit ɔndastandin: di pipul dɛn we yu nid fɔ rich, di rialiti ɔv yu makit, ɛn di konstrent dɛn we wɔt fɔ dizayn ɔraun. Dɛn wi de ton dat ɔndastandin to aydiya dɛn we mek fɔ travul — tru prɔdɔkshɔn, post-prɔdɔkshɔn, ɛn delivri — wítaut lɔs wetin mek dɛn tranga na di fɔs ples.",
 };
 
 export const ourVision = {
   title: "Wi Vizhɔn",
-  body: "Fɔ pruv se wan ejɛnsi ɛn wan prɔdɔkshɔn kɔmpani tranga pas we dɛn de wan studio pas we dɛn de tu vɛnda dɛn.",
+  body: "Fɔ sho se Salone brand dɛn ɛn stori dɛn kin bil ɛn prɔdyus to wan wɔl-klas stanad bay wan kɔnɛktɛd studio.",
 };
