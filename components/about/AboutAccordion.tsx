@@ -49,11 +49,8 @@ export function AboutAccordion() {
                 type="button"
                 onClick={() => setActiveIndex(isActive ? null : i)}
                 aria-expanded={isActive}
-                className="focus-ring flex w-full items-start gap-4 py-8 text-left md:gap-8 md:py-10"
+                className="focus-ring flex w-full items-start py-8 text-left md:py-10"
               >
-                <span className="mt-2 font-mono text-xs text-current/40 md:mt-4">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <h2
                   className={clsx(
                     "font-display text-3xl font-black uppercase leading-[0.95] tracking-tight transition-colors duration-300 sm:text-4xl md:text-5xl",
@@ -73,7 +70,7 @@ export function AboutAccordion() {
                     transition={{ duration: 0.35, ease: framerEase }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-8 pl-[calc(1.5rem+1rem)] font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10 md:pl-[calc(2.5rem+2rem)]">
+                    <p className="max-w-2xl pb-8 font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10">
                       {item.body}
                     </p>
                   </motion.div>
