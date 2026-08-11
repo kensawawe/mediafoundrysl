@@ -118,10 +118,7 @@ function ProcessAccordion({ processStages }: { processStages: typeof processStag
 
             {isActive ? (
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-paper/60">
-                  {stage.index}
-                </span>
-                <h3 className="mt-1 font-display text-2xl font-bold tracking-tight text-paper">
+                <h3 className="font-display text-2xl font-bold tracking-tight text-paper">
                   {stage.title}
                 </h3>
                 <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-paper/75">
