@@ -36,7 +36,11 @@ export function LanguageToggle({ className }: { className?: string }) {
       <div
         role="listbox"
         className={clsx(
-          "absolute left-0 top-full z-10 mt-1 hidden w-6 flex-col border border-border-subtle bg-background group-hover/lang:flex",
+          // Flush against the button (no margin gap) — a gap here is dead
+          // space the mouse has to cross without being over the button or
+          // the dropdown, which fires this wrapper's onMouseLeave and
+          // closes the menu before the pointer ever reaches it.
+          "absolute left-0 top-full z-10 hidden w-6 flex-col border border-border-subtle bg-background group-hover/lang:flex",
           open && "!flex",
         )}
       >
