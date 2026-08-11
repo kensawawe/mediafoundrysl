@@ -1,6 +1,11 @@
 export const hero = {
-  lines: ["Stories That Move People."],
-  linesSecondary: ["Media That Moves Change."],
+  morph: {
+    subjects: ["Stories", "Media"],
+    connector: "that move",
+    // "s" only — Krio's connector doesn't inflect, so its variant is empty.
+    suffix: ["", "s"],
+    objects: ["people", "change"],
+  },
   supporting:
     "The Media Foundry is a Creative Media Partner that helps organizations, brands and changemakers communicate their vision through authentic storytelling.",
   supportingKrio: "Wi de prodyus. Wi de kapchɔ. Wi de tɛl di tori.",

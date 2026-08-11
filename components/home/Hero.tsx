@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { RevealLines } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
+import { HeroHeadline } from "@/components/home/HeroHeadline";
 import { hero as heroEn } from "@/lib/content/home";
 import { hero as heroKri } from "@/lib/content/home.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -134,35 +134,14 @@ export function Hero() {
 
       <div className="pointer-events-none relative z-10 w-full px-6 pb-36 pt-40 md:px-10 md:pb-40 lg:px-16">
         <div className="max-w-5xl">
-          <h1 className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper">
-            {/* "Media That Moves Change." renders ~1.98% wider than "Stories
-                That Move People." at matched font size (measured via glyph
-                range width, not the RevealLines wrapper span). Both lines
-                are left-aligned by default, so sizing the second line down
-                by that exact ratio makes the trailing periods land flush
-                on the right too, not just the leading letters on the left. */}
-            <RevealLines
-              lines={[...hero.lines]}
-              baseDelay={0.3}
-              stagger={0.12}
-              onMount
-              // lg: is a fixed px value, not vw, from here up — the parent
-              // is capped at max-w-5xl (1024px), so it stops growing past
-              // that width while vw sizing keeps tracking the *viewport*.
-              // Past ~1350px that mismatch let the text outgrow its fixed
-              // container and wrap. Freezing at the exact size computed for
-              // viewport=1024 (where container and viewport width still
-              // coincide) keeps it correct for any wider desktop too.
-              className="text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[69.12px]"
-            />
-            <RevealLines
-              lines={[...hero.linesSecondary]}
-              baseDelay={0.42}
-              stagger={0.12}
-              onMount
-              className="mt-1 text-[9.552vw] sm:text-[9.12vw] md:text-[7.354vw] lg:text-[67.81px]"
-            />
-          </h1>
+          {/* lg: is a fixed px value, not vw, from here up — the parent is
+              capped at max-w-5xl (1024px), so it stops growing past that
+              width while vw sizing keeps tracking the *viewport*. Past
+              ~1350px that mismatch would let the text outgrow its fixed
+              container and wrap. Freezing at the exact size computed for
+              viewport=1024 (where container and viewport width still
+              coincide) keeps it correct for any wider desktop too. */}
+          <HeroHeadline className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[69.12px]" />
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}

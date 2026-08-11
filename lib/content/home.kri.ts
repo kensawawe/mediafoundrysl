@@ -1,6 +1,10 @@
 export const hero = {
-  lines: ["Tori Dɛn We De Muv Pipul."],
-  linesSecondary: ["Midiya We De Muv Chenj."],
+  morph: {
+    subjects: ["Tori dɛn", "Midiya"],
+    connector: "we de muv",
+    suffix: ["", ""],
+    objects: ["pipul", "chenj"],
+  },
   supporting:
     "Di Media Foundry na wan Kriyetiv Midiya Pattna we de ɛp ɔganayzeshɔn dɛn, brand dɛn, ɛn chenj-mekaz fɔ sho wetin dɛn want du wit tru-tru tori.",
   supportingKrio: "Wi de prodyus. Wi de kapchɔ. Wi de tɛl di tori.",
