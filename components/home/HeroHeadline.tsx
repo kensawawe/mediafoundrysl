@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { TextMorphSlot } from "@/components/ui/TextMorph";
+import { framerEase } from "@/lib/motion/easing";
 import { hero as heroEn } from "@/lib/content/home";
 import { hero as heroKri } from "@/lib/content/home.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -32,13 +34,17 @@ export function HeroHeadline({ className }: { className?: string }) {
     <h1 className={className}>
       <span className="flex flex-wrap items-baseline gap-x-[0.28em]">
         <TextMorphSlot variants={morph.subjects} activeIndex={index} baseDelay={0} />
-        <span className="inline-flex items-baseline">
+        <motion.span
+          layout="position"
+          transition={{ duration: 0.5, ease: framerEase }}
+          className="inline-flex items-baseline"
+        >
           <span>{morph.connector}</span>
           {hasSuffix && (
             <TextMorphSlot variants={morph.suffix} activeIndex={index} baseDelay={0.06} />
           )}
-        </span>
-        <TextMorphSlot variants={morph.objects} activeIndex={index} baseDelay={0.1} />
+        </motion.span>
+        <TextMorphSlot variants={morph.objects} activeIndex={index} baseDelay={0.1} layoutPosition />
       </span>
     </h1>
   );
