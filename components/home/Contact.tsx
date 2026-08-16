@@ -5,8 +5,8 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { contactPageCopy as copyEn, projectTypes as projectTypesEn } from "@/lib/content/contact";
-import { contactPageCopy as copyKri, projectTypes as projectTypesKri } from "@/lib/content/contact.kri";
+import { contactPageCopy as copyEn } from "@/lib/content/contact";
+import { contactPageCopy as copyKri } from "@/lib/content/contact.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 import { site } from "@/lib/content/site";
 
@@ -16,9 +16,7 @@ const fieldBoxClasses =
   "focus-ring w-full border border-border-subtle bg-accent-fill/[0.07] px-3.5 py-2.5 font-body text-base outline-none transition-colors placeholder:text-current/35 hover:border-accent-text focus-visible:border-accent-fill focus-visible:bg-accent-fill/[0.12]";
 
 export function Contact() {
-  const projectTypes = useTranslated(projectTypesEn, projectTypesKri);
   const copy = useTranslated(copyEn, copyKri);
-  const [projectType, setProjectType] = useState<string>(projectTypes[0]);
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -27,7 +25,6 @@ export function Contact() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    data.set("projectType", projectType);
 
     try {
       const res = await fetch(site.formspreeEndpoint, {
@@ -38,7 +35,6 @@ export function Contact() {
       if (res.ok) {
         setStatus("success");
         form.reset();
-        setProjectType(projectTypes[0]);
       } else {
         setStatus("error");
       }
@@ -67,29 +63,6 @@ export function Contact() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
-                {copy.createPrompt}
-              </span>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {projectTypes.map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => setProjectType(type)}
-                    className={clsx(
-                      "focus-ring border px-4 py-2 font-body text-sm transition-colors",
-                      projectType === type
-                        ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
-                        : "border-border-subtle hover:border-accent-text hover:text-accent-text",
-                    )}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <Field label={copy.descriptionLabel}>
               <textarea
                 name="description"
