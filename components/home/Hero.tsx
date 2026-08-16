@@ -127,7 +127,7 @@ export function Hero() {
             // brightness levels. Settles back to the original tone by the
             // time it reaches the headline.
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 8%, rgba(0,0,0,0.25) 16%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.8) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.66) 8%, rgba(0,0,0,0.3) 16%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.96) 100%)",
           }}
         />
       </div>
