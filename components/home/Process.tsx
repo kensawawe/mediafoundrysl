@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Slate } from "@/components/ui/Slate";
-import { useInView } from "@/components/ui/useInView";
-import { framerEase } from "@/lib/motion/easing";
 import { processStages as processStagesEn, processIntro as processIntroEn } from "@/lib/content/process";
 import { processStages as processStagesKri, processIntro as processIntroKri } from "@/lib/content/process.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -73,13 +70,12 @@ function StageIcon({ index, className }: { index: string; className?: string }) 
   }
 }
 
-// Desktop/tablet: a horizontal image accordion — one wide panel, the rest
-// collapsed to narrow strips, expanding on hover/focus. Row width is
-// constant regardless of which panel is active (activeWidth + 5 *
-// inactiveWidth + 5 * gap), sized to clear the container at the md
-// breakpoint (768px viewport, 80px of Container padding) with room to
-// spare, so it never needs its own responsive size sets the way the old
-// arc carousel did.
+// A horizontal image accordion — one wide panel, the rest collapsed to
+// narrow strips, expanding on hover/focus/click. The row is wider than
+// any viewport (activeWidth + 5 * inactiveWidth + 5 * gap ≈ 620px), so
+// the same fixed-size layout runs everywhere; overflow-x-auto lets it
+// scroll horizontally within itself on narrow screens rather than
+// forcing the page wider.
 function ProcessAccordion({ processStages }: { processStages: typeof processStagesEn }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -140,14 +136,13 @@ function ProcessAccordion({ processStages }: { processStages: typeof processStag
 export function Process() {
   const processStages = useTranslated(processStagesEn, processStagesKri);
   const processIntro = useTranslated(processIntroEn, processIntroKri);
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
   return (
     <Section id="process" className="pb-0 md:pb-0">
       <Container>
         <div aria-hidden className="border-t border-current/15 mb-12" />
 
-        <div ref={ref} className="lg:flex lg:items-start lg:gap-16">
+        <div className="lg:flex lg:items-start lg:gap-16">
           {/* Above the process on mobile/tablet, to the left on desktop. */}
           <div className="mb-10 lg:mb-0 lg:w-72 lg:shrink-0">
             <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
@@ -159,42 +154,7 @@ export function Process() {
           </div>
 
           <div className="lg:min-w-0 lg:flex-1">
-            {/* Desktop/tablet: hover-expand image accordion. */}
-            <div className="hidden md:block">
-              <ProcessAccordion processStages={processStages} />
-            </div>
-
-            {/* Mobile: not enough width for the accordion, so the same order reads top to bottom. */}
-            <div className="relative pl-8 md:hidden">
-              <div className="absolute left-0 top-1 h-full w-px bg-border-subtle" />
-              <motion.div
-                initial={{ scaleY: 0 }}
-                animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
-                transition={{ duration: 1.5, ease: framerEase }}
-                className="absolute left-0 top-1 h-full w-px origin-top bg-accent-fill"
-              />
-              <div className="flex flex-col gap-16">
-                {processStages.map((stage, i) => (
-                  <motion.div
-                    key={stage.index}
-                    className="relative"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    transition={{ duration: 0.5, delay: 0.25 + i * 0.32, ease: framerEase }}
-                  >
-                    <span className="absolute -left-8 -top-1 flex h-8 w-8 -translate-x-1/2 items-center justify-center border border-accent-fill bg-background">
-                      <StageIcon index={stage.index} className="h-4 w-4 text-accent-text" />
-                    </span>
-                    <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-                      {stage.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
-                      {stage.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            <ProcessAccordion processStages={processStages} />
           </div>
         </div>
       </Container>
