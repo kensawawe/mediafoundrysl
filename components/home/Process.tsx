@@ -9,67 +9,6 @@ import { processStages as processStagesEn, processIntro as processIntroEn } from
 import { processStages as processStagesKri, processIntro as processIntroKri } from "@/lib/content/process.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-// Keyed by the language-invariant stage index, not the (translated) title —
-// a title switch would silently drop every icon once translated.
-function StageIcon({ index, className }: { index: string; className?: string }) {
-  const shared = {
-    stroke: "currentColor",
-    strokeWidth: 1.4,
-    strokeLinecap: "square" as const,
-    strokeLinejoin: "miter" as const,
-    fill: "none",
-  };
-
-  switch (index) {
-    case "01": // Discover — magnifying glass
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
-          <path d="M13 13l-3.6-3.6" {...shared} />
-        </svg>
-      );
-    case "02": // Design — pen
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
-          <path d="M8.5 4.5l3 3" {...shared} />
-        </svg>
-      );
-    case "03": // Develop — blueprint / planning doc
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <rect x="3" y="2.5" width="10" height="11" {...shared} />
-          <path d="M5.5 5.5h5M5.5 8h5M5.5 10.5h3" {...shared} />
-        </svg>
-      );
-    case "04": // Produce — camera
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <rect x="2" y="5.5" width="12" height="8" {...shared} />
-          <path d="M5.5 5.5L7 3h2l1.5 2.5" {...shared} />
-          <circle cx="8" cy="9.5" r="2.1" {...shared} />
-        </svg>
-      );
-    case "05": // Deliver — package handoff
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <rect x="2.5" y="7.5" width="11" height="6" {...shared} />
-          <path d="M8 7.5V2M8 2L5.7 4.3M8 2l2.3 2.3" {...shared} />
-        </svg>
-      );
-    case "06": // Amplify — broadcast signal
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <circle cx="4" cy="12" r="1.3" fill="currentColor" stroke="none" />
-          <path d="M4 12C4 8 7 5 11 5" {...shared} />
-          <path d="M4 12C4 6 8.5 2.5 14 2.5" {...shared} />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 // A horizontal image accordion — one wide panel, the rest collapsed to
 // narrow strips, expanding on hover/focus/click. The row is wider than
 // any viewport (activeWidth + 5 * inactiveWidth + 5 * gap ≈ 620px), so
@@ -107,10 +46,6 @@ function ProcessAccordion({ processStages }: { processStages: typeof processStag
               className="absolute inset-0"
             />
             <div aria-hidden className="absolute inset-0 bg-ink/55" />
-
-            <span className="absolute left-4 top-4">
-              <StageIcon index={stage.index} className="h-6 w-6 text-paper" />
-            </span>
 
             {isActive ? (
               <div className="absolute inset-x-0 bottom-0 p-6">
