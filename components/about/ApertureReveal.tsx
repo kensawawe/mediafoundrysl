@@ -6,8 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { apertureReveal as contentEn } from "@/lib/content/home";
-import { apertureReveal as contentKri } from "@/lib/content/home.kri";
+import { apertureReveal as contentEn } from "@/lib/content/about";
+import { apertureReveal as contentKri } from "@/lib/content/about.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 gsap.registerPlugin(ScrollTrigger);

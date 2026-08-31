@@ -3,6 +3,15 @@ export const aboutHero = {
   title: "A creative agency and a production company. Under one roof.",
 };
 
+export const apertureReveal = {
+  introTitle: "A story in focus.",
+  introSubtitle:
+    "Every project starts as a single frame. We shape it with strategy, shoot it with craft, and cut it for the platforms that matter — turning one idea into a story that moves, from first spark to final cut.",
+  outroTitle: "The story, delivered.",
+  outroSubtitle:
+    "One studio. One team. Strategy, design, and production — built to carry your story into the world.",
+};
+
 export const whoWeAre = {
   title: "Who We Are",
   body:

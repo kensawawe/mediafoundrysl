@@ -164,10 +164,10 @@ export function Hero() {
                 <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
               </div>
 
-              <p className="mx-auto mt-5 max-w-md font-body text-sm text-paper md:text-base">
+              <p className="mx-auto mt-5 max-w-md font-body text-sm font-bold text-paper md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-2 max-w-md font-body text-sm italic text-paper md:text-base">
+              <p className="mx-auto mt-2 max-w-md font-body text-sm font-bold italic text-paper md:text-base">
                 {hero.supportingKrio}
               </p>
             </div>
