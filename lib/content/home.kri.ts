@@ -6,8 +6,8 @@ export const hero = {
     objects: ["pipul", "chenj"],
   },
   supporting:
-    "Di Media Foundry na wan Kriyetiv Midiya Pattna we de ɛp ɔganayzeshɔn dɛn, brand dɛn, ɛn chenj-mekaz fɔ sho wetin dɛn want du wit tru-tru tori.",
-  supportingKrio: "Wi de prodyus. Wi de kapchɔ. Wi de tɛl di tori.",
+    "Di Media Foundry na wan Kriyetiv Midiya Pattna we de ɛp ɔganayzeshɔn dɛn, brand dɛn, ɛn aydiya dɛn fɔ fɛn dɛn ɔn vɔys, shep dɛn aydɛntiti, ɛn tɛl tori dɛn we wɔt fɔ mɛmba. Bikɔs wok we gɛt minin nɔ fɔ jɔs de de — i fɔ muv pipul.",
+  supportingKrio: "Wi de prodyus. Wi de tɛl di tori. Wi de ɛp yu sho yu wok",
   primaryCta: { label: "Stat Wan Projɛkt", href: "/#contact" },
   secondaryCta: { label: "Luk Di Wok", href: "/work" },
 };

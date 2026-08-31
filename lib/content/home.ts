@@ -7,8 +7,8 @@ export const hero = {
     objects: ["people", "change"],
   },
   supporting:
-    "The Media Foundry is a Creative Media Partner that helps organizations, brands and changemakers communicate their vision through authentic storytelling.",
-  supportingKrio: "Wi de prodyus. Wi de kapchɔ. Wi de tɛl di tori.",
+    "The Media Foundry is a Creative Media Partner helping organizations, brands, and ideas find their voice, shape their identity, and tell stories worth remembering. Because meaningful work shouldn't just exist, it should move people.",
+  supportingKrio: "Wi de prodyus. Wi de tɛl di tori. Wi de ɛp yu sho yu wok",
   primaryCta: { label: "Start a project", href: "/#contact" },
   secondaryCta: { label: "See the work", href: "/work" },
 };
