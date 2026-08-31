@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import clsx from "clsx";
@@ -13,7 +12,6 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { useCart } from "@/components/layout/CartProvider";
-import { Button } from "@/components/ui/Button";
 
 // Dev-only preview link (and cart icon) for the not-yet-public merch
 // catalogue. Reading NODE_ENV here (rather than a runtime toggle) means
@@ -49,12 +47,10 @@ export function Navbar() {
   const navLinks = useTranslated(navLinksEn, navLinksKri);
   const displayNavLinks = showMerchLink ? [...navLinks, { label: "Merch", href: "/merch" }] : navLinks;
   const startAProjectLabel = useTranslated(startAProjectLabelEn, startAProjectLabelKri);
-  const pathname = usePathname();
   const { resolvedTheme } = useTheme();
   const { scrollY } = useScroll();
   const { count } = useCart();
   const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -62,24 +58,14 @@ export function Navbar() {
 
   useEffect(() => setMounted(true), []);
 
-  // The homepage hero is a fixed dark (ink) frame — while the transparent
-  // navbar floats over it, force light text. Every other page's top section
-  // sits on the theme's normal background, so the default ink/paper text
-  // already has correct contrast there.
-  const overDarkHero = pathname === "/" && !scrolled;
-  // The mobile menu overlay sits *under* the still-transparent header but
-  // *over* the hero, painted in the theme's own background color — so once
-  // it's open, the hero override no longer reflects what's actually behind
-  // the header chrome. Fall back to the current theme instead, or the logo/
-  // hamburger render in the hero's light color against the menu's light-
-  // theme panel and disappear.
-  const onDarkBackground = menuOpen
-    ? mounted && resolvedTheme === "dark"
-    : overDarkHero || (mounted && resolvedTheme === "dark");
+  // The pill carries its own background at every scroll position (unlike
+  // the old edge-to-edge bar, which stayed transparent until scrolled), so
+  // logo/text contrast only needs to track the site's own theme, not
+  // whatever happens to be behind the header.
+  const isDark = mounted && resolvedTheme === "dark";
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const diff = y - lastY.current;
-    setScrolled(y > 40);
     if (y < 80) {
       setHidden(false);
     } else if (diff > 4) {
@@ -93,46 +79,53 @@ export function Navbar() {
 
   return (
     <>
-      <motion.header
-        animate={{ y: hidden ? "-100%" : "0%" }}
+      <motion.div
+        animate={{ y: hidden ? "-150%" : "0%" }}
         transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
-        className={clsx(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-          scrolled
-            ? "border-border-subtle bg-nav-bg backdrop-blur-md"
-            : "border-transparent bg-transparent",
-          onDarkBackground ? "text-paper" : "text-foreground",
-        )}
+        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6"
       >
-        <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-6 md:h-20 md:px-10 lg:px-16">
+        <div className="relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-6 rounded-full border border-border-subtle bg-nav-bg px-4 py-2 shadow-[0_18px_50px_rgba(0,0,0,0.22)] backdrop-blur-md md:px-6 md:py-2">
           <Link
             href="/"
-            className="focus-ring inline-flex items-center"
+            className="focus-ring flex shrink-0 items-center gap-2.5"
             onClick={() => setMenuOpen(false)}
           >
+            <span
+              aria-hidden
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-fill"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-paper" />
+            </span>
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
             <img
-              src={onDarkBackground ? "/logo-white.png" : "/logo-dark.png"}
+              src={isDark ? "/logo-white.png" : "/logo-dark.png"}
               alt="The Media Foundry"
               width={1516}
               height={176}
-              className="h-[18px] w-auto md:h-[22px]"
+              className="h-4 w-auto md:h-[18px]"
             />
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex">
-            {displayNavLinks.map((link) => (
-              <Link
+          <nav className="hidden shrink-0 items-center gap-7 lg:flex">
+            {displayNavLinks.map((link, i) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                className={clsx(
-                  "focus-ring font-mono text-xs uppercase tracking-[0.03em] transition-colors hover:text-accent-text",
-                  overDarkHero ? "text-paper" : "text-current/70",
-                )}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                whileHover={{ scale: 1.05 }}
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  className="whitespace-nowrap font-mono text-sm font-bold uppercase text-foreground/70 transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
+          </nav>
+
+          <div className="hidden shrink-0 items-center gap-4 lg:flex">
             <LanguageToggle />
             <ThemeToggle />
             {showMerchLink && (
@@ -140,7 +133,7 @@ export function Navbar() {
                 type="button"
                 aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
                 onClick={() => setCartOpen(true)}
-                className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center"
+                className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center text-foreground"
               >
                 <CartIcon className="h-4 w-4" />
                 {count > 0 && (
@@ -150,24 +143,30 @@ export function Navbar() {
                 )}
               </button>
             )}
-            <Button
-              href="/#contact"
-              variant="primary"
-              className={clsx(
-                "px-5 py-2.5 text-xs",
-                overDarkHero && "border-paper bg-paper text-ink hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
-              )}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              whileHover={{ scale: 1.05 }}
             >
-              {startAProjectLabel}
-            </Button>
-          </nav>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-mono text-sm font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
+              >
+                {startAProjectLabel}
+              </Link>
+            </motion.div>
+          </div>
 
-          <button
+          {/* Mobile menu toggle — morphing bars, same treatment across the
+              whole site rather than a separate icon set for mobile. */}
+          <motion.button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
-            className="focus-ring flex flex-col gap-1.5 lg:hidden"
+            whileTap={{ scale: 0.9 }}
+            className="flex flex-col gap-1.5 text-foreground lg:hidden"
           >
             <span
               className={clsx(
@@ -181,65 +180,81 @@ export function Navbar() {
                 menuOpen && "-translate-y-[3.5px] -rotate-45",
               )}
             />
-          </button>
+          </motion.button>
         </div>
-      </motion.header>
+      </motion.div>
 
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-background px-8 lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-background px-6 pt-28 lg:hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
-            {displayNavLinks.map((link, i) => (
+            <div className="flex flex-col gap-6">
+              {displayNavLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ delay: i * 0.1 + 0.1 }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="font-mono text-2xl font-bold uppercase text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
               <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.05 * i }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: displayNavLinks.length * 0.1 + 0.1 }}
+                className="flex items-center gap-6 pt-4"
+              >
+                <LanguageToggle />
+                <ThemeToggle />
+                {showMerchLink && (
+                  <button
+                    type="button"
+                    aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setCartOpen(true);
+                    }}
+                    className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center text-foreground"
+                  >
+                    <CartIcon className="h-4 w-4" />
+                    {count > 0 && (
+                      <span className="absolute -right-1.5 -top-1.5 flex h-3.5 w-3.5 items-center justify-center bg-accent-fill font-mono text-[9px] font-bold text-accent-fill-ink">
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                )}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: displayNavLinks.length * 0.1 + 0.2 }}
               >
                 <Link
-                  href={link.href}
+                  href="/#contact"
                   onClick={() => setMenuOpen(false)}
-                  className="focus-ring font-display text-5xl font-black uppercase tracking-tight"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-mono text-base font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
                 >
-                  {link.label}
+                  {startAProjectLabel}
                 </Link>
               </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 * displayNavLinks.length }}
-              className="flex items-center gap-6 pt-4"
-            >
-              <Button href="/#contact" variant="primary" onClick={() => setMenuOpen(false)}>
-                {startAProjectLabel}
-              </Button>
-              <LanguageToggle />
-              <ThemeToggle />
-              {showMerchLink && (
-                <button
-                  type="button"
-                  aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    setCartOpen(true);
-                  }}
-                  className="focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center"
-                >
-                  <CartIcon className="h-4 w-4" />
-                  {count > 0 && (
-                    <span className="absolute -right-1.5 -top-1.5 flex h-3.5 w-3.5 items-center justify-center bg-accent-fill font-mono text-[9px] font-bold text-accent-fill-ink">
-                      {count}
-                    </span>
-                  )}
-                </button>
-              )}
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

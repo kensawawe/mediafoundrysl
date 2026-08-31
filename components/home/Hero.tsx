@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Button } from "@/components/ui/Button";
-import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 import { HeroHeadline } from "@/components/home/HeroHeadline";
+import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
 import { hero as heroEn } from "@/lib/content/home";
 import { hero as heroKri } from "@/lib/content/home.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
   const hero = useTranslated(heroEn, heroKri);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -100,102 +100,94 @@ export function Hero() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-ink"
+    <Section
+      className="relative bg-background pt-28 pb-16 md:pt-36 md:pb-24"
     >
-      <div ref={mediaRef} className="absolute inset-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/hero-freetown-poster.jpg"
-          className="h-full w-full object-cover"
-        >
-          <source src="/hero-freetown.mp4" type="video/mp4" />
-        </video>
+      <Container>
+        {/* Framed media card — clears the floating pill nav via the
+            section's own top padding above, rather than sitting full-bleed
+            behind it like the previous edge-to-edge hero. */}
         <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            // Extra-dark band at the very top keeps the nav/logo legible
-            // regardless of what the looping video is showing there —
-            // sky, road and foliage all cycle through at very different
-            // brightness levels. Settles back to the original tone by the
-            // time it reaches the headline.
-            background:
-              "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.66) 8%, rgba(0,0,0,0.3) 16%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.96) 100%)",
-          }}
-        />
-      </div>
-
-      <div className="pointer-events-none relative z-10 w-full px-6 pb-36 pt-40 md:px-10 md:pb-40 lg:px-16">
-        <div className="max-w-5xl">
-          {/* lg: is a fixed px value, not vw, from here up — the parent is
-              capped at max-w-5xl (1024px), so it stops growing past that
-              width while vw sizing keeps tracking the *viewport*. Past
-              ~1350px that mismatch would let the text outgrow its fixed
-              container and wrap. Freezing at the exact size computed for
-              viewport=1024 (where container and viewport width still
-              coincide) keeps it correct for any wider desktop too. */}
-          <HeroHeadline className="font-display font-black uppercase leading-[0.86] tracking-tight text-paper text-[9.75vw] sm:text-[9.3vw] md:text-[7.5vw] lg:text-[69.12px]" />
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 max-w-md font-body text-base font-semibold text-white md:text-lg"
-          >
-            {hero.supporting}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-3 max-w-md font-body text-base font-semibold italic text-white/70 md:text-lg"
-          >
-            {hero.supportingKrio}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="pointer-events-auto mt-10 flex flex-wrap items-center gap-4"
-          >
-            <Button
-              href={hero.primaryCta.href}
-              variant="primary"
-              className="border-paper bg-paper text-ink hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+          ref={sectionRef}
+          className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
+        >
+          <div ref={mediaRef} className="absolute inset-0">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/hero-freetown-poster.jpg"
+              className="h-full w-full object-cover"
             >
-              {hero.primaryCta.label}
-            </Button>
-            <Button
-              href={hero.secondaryCta.href}
-              variant="outline"
-              className="border-paper/30 text-paper hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
-            >
-              {hero.secondaryCta.label}
-            </Button>
-          </motion.div>
+              <source src="/hero-freetown.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.15) 100%)",
+            }}
+          />
+
+          {/* Viewfinder corner marks */}
+          {[
+            "left-6 top-6 border-l border-t",
+            "right-6 top-6 border-r border-t",
+            "left-6 bottom-6 border-l border-b",
+            "right-6 bottom-6 border-r border-b",
+          ].map((pos) => (
+            <span key={pos} aria-hidden className={`pointer-events-none absolute h-4 w-4 border-paper/70 ${pos}`} />
+          ))}
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+            <HeroHeadline
+              wrap={false}
+              className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
+            />
+
+            {/* Decorative scan line, in flow so it can never collide with
+                the subhead regardless of how many lines the headline wraps
+                to. */}
+            <div aria-hidden className="mt-5 hidden w-64 items-center gap-3 sm:flex">
+              <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
+              <span className="h-2 w-2 shrink-0 rounded-full border border-paper/70" />
+              <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
+            </div>
+
+            <p className="mt-5 max-w-md font-body text-sm text-paper/80 md:text-base">
+              {hero.supporting}
+            </p>
+            <p className="mt-2 max-w-md font-body text-sm italic text-paper/60 md:text-base">
+              {hero.supportingKrio}
+            </p>
+
+            <div className="pointer-events-auto mt-8 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={hero.primaryCta.href}
+                className="rounded-full bg-paper px-6 py-3 font-body text-sm font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper"
+              >
+                {hero.primaryCta.label}
+              </a>
+              <a
+                href={hero.secondaryCta.href}
+                className="rounded-full border border-paper/50 bg-white/10 px-6 py-3 font-body text-sm font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20"
+              >
+                {hero.secondaryCta.label}
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Pinned to the section's true bottom edge, independent of the
-          headline column's own pb-20/24 — the marquee sits well below the
-          CTA row rather than sharing its bottom margin. */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.3 }}
-        className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 px-6 pb-6 md:px-10 md:pb-8 lg:px-16"
-      >
-        <HeroLogoMarquee />
-      </motion.div>
-    </section>
+        <div className="mt-10 md:mt-14">
+          <HeroLogoMarquee />
+        </div>
+      </Container>
+    </Section>
   );
 }

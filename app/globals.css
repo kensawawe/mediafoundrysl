@@ -64,6 +64,7 @@
   --color-steel: var(--steel);
   --color-ink: var(--ink);
   --color-paper: var(--paper);
+  --color-nav-bg: var(--nav-bg);
   --font-display: var(--font-big-shoulders);
   --font-body: var(--font-instrument-sans);
   --font-mono: var(--font-inter);

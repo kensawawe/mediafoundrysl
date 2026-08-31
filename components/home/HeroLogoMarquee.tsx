@@ -15,7 +15,7 @@ export function HeroLogoMarquee() {
 
   return (
     <div className="opacity-80">
-      <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-paper/60 sm:text-[10px] sm:tracking-[0.03em]">
+      <p className="text-right font-mono text-[8px] uppercase tracking-[0.06em] text-foreground/60 sm:text-[10px] sm:tracking-[0.03em]">
         {trustedByLabel}
       </p>
 
@@ -32,16 +32,16 @@ export function HeroLogoMarquee() {
               {/* Client marks are icon-only (no wordmark baked in), so the
                   name is set as real text alongside rather than alt text —
                   illegible as a tiny abstract icon alone at marquee scale.
-                  Drop-shadow keeps both legible with no card behind them,
-                  since the video's brightness varies underneath. */}
+                  Sits on the page's own flat background now (not over
+                  video), so no drop-shadow is needed for legibility. */}
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
               <img
                 src={client.logo}
                 alt=""
                 aria-hidden
-                className="h-7 w-7 object-contain drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] sm:h-8 sm:w-8"
+                className="h-7 w-7 object-contain sm:h-8 sm:w-8"
               />
-              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.03em] text-paper [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.03em] text-foreground">
                 {client.name}
               </span>
             </div>

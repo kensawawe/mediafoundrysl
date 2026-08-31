@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 import { motion } from "framer-motion";
 import { TextMorphSlot } from "@/components/ui/TextMorph";
 import { framerEase } from "@/lib/motion/easing";
@@ -18,7 +19,16 @@ const CYCLE_MS = 3600;
  * is its own tiny morph slot so the grammar stays correct without the verb
  * appearing to change.
  */
-export function HeroHeadline({ className }: { className?: string }) {
+export function HeroHeadline({
+  className,
+  wrap = true,
+}: {
+  className?: string;
+  /** Set false to force the whole phrase onto one line (caller is
+   *  responsible for sizing text to actually fit). Defaults to the
+   *  original wrapping behaviour used on the homepage. */
+  wrap?: boolean;
+}) {
   const { morph } = useTranslated(heroEn, heroKri);
   const [index, setIndex] = useState(0);
 
@@ -32,7 +42,7 @@ export function HeroHeadline({ className }: { className?: string }) {
 
   return (
     <h1 className={className}>
-      <span className="flex flex-wrap items-baseline gap-x-[0.28em]">
+      <span className={clsx("flex items-baseline gap-x-[0.28em]", wrap ? "flex-wrap" : "flex-nowrap")}>
         <TextMorphSlot variants={morph.subjects} activeIndex={index} baseDelay={0} />
         <motion.span
           layout="position"
