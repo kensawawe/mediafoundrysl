@@ -109,7 +109,7 @@ export function Hero() {
             behind it like the previous edge-to-edge hero. */}
         <div
           ref={sectionRef}
-          className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
+          className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
         >
           <div ref={mediaRef} className="absolute inset-0">
             <video
@@ -154,15 +154,6 @@ export function Hero() {
                 wrap={false}
                 className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
               />
-
-              {/* Decorative scan line, in flow so it can never collide with
-                  the subhead regardless of how many lines the headline wraps
-                  to. */}
-              <div aria-hidden className="mt-5 hidden w-64 items-center gap-3 sm:flex mx-auto">
-                <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
-                <span className="h-2 w-2 shrink-0 rounded-full border border-paper/70" />
-                <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
-              </div>
 
               <p className="mx-auto mt-5 max-w-md font-body text-sm font-bold text-paper md:text-base">
                 {hero.supporting}
