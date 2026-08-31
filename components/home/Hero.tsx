@@ -135,37 +135,42 @@ export function Hero() {
             }}
           />
 
-          {/* Viewfinder corner marks */}
-          {[
-            "left-6 top-6 border-l border-t",
-            "right-6 top-6 border-r border-t",
-            "left-6 bottom-6 border-l border-b",
-            "right-6 bottom-6 border-r border-b",
-          ].map((pos) => (
-            <span key={pos} aria-hidden className={`pointer-events-none absolute h-4 w-4 border-paper/70 ${pos}`} />
-          ))}
-
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-            <HeroHeadline
-              wrap={false}
-              className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
-            />
+            {/* Corner marks frame this text block specifically (not the
+                whole card) — symmetric padding on every side means each
+                corner sits at an identical offset, so the frame stays
+                consistent regardless of how much text is inside it. */}
+            <div className="relative px-10 py-8 sm:px-14 sm:py-10">
+              {[
+                "left-0 top-0 border-l border-t",
+                "right-0 top-0 border-r border-t",
+                "left-0 bottom-0 border-l border-b",
+                "right-0 bottom-0 border-r border-b",
+              ].map((pos) => (
+                <span key={pos} aria-hidden className={`pointer-events-none absolute h-4 w-4 border-paper/70 ${pos}`} />
+              ))}
 
-            {/* Decorative scan line, in flow so it can never collide with
-                the subhead regardless of how many lines the headline wraps
-                to. */}
-            <div aria-hidden className="mt-5 hidden w-64 items-center gap-3 sm:flex">
-              <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
-              <span className="h-2 w-2 shrink-0 rounded-full border border-paper/70" />
-              <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
+              <HeroHeadline
+                wrap={false}
+                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
+              />
+
+              {/* Decorative scan line, in flow so it can never collide with
+                  the subhead regardless of how many lines the headline wraps
+                  to. */}
+              <div aria-hidden className="mt-5 hidden w-64 items-center gap-3 sm:flex mx-auto">
+                <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
+                <span className="h-2 w-2 shrink-0 rounded-full border border-paper/70" />
+                <div className="h-px flex-1 bg-[repeating-linear-gradient(90deg,var(--paper)_0px,var(--paper)_4px,transparent_4px,transparent_9px)] opacity-50" />
+              </div>
+
+              <p className="mx-auto mt-5 max-w-md font-body text-sm text-paper md:text-base">
+                {hero.supporting}
+              </p>
+              <p className="mx-auto mt-2 max-w-md font-body text-sm italic text-paper md:text-base">
+                {hero.supportingKrio}
+              </p>
             </div>
-
-            <p className="mt-5 max-w-md font-body text-sm text-paper/80 md:text-base">
-              {hero.supporting}
-            </p>
-            <p className="mt-2 max-w-md font-body text-sm italic text-paper/60 md:text-base">
-              {hero.supportingKrio}
-            </p>
 
             <div className="pointer-events-auto mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
