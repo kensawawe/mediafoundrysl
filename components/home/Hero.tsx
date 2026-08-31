@@ -155,10 +155,10 @@ export function Hero() {
                 className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
               />
 
-              <p className="mx-auto mt-5 max-w-md font-body text-sm font-bold text-paper md:text-base">
+              <p className="mx-auto mt-5 max-w-lg font-body text-sm font-bold text-paper md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-2 max-w-md font-body text-sm font-bold italic text-paper md:text-base">
+              <p className="mx-auto mt-2 max-w-lg font-body text-sm font-bold italic text-paper md:text-base">
                 {hero.supportingKrio}
               </p>
             </div>
