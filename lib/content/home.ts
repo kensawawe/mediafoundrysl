@@ -20,7 +20,14 @@ export const clientFit = {
     "Forgettable brands don't grow",
     "Forgettable stories do not move people",
   ],
-  body: "That's the whole filter. If you're chasing a trend with nothing behind it, we're not your studio. If you've got something worth telling, we'll build the strategy, shape the identity, and shoot it until it moves people.",
+  body: [
+    "The problem is not your work or your product.",
+    "It is that no one built you a brand or told your story in a way worth paying attention to.",
+    "Your work may speak for itself, it may even change lives, but if people don't see it, they can't support it.",
+    "If they don't understand it, they can't believe in it.",
+    "And if they don't remember it, they can't carry it forward.",
+    "We make important work impossible to overlook.",
+  ],
   ctaLabel: "Not sure if that's you?",
   ctaHref: "/#contact",
 };

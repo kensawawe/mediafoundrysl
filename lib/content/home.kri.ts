@@ -19,7 +19,14 @@ export const clientFit = {
     "Brand dɛn we izi fɔ fɔgɛt nɔ de gro",
     "Tori dɛn we izi fɔ fɔgɛt nɔ de muv pipul",
   ],
-  body: "Na dat na di ɔl filta. If na wan trend yu de ronto we nɔto gɛt nɔtin bihaind am, wi nɔto di studio fɔ yu. If yu gɛt sɔntin we wɔt fɔ tɛl, wi go bil di stratiji, shep di aydɛntiti, ɛn shut am te i muv pipul.",
+  body: [
+    "Di prɔblɛm nɔto yu wok ɔ yu prɔdɔkt.",
+    "Na se nobɔdi bil yu wan brand ɔ tɛl yu tori na wan we we wɔt fɔ pipul gi atɛnshɔn.",
+    "Yu wok fɔ tɔk fɔ yusɛf, i ivin fɔ chenj layf, bɔt if pipul nɔ si am, dɛn nɔ go ebul fɔ sɔpɔt am.",
+    "If dɛn nɔ ɔndastand am, dɛn nɔ go ebul fɔ biliv na am.",
+    "Ɛn if dɛn nɔ mɛmba am, dɛn nɔ go ebul fɔ kɛri am go fɔwɔd.",
+    "Wi de mek impɔtant wok we nɔbɔdi go ebul fɔ pas am.",
+  ],
   ctaLabel: "Yu nɔ shɔ if na yu?",
   ctaHref: "/#contact",
 };

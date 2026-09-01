@@ -33,9 +33,11 @@ export function ClientFit() {
           </FadeIn>
 
           <FadeIn delay={0.15} className="md:border-l md:border-border-subtle md:pl-16">
-            <p className="max-w-md font-body text-base text-foreground/70 sm:text-lg">
-              {clientFit.body}
-            </p>
+            <div className="max-w-md space-y-4 font-body text-base text-foreground/70 sm:text-lg">
+              {clientFit.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
             <Button href={clientFit.ctaHref} className="mt-8">
               {clientFit.ctaLabel}
             </Button>
