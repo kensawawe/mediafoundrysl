@@ -86,39 +86,39 @@ const TOTAL_STEPS = 6
 const steps: readonly Step[] = [
   {
     id: "1",
-    name: "Step 1",
-    title: "Seamless Integration",
-    description: "Connect your tools and workflows effortlessly. Our platform integrates with hundreds of popular apps.",
+    name: "Discover",
+    title: "Discover",
+    description: "We start by listening. We immerse ourselves in the brief, the audience, the challenge, and the story behind the work. Research, conversations, and strategy shape the foundation before a single frame is created.",
   },
   {
     id: "2",
-    name: "Step 2",
-    title: "Powerful Analytics",
-    description: "Gain deep insights with our advanced analytics dashboard. Track your performance and make data-driven decisions.",
+    name: "Design",
+    title: "Design",
+    description: "Ideas become direction. We develop the creative concept, visual language, narrative approach, and strategy that bring the vision to life. Every story begins with a clear purpose and a strong creative foundation.",
   },
   {
     id: "3",
-    name: "Step 3",
-    title: "Collaborative Workspace",
-    description: "Work together in real-time. Share, comment, and edit with your team from anywhere in the world.",
+    name: "Develop",
+    title: "Develop",
+    description: "The vision becomes a plan. We turn concepts into production-ready blueprints through scripts, storyboards, schedules, budgets, and detailed planning. Every creative decision is mapped before execution begins.",
   },
   {
     id: "4",
-    name: "Step 4",
-    title: "Automated Workflows",
-    description: "Put your tasks on autopilot. Create custom automations to save time and reduce manual work.",
+    name: "Produce",
+    title: "Produce",
+    description: "This is where stories are built. Our team brings the vision into reality through filming, photography, sound, and production. From studio to location, we capture every moment with intention and craft.",
   },
   {
     id: "5",
-    name: "Step 5",
-    title: "Enterprise-Grade Security",
-    description: "Keep your data protected with end-to-end encryption, role-based access, and continuous monitoring.",
+    name: "Deliver",
+    title: "Deliver",
+    description: "We refine, package, and prepare the final story for the world. Through editing, colour grading, sound design, and content formatting, we deliver polished assets built for their intended platform.",
   },
   {
     id: "6",
-    name: "Step 6",
-    title: "Dedicated Support",
-    description: "Get help whenever you need it from a team that knows your setup, with real people on the other end.",
+    name: "Amplify",
+    title: "Amplify",
+    description: "Great stories deserve to travel. We help content reach the right audiences through distribution strategy, social media packaging, campaigns, and ongoing optimisation to maximise impact.",
   },
 ]
 
@@ -246,7 +246,7 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
       onMouseMove={handleMouseMove}
       style={{ "--x": useMotionTemplate`${mouseX}px`, "--y": useMotionTemplate`${mouseY}px` } as WrapperStyle}
     >
-      <div className="relative w-full overflow-hidden rounded-3xl border border-neutral-200 bg-white transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900">
+      <div className="relative w-full overflow-hidden rounded-3xl border border-sky-500 bg-sky-600 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900">
         <div className="m-10 min-h-[450px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -258,15 +258,15 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
-                className="text-sm font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-500"
+                className="text-sm font-semibold uppercase tracking-wider text-sky-100 dark:text-sky-500"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.05, duration: 0.3, ease: [0.22, 1, 0.36, 1]}}
               >
-                  {steps[step].name}
+                  {`Stage ${String(step + 1).padStart(2, "0")}`}
               </motion.div>
               <motion.h2
-                className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 md:text-3xl"
+                className="text-2xl font-bold tracking-tight text-white dark:text-neutral-100 md:text-3xl"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.3, ease: [0.22, 1, 0.36, 1]}}
@@ -278,7 +278,7 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15, duration: 0.3, ease: [0.22, 1, 0.36, 1]}}
               >
-                <p className="text-base leading-relaxed text-neutral-700 dark:text-neutral-400">
+                <p className="text-base leading-relaxed text-sky-50 dark:text-neutral-400">
                   {steps[step].description}
                 </p>
               </motion.div>
