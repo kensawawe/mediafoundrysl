@@ -31,7 +31,10 @@ export function ClientFit() {
             <SunburstMark className="mt-12 h-9 w-9 text-steel" />
           </FadeIn>
 
-          <FadeIn delay={0.15} className="md:border-l md:border-border-subtle md:pl-16">
+          <FadeIn
+            delay={0.15}
+            className="flex flex-col items-center text-center md:border-l md:border-border-subtle md:pl-16"
+          >
             <div
               className="max-w-sm space-y-1.5 font-semibold text-base leading-snug tracking-tight text-foreground/70 sm:text-lg"
               style={{ fontFamily: "var(--font-inter)" }}
@@ -40,7 +43,7 @@ export function ClientFit() {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <Button href={clientFit.ctaHref} className="mt-8">
+            <Button href={clientFit.ctaHref} className="mt-8 !rounded-full">
               {clientFit.ctaLabel}
             </Button>
           </FadeIn>

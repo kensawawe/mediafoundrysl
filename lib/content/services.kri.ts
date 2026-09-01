@@ -1,9 +1,9 @@
 import type { Service } from "./services";
 
 export const servicesSectionEyebrow = "Wetin wi de du";
-export const servicesSectionHeading = "Siks Dipatmɛnt Dɛn. Wan Flɔ.";
+export const servicesSectionHeading = "Ɛvritin we yu brand nid, wan tim, no andɔf.";
 export const servicesSectionSubheading =
-  "No awtsɔsin, no andɔf — stratiji, dizayn, ɛn prɔdɔkshɔn, ɔl ɔnda wan ruf.";
+  "Wi de du wetin bɔku ejɛnsi dɛn de split akrɔs faiv vɛnda dɛn — ɔl ɔnda wan ruf so nɔtin nɔ lɔs na di prosɛs.";
 
 // Example service labels (Podcasts, Documentary Production, etc.) are kept
 // in English across both languages — these read as standard business-service
