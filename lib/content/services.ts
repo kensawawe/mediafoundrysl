@@ -1,4 +1,7 @@
+export const servicesSectionEyebrow = "What we do";
 export const servicesSectionHeading = "Six departments. One floor.";
+export const servicesSectionSubheading =
+  "No outsourcing, no handoffs — strategy, design, and production, all under one roof.";
 
 export type Service = {
   /** Department code, foundry-floor shorthand rather than a sequence number —

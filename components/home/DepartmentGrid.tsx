@@ -1,14 +1,11 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { useTheme } from "next-themes";
+import { useState, useSyncExternalStore } from "react";
 import clsx from "clsx";
 import { Slate } from "@/components/ui/Slate";
 import { services as servicesEn } from "@/lib/content/services";
 import { services as servicesKri } from "@/lib/content/services.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
-
-const COLS = 3;
 
 /** Active track gets 3fr, every other track on that axis gets 1fr; no
  *  active track means every track is equal. */
@@ -31,24 +28,38 @@ function useHoverCapable() {
   );
 }
 
+function subscribeWideLayout(callback: () => void) {
+  const mql = window.matchMedia("(min-width: 640px)");
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
+
+/** Below `sm`, three columns leave no room for a readable title next to the
+ *  badge, so the grid drops to a single-column accordion — the same
+ *  row/column growth mechanic degenerates cleanly since there's only one
+ *  column to grow. */
+function useColumns() {
+  const isWide = useSyncExternalStore(
+    subscribeWideLayout,
+    () => window.matchMedia("(min-width: 640px)").matches,
+    () => true,
+  );
+  return isWide ? 3 : 1;
+}
+
 export function DepartmentGrid() {
   const services = useTranslated(servicesEn, servicesKri);
+  const COLS = useColumns();
   const ROWS = Math.ceil(services.length / COLS);
   const [active, setActive] = useState<number | null>(null);
   const hoverCapable = useHoverCapable();
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  const isLight = !mounted || resolvedTheme !== "dark";
 
   const activeRow = active === null ? null : Math.floor(active / COLS);
   const activeCol = active === null ? null : active % COLS;
 
   return (
     <div
-      className="grid aspect-[3/2] gap-3 sm:aspect-auto sm:h-[520px] md:h-[600px] md:gap-4"
+      className="grid h-[860px] gap-3 sm:h-[560px] md:h-[640px] md:gap-5"
       style={{
         gridTemplateRows: trackSizes(activeRow, ROWS),
         gridTemplateColumns: trackSizes(activeCol, COLS),
@@ -63,48 +74,67 @@ export function DepartmentGrid() {
           <button
             key={service.code}
             type="button"
-            aria-label={`${service.title} — view reel`}
+            aria-label={`${service.title} — view details`}
             className={clsx(
-              "focus-ring relative block h-full w-full overflow-hidden transition-colors duration-300",
-              isLight ? "border-2" : "border",
-              isActive ? "border-accent-fill" : isLight ? "border-border-strong" : "border-border-subtle",
+              "focus-ring relative flex h-full w-full flex-col overflow-hidden rounded-2xl border bg-background text-left transition-colors duration-300",
+              isActive ? "border-accent-fill" : "border-border-subtle",
             )}
             onMouseEnter={hoverCapable ? () => setActive(i) : undefined}
             onMouseLeave={hoverCapable ? () => setActive(null) : undefined}
             onClick={!hoverCapable ? () => setActive(isActive ? null : i) : undefined}
           >
-            {service.image ? (
-              <div className="relative isolate h-full w-full overflow-hidden bg-ink">
-                {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+            <div className="relative min-h-0 flex-1 overflow-hidden bg-ink">
+              {service.image ? (
+                // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
                 <img
                   src={service.image}
                   alt={service.title}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-              </div>
-            ) : (
-              <Slate label="Studio reel" variant="video" aspect="h-full" grainOpacity={0.05} />
-            )}
-
-            <div
-              aria-hidden
-              className={clsx(
-                "pointer-events-none absolute inset-0 z-20 flex flex-col justify-end gap-3 bg-ink/85 px-4 pb-16 pt-5 transition-opacity duration-300 sm:gap-4 sm:px-6 sm:pb-10",
-                isActive ? "opacity-100" : "opacity-0",
+              ) : (
+                <Slate label="Studio reel" variant="video" aspect="h-full" grainOpacity={0.05} />
               )}
-            >
-              <p className="font-serif text-sm text-paper sm:text-lg">{service.description}</p>
-              <ul className="space-y-1.5">
-                {service.examples.map((example) => (
-                  <li
-                    key={example}
-                    className="flex items-baseline gap-2.5 font-serif text-xs text-paper/85 sm:text-base"
-                  >
-                    <span aria-hidden className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill" />
-                    {example}
-                  </li>
-                ))}
-              </ul>
+            </div>
+
+            <div className="flex-none border-t border-border-subtle">
+              <div className="flex items-center gap-3 px-4 py-3 sm:px-5 sm:py-4">
+                <span
+                  aria-hidden
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground font-mono text-[0.65rem] font-bold uppercase text-background"
+                >
+                  {service.code}
+                </span>
+                <span className="truncate font-body text-base font-bold text-foreground sm:text-lg">
+                  {service.title}
+                </span>
+              </div>
+
+              <div
+                className="grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)]"
+                style={{ gridTemplateRows: isActive ? "1fr" : "0fr" }}
+              >
+                <div className="overflow-hidden">
+                  <div className="space-y-2 px-4 pb-4 sm:px-5 sm:pb-5">
+                    <p className="font-body text-sm text-foreground/70 sm:text-base">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-1">
+                      {service.examples.map((example) => (
+                        <li
+                          key={example}
+                          className="flex items-baseline gap-2 font-body text-xs text-foreground/55 sm:text-sm"
+                        >
+                          <span
+                            aria-hidden
+                            className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill"
+                          />
+                          {example}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </button>
         );
