@@ -193,14 +193,6 @@ function useIsMobile() {
 }
 
 // --- Components ---
-function IconCheck({ className, ...props }: React.ComponentProps<"svg">) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" className={cn("h-4 w-4", className)} {...props} >
-      <path d="m229.66 77.66-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z" />
-    </svg>
-  )
-}
-
 const stepVariants: Variants = {
   inactive: { scale: 0.9, opacity: 0.7 },
   active: { scale: 1, opacity: 1 },
@@ -296,7 +288,6 @@ function StepsNav({ steps: stepItems, current, onChange }: { steps: readonly Ste
         <nav aria-label="Progress" className="flex justify-center px-4">
             <ol className="flex w-full flex-wrap items-center justify-center gap-2" role="list">
                 {stepItems.map((step, stepIdx) => {
-                    const isCompleted = current > stepIdx;
                     const isCurrent = current === stepIdx;
                     return (
                         <motion.li key={step.name} initial="inactive" animate={isCurrent ? "active" : "inactive"} variants={stepVariants} transition={{ duration: 0.3 }} className="relative" >
@@ -310,21 +301,7 @@ function StepsNav({ steps: stepItems, current, onChange }: { steps: readonly Ste
                                 )}
                                 onClick={() => onChange(stepIdx)}
                             >
-                                <span className={cn(
-                                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-all duration-300",
-                                    isCompleted
-                                        ? "bg-sky-600 text-white dark:bg-sky-500"
-                                        : isCurrent
-                                            ? "bg-sky-400 text-sky-900 dark:bg-sky-400 dark:text-sky-900"
-                                            : "bg-neutral-200 text-neutral-700 group-hover:bg-neutral-300 dark:bg-neutral-700 dark:text-neutral-200 dark:group-hover:bg-neutral-600"
-                                )}>
-                                    {isCompleted ? (
-                                        <IconCheck className="h-3.5 w-3.5" />
-                                    ) : (
-                                        <span>{stepIdx + 1}</span>
-                                    )}
-                                </span>
-                                <span className="hidden sm:inline-block">{step.name}</span>
+                                <span>{step.name}</span>
                             </button>
                         </motion.li>
                     );
