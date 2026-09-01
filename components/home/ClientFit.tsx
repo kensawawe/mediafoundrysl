@@ -16,12 +16,12 @@ export function ClientFit() {
       <Container>
         <div className="h-px w-full bg-navy-rule" />
 
-        <div className="grid gap-10 pt-16 md:grid-cols-2 md:gap-16 md:pt-20">
+        <div className="grid gap-10 pt-16 md:grid-cols-2 md:items-center md:gap-16 md:pt-20">
           <FadeIn>
-            <span className="font-mono text-xs uppercase tracking-[0.03em] text-accent-text">
+            <span className="font-mono text-2xl uppercase tracking-[0.03em] text-accent-text">
               {clientFit.eyebrow}
             </span>
-            <h2 className="mt-4 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-4xl">
+            <h2 className="mt-6 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-4xl">
               {clientFit.headline.map((line) => (
                 <span key={line} className="block">
                   {line}

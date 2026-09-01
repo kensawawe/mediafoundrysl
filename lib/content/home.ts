@@ -14,7 +14,7 @@ export const hero = {
 };
 
 export const clientFit = {
-  eyebrow: "How we work",
+  eyebrow: "The cost of being forgettable",
   headline: [
     "Forgettable institutions do not create change",
     "Forgettable brands don't grow",
@@ -28,7 +28,7 @@ export const clientFit = {
     "And if they don't remember it, they can't carry it forward.",
     "We make important work impossible to overlook.",
   ],
-  ctaLabel: "Not sure if that's you?",
+  ctaLabel: "Get in touch",
   ctaHref: "/#contact",
 };
 

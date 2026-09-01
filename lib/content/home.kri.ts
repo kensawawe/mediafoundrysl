@@ -13,7 +13,7 @@ export const hero = {
 };
 
 export const clientFit = {
-  eyebrow: "Aw wi de wok",
+  eyebrow: "Di kɔst fɔ bi izi fɔ fɔgɛt",
   headline: [
     "Instityushɔn dɛn we izi fɔ fɔgɛt nɔ de mek chenj",
     "Brand dɛn we izi fɔ fɔgɛt nɔ de gro",
@@ -27,7 +27,7 @@ export const clientFit = {
     "Ɛn if dɛn nɔ mɛmba am, dɛn nɔ go ebul fɔ kɛri am go fɔwɔd.",
     "Wi de mek impɔtant wok we nɔbɔdi go ebul fɔ pas am.",
   ],
-  ctaLabel: "Yu nɔ shɔ if na yu?",
+  ctaLabel: "Kɔntakt wi",
   ctaHref: "/#contact",
 };
 
