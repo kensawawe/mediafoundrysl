@@ -13,7 +13,7 @@ export function ClientFit() {
   const clientFit = useTranslated(clientFitEn, clientFitKri);
 
   return (
-    <Section className="pb-0 md:pb-0">
+    <Section className="pt-8 pb-0 md:pt-12 md:pb-0">
       <Container>
         <IgniteRule />
 
