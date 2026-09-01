@@ -30,12 +30,3 @@ export const clientFit = {
   ctaLabel: "Kɔntakt wi",
   ctaHref: "/#contact",
 };
-
-export const brandStatement = {
-  designOnlyLine:
-    "Bɔku ejɛnsi dɛn de dizayn di kampen ɔ di brand ɛn dɛn go ayɛa ɔda pipul fɔ film am, we de limit dɛn vizhɔn ɛn kɔntrol.",
-  productionOnlyLine:
-    "Bɔku prɔdɔkshɔn kɔmpani dɛn jɔs de pɔynt di kamra wίtaut ɔndastand di sol fɔ di projɛkt.",
-  bothLine:
-    "Wi de du bot. Frɔm stratiji, dizayn, te rich prɔdɔkshɔn, ɔl na di sem studio, na di sem tim, frɔm di fɔs de.",
-};

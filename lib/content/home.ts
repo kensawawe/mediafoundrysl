@@ -31,12 +31,3 @@ export const clientFit = {
   ctaLabel: "Get in touch",
   ctaHref: "/#contact",
 };
-
-export const brandStatement = {
-  designOnlyLine:
-    "Most agencies design the campaign or the brand and hire someone else to film it, limiting their vision and control.",
-  productionOnlyLine:
-    "Most production companies just point the camera without understanding the soul of the project.",
-  bothLine:
-    "We do both. From strategy, design, to production, all built in the same studio, by the same team, from day one.",
-};
