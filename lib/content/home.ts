@@ -15,7 +15,11 @@ export const hero = {
 
 export const clientFit = {
   eyebrow: "How we work",
-  headline: "We don't work with brands that don't believe in their own story.",
+  headline: [
+    "Forgettable institutions do not create change",
+    "Forgettable brands don't grow",
+    "Forgettable stories do not move people",
+  ],
   body: "That's the whole filter. If you're chasing a trend with nothing behind it, we're not your studio. If you've got something worth telling, we'll build the strategy, shape the identity, and shoot it until it moves people.",
   ctaLabel: "Not sure if that's you?",
   ctaHref: "/#contact",

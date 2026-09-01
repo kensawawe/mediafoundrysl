@@ -14,7 +14,11 @@ export const hero = {
 
 export const clientFit = {
   eyebrow: "Aw wi de wok",
-  headline: "Wi nɔ de wok wit brand dɛn we nɔ biliv na dɛn on tori.",
+  headline: [
+    "Instityushɔn dɛn we izi fɔ fɔgɛt nɔ de mek chenj",
+    "Brand dɛn we izi fɔ fɔgɛt nɔ de gro",
+    "Tori dɛn we izi fɔ fɔgɛt nɔ de muv pipul",
+  ],
   body: "Na dat na di ɔl filta. If na wan trend yu de ronto we nɔto gɛt nɔtin bihaind am, wi nɔto di studio fɔ yu. If yu gɛt sɔntin we wɔt fɔ tɛl, wi go bil di stratiji, shep di aydɛntiti, ɛn shut am te i muv pipul.",
   ctaLabel: "Yu nɔ shɔ if na yu?",
   ctaHref: "/#contact",

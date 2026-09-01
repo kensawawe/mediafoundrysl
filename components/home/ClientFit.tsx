@@ -22,8 +22,12 @@ export function ClientFit() {
             <span className="font-mono text-xs uppercase tracking-[0.03em] text-accent-text">
               {clientFit.eyebrow}
             </span>
-            <h2 className="mt-4 font-display text-4xl font-black uppercase leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
-              {clientFit.headline}
+            <h2 className="mt-4 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-4xl">
+              {clientFit.headline.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h2>
             <SunburstMark className="mt-12 h-9 w-9 text-steel" />
           </FadeIn>
