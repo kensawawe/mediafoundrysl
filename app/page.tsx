@@ -4,6 +4,7 @@ import { WorkWall } from "@/components/home/WorkWall";
 import { Testimonials } from "@/components/home/Testimonials";
 import { Services } from "@/components/home/Services";
 import { Process } from "@/components/home/Process";
+import { FeatureCarouselSection } from "@/components/home/FeatureCarouselSection";
 import { Contact } from "@/components/home/Contact";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <WorkWall />
       <Testimonials />
       <Process />
+      <FeatureCarouselSection />
       <Contact />
     </>
   );

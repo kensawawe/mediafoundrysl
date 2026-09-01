@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Dark mode is toggled via a `.dark` class (next-themes), not OS
+   preference — this makes Tailwind's own `dark:` utilities follow that
+   class instead of defaulting to prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
   The Media Foundry — design tokens.
 
