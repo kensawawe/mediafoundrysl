@@ -12,6 +12,14 @@ export const hero = {
   secondaryCta: { label: "Luk Di Wok", href: "/work" },
 };
 
+export const clientFit = {
+  eyebrow: "Aw wi de wok",
+  headline: "Wi nɔ de wok wit brand dɛn we nɔ biliv na dɛn on tori.",
+  body: "Na dat na di ɔl filta. If na wan trend yu de ronto we nɔto gɛt nɔtin bihaind am, wi nɔto di studio fɔ yu. If yu gɛt sɔntin we wɔt fɔ tɛl, wi go bil di stratiji, shep di aydɛntiti, ɛn shut am te i muv pipul.",
+  ctaLabel: "Yu nɔ shɔ if na yu?",
+  ctaHref: "/#contact",
+};
+
 export const brandStatement = {
   designOnlyLine:
     "Bɔku ejɛnsi dɛn de dizayn di kampen ɔ di brand ɛn dɛn go ayɛa ɔda pipul fɔ film am, we de limit dɛn vizhɔn ɛn kɔntrol.",

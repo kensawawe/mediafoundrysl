@@ -1,0 +1,72 @@
+"use client";
+
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { FadeIn } from "@/components/ui/RevealText";
+import { IgniteRule } from "@/components/ui/IgniteRule";
+import { Button } from "@/components/ui/Button";
+import { clientFit as clientFitEn } from "@/lib/content/home";
+import { clientFit as clientFitKri } from "@/lib/content/home.kri";
+import { useTranslated } from "@/lib/content/useTranslated";
+
+export function ClientFit() {
+  const clientFit = useTranslated(clientFitEn, clientFitKri);
+
+  return (
+    <Section className="pb-0 md:pb-0">
+      <Container>
+        <IgniteRule />
+
+        <div className="grid gap-10 pt-16 md:grid-cols-2 md:gap-16 md:pt-20">
+          <FadeIn>
+            <span className="font-mono text-xs uppercase tracking-[0.03em] text-accent-text">
+              {clientFit.eyebrow}
+            </span>
+            <h2 className="mt-4 font-display text-4xl font-black uppercase leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
+              {clientFit.headline}
+            </h2>
+            <SunburstMark className="mt-12 h-9 w-9 text-steel" />
+          </FadeIn>
+
+          <FadeIn delay={0.15} className="md:border-l md:border-border-subtle md:pl-16">
+            <p className="max-w-md font-body text-base text-foreground/70 sm:text-lg">
+              {clientFit.body}
+            </p>
+            <Button href={clientFit.ctaHref} className="mt-8">
+              {clientFit.ctaLabel}
+            </Button>
+          </FadeIn>
+        </div>
+
+        <IgniteRule className="mt-16 md:mt-20" />
+      </Container>
+    </Section>
+  );
+}
+
+function SunburstMark({ className }: { className?: string }) {
+  const spokes = Array.from({ length: 8 });
+
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden className={className}>
+      {spokes.map((_, i) => {
+        const angle = (i * Math.PI) / 4;
+        const x1 = 20 + Math.cos(angle) * 5;
+        const y1 = 20 + Math.sin(angle) * 5;
+        const x2 = 20 + Math.cos(angle) * 19;
+        const y2 = 20 + Math.sin(angle) * 19;
+        return (
+          <line
+            key={angle}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+        );
+      })}
+    </svg>
+  );
+}

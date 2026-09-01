@@ -13,6 +13,14 @@ export const hero = {
   secondaryCta: { label: "See the work", href: "/work" },
 };
 
+export const clientFit = {
+  eyebrow: "How we work",
+  headline: "We don't work with brands that don't believe in their own story.",
+  body: "That's the whole filter. If you're chasing a trend with nothing behind it, we're not your studio. If you've got something worth telling, we'll build the strategy, shape the identity, and shoot it until it moves people.",
+  ctaLabel: "Not sure if that's you?",
+  ctaHref: "/#contact",
+};
+
 export const brandStatement = {
   designOnlyLine:
     "Most agencies design the campaign or the brand and hire someone else to film it, limiting their vision and control.",
