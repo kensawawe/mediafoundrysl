@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { FadeIn } from "@/components/ui/RevealText";
-import { IgniteRule } from "@/components/ui/IgniteRule";
 import { Button } from "@/components/ui/Button";
 import { clientFit as clientFitEn } from "@/lib/content/home";
 import { clientFit as clientFitKri } from "@/lib/content/home.kri";
@@ -15,7 +14,7 @@ export function ClientFit() {
   return (
     <Section className="pt-8 pb-0 md:pt-12 md:pb-0">
       <Container>
-        <IgniteRule />
+        <div className="h-px w-full bg-navy-rule" />
 
         <div className="grid gap-10 pt-16 md:grid-cols-2 md:gap-16 md:pt-20">
           <FadeIn>
@@ -33,7 +32,10 @@ export function ClientFit() {
           </FadeIn>
 
           <FadeIn delay={0.15} className="md:border-l md:border-border-subtle md:pl-16">
-            <div className="max-w-md space-y-4 font-body text-base text-foreground/70 sm:text-lg">
+            <div
+              className="max-w-md space-y-2 font-semibold text-base text-foreground/70 sm:text-lg"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
               {clientFit.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -44,7 +46,7 @@ export function ClientFit() {
           </FadeIn>
         </div>
 
-        <IgniteRule className="mt-16 md:mt-20" />
+        <div className="mt-16 h-px w-full bg-navy-rule md:mt-20" />
       </Container>
     </Section>
   );
