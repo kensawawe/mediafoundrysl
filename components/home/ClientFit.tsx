@@ -16,14 +16,14 @@ export function ClientFit() {
       <Container>
         <div className="h-px w-full bg-navy-rule" />
 
-        <div className="grid gap-10 pt-16 md:grid-cols-2 md:items-center md:gap-16 md:pt-20">
-          <FadeIn>
+        <div className="mx-auto grid max-w-6xl gap-10 pt-16 md:grid-cols-[3fr_2fr] md:items-center md:gap-16 md:pt-20 lg:px-8">
+          <FadeIn className="min-w-0">
             <span className="font-mono text-xl uppercase tracking-tight text-accent-text">
               {clientFit.eyebrow}
             </span>
-            <h2 className="mt-6 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-4xl">
+            <h2 className="mt-6 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl">
               {clientFit.headline.map((line) => (
-                <span key={line} className="block">
+                <span key={line} className="block xl:whitespace-nowrap">
                   {line}
                 </span>
               ))}
@@ -33,7 +33,7 @@ export function ClientFit() {
 
           <FadeIn
             delay={0.15}
-            className="flex flex-col items-center text-center md:border-l md:border-border-subtle md:pl-16"
+            className="flex min-w-0 flex-col items-center text-center md:border-l md:border-border-subtle md:pl-16"
           >
             <div
               className="max-w-sm space-y-1.5 font-semibold text-base leading-snug tracking-tight text-foreground/70 sm:text-lg"
