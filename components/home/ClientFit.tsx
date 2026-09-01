@@ -33,7 +33,7 @@ export function ClientFit() {
 
           <FadeIn delay={0.15} className="md:border-l md:border-border-subtle md:pl-16">
             <div
-              className="max-w-md space-y-2 font-semibold text-base text-foreground/70 sm:text-lg"
+              className="max-w-sm space-y-1.5 font-semibold text-base leading-snug tracking-tight text-foreground/70 sm:text-lg"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {clientFit.body.map((paragraph) => (
