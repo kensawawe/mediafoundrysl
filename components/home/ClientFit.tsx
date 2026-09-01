@@ -18,7 +18,7 @@ export function ClientFit() {
 
         <div className="grid gap-10 pt-16 md:grid-cols-2 md:items-center md:gap-16 md:pt-20">
           <FadeIn>
-            <span className="font-mono text-2xl uppercase tracking-[0.03em] text-accent-text">
+            <span className="font-mono text-xl uppercase tracking-tight text-accent-text">
               {clientFit.eyebrow}
             </span>
             <h2 className="mt-6 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-3xl md:text-4xl">
