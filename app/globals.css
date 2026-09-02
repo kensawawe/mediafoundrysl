@@ -249,6 +249,28 @@ body::after {
   animation-iteration-count: infinite;
 }
 
+/* Configurable marquee — unlike .animate-marquee above (fixed duration,
+   assumes a manually-doubled track), this reads --duration/--gap custom
+   properties and shifts by exactly one repeated group's width, so any
+   number of side-by-side copies (via the Marquee component's `repeat`)
+   loops seamlessly. */
+@keyframes feature-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+.animate-feature-marquee {
+  animation: feature-marquee-scroll var(--duration, 40s) linear infinite;
+}
+
+.animate-feature-marquee-reverse {
+  animation-direction: reverse;
+}
+
 @keyframes gradient-drift {
   0%,
   100% {

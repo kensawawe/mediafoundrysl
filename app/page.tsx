@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { ClientFit } from "@/components/home/ClientFit";
 import { WorkWall } from "@/components/home/WorkWall";
+import { Roadblocks } from "@/components/home/Roadblocks";
 import { Testimonials } from "@/components/home/Testimonials";
 import { Services } from "@/components/home/Services";
 import { FeatureCarouselSection } from "@/components/home/FeatureCarouselSection";
@@ -13,6 +14,7 @@ export default function Home() {
       <ClientFit />
       <Services />
       <WorkWall />
+      <Roadblocks />
       <Testimonials />
       <FeatureCarouselSection />
       <Contact />
