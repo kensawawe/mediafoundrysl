@@ -218,7 +218,7 @@ export function Roadblocks() {
               className="flex flex-col gap-5 px-5 py-8 last:border-b-0 lg:border-b-0 lg:px-6 lg:py-10"
             >
               <Icon className="size-12 text-foreground/60" />
-              <div className="flex flex-col gap-2 pt-10 lg:pt-20">
+              <div className="flex flex-col gap-2 pt-4">
                 <h3 className="font-display text-2xl font-bold uppercase tracking-tight sm:text-3xl">
                   {title}
                 </h3>
