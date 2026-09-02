@@ -29,8 +29,11 @@ export const ourPhilosophy = {
 
 export const ourApproach = {
   title: "Our Approach",
-  body:
-    "Every project begins with understanding: the people you need to reach, the reality of your market and the constraints worth designing around. Then we turn that insight into ideas made to travel — through production, post-production and delivery — without losing what made them strong in the first place.",
+  body: [
+    "We don't believe in one-size-fits-all formulas. We believe in understanding the problem, finding the right idea, and making it as good as it can be.",
+    "We collaborate early, communicate often, and stay involved beyond delivery.",
+    "Because the handoff shouldn't be the end of the relationship or the impact.",
+  ],
 };
 
 export const ourVision = {

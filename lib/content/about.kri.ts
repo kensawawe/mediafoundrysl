@@ -29,8 +29,11 @@ export const ourPhilosophy = {
 
 export const ourApproach = {
   title: "Wi Aprowch",
-  body:
-    "Ɛvri projɛkt de stat wit ɔndastandin: di pipul dɛn we yu nid fɔ rich, di rialiti ɔv yu makit, ɛn di konstrent dɛn we wɔt fɔ dizayn ɔraun. Dɛn wi de ton dat ɔndastandin to aydiya dɛn we mek fɔ travul — tru prɔdɔkshɔn, post-prɔdɔkshɔn, ɛn delivri — wítaut lɔs wetin mek dɛn tranga na di fɔs ples.",
+  body: [
+    "Wi nɔ biliv na wan-fɔɔmyula-fɔ-ɔl-tin. Wi biliv na fɔ ɔndastand di prɔblɛm, fɛn di rayt aydiya, ɛn mek am az gud az i kin bi.",
+    "Wi de kɔlabɔret ɔli, wi de tɔk ɔftin, ɛn wi de tay insay bɔku pas we di wok dɔn dɛliva.",
+    "Bikɔs di andova nɔ sɔpɔs to bi di ɛn ɔv di rileshɔnship ɔ di impakt.",
+  ],
 };
 
 export const ourVision = {
