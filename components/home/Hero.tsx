@@ -152,13 +152,13 @@ export function Hero() {
 
               <HeroHeadline
                 wrap={false}
-                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[5.4vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
+                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[6.5vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
               />
 
-              <p className="mx-auto mt-4 max-w-lg font-body text-xs font-bold text-paper sm:mt-5 sm:text-sm md:text-base">
+              <p className="mx-auto mt-4 max-w-lg font-body text-[11px] font-bold text-paper sm:mt-5 sm:text-sm md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-1.5 max-w-lg font-body text-xs font-bold italic text-paper sm:mt-2 sm:text-sm md:text-base">
+              <p className="mx-auto mt-1.5 max-w-lg font-body text-[11px] font-bold italic text-paper sm:mt-2 sm:text-sm md:text-base">
                 {hero.supportingKrio}
               </p>
             </div>
