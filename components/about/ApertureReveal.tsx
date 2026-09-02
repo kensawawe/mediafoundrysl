@@ -147,8 +147,8 @@ export function ApertureReveal() {
             aria-hidden
             className="pointer-events-none absolute inset-0 flex select-none items-center justify-center"
           >
-            <span className="font-display text-[22vw] font-black uppercase tracking-tighter text-foreground/[0.04]">
-              Foundry
+            <span className="whitespace-nowrap font-display text-[8vw] font-black uppercase tracking-tighter text-foreground/[0.04]">
+              Welcome to the Foundry
             </span>
           </div>
 
