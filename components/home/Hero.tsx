@@ -140,7 +140,7 @@ export function Hero() {
                 whole card) — symmetric padding on every side means each
                 corner sits at an identical offset, so the frame stays
                 consistent regardless of how much text is inside it. */}
-            <div className="relative px-10 py-8 sm:px-14 sm:py-10">
+            <div className="relative px-4 py-6 sm:px-14 sm:py-10">
               {[
                 "left-0 top-0 border-l border-t",
                 "right-0 top-0 border-r border-t",
@@ -152,27 +152,27 @@ export function Hero() {
 
               <HeroHeadline
                 wrap={false}
-                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[7vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
+                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[5.4vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
               />
 
-              <p className="mx-auto mt-5 max-w-lg font-body text-sm font-bold text-paper md:text-base">
+              <p className="mx-auto mt-4 max-w-lg font-body text-xs font-bold text-paper sm:mt-5 sm:text-sm md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-2 max-w-lg font-body text-sm font-bold italic text-paper md:text-base">
+              <p className="mx-auto mt-1.5 max-w-lg font-body text-xs font-bold italic text-paper sm:mt-2 sm:text-sm md:text-base">
                 {hero.supportingKrio}
               </p>
             </div>
 
-            <div className="pointer-events-auto mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="pointer-events-auto mt-6 flex flex-nowrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
               <a
                 href={hero.primaryCta.href}
-                className="rounded-full bg-paper px-6 py-3 font-body text-sm font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper"
+                className="whitespace-nowrap rounded-full bg-paper px-4 py-2 font-body text-xs font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper sm:px-6 sm:py-3 sm:text-sm"
               >
                 {hero.primaryCta.label}
               </a>
               <a
                 href={hero.secondaryCta.href}
-                className="rounded-full border border-paper/50 bg-white/10 px-6 py-3 font-body text-sm font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20"
+                className="whitespace-nowrap rounded-full border border-paper/50 bg-white/10 px-4 py-2 font-body text-xs font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm"
               >
                 {hero.secondaryCta.label}
               </a>

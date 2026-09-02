@@ -43,18 +43,29 @@ export function HeroHeadline({
   return (
     <h1 className={className}>
       <span className={clsx("flex items-baseline gap-x-[0.28em]", wrap ? "flex-wrap" : "flex-nowrap")}>
-        <TextMorphSlot variants={morph.subjects} activeIndex={index} baseDelay={0} />
+        <TextMorphSlot
+          variants={morph.subjects}
+          activeIndex={index}
+          baseDelay={0}
+          className={wrap ? undefined : "shrink-0"}
+        />
         <motion.span
           layout="position"
           transition={{ duration: 0.5, ease: framerEase }}
-          className="inline-flex items-baseline"
+          className={clsx("inline-flex items-baseline whitespace-nowrap", !wrap && "shrink-0")}
         >
           <span>{morph.connector}</span>
           {hasSuffix && (
             <TextMorphSlot variants={morph.suffix} activeIndex={index} baseDelay={0.06} />
           )}
         </motion.span>
-        <TextMorphSlot variants={morph.objects} activeIndex={index} baseDelay={0.1} layoutPosition />
+        <TextMorphSlot
+          variants={morph.objects}
+          activeIndex={index}
+          baseDelay={0.1}
+          layoutPosition
+          className={wrap ? undefined : "shrink-0"}
+        />
       </span>
     </h1>
   );
