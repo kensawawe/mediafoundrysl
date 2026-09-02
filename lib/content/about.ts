@@ -1,8 +1,3 @@
-export const aboutHero = {
-  eyebrow: "Studio",
-  title: "A creative agency and a production company. Under one roof.",
-};
-
 export const apertureReveal = {
   outroTitle: "The story, delivered.",
   outroSubtitle:

@@ -1,8 +1,3 @@
-export const aboutHero = {
-  eyebrow: "Studio",
-  title: "Wan kriyetiv ejɛnsi ɛn wan prɔdɔkshɔn kɔmpani. Ɔnda wan ruf.",
-};
-
 export const apertureReveal = {
   outroTitle: "Di tori, dɛliva.",
   outroSubtitle:

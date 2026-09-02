@@ -131,7 +131,7 @@ export function ApertureReveal() {
       <div ref={containerRef} className="relative w-full">
         <div
           ref={pinRef}
-          className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-background"
+          className="relative z-0 flex h-screen w-full items-center justify-center overflow-hidden bg-background"
         >
           {/* Viewfinder corner marks — same motif as the hero card. */}
           {[
