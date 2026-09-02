@@ -70,7 +70,7 @@ function ReviewCard({
         transition: { type: "spring", stiffness: 250, damping: 20, mass: 0.5 },
       }}
       className={clsx(
-        "absolute top-1/2 left-1/2 w-[calc(100%-2rem)] max-w-[560px] -translate-x-1/2 -translate-y-1/2 border bg-surface p-6 sm:p-8",
+        "absolute top-1/2 left-1/2 w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 -translate-y-1/2 rounded-2xl border bg-surface p-6 sm:p-8",
         isActive ? "border-accent-fill/40" : "border-border-subtle",
       )}
       style={{
