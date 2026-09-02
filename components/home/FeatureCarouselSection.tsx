@@ -18,7 +18,7 @@ const images = {
 
 export function FeatureCarouselSection() {
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <FeatureCarousel image={images} />
     </Section>
   );
