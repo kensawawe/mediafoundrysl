@@ -1,5 +1,5 @@
 export const apertureReveal = {
-  outroTitle: "The story, delivered.",
+  outroTitle: ["We're built differently.", "We build differently."],
   outroSubtitle:
     "One studio. One team. Strategy, design, and production — built to carry your story into the world.",
 };

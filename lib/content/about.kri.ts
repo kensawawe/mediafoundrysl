@@ -1,5 +1,5 @@
 export const apertureReveal = {
-  outroTitle: "Di tori, dɛliva.",
+  outroTitle: ["Wi bin bil difrent.", "Wi de bil difrent."],
   outroSubtitle:
     "Wan studio. Wan tim. Stratiji, dizayn, ɛn prɔdɔkshɔn — bil fɔ kyari yu tori go insay di wɔl.",
 };

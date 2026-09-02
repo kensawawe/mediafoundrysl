@@ -190,7 +190,11 @@ export function ApertureReveal() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-[10vw] font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-6xl md:text-7xl">
-              {content.outroTitle}
+              {content.outroTitle.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h2>
             <p className="mx-auto mt-6 max-w-2xl font-body text-sm font-bold uppercase leading-relaxed tracking-wide text-foreground/65 md:text-base">
               {content.outroSubtitle}
