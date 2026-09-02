@@ -117,19 +117,6 @@ export function ApertureReveal() {
 
   return (
     <>
-      <Section className="pb-0 md:pb-0">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-display text-[10vw] font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-6xl md:text-7xl">
-              {content.introTitle}
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl font-body text-sm font-bold uppercase leading-relaxed tracking-wide text-foreground/65 md:text-base">
-              {content.introSubtitle}
-            </p>
-          </div>
-        </Container>
-      </Section>
-
       <div ref={containerRef} className="relative w-full">
         <div
           ref={pinRef}

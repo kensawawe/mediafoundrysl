@@ -4,9 +4,6 @@ export const aboutHero = {
 };
 
 export const apertureReveal = {
-  introTitle: "Wan tori insay fokɔs.",
-  introSubtitle:
-    "Ɛvri projɛkt de stat as wan frem. Wi shep am wit stratiji, shut am wit kraft, ɛn kɔt am fɔ di platfɔm dɛn we mata — we ton wan aydiya to wan tori we de muv, frɔm di fɔs spak te rich di las kɔt.",
   outroTitle: "Di tori, dɛliva.",
   outroSubtitle:
     "Wan studio. Wan tim. Stratiji, dizayn, ɛn prɔdɔkshɔn — bil fɔ kyari yu tori go insay di wɔl.",
