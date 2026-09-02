@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import clsx from "clsx";
 
 /**
@@ -15,14 +18,14 @@ import clsx from "clsx";
  * separating copies, or the animation overshoots by one gap each loop and
  * stutters at the seam.
  *
- * Hovering a row slows its scroll to a third speed rather than stopping it
- * outright, via the .marquee-row:hover rule in globals.css — a plain CSS
- * rule rather than a Tailwind group-hover:[...] arbitrary utility, since
- * Tailwind silently failed to generate a rule for the calc()-with-
- * multiplication variant tried first (verified: no matching rule showed up
- * in the compiled stylesheet). Other rows are unaffected since the
- * :hover match and its descendant .animate-feature-marquee are scoped to
- * this one instance's DOM subtree.
+ * Hovering a row slows it to a third speed via Animation.playbackRate,
+ * not by changing animation-duration (tried first, via a CSS
+ * .marquee-row:hover rule): a CSS animation's transform is a function of
+ * elapsed-time / duration, so changing duration on an already-running
+ * animation instantly recomputes that fraction and the row visibly jumps
+ * backward — it looks like the marquee resetting. playbackRate instead
+ * scales how fast time advances from the current position, so there's no
+ * discontinuity.
  */
 export function Marquee({
   className,
@@ -37,10 +40,25 @@ export function Marquee({
   repeat?: number;
   children: React.ReactNode;
 }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  const setPlaybackRate = (rate: number) => {
+    const row = rowRef.current;
+    if (!row) return;
+    row.querySelectorAll<HTMLElement>(".animate-feature-marquee").forEach((track) => {
+      track.getAnimations().forEach((anim) => {
+        anim.playbackRate = rate;
+      });
+    });
+  };
+
   return (
     <div
+      ref={rowRef}
       className={clsx("marquee-row flex gap-[var(--gap)] overflow-hidden [--gap:1rem]", className)}
       style={style}
+      onMouseEnter={() => setPlaybackRate(1 / 3)}
+      onMouseLeave={() => setPlaybackRate(1)}
     >
       {Array.from({ length: repeat }).map((_, i) => (
         <div

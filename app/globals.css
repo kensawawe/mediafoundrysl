@@ -271,12 +271,6 @@ body::after {
   animation-direction: reverse;
 }
 
-/* Hovering a row slows it to a third speed rather than stopping it —
-   scoped to this row's own subtree, so other rows keep their own pace. */
-.marquee-row:hover .animate-feature-marquee {
-  animation-duration: calc(var(--duration, 40s) * 3);
-}
-
 @keyframes gradient-drift {
   0%,
   100% {

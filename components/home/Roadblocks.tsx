@@ -167,7 +167,7 @@ const features = [
 ];
 
 const badgeClass =
-  "rounded-full border-border-subtle bg-surface-2 px-4 py-2 text-foreground/80";
+  "rounded-full border-border-subtle bg-surface-2 px-3 py-1.5 text-xs text-foreground/80";
 
 export function Roadblocks() {
   return (
@@ -186,19 +186,23 @@ export function Roadblocks() {
         </div>
 
         <div className="relative mt-12 overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-surface sm:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-surface sm:w-20" />
+          {/* Positioned at 10% (the content padding below), not 0 — with
+              padding on the content instead of the edges, a plain left-0/
+              right-0 fade would sit in the empty padding gutter rather
+              than over the actual edge of the scrolling pills. */}
+          <div className="pointer-events-none absolute inset-y-0 left-[10%] z-10 w-10 bg-linear-to-r from-surface sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-[10%] z-10 w-10 bg-linear-to-l from-surface sm:w-20" />
 
-          <div className="-mx-6 flex w-screen flex-col space-y-5 md:-mx-10 lg:-mx-16">
+          <div className="flex flex-col space-y-2 px-[10%]">
             {departments.map((dept) => (
               <Marquee
                 key={dept.code}
-                style={{ "--duration": dept.duration, "--gap": "1.25rem" } as React.CSSProperties}
+                style={{ "--duration": dept.duration, "--gap": "0.5rem" } as React.CSSProperties}
                 repeat={4}
                 reverse={dept.reverse}
               >
                 {dept.items.map((item) => (
-                  <Badge key={item} size="lg" variant="outline" className={badgeClass}>
+                  <Badge key={item} variant="outline" className={badgeClass}>
                     {item}
                   </Badge>
                 ))}
