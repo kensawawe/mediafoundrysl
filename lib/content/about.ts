@@ -19,8 +19,12 @@ export const whoWeAre = {
 
 export const ourPhilosophy = {
   title: "Our Philosophy",
-  body:
-    "Great ideas lose power when they pass through too many hands. We keep the people shaping the strategy close to the people making the work, so every decision stays connected to the original ambition — and every detail earns its place.",
+  body: [
+    "Good work begins with good questions.",
+    "Before we figure out how we make it, we ask why does it need to exist, who is it for, and what should it change?",
+    "It is our belief creativity without purpose is just decoration, and a strategy without creativity feels a lot like just paperwork.",
+    "So we think first, and then create with intention.",
+  ],
 };
 
 export const whyOneRoof = {

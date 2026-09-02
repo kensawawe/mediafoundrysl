@@ -19,8 +19,12 @@ export const whoWeAre = {
 
 export const ourPhilosophy = {
   title: "Wi Filɔsɔfi",
-  body:
-    "Big aydiya dɛn de lɔs dɛn pawa we dɛn pas tru tumɔch an. Wi de kip di pipul dɛn we de shep di stratiji klos to di pipul dɛn we de du di wok, so ɛvri disizhɔn de stil kɔnɛkt to di orijinal ambishɔn — ɛn ɛvri ditel gɛt gud rizin fɔ de dɛn.",
+  body: [
+    "Gud wok de stat wit gud kwɛstshɔn.",
+    "Bifo wi fain wei aw wi go mek am, wi de aks wetin mek i fɔ de, udat na i fɔ, ɛn wetin i fɔ chenj?",
+    "Na wi biliv se kriyetiviti wítaut pɔpɔs na jɔs dɛkorayshɔn, ɛn stratiji wítaut kriyetiviti fil lɛk jɔs papawok.",
+    "So wi tink fɔs, ɛn dɛn wi kriyet wit intɛnshɔn.",
+  ],
 };
 
 export const whyOneRoof = {
