@@ -33,7 +33,7 @@ export function Team() {
           >
             {track.map((member, i) => (
               <div key={`${member.id}-${i}`} aria-hidden={i >= lap.length} className="group/card w-56 shrink-0 sm:w-64">
-                <div className="relative aspect-[4/5] overflow-hidden border border-border-subtle">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-subtle">
                   {member.image ? (
                     // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
                     <img
