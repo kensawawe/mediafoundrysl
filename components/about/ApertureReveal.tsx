@@ -196,9 +196,11 @@ export function ApertureReveal() {
                 </span>
               ))}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl font-body text-sm font-bold uppercase leading-relaxed tracking-wide text-foreground/65 md:text-base">
-              {content.outroSubtitle}
-            </p>
+          </div>
+          <div className="mx-auto mt-8 max-w-2xl space-y-5 text-left font-body text-base leading-relaxed text-foreground/70 sm:text-lg">
+            {content.outroSubtitle.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </Container>
       </Section>

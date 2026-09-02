@@ -1,7 +1,11 @@
 export const apertureReveal = {
   outroTitle: ["We're built differently.", "We build differently."],
-  outroSubtitle:
-    "One studio. One team. Strategy, design, and production — built to carry your story into the world.",
+  outroSubtitle: [
+    "We are a creative media company built for people with something worth saying, building, changing, or protecting.",
+    "We bring strategy, design, storytelling, media, and production together under one roof. But what makes us different isn't the list of things we do. It's how we think about the work.",
+    "We ask questions before we offer solutions. We challenge ideas before we polish them. We care about the details, but never lose sight of the bigger picture. And we stay close to the work from the first thought to the final frame.",
+    "We're not just interested in being bold and memorable — we're interested in making something worth seeing, hearing, and caring about.",
+  ],
 };
 
 export const whoWeAre = {

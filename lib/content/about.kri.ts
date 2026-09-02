@@ -1,7 +1,11 @@
 export const apertureReveal = {
   outroTitle: ["Wi bin bil difrent.", "Wi de bil difrent."],
-  outroSubtitle:
-    "Wan studio. Wan tim. Stratiji, dizayn, ɛn prɔdɔkshɔn — bil fɔ kyari yu tori go insay di wɔl.",
+  outroSubtitle: [
+    "Wi na wan kriyetiv midiya kɔmpani we bil fɔ pipul dɛn we gɛt sɔntin we wɔt fɔ se, bil, chenj, ɔ pratɛkt.",
+    "Wi de brin stratiji, dizayn, tori-tɛlin, midiya, ɛn prɔdɔkshɔn togɛda ɔnda wan ruf. Bɔt wetin mek wi difrent nɔto di lis ɔv tin dɛn we wi de du. Na aw wi de tink bɔt di wok.",
+    "Wi de aks kwɛstshɔn dɛn bifo wi ɔfa sɔlushɔn. Wi de chalinj aydiya dɛn bifo wi polish dɛn. Wi de kea bɔt di ditel dɛn, bɔt wi nɔ de lɔs sɛt ɔv di big pikchɔ. Ɛn wi de tay klos to di wok frɔm di fɔs tɔt te rich di las frem.",
+    "I nɔto jɔs se wi wandɛn fɔ bi bold ɛn mɛmɔrabul — wi de intrɛstɛd fɔ mek sɔntin we wɔt fɔ si, yɛri, ɛn kea bɔt.",
+  ],
 };
 
 export const whoWeAre = {
