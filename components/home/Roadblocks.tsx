@@ -167,7 +167,7 @@ const features = [
 ];
 
 const badgeClass =
-  "rounded-none border-border-subtle bg-surface-2 px-4 py-2 text-foreground/80";
+  "rounded-full border-border-subtle bg-surface-2 px-4 py-2 text-foreground/80";
 
 export function Roadblocks() {
   return (
@@ -185,7 +185,7 @@ export function Roadblocks() {
           </p>
         </div>
 
-        <div className="mt-12 space-y-4 sm:space-y-5">
+        <div className="mt-12 space-y-1">
           {departments.map((dept) => (
             <div
               key={dept.code}
