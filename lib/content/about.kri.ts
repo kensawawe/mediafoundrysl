@@ -10,8 +10,11 @@ export const apertureReveal = {
 
 export const whoWeAre = {
   title: "Udat Wi De",
-  body:
-    "Di Media Foundry na wan independent kriyetiv studio ɛn prɔdɔkshɔn kɔmpani we de na Salone. Wi de bil brand dɛn ɛn prɔdyus di film dɛn, foto, ɛn kɔntɛnt we de brin dɛn to layf — wi kɔmbayn stratiji, dizayn, ɛn prɔdɔkshɔn ɔnda wan ruf, frɔm di fɔs spak te rich di las kɔt.",
+  body: [
+    "Wi na wan tim we tay klos — stratejist dɛn, dizayna dɛn, filmeka dɛn, rayta dɛn, prodyusa dɛn, ɛn pipul dɛn we sabi sɔlv prɔblɛm — we de wok ɔnda wan ruf.",
+    "Wi biliv se di bɛst aydiya dɛn de apin we difrent maynd dɛn de na wan rum togɛda. So wi de aks kwɛstshɔn, chalinj, ɛksperimɛnt, ɛn mek tin dɛn bɛta togɛda.",
+    "Wi de tek di wok siriɔs, ɛn sɔntɛm wi nɔ de tek wisɛf tumɔch siriɔs bikɔs kriyetiviti fɔ sɔntɛm fil lɛk ple.",
+  ],
 };
 
 export const ourPhilosophy = {

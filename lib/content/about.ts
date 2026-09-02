@@ -10,8 +10,11 @@ export const apertureReveal = {
 
 export const whoWeAre = {
   title: "Who We Are",
-  body:
-    "The Media Foundry is an independent creative studio and production company based in Sierra Leone. We build brands and produce the films, photography and content that bring them to life — combining strategy, design and production under one roof, from first spark to final cut.",
+  body: [
+    "We're a close-knit team of strategists, designers, filmmakers, writers, producers, and problem-solvers working under one roof.",
+    "We believe the best ideas happen when different minds are in the room together. So we question, challenge, experiment, and make things better together.",
+    "We take the work seriously, and sometimes do not take ourselves too seriously because creativity should also feel like play.",
+  ],
 };
 
 export const ourPhilosophy = {

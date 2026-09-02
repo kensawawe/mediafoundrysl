@@ -70,9 +70,11 @@ export function AboutAccordion() {
                     transition={{ duration: 0.35, ease: framerEase }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-8 font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10">
-                      {item.body}
-                    </p>
+                    <div className="max-w-2xl space-y-4 pb-8 font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10">
+                      {(Array.isArray(item.body) ? item.body : [item.body]).map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
