@@ -38,5 +38,10 @@ export const ourApproach = {
 
 export const ourVision = {
   title: "Wi Vizhɔn",
-  body: "Fɔ sho se Salone brand dɛn ɛn stori dɛn kin bil ɛn prɔdyus to wan wɔl-klas stanad bay wan kɔnɛktɛd studio.",
+  body: [
+    "Mek gud wok frɔm ya we de travul go ɛvriwe.",
+    "Wi wandɛn fɔ ɛp bil wan kriyetiv indɔstri usay Afrikan brand dɛn, ɔganayzeshɔn dɛn, stori dɛn, ɛn aydiya dɛn de tek siriɔs, ɛn wɔl-klas wok kin kɔmɔt frɔm ya.",
+    "Usay lokal stori dɛn de travul. Usay kriyetiviti de shep wi kɔlchɔ, wi bizinɛs dɛn, ɛn wi fyuchɔ.",
+    "Ɛn usay tɛlɛntɛd pipul dɛn gɛt ples fɔ du di bɛst wok na dɛn layf.",
+  ],
 };

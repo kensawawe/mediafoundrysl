@@ -38,5 +38,10 @@ export const ourApproach = {
 
 export const ourVision = {
   title: "Our Vision",
-  body: "To show that Sierra Leonean brands and stories can be built and produced to a world-class standard by one connected studio.",
+  body: [
+    "Make great work from here that travels everywhere.",
+    "We want to help build a creative industry where African brands, organizations, stories, and ideas are taken seriously and world-class work can come from here.",
+    "Where local stories travel. Where creativity shapes our culture, our businesses, and our future.",
+    "And where talented people have a place to do the best work of their lives.",
+  ],
 };
