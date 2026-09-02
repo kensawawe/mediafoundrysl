@@ -185,32 +185,26 @@ export function Roadblocks() {
           </p>
         </div>
 
-        <div className="mt-12 space-y-1">
-          {departments.map((dept) => (
-            <div
-              key={dept.code}
-              className="flex items-center gap-4 px-5 sm:gap-8 md:px-10 lg:px-16"
-            >
-              <span className="w-20 shrink-0 font-mono text-[11px] font-bold uppercase leading-tight tracking-tight text-foreground/50 sm:w-32 sm:text-xs">
-                {dept.label}
-              </span>
-              <div className="relative min-w-0 flex-1 overflow-hidden">
-                <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-surface sm:w-20" />
-                <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-surface sm:w-20" />
-                <Marquee
-                  style={{ "--duration": dept.duration, "--gap": "1.25rem" } as React.CSSProperties}
-                  repeat={4}
-                  reverse={dept.reverse}
-                >
-                  {dept.items.map((item) => (
-                    <Badge key={item} size="lg" variant="outline" className={badgeClass}>
-                      {item}
-                    </Badge>
-                  ))}
-                </Marquee>
-              </div>
-            </div>
-          ))}
+        <div className="relative mt-12 overflow-hidden">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-surface sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-surface sm:w-20" />
+
+          <div className="-mx-6 flex w-screen flex-col space-y-5 md:-mx-10 lg:-mx-16">
+            {departments.map((dept) => (
+              <Marquee
+                key={dept.code}
+                style={{ "--duration": dept.duration, "--gap": "1.25rem" } as React.CSSProperties}
+                repeat={4}
+                reverse={dept.reverse}
+              >
+                {dept.items.map((item) => (
+                  <Badge key={item} size="lg" variant="outline" className={badgeClass}>
+                    {item}
+                  </Badge>
+                ))}
+              </Marquee>
+            ))}
+          </div>
         </div>
 
         <div className="mt-16 grid grid-cols-1 divide-dashed divide-border-subtle border-t border-dashed border-border-subtle sm:grid-cols-2 sm:divide-x lg:grid-cols-4">
