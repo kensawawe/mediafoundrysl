@@ -142,27 +142,27 @@ function SupportIcon({ className }: { className?: string }) {
 const features = [
   {
     description:
-      "No jargon, no overcomplication — just clear steps you can follow to start and grow your business confidently.",
+      "We clarify what matters. By asking the right questions and stripping away the clutter, we uncover the real story and shape brands that are hard to ignore.",
     Icon: SimplicityIcon,
-    title: "We make things simple",
+    title: "We cut through the noise",
   },
   {
     description:
-      "Every strategy we create is designed to help you launch faster, grow smarter, and increase profits.",
+      "Every idea we craft is intentional. We create work that connects, converts, and creates real value, for your audience and your bottom line.",
     Icon: ResultsIcon,
-    title: "We focus on real results",
+    title: "We build for impact",
   },
   {
     description:
-      "With years of hands-on experience across industries, we bring proven strategies and practical solutions to the table.",
+      "Strategy gives our work direction. Creativity gives it life. Together, they produce ideas that not only look good, but move people to act.",
     Icon: ExpertiseIcon,
-    title: "We know what works",
+    title: "We blend strategy + creativity",
   },
   {
     description:
-      "From your first idea to scaling your business, we provide ongoing support, not just a one-time plan.",
+      "Your success is the goal, not the handoff. We partner with you for the long run, adapting, optimizing, and helping you scale with confidence.",
     Icon: SupportIcon,
-    title: "With you all the way",
+    title: "We grow with you",
   },
 ];
 
