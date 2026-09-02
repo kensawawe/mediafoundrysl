@@ -171,7 +171,7 @@ export function ApertureReveal() {
             >
               <video
                 ref={videoRef}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover brightness-[0.7]"
                 loop
                 muted
                 playsInline
@@ -197,7 +197,7 @@ export function ApertureReveal() {
               ))}
             </h2>
           </div>
-          <div className="mx-auto mt-8 max-w-2xl space-y-5 text-left font-body text-base leading-relaxed text-foreground/70 sm:text-lg">
+          <div className="mx-auto mt-8 max-w-4xl space-y-5 text-center font-body text-base font-bold leading-relaxed text-foreground/70 sm:text-lg">
             {content.outroSubtitle.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
