@@ -8,32 +8,29 @@ import { framerEase } from "@/lib/motion/easing";
 import {
   whoWeAre as whoWeAreEn,
   ourPhilosophy as ourPhilosophyEn,
-  whyOneRoof as whyOneRoofEn,
   ourApproach as ourApproachEn,
   ourVision as ourVisionEn,
 } from "@/lib/content/about";
 import {
   whoWeAre as whoWeAreKri,
   ourPhilosophy as ourPhilosophyKri,
-  whyOneRoof as whyOneRoofKri,
   ourApproach as ourApproachKri,
   ourVision as ourVisionKri,
 } from "@/lib/content/about.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 /**
- * The studio's five statements as a single-open accordion — one large
+ * The studio's four statements as a single-open accordion — one large
  * uppercase claim visible at a time, the rest dimmed to a scannable list,
- * rather than five separately-scrolled full sections.
+ * rather than four separately-scrolled full sections.
  */
 export function AboutAccordion() {
   const whoWeAre = useTranslated(whoWeAreEn, whoWeAreKri);
   const ourPhilosophy = useTranslated(ourPhilosophyEn, ourPhilosophyKri);
-  const whyOneRoof = useTranslated(whyOneRoofEn, whyOneRoofKri);
   const ourApproach = useTranslated(ourApproachEn, ourApproachKri);
   const ourVision = useTranslated(ourVisionEn, ourVisionKri);
 
-  const items = [whoWeAre, ourPhilosophy, whyOneRoof, ourApproach, ourVision];
+  const items = [whoWeAre, ourPhilosophy, ourApproach, ourVision];
   // Opens on the studio's own name first — "Who We Are" is the natural
   // entry point, matching the reference's default-open behavior.
   const [activeIndex, setActiveIndex] = useState<number | null>(0);

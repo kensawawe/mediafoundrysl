@@ -27,12 +27,6 @@ export const ourPhilosophy = {
   ],
 };
 
-export const whyOneRoof = {
-  title: "Wetin Mek Wi De Wok Lɛkɛ Dis",
-  body:
-    "Na wan makit we de muv fast, split atenshɔn de mek split rizɔlt. Wan pattna de divɛlɔp di aydiya; dɛn aks ɔda wan fɔ ɛksikyut am, ɔltɛm wítaut di kɔntɛks fɔ mek i mata. Wi bil Di Media Foundry fɔ klos dat gap: wan studio, wan tim we responsibul, ɛn wan kliya stanad frɔm stratiji te rich delivri.",
-};
-
 export const ourApproach = {
   title: "Wi Aprowch",
   body:

@@ -27,12 +27,6 @@ export const ourPhilosophy = {
   ],
 };
 
-export const whyOneRoof = {
-  title: "Why We Work This Way",
-  body:
-    "In a fast-moving market, split attention creates split results. One partner develops the idea; another is asked to execute it, often without the context to make it matter. We built The Media Foundry to close that gap: one studio, one accountable team, and one clear standard from strategy to delivery.",
-};
-
 export const ourApproach = {
   title: "Our Approach",
   body:
