@@ -142,33 +142,9 @@ export function Testimonials() {
       <Container>
         <div aria-hidden className="border-t border-current/15 mb-12" />
 
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
-            {whatClientsSay}
-          </h2>
-          {total > 1 && (
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handlePrev}
-                disabled={index === 0}
-                aria-label="Previous testimonial"
-                className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
-              >
-                <Arrow direction="left" />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                disabled={index === maxIndex}
-                aria-label="Next testimonial"
-                className="focus-ring flex h-10 w-10 items-center justify-center border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
-              >
-                <Arrow direction="right" />
-              </button>
-            </div>
-          )}
-        </div>
+        <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+          {whatClientsSay}
+        </h2>
 
         <div className="relative mt-12 h-[320px] md:mt-16">
           {testimonials.map((item, i) => (
@@ -177,19 +153,41 @@ export function Testimonials() {
         </div>
 
         {total > 1 && (
-          <div className="mt-6 flex items-center justify-center gap-2">
-            {testimonials.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={clsx(
-                  "h-1.5 transition-all duration-300",
-                  i === index ? "w-8 bg-accent-fill" : "w-1.5 bg-current/20 hover:bg-current/40",
-                )}
-              />
-            ))}
+          <div className="mt-6 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={handlePrev}
+              disabled={index === 0}
+              aria-label="Previous testimonial"
+              className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
+            >
+              <Arrow direction="left" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {testimonials.map((item, i) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={clsx(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    i === index ? "w-8 bg-accent-fill" : "w-1.5 bg-current/20 hover:bg-current/40",
+                  )}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={index === maxIndex}
+              aria-label="Next testimonial"
+              className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
+            >
+              <Arrow direction="right" />
+            </button>
           </div>
         )}
       </Container>
