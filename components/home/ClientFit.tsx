@@ -17,18 +17,21 @@ export function ClientFit() {
         <div className="h-px w-full bg-navy-rule" />
 
         <div className="mx-auto grid max-w-6xl gap-10 pt-16 md:grid-cols-2 md:items-center md:gap-16 md:pt-20 lg:px-8">
-          <FadeIn className="min-w-0">
-            <span className="font-mono text-xl uppercase tracking-tight text-accent-text">
+          <FadeIn className="min-w-0 text-center sm:text-left">
+            <span className="font-mono text-lg uppercase tracking-tight text-accent-text sm:text-xl">
               {clientFit.eyebrow}
             </span>
-            <h2 className="mt-6 font-display text-2xl font-black uppercase leading-[1.08] tracking-tight sm:text-2xl md:text-xl lg:text-xl xl:text-2xl">
+            <h2 className="mt-6 font-display text-xs font-black uppercase leading-[1.15] tracking-tight sm:text-2xl md:text-xl lg:text-xl xl:text-2xl">
               {clientFit.headline.map((line) => (
-                <span key={line} className="block xl:whitespace-nowrap">
+                <span
+                  key={line}
+                  className="block whitespace-nowrap sm:whitespace-normal xl:whitespace-nowrap"
+                >
                   {line}
                 </span>
               ))}
             </h2>
-            <SunburstMark className="mt-12 h-9 w-9 text-steel" />
+            <SunburstMark className="mx-auto mt-12 h-9 w-9 text-steel sm:mx-0" />
           </FadeIn>
 
           <FadeIn
