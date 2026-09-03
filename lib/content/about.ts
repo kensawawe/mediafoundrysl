@@ -58,3 +58,27 @@ export const ourPromise = {
     "We're not just here to execute requests and exceed your expectations — we're here to make the overall outcome better.",
   ],
 };
+
+export const ourValues = {
+  title: "Our Values",
+  intro:
+    "These aren't posters on a wall. They're how we actually work, and what we hold each other to on every project.",
+  values: [
+    {
+      title: "Curiosity",
+      description: "We ask why before we ask how. Good questions come before good answers.",
+    },
+    {
+      title: "Proximity",
+      description: "Strategy, design, and production stay close together — not passed down a chain.",
+    },
+    {
+      title: "Honesty",
+      description: "We tell you what's working and what isn't, even when it's not what you want to hear.",
+    },
+    {
+      title: "Intention",
+      description: "Nothing gets made just to look good. Every choice has to earn its place.",
+    },
+  ],
+};

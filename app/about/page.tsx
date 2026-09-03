@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ApertureReveal } from "@/components/about/ApertureReveal";
 import { AboutAccordion } from "@/components/about/AboutAccordion";
+import { OurValues } from "@/components/about/OurValues";
 import { Team } from "@/components/about/Team";
 import { site } from "@/lib/content/site";
 
@@ -16,6 +17,7 @@ export default function AboutPage() {
     <>
       <ApertureReveal />
       <AboutAccordion />
+      <OurValues />
       <Team />
     </>
   );

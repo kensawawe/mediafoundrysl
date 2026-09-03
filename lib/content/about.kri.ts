@@ -58,3 +58,27 @@ export const ourPromise = {
     "Wi nɔto jɔs ya fɔ ɛksikyut rikwɛst ɛn pas wetin yu ɛkspɛkt — wi de ya fɔ mek di ɔl rizɔlt bɛta.",
   ],
 };
+
+export const ourValues = {
+  title: "Wi Valyu Dɛn",
+  intro:
+    "Dɛn nɔto jɔs postɛ pan wɔl. Na aw wi rili de wok, ɛn wetin wi de ɔl hold wisɛf to na ɛvri projɛkt.",
+  values: [
+    {
+      title: "Kyuriɔsiti",
+      description: "Wi de aks wetin mek bifo wi aks aw. Gud kwɛstshɔn kam bifo gud ansa.",
+    },
+    {
+      title: "Klosnɛs",
+      description: "Stratiji, dizayn, ɛn prɔdɔkshɔn de tay klos togɛda — nɔto pas dɔŋ wan chen.",
+    },
+    {
+      title: "Ɔnɛsti",
+      description: "Wi de tɛl yu wetin de wok ɛn wetin nɔ de wok, ivin we i nɔto wetin yu wandɛn fɔ yɛri.",
+    },
+    {
+      title: "Intɛnshɔn",
+      description: "Nɔtin nɔ de mek jɔs fɔ luk fayn. Ɛvri chɔys go fɔ gɛt gud rizin fɔ de.",
+    },
+  ],
+};
