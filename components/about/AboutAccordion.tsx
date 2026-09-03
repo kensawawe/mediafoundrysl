@@ -34,9 +34,8 @@ export function AboutAccordion() {
   const ourPromise = useTranslated(ourPromiseEn, ourPromiseKri);
 
   const items = [whoWeAre, ourPhilosophy, ourApproach, ourVision, ourPromise];
-  // Opens on the studio's own name first — "Who We Are" is the natural
-  // entry point, matching the reference's default-open behavior.
-  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  // All five start collapsed — nothing opens until the visitor clicks one.
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
     <Container>
