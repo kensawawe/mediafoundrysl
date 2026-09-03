@@ -35,16 +35,14 @@ function subscribeWideLayout(callback: () => void) {
 }
 
 /** Below `sm`, three columns leave no room for a readable title next to the
- *  badge, so the grid drops to a single-column accordion — the same
- *  row/column growth mechanic degenerates cleanly since there's only one
- *  column to grow. */
+ *  badge, so the grid drops to two columns instead. */
 function useColumns() {
   const isWide = useSyncExternalStore(
     subscribeWideLayout,
     () => window.matchMedia("(min-width: 640px)").matches,
     () => true,
   );
-  return isWide ? 3 : 1;
+  return isWide ? 3 : 2;
 }
 
 export function DepartmentGrid() {
@@ -59,7 +57,11 @@ export function DepartmentGrid() {
 
   return (
     <div
-      className="grid h-[860px] gap-3 sm:h-[560px] md:h-[640px] md:gap-5"
+      // Base height is derived, not guessed: 2 columns x 3 rows of square
+      // cells, given the Container's px-6 side padding and this grid's own
+      // gap-3 — solving cellWidth = cellHeight for (100vw - 48px - 12px)/2
+      // per cell, times 3 rows plus 2 row-gaps, collapses to 150vw - 66px.
+      className="grid h-[calc(150vw-66px)] gap-3 sm:h-[560px] md:h-[640px] md:gap-5"
       style={{
         gridTemplateRows: trackSizes(activeRow, ROWS),
         gridTemplateColumns: trackSizes(activeCol, COLS),
