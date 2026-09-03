@@ -69,7 +69,7 @@ export function AboutAccordion() {
                     transition={{ duration: 0.35, ease: framerEase }}
                     className="overflow-hidden"
                   >
-                    <div className="max-w-2xl space-y-4 pb-8 font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10">
+                    <div className="max-w-5xl space-y-4 pb-8 font-body text-lg leading-relaxed text-current/70 sm:text-xl md:pb-10">
                       {(Array.isArray(item.body) ? item.body : [item.body]).map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
