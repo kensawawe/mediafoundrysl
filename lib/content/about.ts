@@ -21,9 +21,11 @@ export const ourPhilosophy = {
   title: "Our Philosophy",
   body: [
     "Good work begins with good questions.",
-    "Before we figure out how we make it, we ask why does it need to exist, who is it for, and what should it change?",
-    "It is our belief creativity without purpose is just decoration, and a strategy without creativity feels a lot like just paperwork.",
-    "So we think first, and then create with intention.",
+    "Before we figure out how to make something, we ask why it needs to exist, who it's for, and what it should change.",
+    "That thinking continues throughout the process. A strategist can challenge a creative idea. A filmmaker can shape the strategy. A designer can question the brief. Everyone stays close to the work, bringing a different perspective to the same problem.",
+    "Less passing things around. More building things together. That proximity makes us more collaborative, more responsive, and more invested in the outcome.",
+    "Because creativity without purpose is just decoration, and strategy without creativity feels a lot like paperwork.",
+    "So we think first. Then we create with intention.",
   ],
 };
 

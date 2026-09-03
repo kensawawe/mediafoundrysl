@@ -21,9 +21,11 @@ export const ourPhilosophy = {
   title: "Wi Filɔsɔfi",
   body: [
     "Gud wok de stat wit gud kwɛstshɔn.",
-    "Bifo wi fain wei aw wi go mek am, wi de aks wetin mek i fɔ de, udat na i fɔ, ɛn wetin i fɔ chenj?",
-    "Na wi biliv se kriyetiviti wítaut pɔpɔs na jɔs dɛkorayshɔn, ɛn stratiji wítaut kriyetiviti fil lɛk jɔs papawok.",
-    "So wi tink fɔs, ɛn dɛn wi kriyet wit intɛnshɔn.",
+    "Bifo wi fain wei aw wi go mek sɔntin, wi de aks wetin mek i fɔ de, udat na i fɔ, ɛn wetin i fɔ chenj.",
+    "Dat tinkin de kɔntinyu tru di ɔl prɔses. Wan stratejist kin chalinj wan kriyetiv aydiya. Wan filmeka kin shep di stratiji. Wan dizayna kin kwɛstshɔn di brif. Ɛvribɔdi de tay klos to di wok, we de brin difrent pɔsin fɔ luk to di sem prɔblɛm.",
+    "Lɛs pasin tin dɛn ɔraun. Mɔ bil tin dɛn togɛda. Dat klosnɛs mek wi mɔ kɔlabɔretiv, mɔ rɛspɔnsiv, ɛn mɔ invɛstɛd na di rizɔlt.",
+    "Bikɔs kriyetiviti wítaut pɔpɔs na jɔs dɛkorayshɔn, ɛn stratiji wítaut kriyetiviti fil lɛk jɔs papawok.",
+    "So wi tink fɔs. Dɛn wi kriyet wit intɛnshɔn.",
   ],
 };
 
