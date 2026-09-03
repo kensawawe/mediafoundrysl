@@ -47,3 +47,14 @@ export const ourVision = {
     "And where talented people have a place to do the best work of their lives.",
   ],
 };
+
+export const ourPromise = {
+  title: "Our Promise",
+  body: [
+    "We'll tell you the truth about the work.",
+    "If the idea is good, we'll tell you.",
+    "If it can be better, we'll tell you.",
+    "If we think we're solving the wrong problem, we'll tell you that too.",
+    "We're not just here to execute requests and exceed your expectations — we're here to make the overall outcome better.",
+  ],
+};

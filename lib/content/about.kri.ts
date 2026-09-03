@@ -47,3 +47,14 @@ export const ourVision = {
     "Ɛn usay tɛlɛntɛd pipul dɛn gɛt ples fɔ du di bɛst wok na dɛn layf.",
   ],
 };
+
+export const ourPromise = {
+  title: "Wi Pramis",
+  body: [
+    "Wi go tɛl yu di tru bɔt di wok.",
+    "If di aydiya gud, wi go tɛl yu.",
+    "If i kin bɛta, wi go tɛl yu.",
+    "If wi tink se wi de sɔlv di rɔng prɔblɛm, wi go tɛl yu dat tu.",
+    "Wi nɔto jɔs ya fɔ ɛksikyut rikwɛst ɛn pas wetin yu ɛkspɛkt — wi de ya fɔ mek di ɔl rizɔlt bɛta.",
+  ],
+};
