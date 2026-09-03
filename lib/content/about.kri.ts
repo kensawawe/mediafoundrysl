@@ -65,20 +65,32 @@ export const ourValues = {
     "Dɛn nɔto jɔs postɛ pan wɔl. Na aw wi rili de wok, ɛn wetin wi de ɔl hold wisɛf to na ɛvri projɛkt.",
   values: [
     {
-      title: "Kyuriɔsiti",
-      description: "Wi de aks wetin mek bifo wi aks aw. Gud kwɛstshɔn kam bifo gud ansa.",
+      title: "Kriyet Wit Klariti",
+      description: [
+        "Gud wok de stat wit gud kwɛstshɔn. Wi de kɔmɔt di noyz, chalinj asɔmshɔn dɛn, ɛn fokɔs pan wetin de mata.",
+        "Wi tink fɔs. Dɛn wi kriyet wit intɛnshɔn.",
+      ],
     },
     {
-      title: "Klosnɛs",
-      description: "Stratiji, dizayn, ɛn prɔdɔkshɔn de tay klos togɛda — nɔto pas dɔŋ wan chen.",
+      title: "Kriyet Wit Kɔnvikshɔn",
+      description: [
+        "Wi biliv na di wok we wi de put insay di wɔl. Wi gɛt wan pɔynt ɔv vyu, wi de stand bihaynd gud aydiya, ɛn wi de tɛl di tru we sɔntin nɔ de wok.",
+        "Wi nɔ jɔs mek wetin dɛn aks wi fɔ mek. Wi de mek di rizɔlt bɛta.",
+      ],
     },
     {
-      title: "Ɔnɛsti",
-      description: "Wi de tɛl yu wetin de wok ɛn wetin nɔ de wok, ivin we i nɔto wetin yu wandɛn fɔ yɛri.",
+      title: "Kriyet Wit Korej",
+      description: [
+        "Wi de chalinj wetin izi fɔ si, ɛksplɔ nyu pɔsibiliti, ɛn tek kalkyuletɛd risk. Sɔntɛm wi go rɔng, dɛn wi lan ɛn mek am bɛta.",
+        "Wi wud rada tray sɔntin we wɔt to du pas se wi ple sef.",
+      ],
     },
     {
-      title: "Intɛnshɔn",
-      description: "Nɔtin nɔ de mek jɔs fɔ luk fayn. Ɛvri chɔys go fɔ gɛt gud rizin fɔ de.",
+      title: "Kriyet Wit Kea",
+      description: [
+        "Wi de kea bɔt di wok, di ditel dɛn, ɛn di pipul dɛn we mek am pɔsibul. Wi biliv na ɔnɛst tɔk, kliya kɔmyunikeshɔn, ɛn rileshɔnship dɛn we las.",
+        "Wi wandɛn fɔ mek wok we wi prawd ɔv, ɛn bil wan kɔmpani we pipul prawd fɔ de pat ɔv.",
+      ],
     },
   ],
 };

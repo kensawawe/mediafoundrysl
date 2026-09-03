@@ -65,20 +65,32 @@ export const ourValues = {
     "These aren't posters on a wall. They're how we actually work, and what we hold each other to on every project.",
   values: [
     {
-      title: "Curiosity",
-      description: "We ask why before we ask how. Good questions come before good answers.",
+      title: "Create With Clarity",
+      description: [
+        "Good work begins with good questions. We cut through the noise, challenge assumptions, and focus on what matters.",
+        "We think first. Then we create with intention.",
+      ],
     },
     {
-      title: "Proximity",
-      description: "Strategy, design, and production stay close together — not passed down a chain.",
+      title: "Create With Conviction",
+      description: [
+        "We believe in the work we put into the world. We have a point of view, stand behind good ideas, and tell the truth when something isn't working.",
+        "We don't just make what's asked. We make the outcome better.",
+      ],
     },
     {
-      title: "Honesty",
-      description: "We tell you what's working and what isn't, even when it's not what you want to hear.",
+      title: "Create With Courage",
+      description: [
+        "We challenge the obvious, explore new possibilities, and take calculated risks. We occasionally get it wrong, then learn and make it better.",
+        "We'd rather try something worth doing than play it safe.",
+      ],
     },
     {
-      title: "Intention",
-      description: "Nothing gets made just to look good. Every choice has to earn its place.",
+      title: "Create With Care",
+      description: [
+        "We care about the work, the details, and the people who make it possible. We believe in honest conversations, clear communication, and relationships that last.",
+        "We want to make work we're proud of, and build a company people are proud to be part of.",
+      ],
     },
   ],
 };

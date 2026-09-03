@@ -15,7 +15,7 @@ const iconShared = {
   fill: "none",
 };
 
-function CuriosityIcon({ className }: { className?: string }) {
+function ClarityIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
       <circle cx="20" cy="20" r="12" {...iconShared} />
@@ -24,16 +24,7 @@ function CuriosityIcon({ className }: { className?: string }) {
   );
 }
 
-function ProximityIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect x="6" y="6" width="24" height="24" {...iconShared} />
-      <rect x="18" y="18" width="24" height="24" {...iconShared} />
-    </svg>
-  );
-}
-
-function HonestyIcon({ className }: { className?: string }) {
+function ConvictionIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
       <rect x="6" y="6" width="36" height="36" {...iconShared} />
@@ -42,7 +33,7 @@ function HonestyIcon({ className }: { className?: string }) {
   );
 }
 
-function IntentionIcon({ className }: { className?: string }) {
+function CourageIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
       <circle cx="24" cy="24" r="16" {...iconShared} />
@@ -55,7 +46,16 @@ function IntentionIcon({ className }: { className?: string }) {
   );
 }
 
-const icons = [CuriosityIcon, ProximityIcon, HonestyIcon, IntentionIcon];
+function CareIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden>
+      <rect x="6" y="6" width="24" height="24" {...iconShared} />
+      <rect x="18" y="18" width="24" height="24" {...iconShared} />
+    </svg>
+  );
+}
+
+const icons = [ClarityIcon, ConvictionIcon, CourageIcon, CareIcon];
 
 /**
  * A static 2x2 value grid — deliberately not folded into AboutAccordion.
@@ -78,7 +78,7 @@ export function OurValues() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {content.values.map((value, i) => {
               const Icon = icons[i % icons.length];
               const isFeatured = i === 0;
@@ -86,30 +86,35 @@ export function OurValues() {
                 <div
                   key={value.title}
                   className={clsx(
-                    "flex flex-col justify-between gap-10 rounded-2xl border p-6",
+                    "flex flex-col gap-6 rounded-2xl border p-8",
                     isFeatured
                       ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                       : "border-border-subtle bg-surface text-foreground",
                   )}
                 >
-                  <Icon className="h-8 w-8" />
-                  <div>
-                    <p
+                  <div className="flex items-center justify-between">
+                    <Icon className="h-10 w-10 shrink-0" />
+                    <span
                       className={clsx(
-                        "font-body text-sm leading-relaxed",
-                        isFeatured ? "text-accent-fill-ink/85" : "text-foreground/70",
+                        "font-mono text-xs uppercase tracking-[0.03em]",
+                        isFeatured ? "text-accent-fill-ink/60" : "text-foreground/40",
                       )}
                     >
-                      {value.description}
-                    </p>
-                    <div
-                      className={clsx(
-                        "mt-4 border-t pt-3 font-mono text-[11px] uppercase tracking-[0.03em]",
-                        isFeatured ? "border-accent-fill-ink/30" : "border-border-subtle",
-                      )}
-                    >
-                      {value.title}
-                    </div>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl font-black uppercase leading-[0.95] tracking-tight sm:text-3xl">
+                    {value.title}
+                  </h3>
+                  <div
+                    className={clsx(
+                      "space-y-3 font-body text-sm leading-relaxed sm:text-base",
+                      isFeatured ? "text-accent-fill-ink/85" : "text-foreground/70",
+                    )}
+                  >
+                    {value.description.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               );
