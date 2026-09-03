@@ -86,7 +86,7 @@ export function OurValues() {
                 <div
                   key={value.title}
                   className={clsx(
-                    "flex flex-col justify-between gap-10 border p-6",
+                    "flex flex-col justify-between gap-10 rounded-2xl border p-6",
                     isFeatured
                       ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                       : "border-border-subtle bg-surface text-foreground",
