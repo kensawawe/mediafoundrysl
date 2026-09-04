@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: `Work — ${site.name}`,
   description:
     "Brand identity, campaigns, film and production, digital and photography work from The Media Foundry.",
+  alternates: { canonical: "/work" },
 };
 
 export default function WorkPage() {

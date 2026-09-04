@@ -32,23 +32,70 @@ const playfairDisplay = Playfair_Display({
 });
 
 const title = `${site.name} — Creative Agency & Production Company`;
+const ogImage = {
+  url: "/hero-freetown-poster.jpg",
+  width: 1920,
+  height: 1080,
+  alt: site.name,
+};
 
 export const metadata: Metadata = {
   title,
   description: site.description,
-  metadataBase: new URL("https://www.themediafoundry.com"),
+  metadataBase: new URL(site.url),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title,
     description: site.description,
     type: "website",
     locale: "en_US",
     siteName: site.name,
+    url: "/",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description: site.description,
+    images: [ogImage.url],
   },
+};
+
+// Organization structured data — read by Google as an unambiguous "this
+// entity exists, here's what it does and where" signal, independent of how
+// well any single page's copy happens to be worded.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  alternateName: site.shortName,
+  url: site.url,
+  logo: `${site.url}/logo-dark.png`,
+  description: site.description,
+  email: site.email,
+  areaServed: "Sierra Leone",
+  location: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Freetown",
+      addressCountry: "SL",
+    },
+  },
+  knowsAbout: [
+    "Creative agency services",
+    "Documentary production",
+    "Brand strategy",
+    "Brand identity design",
+    "Film and video production",
+    "Photography",
+    "Podcast production",
+    "Social and content campaigns",
+    "Digital product development",
+  ],
+  sameAs: site.social.map((s) => s.href),
 };
 
 export default function RootLayout({
@@ -63,6 +110,10 @@ export default function RootLayout({
       className={`${bigShoulders.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

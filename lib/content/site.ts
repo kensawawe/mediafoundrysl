@@ -4,6 +4,7 @@ export const site = {
   tagline: "An independent creative agency and production company.",
   description:
     "The Media Foundry designs brands and produces the film, photography and content that carries them into the world — strategy, design and production, run by one studio from first spark to final cut.",
+  url: "https://www.themediafoundrysl.com",
   email: "collab@themediafoundrysl.com",
   location: "Freetown, Sierra Leone",
   // `platform` is a stable, never-translated id used to pick the right

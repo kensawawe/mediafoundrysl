@@ -8,6 +8,7 @@ import { site } from "@/lib/content/site";
 export const metadata: Metadata = {
   title: `Journal — ${site.name}`,
   description: journalHero.body,
+  alternates: { canonical: "/journal" },
 };
 
 export default function JournalPage() {

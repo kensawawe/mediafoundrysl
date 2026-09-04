@@ -176,7 +176,7 @@ export function ApertureReveal() {
                 muted
                 playsInline
                 autoPlay
-                preload="auto"
+                preload="metadata"
                 poster="/hero-freetown-poster.jpg"
               >
                 <source src="/hero-freetown.mp4" type="video/mp4" />
@@ -189,13 +189,13 @@ export function ApertureReveal() {
       <Section className="pt-0 md:pt-0">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-display text-[10vw] font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+            <h1 className="font-display text-[10vw] font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-6xl md:text-7xl">
               {content.outroTitle.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
-            </h2>
+            </h1>
           </div>
           <div className="mx-auto mt-8 max-w-4xl space-y-5 text-center font-body text-base font-bold leading-relaxed text-foreground/70 sm:text-lg">
             {content.outroSubtitle.map((paragraph) => (

@@ -8,6 +8,7 @@ import { site } from "@/lib/content/site";
 export const metadata: Metadata = {
   title: `Careers — ${site.name}`,
   description: careersHero.statement.join(" "),
+  alternates: { canonical: "/careers" },
 };
 
 export default function CareersPage() {

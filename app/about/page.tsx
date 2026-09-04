@@ -9,7 +9,9 @@ import { site } from "@/lib/content/site";
 // toggle can apply — it always reflects the English content.
 export const metadata: Metadata = {
   title: `Studio — ${site.name}`,
-  description: site.description,
+  description:
+    "Meet the strategists, designers, filmmakers and producers behind The Media Foundry, a Freetown-based creative agency and production studio.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
