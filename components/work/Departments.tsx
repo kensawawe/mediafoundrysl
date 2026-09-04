@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -72,16 +72,40 @@ function DepartmentIcon({ code, className }: { code: string; className?: string 
   }
 }
 
+const AUTOPLAY_INTERVAL = 4000;
+const TICK_MS = 100;
+
 /**
- * The department accordion previously lived on the homepage (see
- * DepartmentGrid for its purely-visual replacement there). Moved here
- * as-is so the full detail — description and example services per
- * department — stays available somewhere on the site.
+ * Auto-advancing department showcase — replaced the plain accordion with a
+ * stepped list (click or wait) paired with a cross-fading photo, so the
+ * six departments read as one continuous story instead of six flat rows.
  */
 export function Departments() {
   const services = useTranslated(servicesEn, servicesKri);
   const heading = useTranslated(headingEn, headingKri);
-  const [openIndex, setOpenIndex] = useState<number>(0);
+  const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev < 100) return prev + (100 * TICK_MS) / AUTOPLAY_INTERVAL;
+        setActive((i) => (i + 1) % services.length);
+        return 0;
+      });
+    }, TICK_MS);
+
+    return () => clearInterval(timer);
+  }, [services.length]);
+
+  function selectStep(i: number) {
+    setActive(i);
+    setProgress(0);
+  }
+
+  const activeService = services[active];
 
   return (
     <Section>
@@ -90,59 +114,90 @@ export function Departments() {
           {heading}
         </h2>
 
-        <div className="mt-14 border-t border-border-subtle">
-          {services.map((service, i) => {
-            const open = openIndex === i;
-            return (
-              <FadeIn key={service.code} delay={i * 0.05}>
+        <FadeIn className="mt-14 grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
+          <div className="order-2 md:order-1">
+            {services.map((service, i) => {
+              const isActive = i === active;
+              return (
                 <button
+                  key={service.code}
                   type="button"
-                  onClick={() => setOpenIndex(open ? -1 : i)}
-                  className="focus-ring flex w-full items-start gap-5 border-b border-border-subtle py-7 text-left sm:items-center sm:gap-6"
-                  aria-expanded={open}
+                  onClick={() => selectStep(i)}
+                  aria-current={isActive}
+                  aria-expanded={isActive}
+                  className="focus-ring flex w-full items-start gap-5 border-b border-border-subtle py-5 text-left sm:items-center sm:gap-6"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-accent-fill/40 text-accent-text">
-                    <DepartmentIcon code={service.code} className="h-4 w-4" />
-                  </span>
-                  <span className="flex-1">
-                    <span className="block font-display text-2xl font-bold tracking-tight sm:text-3xl">
-                      {service.title}
-                    </span>
-                    <span className="mt-1 block max-w-md font-body text-sm text-current/50">
-                      {service.description}
-                    </span>
-                  </span>
                   <span
-                    aria-hidden
                     className={clsx(
-                      "font-mono text-lg transition-transform duration-300",
-                      open ? "rotate-45" : "rotate-0",
+                      "flex h-9 w-9 shrink-0 items-center justify-center border transition-colors duration-300",
+                      isActive
+                        ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
+                        : "border-border-subtle text-foreground/40",
                     )}
                   >
-                    +
+                    <DepartmentIcon code={service.code} className="h-4 w-4" />
+                  </span>
+
+                  <span className="flex-1">
+                    <span
+                      className={clsx(
+                        "block font-display text-xl font-bold tracking-tight transition-colors duration-300 sm:text-2xl",
+                        isActive ? "text-foreground" : "text-foreground/40",
+                      )}
+                    >
+                      {service.title}
+                    </span>
+
+                    <div
+                      className={clsx(
+                        "grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out",
+                        isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                      )}
+                    >
+                      <div className="min-h-0">
+                        <p className="mt-2 font-body text-sm text-foreground/60">
+                          {service.description}
+                        </p>
+                        <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                          {service.examples.map((ex) => (
+                            <li
+                              key={ex}
+                              className="flex items-baseline gap-2.5 font-body text-sm text-foreground/50"
+                            >
+                              <span
+                                aria-hidden
+                                className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill"
+                              />
+                              {ex}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </span>
                 </button>
-                <div
-                  className={clsx(
-                    "grid overflow-hidden transition-[grid-template-rows] duration-400 ease-out",
-                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-                  )}
-                >
-                  <div className="min-h-0">
-                    <ul className="grid grid-cols-1 gap-x-8 gap-y-3 pb-8 pl-14 font-body text-sm text-current/70 sm:grid-cols-2 sm:pl-[4.75rem]">
-                      {service.examples.map((ex) => (
-                        <li key={ex} className="flex items-baseline gap-2.5">
-                          <span aria-hidden className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill" />
-                          {ex}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </FadeIn>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+
+          <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-2xl bg-ink md:order-2">
+            {services.map((service) => (
+              <img
+                key={service.code}
+                src={service.image}
+                alt={service.title}
+                className={clsx(
+                  "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-500 ease-in-out",
+                  service.code === activeService.code ? "opacity-100 scale-100" : "opacity-0 scale-105",
+                )}
+              />
+            ))}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"
+            />
+          </div>
+        </FadeIn>
       </Container>
     </Section>
   );

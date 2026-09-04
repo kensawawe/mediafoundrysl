@@ -11,10 +11,13 @@ export function WorkCard({ item, delay = 0 }: { item: WorkItem; delay?: number }
   return (
     <FadeIn delay={delay} className={clsx(isLarge && "sm:col-span-2 sm:row-span-2")}>
       <Link href={href} className="focus-ring group relative block">
-        <WorkThumb
-          item={item}
-          aspect={isLarge ? "aspect-square sm:aspect-[4/3]" : "aspect-[4/5] sm:aspect-square"}
-        />
+        <div className="relative overflow-hidden rounded-2xl">
+          <WorkThumb
+            item={item}
+            aspect={isLarge ? "aspect-square sm:aspect-[4/3]" : "aspect-[4/5] sm:aspect-square"}
+            className="rounded-2xl"
+          />
+        </div>
         <div className="mt-3 flex items-start justify-between gap-3">
           <div>
             <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">

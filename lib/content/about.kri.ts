@@ -62,7 +62,7 @@ export const ourPromise = {
 export const ourValues = {
   title: "Wi Valyu Dɛn",
   intro:
-    "Dɛn nɔto jɔs postɛ pan wɔl. Na aw wi rili de wok, ɛn wetin wi de ɔl hold wisɛf to na ɛvri projɛkt.",
+    "Di tin dɛn we wi biliv na dɛn, di stanad dɛn we wi hold wisɛf to, ɛn di prinsipul dɛn we shep aw wi tink, aw wi wok, ɛn wetin wi de put insay di wɔl.",
   values: [
     {
       title: "Kriyet Wit Klariti",

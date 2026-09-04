@@ -8,7 +8,15 @@ import type { WorkItem } from "@/lib/content/work";
  * placeholder Slate frame — as siblings alongside PourOverlay, matching
  * the Link-as-`.group` hover pattern used by both WorkCard and WorkWall.
  */
-export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) {
+export function WorkThumb({
+  item,
+  aspect,
+  className,
+}: {
+  item: WorkItem;
+  aspect: string;
+  className?: string;
+}) {
   if (item.restingImage) {
     const fit = item.imageFit ?? "cover";
     return (
@@ -18,6 +26,7 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
             "relative isolate w-full overflow-hidden",
             fit === "contain" ? "border border-border-strong bg-white" : "bg-ink",
             aspect,
+            className,
           )}
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
@@ -53,7 +62,13 @@ export function WorkThumb({ item, aspect }: { item: WorkItem; aspect: string }) 
 
   return (
     <>
-      <Slate label={item.title} category={item.category} variant={item.variant} aspect={aspect} />
+      <Slate
+        label={item.title}
+        category={item.category}
+        variant={item.variant}
+        aspect={aspect}
+        className={className}
+      />
       <PourOverlay>
         <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
           {item.category}

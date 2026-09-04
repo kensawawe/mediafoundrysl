@@ -62,7 +62,7 @@ export const ourPromise = {
 export const ourValues = {
   title: "Our Values",
   intro:
-    "These aren't posters on a wall. They're how we actually work, and what we hold each other to on every project.",
+    "The things we believe in, the standards we hold ourselves to, and the principles that shape how we think, how we work, and what we put into the world.",
   values: [
     {
       title: "Create With Clarity",

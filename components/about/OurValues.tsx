@@ -36,12 +36,7 @@ function ConvictionIcon({ className }: { className?: string }) {
 function CourageIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <circle cx="24" cy="24" r="16" {...iconShared} />
-      <circle cx="24" cy="24" r="3" fill="currentColor" stroke="none" />
-      <path d="M24 4V10" {...iconShared} />
-      <path d="M24 38V44" {...iconShared} />
-      <path d="M4 24H10" {...iconShared} />
-      <path d="M38 24H44" {...iconShared} />
+      <path d="M26 4L6 28h18l-2 16 20-24H24l2-16z" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -49,8 +44,10 @@ function CourageIcon({ className }: { className?: string }) {
 function CareIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect x="6" y="6" width="24" height="24" {...iconShared} />
-      <rect x="18" y="18" width="24" height="24" {...iconShared} />
+      <circle cx="16" cy="13" r="6" {...iconShared} />
+      <path d="M4 38l2-11c1-5 5-8 10-8s9 3 10 8l2 11" {...iconShared} />
+      <circle cx="34" cy="13" r="6" {...iconShared} />
+      <path d="M24 38l2-11c1-5 5-8 10-8s9 3 10 8l2 11" {...iconShared} />
     </svg>
   );
 }
@@ -68,7 +65,7 @@ export function OurValues() {
   return (
     <Section>
       <Container>
-        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
+        <div className="grid gap-12 md:grid-cols-[minmax(0,28rem)_1fr] md:items-center md:gap-10">
           <div>
             <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl md:text-6xl">
               {content.title}
@@ -78,7 +75,7 @@ export function OurValues() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:max-w-[41rem]">
             {content.values.map((value, i) => {
               const Icon = icons[i % icons.length];
               const isFeatured = i === 0;
@@ -86,29 +83,19 @@ export function OurValues() {
                 <div
                   key={value.title}
                   className={clsx(
-                    "flex flex-col gap-6 rounded-2xl border p-8",
+                    "flex aspect-square flex-col gap-3 rounded-2xl border p-6",
                     isFeatured
                       ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                       : "border-border-subtle bg-surface text-foreground",
                   )}
                 >
-                  <div className="flex items-center justify-between">
-                    <Icon className="h-10 w-10 shrink-0" />
-                    <span
-                      className={clsx(
-                        "font-mono text-xs uppercase tracking-[0.03em]",
-                        isFeatured ? "text-accent-fill-ink/60" : "text-foreground/40",
-                      )}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-2xl font-black uppercase leading-[0.95] tracking-tight sm:text-3xl">
+                  <Icon className="h-10 w-10 shrink-0" />
+                  <h3 className="whitespace-nowrap font-display text-lg font-black uppercase leading-[0.95] tracking-tight sm:text-xl md:text-2xl">
                     {value.title}
                   </h3>
                   <div
                     className={clsx(
-                      "space-y-3 font-body text-sm leading-relaxed sm:text-base",
+                      "space-y-2 font-body text-sm leading-snug",
                       isFeatured ? "text-accent-fill-ink/85" : "text-foreground/70",
                     )}
                   >

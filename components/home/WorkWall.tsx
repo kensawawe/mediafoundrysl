@@ -39,16 +39,22 @@ export function WorkWall() {
           </Button>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        <div className="mt-12 grid grid-cols-2 gap-2 px-12 sm:px-20 md:grid-cols-4 md:gap-4 md:px-32 lg:px-48">
           {workItems.slice(0, 8).map((item, i) => (
             <FadeIn key={item.slug} delay={i * 0.05}>
               <Link
                 href={item.hasCaseStudy ? `/work/${item.slug}` : "/work"}
                 className="focus-ring group relative block"
               >
-                <WorkThumb item={item} aspect="aspect-[4/5] md:aspect-square" />
+                <div className="relative overflow-hidden rounded-2xl">
+                  <WorkThumb
+                    item={item}
+                    aspect="aspect-[4/5] md:aspect-square"
+                    className="rounded-2xl"
+                  />
+                </div>
                 <div className="mt-3 flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-lg font-bold leading-tight tracking-tight sm:text-xl">
+                  <h3 className="font-display text-sm font-bold leading-tight tracking-tight sm:text-base">
                     {item.title}
                   </h3>
                 </div>

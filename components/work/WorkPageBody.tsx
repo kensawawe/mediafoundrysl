@@ -2,6 +2,7 @@
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { DepartmentMarquee } from "@/components/ui/DepartmentMarquee";
 import { WorkBrowser } from "@/components/work/WorkBrowser";
 import { Departments } from "@/components/work/Departments";
 import { workCopy as workCopyEn } from "@/lib/content/work";
@@ -29,6 +30,10 @@ export function WorkPageBody() {
       </Section>
 
       <Departments />
+
+      <section className="bg-surface py-16 md:py-20">
+        <DepartmentMarquee />
+      </section>
     </>
   );
 }
