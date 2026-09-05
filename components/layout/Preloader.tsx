@@ -6,9 +6,9 @@ import clsx from "clsx";
 
 const SESSION_KEY = "mf-preloader-seen";
 const WORDS = ["Discovering", "Designing", "Developing", "Producing", "Delivering"];
-const WORD_INTERVAL = 350;
-const WORD_FADE = 0.12;
-const EXIT_DURATION = 0.45;
+const WORD_INTERVAL = 800;
+const WORD_FADE = 0.18;
+const EXIT_DURATION = 0.5;
 
 /**
  * First-load-only intro: cycles through the studio's process words, then

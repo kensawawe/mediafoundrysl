@@ -118,7 +118,12 @@ export function Hero() {
               muted
               loop
               playsInline
-              preload="metadata"
+              // The Preloader overlay covers the page for several seconds on
+              // first load (see components/layout/Preloader.tsx) — this
+              // component mounts underneath it immediately, so eager preload
+              // has a safe window to run without competing with anything
+              // actually visible yet.
+              preload="auto"
               poster="/hero-freetown-poster.jpg"
               className="h-full w-full object-cover"
             >
