@@ -146,7 +146,7 @@ export function Testimonials() {
           {whatClientsSay}
         </h2>
 
-        <div className="relative mt-12 h-[320px] md:mt-16">
+        <div className="relative mt-12 h-[270px] md:mt-16">
           {testimonials.map((item, i) => (
             <ReviewCard key={item.id} item={item} index={i} activeIndex={index} />
           ))}

@@ -6,6 +6,7 @@ import { CartProvider } from "@/components/layout/CartProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CursorEffect } from "@/components/layout/CursorEffect";
+import { Preloader } from "@/components/layout/Preloader";
 import { site } from "@/lib/content/site";
 import "./globals.css";
 
@@ -122,6 +123,7 @@ export default function RootLayout({
         >
           <LanguageProvider>
             <CartProvider>
+              <Preloader />
               <CursorEffect />
               <Navbar />
               <main className="flex-1">{children}</main>
