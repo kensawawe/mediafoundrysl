@@ -1,19 +1,19 @@
 export const apertureReveal = {
   outroTitle: ["Wi bin bil difrent.", "Wi de bil difrent."],
   outroSubtitle: [
-    "Wi na wan kriyetiv midiya kɔmpani we bil fɔ pipul dɛn we gɛt sɔntin we wɔt fɔ se, bil, chenj, ɔ pratɛkt.",
-    "Wi de brin stratiji, dizayn, tori-tɛlin, midiya, ɛn prɔdɔkshɔn togɛda ɔnda wan ruf. Bɔt wetin mek wi difrent nɔto di lis ɔv tin dɛn we wi de du. Na aw wi de tink bɔt di wok.",
-    "Wi de aks kwɛstshɔn dɛn bifo wi ɔfa sɔlushɔn. Wi de chalinj aydiya dɛn bifo wi polish dɛn. Wi de kea bɔt di ditel dɛn, bɔt wi nɔ de lɔs sɛt ɔv di big pikchɔ. Ɛn wi de tay klos to di wok frɔm di fɔs tɔt te rich di las frem.",
-    "I nɔto jɔs se wi wandɛn fɔ bi bold ɛn mɛmɔrabul — wi de intrɛstɛd fɔ mek sɔntin we wɔt fɔ si, yɛri, ɛn kea bɔt.",
+    "Wi na kriyetiv midya kɔmni we de fɔ pipul dɛn we gɛt sɔmtin we fit fɔ se, fɔ bil, fɔ chenj, ɔ fɔ protɛkt.",
+    "Wi de kam wit stratiji, dizayn, tori, midya, ɛn prɔdɔkshɔn togɛda wan sai. Bɔt wetin mek wi difrent nɔto di tin dɛm we wi de du. Na aw wi de tink bɔt di wok.",
+    "Wi de aks kwɛshɔn dɛm bifo wi sɔjɛs sɔlushɔn. Wi de chalenj aydiya dɛm bifo wi polish dɛm. Wi kiya bɔt di ditel dɛm, bɔt wi nɔ de lɛf fɔ si di big pikchɔ. Ɛn wi de niya di wok frɔm di fɔs say te rich di las say.",
+    "Wi nɔ jɔs wan fɔ bi bold ɛn mɛmɔrabul wi wan fɔ mek sɔmtin we fit fɔ lɛ pipul dɛn si, yɛri, ɛn kiya bɔt.",
   ],
 };
 
 export const whoWeAre = {
-  title: "Udat Wi De",
+  title: "Udat Wi Bi",
   body: [
-    "Wi na wan tim we tay klos — stratejist dɛn, dizayna dɛn, filmeka dɛn, rayta dɛn, prodyusa dɛn, ɛn pipul dɛn we sabi sɔlv prɔblɛm — we de wok ɔnda wan ruf.",
-    "Wi biliv se di bɛst aydiya dɛn de apin we difrent maynd dɛn de na wan rum togɛda. So wi de aks kwɛstshɔn, chalinj, ɛksperimɛnt, ɛn mek tin dɛn bɛta togɛda.",
-    "Wi de tek di wok siriɔs, ɛn sɔntɛm wi nɔ de tek wisɛf tumɔch siriɔs bikɔs kriyetiviti fɔ sɔntɛm fil lɛk ple.",
+    "Wi na wan kloz tim we gɛt stratijis dɛm, dizayna dɛm, pipul dɛm we de mek fim, pipul dɛm we de rayt, prodyusa dɛm, ɛn pipul dɛm we sabi fix prɔblɛm — we de wok ɔnda wan ruf.",
+    "Wi biliv se di bɛst aydiya dɛm de apin we difren maynd dɛm de na wan rum togɛda. So wi de aks kwɛsshɔn, chalenj, ɛksperimɛnt, ɛn mek tin dɛn togɛda.",
+    "Wi de tek di wok siryɔs, ɛn sɔntɛm dɛm wi nɔ de tek wisɛf siriɔs tumɔs bikɔs kriyetiviti fɔ fil lɛk ple ple sɔntɛm dɛm.",
   ],
 };
 
