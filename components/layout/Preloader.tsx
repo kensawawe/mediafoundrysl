@@ -84,9 +84,12 @@ export function Preloader() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-background"
     >
       <span aria-hidden className="flex items-center gap-2.5">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-fill">
-          <span className="h-1.5 w-1.5 rounded-full bg-paper" />
-        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+        <img
+          src={isDark ? "/mark-white.png" : "/mark.png"}
+          alt=""
+          className={clsx("h-7 w-auto shrink-0 transition-opacity duration-150", themeMounted ? "opacity-100" : "opacity-0")}
+        />
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
         <img
           src={isDark ? "/logo-white.png" : "/logo-dark.png"}

@@ -129,7 +129,7 @@ export function Departments() {
                 >
                   <span
                     className={clsx(
-                      "flex h-9 w-9 shrink-0 items-center justify-center border transition-colors duration-300",
+                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-300",
                       isActive
                         ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                         : "border-border-subtle text-foreground/40",

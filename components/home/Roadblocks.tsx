@@ -79,7 +79,7 @@ const features = [
 
 export function Roadblocks() {
   return (
-    <section className="relative bg-surface pt-20 text-foreground sm:pt-40">
+    <section className="relative bg-background pt-20 text-foreground sm:pt-40">
       <div className="mx-auto max-w-full">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center space-y-4 px-5 text-center md:px-10">
           <h2 className="max-w-3xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
@@ -93,7 +93,7 @@ export function Roadblocks() {
           </p>
         </div>
 
-        <DepartmentMarquee className="mt-12" />
+        <DepartmentMarquee className="mt-12" fadeFrom="background" />
 
         <div className="mt-16 grid grid-cols-1 divide-dashed divide-border-subtle border-t border-dashed border-border-subtle sm:grid-cols-2 sm:divide-x lg:grid-cols-4">
           {features.map(({ Icon, title, description }) => (

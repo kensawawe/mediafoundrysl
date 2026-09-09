@@ -63,7 +63,7 @@ export function OurValues() {
   const content = useTranslated(ourValuesEn, ourValuesKri);
 
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <Container>
         <div className="grid gap-12 md:grid-cols-[minmax(0,28rem)_1fr] md:items-center md:gap-10">
           <div>

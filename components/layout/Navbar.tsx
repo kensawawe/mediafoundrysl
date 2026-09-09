@@ -154,19 +154,20 @@ export function Navbar() {
             className="focus-ring flex shrink-0 items-center gap-2.5"
             onClick={() => setMenuOpen(false)}
           >
-            <span
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+            <img
+              src={isDark ? "/mark-white.png" : "/mark.png"}
+              alt=""
               aria-hidden
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-fill"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-paper" />
-            </span>
+              className="h-7 w-auto shrink-0"
+            />
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
             <img
               src={isDark ? "/logo-white.png" : "/logo-dark.png"}
               alt="The Media Foundry"
               width={1516}
               height={176}
-              className="h-4 w-auto md:h-[18px]"
+              className="h-[13px] w-auto md:h-[18px]"
             />
           </Link>
 

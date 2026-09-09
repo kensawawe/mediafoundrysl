@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { Marquee } from "@/components/ui/Marquee";
 import { Badge } from "@/components/ui/Badge";
 
@@ -99,7 +100,15 @@ const badgeClass =
  * the marquee alone (no heading, no feature grid) can also run on its own
  * elsewhere on the site.
  */
-export function DepartmentMarquee({ className }: { className?: string }) {
+export function DepartmentMarquee({
+  className,
+  fadeFrom = "surface",
+}: {
+  className?: string;
+  /** Must match whatever background this sits on, or the fade reads as a
+   *  visible seam instead of a blend. */
+  fadeFrom?: "surface" | "background";
+}) {
   return (
     <div className={className}>
       <div className="relative overflow-hidden">
@@ -107,8 +116,18 @@ export function DepartmentMarquee({ className }: { className?: string }) {
             padding on the content instead of the edges, a plain left-0/
             right-0 fade would sit in the empty padding gutter rather
             than over the actual edge of the scrolling pills. */}
-        <div className="pointer-events-none absolute inset-y-0 left-[10%] z-10 w-10 bg-linear-to-r from-surface sm:w-20" />
-        <div className="pointer-events-none absolute inset-y-0 right-[10%] z-10 w-10 bg-linear-to-l from-surface sm:w-20" />
+        <div
+          className={clsx(
+            "pointer-events-none absolute inset-y-0 left-[10%] z-10 w-10 bg-linear-to-r sm:w-20",
+            fadeFrom === "surface" ? "from-surface" : "from-background",
+          )}
+        />
+        <div
+          className={clsx(
+            "pointer-events-none absolute inset-y-0 right-[10%] z-10 w-10 bg-linear-to-l sm:w-20",
+            fadeFrom === "surface" ? "from-surface" : "from-background",
+          )}
+        />
 
         <div className="flex flex-col space-y-2 px-[10%]">
           {departments.map((dept) => (
