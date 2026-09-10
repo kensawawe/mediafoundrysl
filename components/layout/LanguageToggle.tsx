@@ -28,7 +28,7 @@ export function LanguageToggle({ className }: { className?: string }) {
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="focus-ring flex h-6 w-6 shrink-0 items-center justify-center bg-accent-fill text-accent-fill-ink"
+        className="focus-ring flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-fill text-accent-fill-ink"
       >
         {current.label}
       </button>
@@ -40,7 +40,7 @@ export function LanguageToggle({ className }: { className?: string }) {
           // space the mouse has to cross without being over the button or
           // the dropdown, which fires this wrapper's onMouseLeave and
           // closes the menu before the pointer ever reaches it.
-          "absolute left-0 top-full z-10 hidden w-6 flex-col border border-border-subtle bg-background group-hover/lang:flex",
+          "absolute left-0 top-full z-10 hidden w-6 flex-col overflow-hidden rounded-lg border border-border-subtle bg-background group-hover/lang:flex",
           open && "!flex",
         )}
       >

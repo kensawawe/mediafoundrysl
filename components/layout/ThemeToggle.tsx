@@ -51,7 +51,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={clsx(
-        "focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center border border-border-strong bg-transparent text-foreground transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
+        "focus-ring relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-strong bg-transparent text-foreground transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
         className,
       )}
     >

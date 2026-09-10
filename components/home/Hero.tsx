@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { HeroHeadline } from "@/components/home/HeroHeadline";
 import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
 import { hero as heroEn } from "@/lib/content/home";
@@ -169,18 +170,22 @@ export function Hero() {
             </div>
 
             <div className="pointer-events-auto mt-6 flex flex-nowrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
-              <a
-                href={hero.primaryCta.href}
-                className="whitespace-nowrap rounded-full bg-paper px-4 py-2 font-body text-xs font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper sm:px-6 sm:py-3 sm:text-sm"
-              >
-                {hero.primaryCta.label}
-              </a>
-              <a
-                href={hero.secondaryCta.href}
-                className="whitespace-nowrap rounded-full border border-paper/50 bg-white/10 px-4 py-2 font-body text-xs font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm"
-              >
-                {hero.secondaryCta.label}
-              </a>
+              <Magnetic className="inline-flex">
+                <a
+                  href={hero.primaryCta.href}
+                  className="whitespace-nowrap rounded-full bg-paper px-4 py-2 font-body text-xs font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper sm:px-6 sm:py-3 sm:text-sm"
+                >
+                  {hero.primaryCta.label}
+                </a>
+              </Magnetic>
+              <Magnetic className="inline-flex">
+                <a
+                  href={hero.secondaryCta.href}
+                  className="whitespace-nowrap rounded-full border border-paper/50 bg-white/10 px-4 py-2 font-body text-xs font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm"
+                >
+                  {hero.secondaryCta.label}
+                </a>
+              </Magnetic>
             </div>
           </div>
         </div>

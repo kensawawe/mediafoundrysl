@@ -13,6 +13,7 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { useCart } from "@/components/layout/CartProvider";
+import { Magnetic } from "@/components/ui/Magnetic";
 
 // Dev-only preview link (and cart icon) for the not-yet-public merch
 // catalogue. Reading NODE_ENV here (rather than a runtime toggle) means
@@ -217,14 +218,15 @@ export function Navbar() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              whileHover={{ scale: 1.05 }}
             >
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-mono text-sm font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
-              >
-                {startAProjectLabel}
-              </Link>
+              <Magnetic className="inline-flex">
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-mono text-sm font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
+                >
+                  {startAProjectLabel}
+                </Link>
+              </Magnetic>
             </motion.div>
           </div>
 
@@ -323,13 +325,15 @@ export function Navbar() {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ delay: displayNavLinks.length * 0.1 + 0.2 }}
               >
-                <Link
-                  href="/#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-mono text-base font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
-                >
-                  {startAProjectLabel}
-                </Link>
+                <Magnetic className="flex w-full">
+                  <Link
+                    href="/#contact"
+                    onClick={() => setMenuOpen(false)}
+                    className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-mono text-base font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
+                  >
+                    {startAProjectLabel}
+                  </Link>
+                </Magnetic>
               </motion.div>
             </div>
           </motion.div>

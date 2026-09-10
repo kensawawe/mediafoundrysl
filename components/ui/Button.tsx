@@ -15,7 +15,7 @@ type ButtonProps = {
 };
 
 const base =
-  "focus-ring inline-flex items-center justify-center gap-2 rounded-none border font-body text-sm font-semibold uppercase tracking-[0.08em] px-7 py-3.5 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40";
+  "focus-ring inline-flex items-center justify-center gap-2 rounded-full border font-body text-sm font-semibold uppercase tracking-[0.08em] px-7 py-3.5 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40";
 
 const variants: Record<string, string> = {
   primary:

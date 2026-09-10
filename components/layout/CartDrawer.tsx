@@ -14,7 +14,7 @@ function QuantityStepper({
   onChange: (next: number) => void;
 }) {
   return (
-    <div className="flex items-center border border-border-strong">
+    <div className="flex items-center overflow-hidden rounded-full border border-border-strong">
       <button
         type="button"
         aria-label="Decrease quantity"
@@ -67,7 +67,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 type="button"
                 aria-label="Close cart"
                 onClick={onClose}
-                className="focus-ring flex h-8 w-8 items-center justify-center border border-border-strong text-current transition-colors hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+                className="focus-ring flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-current transition-colors hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
               >
                 ✕
               </button>
@@ -119,7 +119,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
               <button
                 type="button"
                 disabled
-                className="mt-4 w-full border border-border-strong bg-transparent px-5 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.08em] text-foreground/50 disabled:cursor-not-allowed"
+                className="mt-4 w-full rounded-full border border-border-strong bg-transparent px-5 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.08em] text-foreground/50 disabled:cursor-not-allowed"
               >
                 {copy.checkout}
               </button>

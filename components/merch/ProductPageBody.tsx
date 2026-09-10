@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Slate } from "@/components/ui/Slate";
 import { Accordion } from "@/components/merch/Accordion";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { useCart } from "@/components/layout/CartProvider";
 import {
   merchItems as merchItemsEn,
@@ -86,7 +87,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
                     aria-label={`Show ${angle} view`}
                     aria-current={i === activeImage}
                     className={clsx(
-                      "border transition-colors",
+                      "overflow-hidden rounded-lg border transition-colors",
                       i === activeImage ? "border-accent-fill" : "border-border-subtle hover:border-border-strong",
                     )}
                   >
@@ -115,7 +116,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
                   aria-label={`Show ${angle} view`}
                   aria-current={i === activeImage}
                   className={clsx(
-                    "w-16 shrink-0 border transition-colors",
+                    "w-16 shrink-0 overflow-hidden rounded-lg border transition-colors",
                     i === activeImage ? "border-accent-fill" : "border-border-subtle",
                   )}
                 >
@@ -154,7 +155,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
                       }}
                       aria-pressed={size === s}
                       className={clsx(
-                        "focus-ring flex h-11 w-11 items-center justify-center border font-mono text-xs uppercase transition-colors",
+                        "focus-ring flex h-11 w-11 items-center justify-center rounded-full border font-mono text-xs uppercase transition-colors",
                         size === s
                           ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                           : "border-border-strong hover:border-accent-text hover:text-accent-text",
@@ -174,7 +175,7 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
               <span className="font-mono text-xs uppercase tracking-[0.03em] text-current/60">
                 {copy.quantity}
               </span>
-              <div className="mt-3 flex w-fit items-center border border-border-strong">
+              <div className="mt-3 flex w-fit items-center overflow-hidden rounded-full border border-border-strong">
                 <button
                   type="button"
                   aria-label="Decrease quantity"
@@ -197,19 +198,21 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={handleAddToCart}
-              disabled={outOfStock}
-              className={clsx(
-                "focus-ring mt-8 w-full border px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.08em] transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40",
-                added
-                  ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
-                  : "border-foreground bg-foreground text-background hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
-              )}
-            >
-              {outOfStock ? copy.outOfStock : added ? copy.addedToCart : copy.addToCart}
-            </button>
+            <Magnetic className={clsx("mt-8 flex", outOfStock && "pointer-events-none")}>
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={outOfStock}
+                className={clsx(
+                  "focus-ring w-full rounded-full border px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.08em] transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40",
+                  added
+                    ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
+                    : "border-foreground bg-foreground text-background hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink",
+                )}
+              >
+                {outOfStock ? copy.outOfStock : added ? copy.addedToCart : copy.addToCart}
+              </button>
+            </Magnetic>
 
             <div className="mt-10">
               {translated.careInstructions && (

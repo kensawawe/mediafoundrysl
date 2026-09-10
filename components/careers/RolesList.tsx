@@ -34,7 +34,7 @@ export function RolesList() {
             type="button"
             onClick={() => setActive(dept)}
             className={clsx(
-              "focus-ring border px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] transition-colors",
+              "focus-ring rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] transition-colors",
               active === dept
                 ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                 : "border-border-subtle hover:border-accent-text hover:text-accent-text",

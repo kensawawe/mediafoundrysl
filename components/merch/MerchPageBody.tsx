@@ -51,7 +51,7 @@ export function MerchPageBody() {
                 type="button"
                 onClick={() => setActive(filter)}
                 className={clsx(
-                  "focus-ring border px-4 py-2 font-mono text-xs uppercase tracking-[0.03em] transition-colors",
+                  "focus-ring rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.03em] transition-colors",
                   active === filter
                     ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
                     : "border-border-subtle hover:border-accent-text hover:text-accent-text",
