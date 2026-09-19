@@ -31,7 +31,6 @@ export function ClientFit() {
                 </span>
               ))}
             </h2>
-            <SunburstMark className="mx-auto mt-12 h-9 w-9 text-steel sm:mx-0" />
           </FadeIn>
 
           <FadeIn
@@ -55,32 +54,5 @@ export function ClientFit() {
         <div className="mt-16 h-px w-full bg-navy-rule md:mt-20" />
       </Container>
     </Section>
-  );
-}
-
-function SunburstMark({ className }: { className?: string }) {
-  const spokes = Array.from({ length: 8 });
-
-  return (
-    <svg viewBox="0 0 40 40" fill="none" aria-hidden className={className}>
-      {spokes.map((_, i) => {
-        const angle = (i * Math.PI) / 4;
-        const x1 = 20 + Math.cos(angle) * 5;
-        const y1 = 20 + Math.sin(angle) * 5;
-        const x2 = 20 + Math.cos(angle) * 19;
-        const y2 = 20 + Math.sin(angle) * 19;
-        return (
-          <line
-            key={angle}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke="currentColor"
-            strokeWidth="1"
-          />
-        );
-      })}
-    </svg>
   );
 }
