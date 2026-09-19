@@ -108,7 +108,7 @@ export function Departments() {
   const activeService = services[active];
 
   return (
-    <Section>
+    <Section className="pb-0 md:pb-0">
       <Container>
         <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
           {heading}
