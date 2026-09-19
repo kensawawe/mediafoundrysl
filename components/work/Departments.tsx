@@ -158,20 +158,6 @@ export function Departments() {
                         <p className="mt-2 font-body text-sm text-foreground/60">
                           {service.description}
                         </p>
-                        <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
-                          {service.examples.map((ex) => (
-                            <li
-                              key={ex}
-                              className="flex items-baseline gap-2.5 font-body text-sm text-foreground/50"
-                            >
-                              <span
-                                aria-hidden
-                                className="h-1 w-1 shrink-0 translate-y-[-2px] bg-accent-fill"
-                              />
-                              {ex}
-                            </li>
-                          ))}
-                        </ul>
                       </div>
                     </div>
                   </span>

@@ -10,9 +10,16 @@ import {
   useMotionValueEvent,
   type MotionValue,
 } from "framer-motion";
+import Link from "next/link";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { workItems as workItemsEn, workCopy as workCopyEn, type WorkItem } from "@/lib/content/work";
+import { PourOverlay } from "@/components/ui/PourOverlay";
+import {
+  caseStudiesPublic,
+  workItems as workItemsEn,
+  workCopy as workCopyEn,
+  type WorkItem,
+} from "@/lib/content/work";
 import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/content/work.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
@@ -22,6 +29,12 @@ import { useTranslated } from "@/lib/content/useTranslated";
  * items' own resting images (the organizations and brands we've worked for),
  * so it stays in sync with lib/content/work.ts.
  */
+
+// Until `caseStudiesPublic` is flipped on, cards link to their case study
+// locally (so it can be worked on) but stay inert in production — same
+// dev-only-interactivity convention used for the not-yet-public merch link in
+// Navbar.tsx. Items without a case-study page are never links.
+const isDev = process.env.NODE_ENV === "development";
 
 type CardLayout = {
   /** offset while clustered (vw/vh) */
@@ -167,6 +180,37 @@ function Card({
   const scale = useTransform(progress, [0, 1], [STACK_SCALE, restScale]);
 
   const contain = item.imageFit === "contain";
+  const clickable = !!item.hasCaseStudy && (caseStudiesPublic || isDev);
+
+  const face = (
+    <div
+      className={clsx(
+        "relative h-full w-full overflow-hidden rounded-2xl",
+        contain ? "border border-border-strong bg-white" : "bg-ink",
+      )}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+      <img
+        src={item.restingImage}
+        alt={item.title}
+        draggable={false}
+        className={clsx(
+          "absolute inset-0 h-full w-full",
+          contain ? clsx("object-contain", item.imagePadding ?? "p-4") : "object-cover",
+        )}
+      />
+      {clickable && (
+        <PourOverlay>
+          <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
+            {item.category}
+          </span>
+          <h3 className="font-display text-base font-black leading-tight text-paper sm:text-xl">
+            {item.hoverTitle ?? item.title}
+          </h3>
+        </PourOverlay>
+      )}
+    </div>
+  );
 
   return (
     <motion.div
@@ -180,23 +224,17 @@ function Card({
         scale,
       }}
     >
-      <div
-        className={clsx(
-          "relative h-full w-full overflow-hidden rounded-2xl",
-          contain ? "border border-border-strong bg-white" : "bg-ink",
-        )}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
-        <img
-          src={item.restingImage}
-          alt={item.title}
-          draggable={false}
-          className={clsx(
-            "absolute inset-0 h-full w-full",
-            contain ? clsx("object-contain", item.imagePadding ?? "p-4") : "object-cover",
-          )}
-        />
-      </div>
+      {clickable ? (
+        <Link
+          href={`/work/${item.slug}`}
+          aria-label={item.title}
+          className="focus-ring group relative block h-full w-full rounded-2xl"
+        >
+          {face}
+        </Link>
+      ) : (
+        face
+      )}
     </motion.div>
   );
 }
@@ -244,13 +282,13 @@ export function ClientSpread() {
           className="pointer-events-none absolute inset-0 z-[5] flex flex-col items-center justify-center px-6 text-center max-md:px-8"
           style={{ opacity: copyOpacity, scale: noScale ? 1 : copyScale }}
         >
-          <h2 className="w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
+          <h1 className="w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
             {copy.clientSpreadHeading.map((line) => (
               <span key={line} className="block">
                 {line}
               </span>
             ))}
-          </h2>
+          </h1>
           <p className="mt-[1.2vw] w-full max-w-[36ch] font-body text-[1.1vw] leading-relaxed tracking-tight text-current/60 max-md:mt-3 max-md:text-[3.6vw]">
             {copy.clientSpreadSub}
           </p>
