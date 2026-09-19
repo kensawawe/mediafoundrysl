@@ -11,6 +11,7 @@ import { useTranslated } from "@/lib/content/useTranslated";
 
 export function Gallery({ study }: { study: CaseStudy }) {
   const copy = useTranslated(copyEn, copyKri);
+  if (study.gallery.length === 0) return null;
 
   return (
     <Section className="py-20 md:py-24">

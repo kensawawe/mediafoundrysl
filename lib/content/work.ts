@@ -94,6 +94,7 @@ export const workItems: WorkItem[] = [
     size: "md",
     restingImage: "/conex.jpg",
     hoverImage: "/conex%20logo.png",
+    hasCaseStudy: true,
   },
   {
     slug: "the-feminist-cohort",
@@ -119,6 +120,7 @@ export const workItems: WorkItem[] = [
     size: "lg",
     restingImage: "/after%201.jpg",
     hoverImage: "/wisul.png",
+    hasCaseStudy: true,
   },
   {
     slug: "slmda",
@@ -145,6 +147,7 @@ export const workItems: WorkItem[] = [
     restingImage: "/ritt.png",
     hoverImage: "/rot%20png.png",
     imageFit: "contain",
+    hasCaseStudy: true,
   },
   {
     slug: "foundations-and-futures",
@@ -158,6 +161,7 @@ export const workItems: WorkItem[] = [
     imageFit: "contain",
     imagePadding: "p-0 scale-110",
     hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
+    hasCaseStudy: true,
   },
   {
     slug: "the-leonean",
@@ -170,5 +174,6 @@ export const workItems: WorkItem[] = [
     hoverImage: "/leonean-logo.png",
     imageFit: "contain",
     hoverImageSize: "mb-1 h-6 w-auto max-w-full sm:h-8",
+    hasCaseStudy: true,
   },
 ];

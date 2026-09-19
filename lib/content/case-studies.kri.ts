@@ -70,4 +70,58 @@ export const caseStudies: CaseStudy[] = [
       { stat: "1", label: "Shɔt dokyumɛntari film we dɛn diliva" },
     ],
   },
+
+  // See case-studies.ts — only wording that already exists on the site.
+  {
+    slug: "conex-campaign",
+    title: "Conex",
+    category: "Campaigns",
+    heroMedia: { variant: "video", label: "Conex, brand kampen" },
+    realHero: true,
+    overview: "Wan brand kampen fɔ Conex, we dɛn lɔnch aroun wan bold nyu mak we bil fɔ kɔmand atɛnshɔn.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "afta-di-wisul",
+    title: "Afta Di Wisul",
+    category: "Video Podcast",
+    heroMedia: { variant: "video", label: "Afta Di Wisul, vidio pɔdkast" },
+    realHero: true,
+    overview:
+      "Wan wik-wik vidio pɔdkast we de brok daun di fayn gem, we dɛn bil to wan sho aydɛntiti ɔn in ɔn.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "rotary-international",
+    title: "Rotary",
+    category: "Social & Content",
+    heroMedia: { variant: "photo", label: "Rotary International, sosial kɔntɛnt" },
+    realHero: true,
+    overview:
+      "Wan shɔt-fɔm kɔntɛnt sistɛm we bil fɔ Rotary International in ɔlwez-ɔn sosial kalinda.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "foundations-and-futures",
+    title: "Foundations & Futures",
+    category: "Video Podcast",
+    heroMedia: { variant: "video", label: "Foundations & Futures, pɔdkast sirii" },
+    realHero: true,
+    overview: "Wan pɔdkast sirii we Di Media Foundry prodyus, we Ken Saro-Wiwa Fofana de os.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "the-leonean",
+    title: "The Leonean",
+    category: "Digital",
+    heroMedia: { variant: "photo", label: "The Leonean, dijital magazin" },
+    realHero: true,
+    overview: "Wan dijital magazin — stori, kɔlcha, ɛn aydiya dɛn frɔm Salone ɛn pas.",
+    gallery: [],
+    impact: [],
+  },
 ];

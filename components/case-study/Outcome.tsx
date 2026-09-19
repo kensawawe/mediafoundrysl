@@ -6,6 +6,8 @@ import { FadeIn } from "@/components/ui/RevealText";
 import { type CaseStudy } from "@/lib/content/case-studies";
 
 export function Outcome({ study }: { study: CaseStudy }) {
+  if (study.impact.length === 0) return null;
+
   return (
     <Section className="py-20 md:py-24">
       <Container>

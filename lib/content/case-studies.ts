@@ -11,9 +11,14 @@ export type CaseStudy = {
   title: string;
   category: WorkCategory;
   client?: string;
-  year: string;
+  /** Omitted until confirmed — the page simply doesn't show a year. */
+  year?: string;
   heroMedia: { variant: "video" | "photo"; label: string };
+  /** Show the work item's real image (lib/content/work.ts) as the hero
+   *  instead of the Slate placeholder. */
+  realHero?: boolean;
   overview: string;
+  /** Empty arrays hide the Gallery / Outcome sections. */
   gallery: { variant: "video" | "photo"; label: string; category?: string }[];
   impact: { stat: string; label: string }[];
 };
@@ -78,5 +83,62 @@ export const caseStudies: CaseStudy[] = [
       { stat: "1ST", label: "Visual archive of this standard for the association" },
       { stat: "1", label: "Short documentary film delivered" },
     ],
+  },
+
+  // The five entries below use only what's already on the site (title,
+  // category, one-line description, real client image). No year, gallery or
+  // results yet — those need real details from the client work before they're
+  // added, so nothing here is invented.
+  {
+    slug: "conex-campaign",
+    title: "Conex",
+    category: "Campaigns",
+    heroMedia: { variant: "video", label: "Conex, brand campaign" },
+    realHero: true,
+    overview: "A brand campaign for Conex, launched around a bold new mark built to command attention.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "afta-di-wisul",
+    title: "Afta Di Wisul",
+    category: "Video Podcast",
+    heroMedia: { variant: "video", label: "Afta Di Wisul, video podcast" },
+    realHero: true,
+    overview:
+      "A weekly video podcast breaking down the beautiful game, built into a show identity of its own.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "rotary-international",
+    title: "Rotary",
+    category: "Social & Content",
+    heroMedia: { variant: "photo", label: "Rotary International, social content" },
+    realHero: true,
+    overview:
+      "A short-form content system built for Rotary International's always-on social calendar.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "foundations-and-futures",
+    title: "Foundations & Futures",
+    category: "Video Podcast",
+    heroMedia: { variant: "video", label: "Foundations & Futures, podcast series" },
+    realHero: true,
+    overview: "A podcast series produced by The Media Foundry, hosted by Ken Saro-Wiwa Fofana.",
+    gallery: [],
+    impact: [],
+  },
+  {
+    slug: "the-leonean",
+    title: "The Leonean",
+    category: "Digital",
+    heroMedia: { variant: "photo", label: "The Leonean, digital magazine" },
+    realHero: true,
+    overview: "A digital magazine — stories, culture and ideas from Sierra Leone and beyond.",
+    gallery: [],
+    impact: [],
   },
 ];

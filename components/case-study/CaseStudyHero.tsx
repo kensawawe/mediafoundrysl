@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Slate } from "@/components/ui/Slate";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { caseStudyCopy as copyEn, type CaseStudy } from "@/lib/content/case-studies";
+import { workItems } from "@/lib/content/work";
 import { caseStudyCopy as copyKri } from "@/lib/content/case-studies.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 export function CaseStudyHero({ study }: { study: CaseStudy }) {
   const copy = useTranslated(copyEn, copyKri);
+  const work = study.realHero ? workItems.find((w) => w.slug === study.slug) : undefined;
+  const contain = work?.imageFit === "contain";
 
   return (
     <div className="pt-28 md:pt-32">
@@ -31,17 +35,36 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
               {study.title}
             </h1>
           </div>
-          <span className="font-mono text-sm text-current/50">{study.year}</span>
+          {study.year && <span className="font-mono text-sm text-current/50">{study.year}</span>}
         </div>
       </Container>
 
       <div className="mt-10">
-        <Slate
-          label={study.title}
-          category={study.category}
-          variant={study.heroMedia.variant}
-          aspect="aspect-[16/9] md:aspect-[21/9]"
-        />
+        {work?.restingImage ? (
+          <div
+            className={clsx(
+              "relative isolate aspect-[16/9] w-full overflow-hidden md:aspect-[21/9]",
+              contain ? "border-y border-border-strong bg-white" : "bg-ink",
+            )}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+            <img
+              src={work.restingImage}
+              alt={study.heroMedia.label}
+              className={clsx(
+                "absolute inset-0 h-full w-full",
+                contain ? clsx("object-contain", work.imagePadding ?? "p-10") : "object-cover",
+              )}
+            />
+          </div>
+        ) : (
+          <Slate
+            label={study.title}
+            category={study.category}
+            variant={study.heroMedia.variant}
+            aspect="aspect-[16/9] md:aspect-[21/9]"
+          />
+        )}
       </div>
     </div>
   );
