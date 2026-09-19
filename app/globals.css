@@ -299,3 +299,16 @@ body::after {
     scroll-behavior: auto !important;
   }
 }
+
+/* GlyphPortal: the Careers hero sits inside <Container>, which already pads
+   the sides — drop the portal's own inline padding so it lines up with the
+   sections below. Higher specificity than the portal's :where() rules. */
+.careers-portal [data-gp-content] {
+  padding-inline: 0;
+}
+
+/* On touch the portal adds a "Choose a letter" dropdown; the Careers hero
+   just lets the camera pick the best letter itself. */
+.careers-portal [data-gp-touch-picker] {
+  display: none;
+}

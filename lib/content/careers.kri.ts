@@ -2,6 +2,8 @@ import type { ApplicationStep, Pillar, Role } from "./careers";
 
 export const careersHero = {
   eyebrow: "Jɔb Dɛn",
+  portalWord: "BIL",
+  portalEnter: "Kam bil wit wi",
   title: "Kam Bil Sɔntin We Get Minin.",
   statement: [
     "Wi de bil wan ples fɔ pipul dɛn we biliv se tori dɛn fɔ muv kɔlcha, inspaya chenj, ɛn kɔnɛkt komyuniti dɛn.",

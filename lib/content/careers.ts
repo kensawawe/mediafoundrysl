@@ -1,5 +1,8 @@
 export const careersHero = {
   eyebrow: "Careers",
+  /** Giant word on the opening frame — the camera dives through one of its letters. */
+  portalWord: "BUILD",
+  portalEnter: "Come build with us",
   title: "Come build something meaningful.",
   statement: [
     "We are building a place for people who believe stories can move culture, inspire change, and connect communities.",

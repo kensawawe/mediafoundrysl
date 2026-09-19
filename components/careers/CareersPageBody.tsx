@@ -3,19 +3,17 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
-import { IgniteRule } from "@/components/ui/IgniteRule";
-import { FadeIn, RevealLines } from "@/components/ui/RevealText";
+import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { RolesList } from "@/components/careers/RolesList";
+import { CareersPortal } from "@/components/careers/CareersPortal";
 import {
   applicationSteps as applicationStepsEn,
-  careersHero as careersHeroEn,
   careersPageCopy as careersPageCopyEn,
   pillars as pillarsEn,
 } from "@/lib/content/careers";
 import {
   applicationSteps as applicationStepsKri,
-  careersHero as careersHeroKri,
   careersPageCopy as careersPageCopyKri,
   pillars as pillarsKri,
 } from "@/lib/content/careers.kri";
@@ -23,30 +21,17 @@ import { useTranslated } from "@/lib/content/useTranslated";
 import { site } from "@/lib/content/site";
 
 export function CareersPageBody() {
-  const careersHero = useTranslated(careersHeroEn, careersHeroKri);
   const pillars = useTranslated(pillarsEn, pillarsKri);
   const applicationSteps = useTranslated(applicationStepsEn, applicationStepsKri);
   const copy = useTranslated(careersPageCopyEn, careersPageCopyKri);
 
   return (
     <>
-      <div className="pt-32 pb-16 md:pt-40 md:pb-20">
-        <Container>
-          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl lg:max-w-none lg:whitespace-nowrap lg:text-[58px]">
-            <RevealLines lines={[careersHero.title]} onMount />
-          </h1>
-          <div className="mt-8 flex max-w-lg flex-col gap-4 font-body text-lg leading-relaxed text-current/70 sm:text-xl">
-            {careersHero.statement.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </Container>
-      </div>
+      <CareersPortal />
 
-      <Section className="pt-0">
+      <Section className="pt-16 md:pt-20">
         <Container>
-          <IgniteRule lineColor="var(--accent-fill)" />
-          <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-3">
             {pillars.map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.08}>
                 <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
