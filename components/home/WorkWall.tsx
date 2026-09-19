@@ -6,12 +6,16 @@ import { Section } from "@/components/ui/Section";
 import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
-import { workItems as workItemsEn, workCopy as workCopyEn } from "@/lib/content/work";
+import {
+  caseStudiesPublic,
+  workItems as workItemsEn,
+  workCopy as workCopyEn,
+} from "@/lib/content/work";
 import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/content/work.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-// Case studies still being built stay clickable locally (so they can be
-// previewed while in progress) but render as inert, non-navigating cards in
+// Until `caseStudiesPublic` is flipped on, cards stay clickable locally (so
+// case studies can be worked on) but render as inert, non-navigating cards in
 // production — same dev-only-interactivity convention used for the
 // not-yet-public merch link in Navbar.tsx.
 const isDev = process.env.NODE_ENV === "development";
@@ -47,7 +51,7 @@ export function WorkWall() {
 
         <div className="mt-12 grid grid-cols-2 gap-2 px-12 sm:px-20 md:grid-cols-4 md:gap-4 md:px-32 lg:px-48">
           {workItems.slice(0, 8).map((item, i) => {
-            const clickable = item.hasCaseStudy || isDev;
+            const clickable = (caseStudiesPublic && item.hasCaseStudy) || isDev;
             const card = (
               <>
                 <div className="relative overflow-hidden rounded-2xl">

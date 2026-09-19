@@ -32,6 +32,11 @@ export const workCategories: WorkCategory[] = [
   "Cinematography & Photography",
 ];
 
+/** Flip to true once the case-study pages are ready for visitors. Until then
+ *  work cards are inert in production builds; `next dev` keeps them clickable
+ *  so the pages can still be worked on. */
+export const caseStudiesPublic = false;
+
 export type WorkItem = {
   slug: string;
   title: string;
@@ -44,6 +49,7 @@ export type WorkItem = {
   variant: "video" | "photo";
   /** Contact-sheet grid sizing — a few frames read as "hero" cells among standard ones. */
   size?: "lg" | "md";
+  /** A case-study page exists for this piece (see `caseStudiesPublic`). */
   hasCaseStudy?: boolean;
   /** Real client assets, when we have them, in place of the placeholder Slate frame. */
   restingImage?: string;

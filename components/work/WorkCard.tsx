@@ -2,17 +2,17 @@ import Link from "next/link";
 import clsx from "clsx";
 import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
-import type { WorkItem } from "@/lib/content/work";
+import { caseStudiesPublic, type WorkItem } from "@/lib/content/work";
 
-// Case studies still being built stay clickable locally (so they can be
-// previewed while in progress) but render as inert, non-navigating cards in
+// Until `caseStudiesPublic` is flipped on, cards stay clickable locally (so
+// case studies can be worked on) but render as inert, non-navigating cards in
 // production — same dev-only-interactivity convention used for the
 // not-yet-public merch link in Navbar.tsx.
 const isDev = process.env.NODE_ENV === "development";
 
 export function WorkCard({ item, delay = 0 }: { item: WorkItem; delay?: number }) {
   const isLarge = item.size === "lg";
-  const clickable = item.hasCaseStudy || isDev;
+  const clickable = (caseStudiesPublic && item.hasCaseStudy) || isDev;
   const href = item.hasCaseStudy ? `/work/${item.slug}` : "/work";
 
   const card = (
