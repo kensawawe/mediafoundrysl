@@ -12,7 +12,7 @@ export type TeamMember = {
 // convention until real photography exists.
 export const teamMembers: TeamMember[] = [
   { id: "1", name: "Ken Saro-Wiwa Fofana", role: "Founder & Creative Director", image: "/ken.JPG" },
-  { id: "2", name: "Frankvin McEwen", role: "Producer & Operations Manager", image: "/frankvin.jpg" },
+  { id: "2", name: "Frankvin Bob McEwen", role: "Producer & Operations Manager", image: "/frankvin.jpg" },
   { id: "3", name: "Francis Sam-Mboma", role: "Content Strategist" },
   { id: "4", name: "Kanja Fofana", role: "Multimedia Creator", image: "/Kanja.jpg" },
 ];

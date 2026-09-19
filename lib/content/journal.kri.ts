@@ -78,7 +78,7 @@ export const articles: Article[] = [
       "Wi go mek di sem kɔl agen. Wan stori bɔt tru-tru pipul de wik ɛvri tɛm yu rples wan ɔf dɛn wit sɔmbɔdi we de ple wan rol.",
     ],
     author: {
-      name: "Frankvin McEwen",
+      name: "Frankvin Bob McEwen",
       role: "Prodyusa Ɛn Ɔpareshɔn Manaja",
       socials: [],
     },

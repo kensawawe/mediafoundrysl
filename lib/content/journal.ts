@@ -96,7 +96,7 @@ export const articles: Article[] = [
       "We'd make the same call again. A story about real people gets weaker every time you replace one of them with someone playing a role.",
     ],
     author: {
-      name: "Frankvin McEwen",
+      name: "Frankvin Bob McEwen",
       role: "Producer & Operations Manager",
       socials: [],
     },
