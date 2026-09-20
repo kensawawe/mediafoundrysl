@@ -5,7 +5,6 @@ export const workCopy = {
   whatWeCast: "What we've cast.",
   clientSpreadHeading: ["Brands we've", "worked with."],
   clientSpreadSub: "The organizations and brands we've had the privilege of telling stories for.",
-  clientSpreadScroll: "Scroll",
   workIndexIntro:
     "A working record of brand identity, campaigns, film and production, digital and photography — browse by discipline.",
 };

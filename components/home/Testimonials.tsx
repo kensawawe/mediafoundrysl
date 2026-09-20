@@ -99,9 +99,6 @@ function ReviewCard({
       <figcaption className="mt-6 flex items-center justify-between gap-4 border-t border-current/10 pt-4">
         <div>
           <p className="font-display text-lg font-bold tracking-tight">{item.name}</p>
-          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
-            {item.role}
-          </p>
         </div>
         <img
           src={item.logo}

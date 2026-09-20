@@ -318,7 +318,6 @@ export function ClientSpread() {
           className="pointer-events-none absolute inset-x-0 bottom-[3vh] z-20 flex flex-col items-center gap-[0.6vh] font-mono text-[0.8vw] font-medium uppercase tracking-[0.2em] max-md:bottom-6 max-md:gap-1 max-md:text-[2.8vw]"
           style={{ opacity: hintOpacity }}
         >
-          <span>{copy.clientSpreadScroll}</span>
           <svg
             width="16"
             height="16"

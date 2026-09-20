@@ -7,7 +7,6 @@ export const workCopy = {
   whatWeCast: "Wetin Wi Dɔn Kast.",
   clientSpreadHeading: ["Brand dɛn we", "wi dɔn wok wit."],
   clientSpreadSub: "Di ɔganayzeshɔn dɛn ɛn brand dɛn we wi dɔn gɛt di ɔnɔ fɔ tɛl dɛn stori.",
-  clientSpreadScroll: "Skrol",
   workIndexIntro:
     "Wan wok rikɔd ɔv brand aydɛntiti, kampen dɛn, film ɛn prɔdɔkshɔn, digital ɛn fotografi — brawz bay diseplin.",
 };
