@@ -1,13 +1,13 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/RevealText";
-import { roles as rolesEn, careersPageCopy as copyEn } from "@/lib/content/careers";
-import { roles as rolesKri, careersPageCopy as copyKri } from "@/lib/content/careers.kri";
+import { careersPageCopy as copyEn, type Role } from "@/lib/content/careers";
+import { careersPageCopy as copyKri } from "@/lib/content/careers.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 import { site } from "@/lib/content/site";
 
-export function RolesList() {
-  const roles = useTranslated(rolesEn, rolesKri);
+export function RolesList({ roles: rolesByLang }: { roles: { en: Role[]; kri: Role[] } }) {
+  const roles = useTranslated(rolesByLang.en, rolesByLang.kri);
   const copy = useTranslated(copyEn, copyKri);
 
   return (

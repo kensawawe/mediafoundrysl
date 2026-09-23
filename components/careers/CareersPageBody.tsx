@@ -7,22 +7,24 @@ import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { RolesList } from "@/components/careers/RolesList";
 import { CareersPortal } from "@/components/careers/CareersPortal";
-import {
-  applicationSteps as applicationStepsEn,
-  careersPageCopy as careersPageCopyEn,
-  pillars as pillarsEn,
-} from "@/lib/content/careers";
-import {
-  applicationSteps as applicationStepsKri,
-  careersPageCopy as careersPageCopyKri,
-  pillars as pillarsKri,
-} from "@/lib/content/careers.kri";
+import { careersPageCopy as careersPageCopyEn, type Pillar, type ApplicationStep, type Role } from "@/lib/content/careers";
+import { careersPageCopy as careersPageCopyKri } from "@/lib/content/careers.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 import { site } from "@/lib/content/site";
 
-export function CareersPageBody() {
-  const pillars = useTranslated(pillarsEn, pillarsKri);
-  const applicationSteps = useTranslated(applicationStepsEn, applicationStepsKri);
+export function CareersPageBody({
+  pillars: pillarsByLang,
+  applicationSteps: applicationStepsByLang,
+  roles: rolesByLang,
+}: {
+  pillars: { en: Pillar[]; kri: Pillar[] };
+  applicationSteps: { en: ApplicationStep[]; kri: ApplicationStep[] };
+  roles: { en: Role[]; kri: Role[] };
+}) {
+  // Fetched once at build time (app/careers/page.tsx) in both languages —
+  // this just picks between them, same as the old direct-import useTranslated.
+  const pillars = useTranslated(pillarsByLang.en, pillarsByLang.kri);
+  const applicationSteps = useTranslated(applicationStepsByLang.en, applicationStepsByLang.kri);
   const copy = useTranslated(careersPageCopyEn, careersPageCopyKri);
 
   return (
@@ -53,7 +55,7 @@ export function CareersPageBody() {
           </h2>
 
           <div className="mt-14">
-            <RolesList />
+            <RolesList roles={rolesByLang} />
           </div>
 
           <p className="mt-10 font-body text-sm text-current/60">

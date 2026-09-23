@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticlePageBody } from "@/components/journal/ArticlePageBody";
-import { articles } from "@/lib/content/journal";
 import { site } from "@/lib/content/site";
+import { getJournalArticles } from "@/lib/sanity/content/journal";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const { en: articles } = await getJournalArticles();
   return articles.map((article) => ({ slug: article.slug }));
 }
 
@@ -14,6 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const { en: articles } = await getJournalArticles();
   const article = articles.find((a) => a.slug === slug);
   if (!article) return {};
   return {
@@ -29,7 +31,8 @@ export default async function JournalArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const articles = await getJournalArticles();
+  const article = articles.en.find((a) => a.slug === slug);
   if (!article) notFound();
 
   // `date` is only ever stored at month precision (e.g. "May 2026") — the
@@ -64,7 +67,7 @@ export default async function JournalArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      <ArticlePageBody article={article} />
+      <ArticlePageBody article={article} articles={articles} />
     </>
   );
 }

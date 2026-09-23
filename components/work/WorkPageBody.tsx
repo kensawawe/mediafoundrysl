@@ -3,11 +3,12 @@
 import { DepartmentMarquee } from "@/components/ui/DepartmentMarquee";
 import { Departments } from "@/components/work/Departments";
 import { ClientSpread } from "@/components/work/ClientSpread";
+import type { WorkItem } from "@/lib/content/work";
 
-export function WorkPageBody() {
+export function WorkPageBody({ workItems }: { workItems: { en: WorkItem[]; kri: WorkItem[] } }) {
   return (
     <>
-      <ClientSpread />
+      <ClientSpread workItems={workItems} />
 
       <Departments />
 

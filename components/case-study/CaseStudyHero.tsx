@@ -6,11 +6,11 @@ import { Container } from "@/components/ui/Container";
 import { Slate } from "@/components/ui/Slate";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { caseStudyCopy as copyEn, type CaseStudy } from "@/lib/content/case-studies";
-import { workItems } from "@/lib/content/work";
+import type { WorkItem } from "@/lib/content/work";
 import { caseStudyCopy as copyKri } from "@/lib/content/case-studies.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-export function CaseStudyHero({ study }: { study: CaseStudy }) {
+export function CaseStudyHero({ study, workItems }: { study: CaseStudy; workItems: WorkItem[] }) {
   const copy = useTranslated(copyEn, copyKri);
   const work = study.realHero ? workItems.find((w) => w.slug === study.slug) : undefined;
   const contain = work?.imageFit === "contain";

@@ -6,20 +6,16 @@ import { Section } from "@/components/ui/Section";
 import { IgniteRule } from "@/components/ui/IgniteRule";
 import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
-  articles as articlesEn,
   journalHero as journalHeroEn,
   readSuffix as readSuffixEn,
+  type Article,
 } from "@/lib/content/journal";
-import {
-  articles as articlesKri,
-  journalHero as journalHeroKri,
-  readSuffix as readSuffixKri,
-} from "@/lib/content/journal.kri";
+import { journalHero as journalHeroKri, readSuffix as readSuffixKri } from "@/lib/content/journal.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-export function JournalPageBody() {
+export function JournalPageBody({ articles: articlesByLang }: { articles: { en: Article[]; kri: Article[] } }) {
   const journalHero = useTranslated(journalHeroEn, journalHeroKri);
-  const articles = useTranslated(articlesEn, articlesKri);
+  const articles = useTranslated(articlesByLang.en, articlesByLang.kri);
   const readSuffix = useTranslated(readSuffixEn, readSuffixKri);
 
   return (

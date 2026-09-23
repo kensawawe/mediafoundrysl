@@ -6,12 +6,8 @@ import { Section } from "@/components/ui/Section";
 import { WorkThumb } from "@/components/work/WorkThumb";
 import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
-import {
-  caseStudiesPublic,
-  workItems as workItemsEn,
-  workCopy as workCopyEn,
-} from "@/lib/content/work";
-import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/content/work.kri";
+import { caseStudiesPublic, workCopy as workCopyEn, type WorkItem } from "@/lib/content/work";
+import { workCopy as workCopyKri } from "@/lib/content/work.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 // Until `caseStudiesPublic` is flipped on, cards stay clickable locally (so
@@ -25,8 +21,8 @@ const isDev = process.env.NODE_ENV === "development";
  * over each frame — the signature reveal used consistently across every
  * work thumbnail.
  */
-export function WorkWall() {
-  const workItems = useTranslated(workItemsEn, workItemsKri);
+export function WorkWall({ workItems: workItemsByLang }: { workItems: { en: WorkItem[]; kri: WorkItem[] } }) {
+  const workItems = useTranslated(workItemsByLang.en, workItemsByLang.kri);
   const copy = useTranslated(workCopyEn, workCopyKri);
 
   return (

@@ -6,17 +6,8 @@ import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { FadeIn } from "@/components/ui/RevealText";
-import {
-  articles as articlesEn,
-  journalCopy as journalCopyEn,
-  readSuffix as readSuffixEn,
-  type Article,
-} from "@/lib/content/journal";
-import {
-  articles as articlesKri,
-  journalCopy as journalCopyKri,
-  readSuffix as readSuffixKri,
-} from "@/lib/content/journal.kri";
+import { journalCopy as journalCopyEn, readSuffix as readSuffixEn, type Article } from "@/lib/content/journal";
+import { journalCopy as journalCopyKri, readSuffix as readSuffixKri } from "@/lib/content/journal.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 function AuthorAvatar({ name, image }: { name: string; image?: string }) {
@@ -48,8 +39,14 @@ function AuthorAvatar({ name, image }: { name: string; image?: string }) {
 // `article` is the server-resolved English article (guaranteed to exist —
 // the page already 404s otherwise); this only needs to swap in the
 // same-slug Krio version when that language is active.
-export function ArticlePageBody({ article }: { article: Article }) {
-  const articles = useTranslated(articlesEn, articlesKri);
+export function ArticlePageBody({
+  article,
+  articles: articlesByLang,
+}: {
+  article: Article;
+  articles: { en: Article[]; kri: Article[] };
+}) {
+  const articles = useTranslated(articlesByLang.en, articlesByLang.kri);
   const journalCopy = useTranslated(journalCopyEn, journalCopyKri);
   const readSuffix = useTranslated(readSuffixEn, readSuffixKri);
   const translated = articles.find((a) => a.slug === article.slug) ?? article;

@@ -4,13 +4,21 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
 import { Slate } from "@/components/ui/Slate";
-import { teamMembers as teamMembersEn, teamSectionLabel as teamSectionLabelEn } from "@/lib/content/team";
-import { teamMembers as teamMembersKri, teamSectionLabel as teamSectionLabelKri } from "@/lib/content/team.kri";
+import type { TeamMember } from "@/lib/content/team";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-export function Team() {
-  const teamMembers = useTranslated(teamMembersEn, teamMembersKri);
-  const teamSectionLabel = useTranslated(teamSectionLabelEn, teamSectionLabelKri);
+export function Team({
+  teamMembers: teamMembersByLang,
+  teamSectionLabel: teamSectionLabelByLang,
+}: {
+  teamMembers: { en: TeamMember[]; kri: TeamMember[] };
+  teamSectionLabel: { en: string; kri: string };
+}) {
+  // Both languages are fetched once at build time (app/about/page.tsx) —
+  // this just picks between them on the client, same as the old
+  // useTranslated(enModule, kriModule) call against the static content files.
+  const teamMembers = useTranslated(teamMembersByLang.en, teamMembersByLang.kri);
+  const teamSectionLabel = useTranslated(teamSectionLabelByLang.en, teamSectionLabelByLang.kri);
   // Two laps, looped twice — same seamless-marquee approach as
   // HeroLogoMarquee. A fixed-width scrolling row (rather than the previous
   // staggered multi-column grid) stays visually consistent at any viewport

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CaseStudyPageBody } from "@/components/case-study/CaseStudyPageBody";
-import { caseStudies } from "@/lib/content/case-studies";
 import { site } from "@/lib/content/site";
+import { getCaseStudies, getWorkItems } from "@/lib/sanity/content/work";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const { en: caseStudies } = await getCaseStudies();
   return caseStudies.map((study) => ({ slug: study.slug }));
 }
 
@@ -14,6 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const { en: caseStudies } = await getCaseStudies();
   const study = caseStudies.find((s) => s.slug === slug);
   if (!study) return {};
   return {
@@ -29,8 +31,9 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const study = caseStudies.find((s) => s.slug === slug);
+  const [caseStudies, workItems] = await Promise.all([getCaseStudies(), getWorkItems()]);
+  const study = caseStudies.en.find((s) => s.slug === slug);
   if (!study) notFound();
 
-  return <CaseStudyPageBody study={study} />;
+  return <CaseStudyPageBody study={study} caseStudies={caseStudies} workItems={workItems.en} />;
 }

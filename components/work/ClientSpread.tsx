@@ -14,13 +14,8 @@ import Link from "next/link";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { PourOverlay } from "@/components/ui/PourOverlay";
-import {
-  caseStudiesPublic,
-  workItems as workItemsEn,
-  workCopy as workCopyEn,
-  type WorkItem,
-} from "@/lib/content/work";
-import { workItems as workItemsKri, workCopy as workCopyKri } from "@/lib/content/work.kri";
+import { caseStudiesPublic, workCopy as workCopyEn, type WorkItem } from "@/lib/content/work";
+import { workCopy as workCopyKri } from "@/lib/content/work.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
 /**
@@ -239,8 +234,8 @@ function Card({
   );
 }
 
-export function ClientSpread() {
-  const items = useTranslated(workItemsEn, workItemsKri);
+export function ClientSpread({ workItems: workItemsByLang }: { workItems: { en: WorkItem[]; kri: WorkItem[] } }) {
+  const items = useTranslated(workItemsByLang.en, workItemsByLang.kri);
   const copy = useTranslated(workCopyEn, workCopyKri);
   const cards = items.filter((i) => i.restingImage).slice(0, LAYOUT.length);
 

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { caseStudies } from "@/lib/content/case-studies";
-import { articles } from "@/lib/content/journal";
 import { site } from "@/lib/content/site";
+import { getCaseStudies } from "@/lib/sanity/content/work";
+import { getJournalArticles } from "@/lib/sanity/content/journal";
 
 export const dynamic = "force-static";
 
@@ -10,7 +10,9 @@ const base = site.url;
 // /merch is a soft-launch preview — deliberately excluded here (and
 // noindexed on its own pages, see app/merch/page.tsx) until it's ready to
 // announce.
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [{ en: caseStudies }, { en: articles }] = await Promise.all([getCaseStudies(), getJournalArticles()]);
+
   const staticRoutes = ["", "/about", "/work", "/journal", "/careers"].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
