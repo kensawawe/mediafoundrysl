@@ -1,0 +1,23 @@
+{
+  "name": "media-foundry-studio",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sanity/vision": "^4",
+    "react": "^19",
+    "react-dom": "^19",
+    "sanity": "^4",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5"
+  }
+}

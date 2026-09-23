@@ -22,6 +22,8 @@
 /raw-footage/
 .DS_Store
 .env*
+!.env.example
+!studio/.env.example
 .next/
 .pnp.*
 .pnpm-debug.log*
@@ -40,3 +42,8 @@ yarn-debug.log*
 yarn-error.log*
 .claude/nodejs/
 .superpowers/
+
+# Sanity Studio (separate project, deployed on its own)
+studio/node_modules/
+studio/dist/
+studio/.env
