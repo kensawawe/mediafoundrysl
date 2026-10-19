@@ -20,7 +20,7 @@ export function OurValues() {
       <Container>
         <div className="grid gap-12 md:grid-cols-[minmax(0,28rem)_1fr] md:items-center md:gap-10">
           <div>
-            <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl md:text-6xl">
+            <h2 className="font-belmonte text-4xl font-normal uppercase leading-[1.05] tracking-[-0.02em] sm:text-5xl md:text-6xl">
               {content.title}
             </h2>
             <p className="mt-6 max-w-md font-body text-base leading-relaxed text-current/70 sm:text-lg">

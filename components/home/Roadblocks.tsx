@@ -30,8 +30,8 @@ export function Roadblocks() {
     <section className="relative bg-background pt-20 text-foreground sm:pt-40">
       <div className="mx-auto max-w-full">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center space-y-4 px-5 text-center md:px-10">
-          <h2 className="max-w-3xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
-            Removing the roadblocks to your success
+          <h2 className="whitespace-nowrap font-display text-[clamp(22px,6.4vw,60px)] font-black uppercase leading-[0.95] tracking-tight">
+            Great is no longer good enough.
           </h2>
           <p className="max-w-xl font-body text-base text-foreground/70 md:text-lg">
             It&apos;s easy to get lost in a sea of advice, conflicting opinions,
