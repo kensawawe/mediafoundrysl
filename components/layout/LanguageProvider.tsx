@@ -6,9 +6,10 @@ export type Language = "en" | "kri";
 
 const STORAGE_KEY = "language";
 
-// Krio is off on the live site (see Navbar.tsx) — ignore any "kri" a
-// visitor saved earlier so they're never stuck in a language with no toggle.
-const krioEnabled = process.env.NODE_ENV === "development";
+// Krio is switched off everywhere for now (no toggle in the UI) — ignore any
+// "kri" saved earlier so nobody is stuck in a language they can't switch out
+// of. Flip this back on, and restore the toggle in Navbar.tsx, to re-enable.
+const krioEnabled = false;
 
 const LanguageContext = createContext<{
   lang: Language;

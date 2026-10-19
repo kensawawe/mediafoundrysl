@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import clsx from "clsx";
@@ -10,7 +9,6 @@ import { navLinks as navLinksEn, startAProjectLabel as startAProjectLabelEn } fr
 import { navLinks as navLinksKri, startAProjectLabel as startAProjectLabelKri } from "@/lib/content/site.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { CartDrawer } from "@/components/layout/CartDrawer";
 import { useCart } from "@/components/layout/CartProvider";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -21,11 +19,6 @@ import { Magnetic } from "@/components/ui/Magnetic";
 // production build — it isn't just hidden, it never ships in the
 // deployed JS at all.
 const showMerchLink = process.env.NODE_ENV === "development";
-
-// Krio is switched off on the live site for now (translations still being
-// finalised). Same dev-only convention as showMerchLink: still available
-// locally via `next dev`, stripped from production builds.
-const showKrio = process.env.NODE_ENV === "development";
 
 function CartIcon({ className }: { className?: string }) {
   return (
@@ -50,43 +43,6 @@ function CartIcon({ className }: { className?: string }) {
   );
 }
 
-const LANG_HINT_KEY = "mf-lang-hint-seen";
-// Fires after the Preloader's own sequence (~4.6s, see Preloader.tsx) has
-// finished, so the two never overlap.
-const LANG_HINT_SHOW_DELAY = 5300;
-const LANG_HINT_VISIBLE_DURATION = 5500;
-
-/**
- * Small pointer callout — same accent-fill treatment as the toggle it's
- * introducing, with a triangular tail aimed back up at it. Centered under
- * the trigger by default; the mobile hamburger sits close enough to the
- * right edge of narrow viewports that a centered bubble would overflow off
- * screen, so it right-aligns instead.
- */
-function LangHintBubble({ text, align = "center" }: { text: string; align?: "center" | "right" }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className={clsx(
-        "absolute top-full z-20 mt-3 w-max max-w-[220px] rounded-lg bg-accent-fill px-3 py-2 text-left font-body text-xs font-bold leading-snug text-accent-fill-ink shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
-        align === "center" ? "left-1/2 -translate-x-1/2" : "right-0",
-      )}
-    >
-      <span
-        aria-hidden
-        className={clsx(
-          "absolute -top-1.5 h-3 w-3 rotate-45 bg-accent-fill",
-          align === "center" ? "left-1/2 -translate-x-1/2" : "right-4",
-        )}
-      />
-      {text}
-    </motion.div>
-  );
-}
-
 export function Navbar() {
   const navLinks = useTranslated(navLinksEn, navLinksKri);
   const displayNavLinks = showMerchLink ? [...navLinks, { label: "Merch", href: "/merch" }] : navLinks;
@@ -98,36 +54,9 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [showLangHint, setShowLangHint] = useState(false);
-  const pathname = usePathname();
   const lastY = useRef(0);
 
   useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    if (!showKrio) return;
-    if (pathname !== "/") return;
-    if (window.sessionStorage.getItem(LANG_HINT_KEY)) return;
-    window.sessionStorage.setItem(LANG_HINT_KEY, "1");
-
-    const showTimer = setTimeout(() => setShowLangHint(true), LANG_HINT_SHOW_DELAY);
-    return () => clearTimeout(showTimer);
-    // Intentionally only ever runs once per session, on whichever page
-    // mounts first — a pathname change later shouldn't retrigger it.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (!showLangHint) return;
-    const hideTimer = setTimeout(() => setShowLangHint(false), LANG_HINT_VISIBLE_DURATION);
-    return () => clearTimeout(hideTimer);
-  }, [showLangHint]);
-
-  // Opening the mobile menu means they've already found the toggle — the
-  // hint pointing at the (now-covered) hamburger icon has nothing left to do.
-  useEffect(() => {
-    if (menuOpen) setShowLangHint(false);
-  }, [menuOpen]);
 
   // The pill carries its own background at every scroll position (unlike
   // the old edge-to-edge bar, which stayed transparent until scrolled), so
@@ -198,14 +127,6 @@ export function Navbar() {
           </nav>
 
           <div className="hidden shrink-0 items-center gap-4 lg:flex">
-            {showKrio && (
-              <div className="relative">
-                <LanguageToggle />
-                <AnimatePresence>
-                  {showLangHint && <LangHintBubble text="Also available in Krio — tap here to switch." />}
-                </AnimatePresence>
-              </div>
-            )}
             <ThemeToggle />
             {showMerchLink && (
               <button
@@ -262,11 +183,6 @@ export function Navbar() {
                 )}
               />
             </motion.button>
-            <AnimatePresence>
-              {showLangHint && (
-                <LangHintBubble text="Also available in Krio — tap the menu to switch." align="right" />
-              )}
-            </AnimatePresence>
           </div>
         </div>
       </motion.div>
@@ -306,7 +222,6 @@ export function Navbar() {
                 transition={{ delay: displayNavLinks.length * 0.1 + 0.1 }}
                 className="flex items-center gap-6 pt-4"
               >
-                {showKrio && <LanguageToggle />}
                 <ThemeToggle />
                 {showMerchLink && (
                   <button
