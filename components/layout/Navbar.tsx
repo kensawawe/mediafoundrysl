@@ -22,6 +22,11 @@ import { Magnetic } from "@/components/ui/Magnetic";
 // deployed JS at all.
 const showMerchLink = process.env.NODE_ENV === "development";
 
+// Krio is switched off on the live site for now (translations still being
+// finalised). Same dev-only convention as showMerchLink: still available
+// locally via `next dev`, stripped from production builds.
+const showKrio = process.env.NODE_ENV === "development";
+
 function CartIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 16" className={className} aria-hidden>
@@ -100,6 +105,7 @@ export function Navbar() {
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
+    if (!showKrio) return;
     if (pathname !== "/") return;
     if (window.sessionStorage.getItem(LANG_HINT_KEY)) return;
     window.sessionStorage.setItem(LANG_HINT_KEY, "1");
@@ -192,12 +198,14 @@ export function Navbar() {
           </nav>
 
           <div className="hidden shrink-0 items-center gap-4 lg:flex">
-            <div className="relative">
-              <LanguageToggle />
-              <AnimatePresence>
-                {showLangHint && <LangHintBubble text="Also available in Krio — tap here to switch." />}
-              </AnimatePresence>
-            </div>
+            {showKrio && (
+              <div className="relative">
+                <LanguageToggle />
+                <AnimatePresence>
+                  {showLangHint && <LangHintBubble text="Also available in Krio — tap here to switch." />}
+                </AnimatePresence>
+              </div>
+            )}
             <ThemeToggle />
             {showMerchLink && (
               <button
@@ -298,7 +306,7 @@ export function Navbar() {
                 transition={{ delay: displayNavLinks.length * 0.1 + 0.1 }}
                 className="flex items-center gap-6 pt-4"
               >
-                <LanguageToggle />
+                {showKrio && <LanguageToggle />}
                 <ThemeToggle />
                 {showMerchLink && (
                   <button

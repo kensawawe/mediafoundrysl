@@ -6,6 +6,10 @@ export type Language = "en" | "kri";
 
 const STORAGE_KEY = "language";
 
+// Krio is off on the live site (see Navbar.tsx) — ignore any "kri" a
+// visitor saved earlier so they're never stuck in a language with no toggle.
+const krioEnabled = process.env.NODE_ENV === "development";
+
 const LanguageContext = createContext<{
   lang: Language;
   setLang: (lang: Language) => void;
@@ -16,7 +20,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "en" || stored === "kri") setLangState(stored);
+    if (stored === "en" || (stored === "kri" && krioEnabled)) setLangState(stored);
   }, []);
 
   function setLang(next: Language) {
