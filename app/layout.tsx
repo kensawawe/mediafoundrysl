@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Instrument_Sans, Inter, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { LanguageProvider } from "@/components/layout/LanguageProvider";
 import { CartProvider } from "@/components/layout/CartProvider";
@@ -30,6 +31,15 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   style: ["italic"],
+});
+
+// Typeheist Belmonte Ballpoint (Print) — self-hosted; used for the Roadblocks
+// value headings on the homepage.
+const belmonte = localFont({
+  src: "./fonts/BelmonteBallpointPrint.woff2",
+  variable: "--font-belmonte-face",
+  weight: "400",
+  display: "swap",
 });
 
 const title = `${site.name} — Creative Agency & Production Company`;
@@ -108,7 +118,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bigShoulders.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
+      className={`${bigShoulders.variable} ${belmonte.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <script

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { IgniteRule } from "@/components/ui/IgniteRule";
 import { FadeIn, RevealLines } from "@/components/ui/RevealText";
 import {
   journalHero as journalHeroEn,
@@ -33,7 +32,7 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
 
       <Section className="pt-0">
         <Container>
-          <IgniteRule lineColor="#1eb53a" />
+          <div className="ingot-rule w-full" style={{ background: "#1eb53a" }} />
           <div className="mt-4 divide-y divide-border-subtle">
             {articles.map((article, i) => (
               <FadeIn key={article.slug} delay={i * 0.06}>

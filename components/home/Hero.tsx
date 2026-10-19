@@ -164,7 +164,7 @@ export function Hero() {
               <p className="mx-auto mt-4 max-w-lg font-body text-[11px] font-bold text-paper sm:mt-5 sm:text-sm md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-1.5 max-w-lg font-body text-[11px] font-bold italic text-paper sm:mt-2 sm:text-sm md:text-base">
+              <p className="mx-auto mt-3 max-w-lg font-belmonte text-sm font-normal uppercase tracking-[-0.04em] text-paper [-webkit-text-stroke:0.6px_currentColor] sm:mt-4 sm:text-base md:text-xl">
                 {hero.supportingKrio}
               </p>
             </div>

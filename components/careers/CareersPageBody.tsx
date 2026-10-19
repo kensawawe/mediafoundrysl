@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SlateTag } from "@/components/ui/SlateTag";
 import { FadeIn } from "@/components/ui/RevealText";
 import { Button } from "@/components/ui/Button";
 import { RolesList } from "@/components/careers/RolesList";
@@ -36,7 +35,7 @@ export function CareersPageBody({
           <div className="grid gap-x-8 gap-y-12 sm:grid-cols-3">
             {pillars.map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.08}>
-                <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                <h3 className="font-belmonte text-2xl font-normal uppercase tracking-[-0.02em] sm:text-3xl">
                   {pillar.title}
                 </h3>
                 <p className="mt-3 font-body text-sm text-current/65 sm:text-base">
@@ -50,7 +49,7 @@ export function CareersPageBody({
 
       <Section>
         <Container>
-          <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+          <h2 className="whitespace-nowrap font-belmonte text-[clamp(18px,6.2vw,48px)] font-normal uppercase leading-[1.05] tracking-[-0.02em]">
             {copy.rolesHeading}
           </h2>
 
@@ -70,11 +69,10 @@ export function CareersPageBody({
 
       <Section>
         <Container>
-          <SlateTag className="text-current/60">{copy.howToApply}</SlateTag>
-          <div className="mt-10 grid gap-x-8 gap-y-12 border-t border-current/15 pt-10 sm:grid-cols-4">
+          <div className="grid gap-x-8 gap-y-12 border-t border-current/15 pt-10 sm:grid-cols-4">
             {applicationSteps.map((step, i) => (
               <FadeIn key={step.title} delay={i * 0.08}>
-                <h3 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+                <h3 className="font-belmonte text-xl font-normal uppercase tracking-[-0.02em] sm:text-2xl">
                   {step.title}
                 </h3>
                 <p className="mt-3 font-body text-sm text-current/65">{step.description}</p>

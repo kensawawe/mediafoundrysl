@@ -97,7 +97,7 @@ function Footage() {
 function HeroCopy({ title, statement }: { title: string; statement: string[] }) {
   return (
     <Container>
-      <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl lg:max-w-none lg:whitespace-nowrap lg:text-[58px]">
+      <h1 className="max-w-3xl font-belmonte text-6xl font-normal uppercase leading-[0.95] tracking-[-0.02em] sm:text-7xl md:text-8xl lg:max-w-none lg:whitespace-nowrap lg:text-[clamp(40px,4.6vw,72px)]">
         {title}
       </h1>
       <div className="mt-8 flex max-w-lg flex-col gap-4 font-body text-lg leading-relaxed text-current/70 sm:text-xl">
@@ -143,15 +143,6 @@ export function CareersPortal() {
         "--gp-foreground": "#ffffff",
       }}
       background={<Footage />}
-      front={
-        <div className="absolute inset-x-0 top-28 md:top-32">
-          <Container>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-current/60">
-              {hero.eyebrow}
-            </span>
-          </Container>
-        </div>
-      }
     >
       <HeroCopy title={hero.title} statement={hero.statement} />
     </GlyphPortal>

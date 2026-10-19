@@ -80,6 +80,7 @@
   --font-body: var(--font-instrument-sans);
   --font-mono: var(--font-inter);
   --font-serif: var(--font-playfair);
+  --font-belmonte: var(--font-belmonte-face), cursive;
 }
 
 html {
@@ -134,8 +135,7 @@ body::after {
   outline-offset: 3px;
 }
 
-/* Ingot rule — the brass hairline that opens most sections, drawn in on
-   scroll (see IgniteRule component) rather than sitting static. */
+/* Ingot rule — the brass hairline divider used above the Journal list. */
 .ingot-rule {
   height: 1px;
   background: var(--brass);
@@ -311,4 +311,19 @@ body::after {
    just lets the camera pick the best letter itself. */
 .careers-portal [data-gp-touch-picker] {
   display: none;
+}
+
+/* Careers portal: no on-screen "Scroll to enter." / "Come build with us"
+   captions. The enter link stays in the DOM as a keyboard skip-link — it's
+   invisible until focused, then appears so tabbing users can see it. */
+.careers-portal [data-gp-hint] {
+  display: none;
+}
+.careers-portal [data-gp-enter]:not(:focus-visible) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

@@ -7,53 +7,6 @@ import { ourValues as ourValuesEn } from "@/lib/content/about";
 import { ourValues as ourValuesKri } from "@/lib/content/about.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-const iconShared = {
-  stroke: "currentColor",
-  strokeWidth: 1.4,
-  strokeLinecap: "square" as const,
-  strokeLinejoin: "miter" as const,
-  fill: "none",
-};
-
-function ClarityIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <circle cx="20" cy="20" r="12" {...iconShared} />
-      <path d="M29 29L40 40" {...iconShared} />
-    </svg>
-  );
-}
-
-function ConvictionIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect x="6" y="6" width="36" height="36" {...iconShared} />
-      <path d="M14 24L21 31L34 16" {...iconShared} />
-    </svg>
-  );
-}
-
-function CourageIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <path d="M26 4L6 28h18l-2 16 20-24H24l2-16z" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function CareIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <circle cx="16" cy="13" r="6" {...iconShared} />
-      <path d="M4 38l2-11c1-5 5-8 10-8s9 3 10 8l2 11" {...iconShared} />
-      <circle cx="34" cy="13" r="6" {...iconShared} />
-      <path d="M24 38l2-11c1-5 5-8 10-8s9 3 10 8l2 11" {...iconShared} />
-    </svg>
-  );
-}
-
-const icons = [ClarityIcon, ConvictionIcon, CourageIcon, CareIcon];
-
 /**
  * A static 2x2 value grid — deliberately not folded into AboutAccordion.
  * Unlike the studio's five statements (long-form, one-at-a-time reading),
@@ -77,7 +30,6 @@ export function OurValues() {
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:max-w-[41rem]">
             {content.values.map((value, i) => {
-              const Icon = icons[i % icons.length];
               const isFeatured = i === 0;
               return (
                 <div
@@ -89,8 +41,7 @@ export function OurValues() {
                       : "border-border-subtle bg-surface text-foreground",
                   )}
                 >
-                  <Icon className="h-10 w-10 shrink-0" />
-                  <h3 className="whitespace-nowrap font-display text-lg font-black uppercase leading-[0.95] tracking-tight sm:text-xl md:text-2xl">
+                  <h3 className="whitespace-nowrap font-belmonte text-lg font-normal uppercase leading-[0.95] tracking-[-0.03em] sm:text-xl md:text-[clamp(13px,1.55vw,24px)]">
                     {value.title}
                   </h3>
                   <div

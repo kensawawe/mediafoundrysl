@@ -9,69 +9,6 @@ import { services as servicesEn, servicesSectionHeading as headingEn } from "@/l
 import { services as servicesKri, servicesSectionHeading as headingKri } from "@/lib/content/services.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-// Keyed by the language-invariant department code, not the (translated)
-// title — a title switch would silently drop every icon once translated.
-function DepartmentIcon({ code, className }: { code: string; className?: string }) {
-  const shared = {
-    stroke: "currentColor",
-    strokeWidth: 1.4,
-    strokeLinecap: "square" as const,
-    strokeLinejoin: "miter" as const,
-    fill: "none",
-  };
-
-  switch (code) {
-    case "PR":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <rect x="2" y="5.5" width="12" height="8" {...shared} />
-          <path d="M5.5 5.5L7 3h2l1.5 2.5" {...shared} />
-          <circle cx="8" cy="9.5" r="2.1" {...shared} />
-        </svg>
-      );
-    case "CR":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <path d="M3 13l.7-3.5L10 3l3 3-6.3 6.3L3 13z" {...shared} />
-          <path d="M8.5 4.5l3 3" {...shared} />
-        </svg>
-      );
-    case "ST":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <circle cx="8" cy="8" r="5.5" {...shared} />
-          <circle cx="8" cy="8" r="2.4" {...shared} />
-          <circle cx="8" cy="8" r="0.6" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case "DV":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <rect x="2" y="3.5" width="12" height="8" {...shared} />
-          <path d="M2 6h12" {...shared} />
-          <path d="M6 13.5h4" {...shared} />
-        </svg>
-      );
-    case "DG":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <circle cx="3.5" cy="12.5" r="1.3" fill="currentColor" stroke="none" />
-          <path d="M6.5 12.5c0-2.8 2.2-5 5-5" {...shared} />
-          <path d="M6.5 12.5c0-4.7 3.8-8.5 8.5-8.5" {...shared} />
-        </svg>
-      );
-    case "RI":
-      return (
-        <svg viewBox="0 0 16 16" className={className} aria-hidden>
-          <circle cx="6.5" cy="6.5" r="4.5" {...shared} />
-          <path d="M13 13l-3.6-3.6" {...shared} />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 const AUTOPLAY_INTERVAL = 4000;
 const TICK_MS = 100;
 
@@ -125,23 +62,12 @@ export function Departments() {
                   onClick={() => selectStep(i)}
                   aria-current={isActive}
                   aria-expanded={isActive}
-                  className="focus-ring flex w-full items-start gap-5 border-b border-border-subtle py-5 text-left sm:items-center sm:gap-6"
+                  className="focus-ring flex w-full items-start border-b border-border-subtle py-5 text-left sm:items-center"
                 >
-                  <span
-                    className={clsx(
-                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-300",
-                      isActive
-                        ? "border-accent-fill bg-accent-fill text-accent-fill-ink"
-                        : "border-border-subtle text-foreground/40",
-                    )}
-                  >
-                    <DepartmentIcon code={service.code} className="h-4 w-4" />
-                  </span>
-
                   <span className="flex-1">
                     <span
                       className={clsx(
-                        "block font-display text-xl font-bold tracking-tight transition-colors duration-300 sm:text-2xl",
+                        "block font-belmonte text-2xl font-normal uppercase transition-colors duration-300 sm:text-3xl",
                         isActive ? "text-foreground" : "text-foreground/40",
                       )}
                     >

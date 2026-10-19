@@ -107,7 +107,7 @@ export function Preloader() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: WORD_FADE, ease: "easeInOut" }}
-          className="font-mono text-xs uppercase tracking-[0.14em] text-accent-text"
+          className="font-belmonte text-lg uppercase tracking-[0.04em] text-accent-text"
           aria-hidden
         >
           {WORDS[wordIndex]}&hellip;

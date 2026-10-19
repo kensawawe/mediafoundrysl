@@ -2,77 +2,25 @@
 
 import { DepartmentMarquee } from "@/components/ui/DepartmentMarquee";
 
-const iconShared = {
-  stroke: "currentColor",
-  strokeWidth: 1.4,
-  strokeLinecap: "square" as const,
-  strokeLinejoin: "miter" as const,
-  fill: "none",
-};
-
-function SimplicityIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect x="10" y="10" width="28" height="28" {...iconShared} />
-      <path d="M14 34L34 14" {...iconShared} />
-    </svg>
-  );
-}
-
-function ResultsIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <rect x="6" y="6" width="36" height="36" {...iconShared} />
-      <rect x="15" y="15" width="18" height="18" {...iconShared} />
-      <rect x="22" y="22" width="4" height="4" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function ExpertiseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <path d="M8 16V8h8" {...iconShared} />
-      <path d="M40 16V8h-8" {...iconShared} />
-      <path d="M8 32v8h8" {...iconShared} />
-      <path d="M40 32v8h-8" {...iconShared} />
-      <circle cx="24" cy="24" r="7" {...iconShared} />
-    </svg>
-  );
-}
-
-function SupportIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <path d="M6 38L18 26L26 34L42 12" {...iconShared} />
-      <path d="M32 12H42V22" {...iconShared} />
-    </svg>
-  );
-}
-
 const features = [
   {
     description:
       "We clarify what matters. By asking the right questions and stripping away the clutter, we uncover the real story and shape brands that are hard to ignore.",
-    Icon: SimplicityIcon,
     title: "We cut through the noise",
   },
   {
     description:
       "Every idea we craft is intentional. We create work that connects, converts, and creates real value, for your audience and your bottom line.",
-    Icon: ResultsIcon,
     title: "We build for impact",
   },
   {
     description:
       "Strategy gives our work direction. Creativity gives it life. Together, they produce ideas that not only look good, but move people to act.",
-    Icon: ExpertiseIcon,
     title: "We blend strategy + creativity",
   },
   {
     description:
       "Your success is the goal, not the handoff. We partner with you for the long run, adapting, optimizing, and helping you scale with confidence.",
-    Icon: SupportIcon,
     title: "We grow with you",
   },
 ];
@@ -96,14 +44,13 @@ export function Roadblocks() {
         <DepartmentMarquee className="mt-12" fadeFrom="background" />
 
         <div className="mt-16 grid grid-cols-1 divide-dashed divide-border-subtle border-t border-dashed border-border-subtle sm:grid-cols-2 sm:divide-x lg:grid-cols-4">
-          {features.map(({ Icon, title, description }) => (
+          {features.map(({ title, description }) => (
             <div
               key={title}
-              className="flex flex-col gap-5 px-5 py-8 last:border-b-0 lg:border-b-0 lg:px-6 lg:py-10"
+              className="flex flex-col px-5 py-8 last:border-b-0 lg:border-b-0 lg:px-6 lg:py-10"
             >
-              <Icon className="size-12 text-foreground/60" />
-              <div className="flex flex-col gap-2 pt-4">
-                <h3 className="font-display text-2xl font-bold uppercase tracking-tight sm:text-3xl">
+              <div className="flex flex-col gap-2">
+                <h3 className="font-belmonte text-[clamp(18px,6vw,30px)] font-normal uppercase tracking-[-0.03em] whitespace-nowrap lg:text-[clamp(14px,calc(1.75vw-1.5px),30px)]">
                   {title}
                 </h3>
                 <p className="font-body leading-relaxed text-foreground/70">{description}</p>

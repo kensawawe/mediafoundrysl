@@ -93,7 +93,7 @@ export function Footer() {
               href={`mailto:${site.email}`}
               className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text"
             >
-              <span className="block leading-[0.95] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
+              <span className="block font-belmonte font-normal leading-[1.05] tracking-[-0.02em] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
                 {copy.ctaLine1}
               </span>
               <span className="block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
@@ -156,7 +156,7 @@ export function Footer() {
 
           <div className="flex flex-col justify-between gap-8 bg-background p-8 text-foreground">
             <div>
-              <span className="font-display text-2xl font-bold tracking-tight">
+              <span className="font-belmonte text-3xl font-normal uppercase">
                 {copy.startProjectHeading}
               </span>
               <p className="mt-3 font-body text-sm text-foreground/70">{copy.startProjectBody}</p>
