@@ -87,6 +87,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis (components/layout/SmoothScroll.tsx) does the easing itself — the
+   browser's own smooth-scroll would fight it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis,
+html.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+html.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
