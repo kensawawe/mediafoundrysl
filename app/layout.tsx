@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/components/layout/LanguageProvider";
 import { CartProvider } from "@/components/layout/CartProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { HalftoneFooter } from "@/components/layout/HalftoneFooter";
 import { CursorEffect } from "@/components/layout/CursorEffect";
 import { Preloader } from "@/components/layout/Preloader";
 import { site } from "@/lib/content/site";
@@ -138,6 +139,7 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+              <HalftoneFooter />
             </CartProvider>
           </LanguageProvider>
         </ThemeProvider>

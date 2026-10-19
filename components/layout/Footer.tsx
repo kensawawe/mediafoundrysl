@@ -86,7 +86,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border-subtle">
-      <Container className="py-20 md:py-28">
+      <Container className="pb-8 pt-20 md:pb-10 md:pt-28">
         <div className="flex flex-col">
           <Magnetic strength={0.18} className="inline-block w-fit">
             <a
