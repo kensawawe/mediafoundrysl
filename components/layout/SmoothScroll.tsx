@@ -21,8 +21,9 @@ export function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const instance = new Lenis({
-      duration: 1.2, // how long the glide takes to settle, in seconds
+      duration: 0.9, // how long the glide takes to settle, in seconds
       easing: (t) => 1 - Math.pow(1 - t, 3), // ease-out cubic
+      wheelMultiplier: 0.92, // a touch less travel per wheel tick, so it doesn't overshoot
       anchors: true, // same-page #links glide too
     });
     lenis = instance;
