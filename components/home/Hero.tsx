@@ -170,7 +170,7 @@ export function Hero() {
 
               <HeroHeadline
                 wrap={false}
-                className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[6.5vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
+                className="font-godthem font-normal uppercase leading-[0.9] tracking-[0.02em] [font-kerning:none] text-paper text-[5.7vw] sm:text-[5.4vw] md:text-[3.2vw] lg:text-[46px]"
               />
 
               <p className="mx-auto mt-6 max-w-lg font-body text-[12px] font-bold leading-relaxed text-paper sm:mt-5 sm:leading-normal sm:text-sm md:text-base">

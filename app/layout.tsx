@@ -44,6 +44,14 @@ const belmonte = localFont({
   display: "swap",
 });
 
+// GC Godthem — self-hosted; used for the homepage hero headline.
+const godthem = localFont({
+  src: "./fonts/GcGodthem.otf",
+  variable: "--font-godthem-face",
+  weight: "400",
+  display: "swap",
+});
+
 const title = `${site.name} — Creative Agency & Production Company`;
 const ogImage = {
   url: "/hero-freetown-poster.jpg",
@@ -120,7 +128,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bigShoulders.variable} ${belmonte.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
+      className={`${bigShoulders.variable} ${belmonte.variable} ${godthem.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
     >
       <head>
         {/* October = Breast Cancer Awareness Month. Runs before first paint so
@@ -141,7 +149,7 @@ export default function RootLayout({
         />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >

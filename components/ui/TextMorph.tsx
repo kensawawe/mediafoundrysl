@@ -12,7 +12,7 @@ function Chars({ text, charDelay, baseDelay }: { text: string; charDelay: number
     // Absolutely positioned within the slot's own box (see TextMorphSlot)
     // so the exiting and entering words stack and crossfade in place,
     // rather than briefly sitting side by side in normal flow.
-    <motion.span className="absolute inset-0 inline-flex items-baseline">
+    <motion.span className="absolute inset-x-[0.22em] inset-y-[0.3em] inline-flex items-baseline">
       {chars.map((char, i) => (
         <motion.span
           key={i}
@@ -73,7 +73,10 @@ export function TextMorphSlot({
       <span aria-hidden className="invisible">
         {text}
       </span>
-      <span className="absolute inset-0 overflow-hidden">
+      {/* The clip box is a little larger than the word so glyphs that overhang
+          their metrics (side bearings, tall caps) aren't shaved; Chars is inset
+          by the same amount so the text itself doesn't move. */}
+      <span className="absolute -inset-x-[0.22em] -inset-y-[0.3em] overflow-hidden">
         <AnimatePresence initial={false}>
           <Chars key={activeIndex} text={text} charDelay={charDelay} baseDelay={baseDelay} />
         </AnimatePresence>

@@ -34,13 +34,16 @@ function wordmarkFamily() {
 
 /**
  * The giant halftone "foundry" wordmark that closes every page, below the
- * regular footer. The site defaults to dark, so that's what renders until
+ * regular footer. The site defaults to light, so that's what renders until
  * the theme resolves.
  */
 export function HalftoneFooter() {
   const { resolvedTheme } = useTheme();
   const pink = useAwareness();
-  const light = resolvedTheme === "light";
+  // The server can't know the saved theme or font, so render the default
+  // (light) until mounted — otherwise hydration sees different styles.
+  const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const light = !mounted || resolvedTheme !== "dark";
   const palette = pink ? (light ? LIGHT_PINK : DARK_PINK) : light ? LIGHT : DARK;
 
   return (
@@ -55,7 +58,7 @@ export function HalftoneFooter() {
       wordmark="foundry"
       showText={false}
       palette={palette}
-      fontFamily={wordmarkFamily()}
+      fontFamily={mounted ? wordmarkFamily() : undefined}
       fontWeight={900}
       letterSpacing="-0.06em"
       monoFamily={'var(--font-inter), "Helvetica Neue", Arial, sans-serif'}

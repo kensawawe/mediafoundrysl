@@ -228,7 +228,7 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
     <section
       ref={sectionRef}
       aria-label="Breast Cancer Awareness Month"
-      className={clsx("awareness-only pointer-events-none relative overflow-hidden", className ?? "-mt-20 pb-2 md:-mt-32 md:pb-4")}
+      className={clsx("awareness-only pointer-events-none relative overflow-hidden", className ?? "-mt-20 pb-0 md:-mt-32 md:pb-4")}
     >
       <span ref={probeRef} aria-hidden className="font-display pointer-events-none absolute opacity-0">
         .
@@ -236,7 +236,7 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
       <canvas
         ref={canvasRef}
         aria-hidden
-        className="block h-[260px] w-full md:h-[400px]"
+        className="block h-[145px] w-full md:h-[400px]"
         style={{ filter: "drop-shadow(0 14px 16px rgba(0,0,0,0.3))" }}
       />
     </section>

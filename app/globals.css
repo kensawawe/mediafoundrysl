@@ -90,6 +90,7 @@
   --font-mono: var(--font-inter);
   --font-serif: var(--font-playfair);
   --font-belmonte: var(--font-belmonte-face), cursive;
+  --font-godthem: var(--font-godthem-face), var(--font-big-shoulders), sans-serif;
 }
 
 html {

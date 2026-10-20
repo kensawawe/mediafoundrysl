@@ -17,7 +17,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   useEffect(() => setMounted(true), []);
 
-  // Lights "on" = light mode. The site defaults to dark, so lights start off.
+  // Lights "on" = light mode. The site defaults to light, so lights start on.
   const lightsOn = mounted && resolvedTheme === "light";
 
   return (
