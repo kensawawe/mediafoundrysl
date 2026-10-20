@@ -36,7 +36,7 @@ export function AwarenessPinRibbon() {
 
     const size = () => {
       w = Math.max(1, wrap.getBoundingClientRect().width);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const cw = w * 1.6;
       const ch = w * (IMG_H / IMG_W) * 1.12;
       canvas.width = Math.round(cw * dpr);
@@ -52,7 +52,7 @@ export function AwarenessPinRibbon() {
       const x0 = (cw - dw) / 2;
       const y0 = dh * 0.03;
       const A = w * 0.13;
-      const ROW = 2; // slice height, css px
+      const ROW = 4; // slice height, css px
       const sRow = IMG_H / dh;
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -63,6 +63,9 @@ export function AwarenessPinRibbon() {
         return A * env * (Math.sin(u * 7 - t * 2.3) + 0.5 * Math.sin(u * 15 - t * 3.6));
       };
 
+      // Pass 1: the picture, row by row. Pass 2: light and shade on top. Switching the compositing
+      // mode once per frame (not once per row) matters a lot for Safari.
+      const rows: { y: number; dest: number; slope: number; tx: number; shade: number }[] = [];
       for (let y = 0; y < dh; y += ROW) {
         const u = (y + ROW / 2) / dh;
         const slope = (off(Math.min(1, (y + ROW) / dh)) - off(y / dh)) / ROW;
@@ -70,24 +73,32 @@ export function AwarenessPinRibbon() {
         const tw = Math.sin(u * 11 - t * 2.9);
         const f = 1 + 0.24 * env * tw; // the cloth narrows and widens as it turns
         const dest = dw * f;
-        ctx.setTransform(dpr, 0, slope * dpr, dpr, (x0 + off(u) + dw * PIN_X * (1 - f)) * dpr, (y0 + y) * dpr);
+        const tx = x0 + off(u) + dw * PIN_X * (1 - f);
+        rows.push({ y, dest, slope, tx, shade: -tw * env * 1.3 });
+        ctx.setTransform(dpr, 0, slope * dpr, dpr, tx * dpr, (y0 + y) * dpr);
         ctx.drawImage(img, 0, y * sRow, IMG_W, ROW * sRow + 0.6, 0, 0, dest, ROW + 0.4);
-        const shade = -tw * env * 1.3;
-        ctx.globalCompositeOperation = "source-atop";
-        ctx.fillStyle =
-          shade > 0
-            ? `rgba(255,255,255,${Math.min(0.3, shade * 0.4).toFixed(3)})`
-            : `rgba(80,0,40,${Math.min(0.4, -shade * 0.55).toFixed(3)})`;
-        ctx.fillRect(0, 0, dest, ROW + 0.4);
-        ctx.globalCompositeOperation = "source-over";
       }
+      ctx.globalCompositeOperation = "source-atop";
+      for (const r of rows) {
+        ctx.setTransform(dpr, 0, r.slope * dpr, dpr, r.tx * dpr, (y0 + r.y) * dpr);
+        ctx.fillStyle =
+          r.shade > 0
+            ? `rgba(255,255,255,${Math.min(0.3, r.shade * 0.4).toFixed(2)})`
+            : `rgba(80,0,40,${Math.min(0.4, -r.shade * 0.55).toFixed(2)})`;
+        ctx.fillRect(0, 0, r.dest, ROW + 0.4);
+      }
+      ctx.globalCompositeOperation = "source-over";
       ctx.setTransform(1, 0, 0, 1, 0, 0);
     };
 
+    let lastDraw = 0;
     const frame = (now: number) => {
       raf = 0;
       if (!visible) return;
-      draw(now);
+      if (now - lastDraw >= 32) {
+        lastDraw = now;
+        draw(now);
+      }
       if (!reduced) raf = requestAnimationFrame(frame);
     };
     const start = () => {
@@ -131,16 +142,24 @@ export function AwarenessPinRibbon() {
       style={{ aspectRatio: `${IMG_W} / ${IMG_H}` }}
     >
       <div className="awareness-sway absolute inset-0" style={{ transformOrigin: `${PIN_X * 100}% 5%` }}>
+        {/* A static soft shadow under the ribbon. (A CSS blur filter on the moving canvas would be
+            re-run every frame, which Safari handles badly.) */}
+        <span
+          aria-hidden
+          className="absolute"
+          style={{
+            left: "18%",
+            top: "22%",
+            width: "70%",
+            height: "72%",
+            transform: "translate(6px, 10px)",
+            background: "radial-gradient(ellipse at 45% 45%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.14) 45%, transparent 70%)",
+          }}
+        />
         <canvas
           ref={canvasRef}
           className="absolute"
-          style={{
-            left: "-30%",
-            top: 0,
-            width: "160%",
-            height: "112%",
-            filter: "drop-shadow(0 10px 8px rgba(0,0,0,0.38)) drop-shadow(0 2px 2px rgba(0,0,0,0.35))",
-          }}
+          style={{ left: "-30%", top: 0, width: "160%", height: "112%" }}
         />
         {/* the pin */}
         <span

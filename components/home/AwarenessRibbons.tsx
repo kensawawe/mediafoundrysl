@@ -75,7 +75,7 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
       const rect = canvas.getBoundingClientRect();
       W = Math.max(1, Math.round(rect.width));
       H = Math.max(1, Math.round(rect.height));
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5); // 1.5 max: Safari struggles with big retina canvases
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
       strip.width = canvas.width;
@@ -142,7 +142,7 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
       const t = reduced ? 0.8 : now / 1000;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const SW = 3; // slice width, css px
+      const SW = 6; // slice width, css px (wider = far fewer draw calls)
       const A = H * 0.115;
 
       SPECS.forEach((sp, ci) => {
@@ -160,8 +160,7 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
         const yAt = (x: number) => cy + (x - W / 2) * Math.tan(sp.rot) + wave(x);
 
         for (let pass = 0; pass < 2; pass++) {
-          // pass 0 on the second ribbon: the shadow it throws on the one beneath
-          if (pass === 0 && ci === 0) continue;
+          // pass 0: a cheap offset shadow (replaces a CSS blur filter, which Safari re-runs every frame)
           for (let x = 0; x < W; x += SW) {
             const y = yAt(x + SW / 2);
             const slope = (yAt(x + SW) - yAt(x)) / SW;
@@ -169,8 +168,8 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
             const f = 1 + 0.3 * tw;
             ctx.setTransform(dpr, slope * dpr, 0, dpr, x * dpr, y * dpr);
             if (pass === 0) {
-              ctx.fillStyle = "rgba(30,0,20,0.34)";
-              ctx.fillRect(0, -f * bh * 0.5 + 9, SW + 0.6, f * bh);
+              ctx.fillStyle = ci === 0 ? "rgba(30,0,20,0.18)" : "rgba(30,0,20,0.3)";
+              ctx.fillRect(0, -f * bh * 0.5 + 10, SW + 0.6, f * bh);
               continue;
             }
             ctx.drawImage(strip, x * dpr, 0, (SW + 0.6) * dpr, bh * dpr, 0, (-f * bh) / 2, SW + 0.6, f * bh);
@@ -188,10 +187,15 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
     };
 
+    let lastDraw = 0;
     const frame = (now: number) => {
       raf = 0;
       if (!visible) return;
-      draw(now);
+      // ~30fps is plenty for slow cloth and halves the work (and heat) on Safari / phones.
+      if (now - lastDraw >= 32) {
+        lastDraw = now;
+        draw(now);
+      }
       if (!reduced) raf = requestAnimationFrame(frame);
     };
     const start = () => {
@@ -237,7 +241,6 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
         ref={canvasRef}
         aria-hidden
         className="block h-[145px] w-full md:h-[400px]"
-        style={{ filter: "drop-shadow(0 14px 16px rgba(0,0,0,0.3))" }}
       />
     </section>
   );
