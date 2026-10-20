@@ -50,7 +50,7 @@ export function Roadblocks() {
               className="flex flex-col px-5 py-8 last:border-b-0 lg:border-b-0 lg:px-6 lg:py-10"
             >
               <div className="flex flex-col gap-2">
-                <h3 className="font-belmonte text-[clamp(18px,6vw,30px)] font-normal uppercase tracking-[-0.03em] whitespace-nowrap lg:text-[clamp(14px,calc(1.75vw-1.5px),30px)]">
+                <h3 className="awareness-pink-text font-belmonte text-[clamp(18px,6vw,30px)] font-normal uppercase tracking-[-0.03em] whitespace-nowrap lg:text-[clamp(14px,calc(1.75vw-1.5px),30px)]">
                   {title}
                 </h3>
                 <p className="font-body leading-relaxed text-foreground/70">{description}</p>
