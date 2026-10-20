@@ -56,7 +56,7 @@ export function EmberTrail() {
       className="pointer-events-none fixed left-0 top-0 z-30 hidden h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 opacity-0 mix-blend-plus-lighter [@media(pointer:fine)]:block"
       style={{
         background:
-          "radial-gradient(circle, rgba(36,81,214,0.24) 0%, rgba(36,81,214,0.08) 40%, transparent 72%)",
+          "radial-gradient(circle, rgb(var(--accent-rgb) / 0.24) 0%, rgb(var(--accent-rgb) / 0.08) 40%, transparent 72%)",
         filter: "blur(10px)",
         borderRadius: "9999px",
       }}

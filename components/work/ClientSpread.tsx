@@ -271,13 +271,13 @@ export function ClientSpread({ workItems: workItemsByLang }: { workItems: { en: 
       className="relative w-full bg-background"
       style={{ height: `${SCROLL_LENGTH}vh` }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="awareness-bloom sticky top-0 h-screen w-full overflow-hidden">
         {/* centre text */}
         <motion.div
           className="pointer-events-none absolute inset-0 z-[5] flex flex-col items-center justify-center px-6 text-center max-md:px-8"
           style={{ opacity: copyOpacity, scale: noScale ? 1 : copyScale }}
         >
-          <h1 className="w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
+          <h1 className="awareness-pink-text w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
             {copy.clientSpreadHeading.map((line) => (
               <span key={line} className="block">
                 {line}

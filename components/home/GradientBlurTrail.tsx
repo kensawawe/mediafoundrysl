@@ -13,8 +13,13 @@ const COLORS: [number, number, number][] = [
   [255, 255, 255], // paper/white
 ];
 
+const PINK: [number, number, number] = [255, 95, 162];
+
 function pickColor(): [number, number, number] {
-  return COLORS[Math.floor(Math.random() * COLORS.length)];
+  const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+  // October (Breast Cancer Awareness Month): the blue blobs turn pink.
+  const pink = document.documentElement.dataset.awareness === "pink";
+  return pink && color[2] === 214 ? PINK : color;
 }
 
 /**

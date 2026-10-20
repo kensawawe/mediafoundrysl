@@ -122,6 +122,18 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${bigShoulders.variable} ${belmonte.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
     >
+      <head>
+        {/* October = Breast Cancer Awareness Month. Runs before first paint so
+            there's no blue flash; uses the visitor's own date, so it turns
+            itself off on 1 November with no redeploy. ?pink=1 / ?pink=0
+            force it on/off for previewing. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var q=new URLSearchParams(location.search).get('pink');if(q==='1'||q==='0')sessionStorage.setItem('mf-pink',q);var o=sessionStorage.getItem('mf-pink');if(o==='1'||(o!=='0'&&new Date().getMonth()===9))document.documentElement.setAttribute('data-awareness','pink')}catch(e){}})()",
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <script
           type="application/ld+json"

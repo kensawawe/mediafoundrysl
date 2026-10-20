@@ -1,12 +1,28 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import HalftoneWordmarkFooter from "@/components/ui/HalftoneWordmarkFooter";
+import { AwarenessRibbons } from "@/components/home/AwarenessRibbons";
 
 // Site colours for the halftone dots. Dark = the site's navy background with
 // the Sierra Leone green as the "warm" colour dots shift to when pushed.
 const DARK = { background: "#0d1b3f", ink: "#dfe7ff", warm: "#1eb53a" };
 const LIGHT = { background: "#ffffff", ink: "#14120f", warm: "#2451d6" };
+// October (Breast Cancer Awareness Month): the dots print in pink.
+const DARK_PINK = { background: "#0d1b3f", ink: "#ffb3d6", warm: "#ffffff" };
+const LIGHT_PINK = { background: "#ffffff", ink: "#e5338a", warm: "#14120f" };
+
+const noopSubscribe = () => () => {};
+/** Reads the <html data-awareness> flag set by the inline script in layout.tsx;
+ *  false on the server so hydration matches, then flips on the client. */
+function useAwareness() {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => document.documentElement.dataset.awareness === "pink",
+    () => false,
+  );
+}
 
 /** next/font hashes its family names; the CSS variable holds the real one. */
 function wordmarkFamily() {
@@ -23,10 +39,19 @@ function wordmarkFamily() {
  */
 export function HalftoneFooter() {
   const { resolvedTheme } = useTheme();
-  const palette = resolvedTheme === "light" ? LIGHT : DARK;
+  const pink = useAwareness();
+  const light = resolvedTheme === "light";
+  const palette = pink ? (light ? LIGHT_PINK : DARK_PINK) : light ? LIGHT : DARK;
 
   return (
-    <HalftoneWordmarkFooter
+    <>
+      <div
+        className="awareness-only overflow-hidden"
+        style={{ background: light ? "#ffffff" : "#0d1b3f" }}
+      >
+        <AwarenessRibbons className="py-2 md:py-4" />
+      </div>
+      <HalftoneWordmarkFooter
       wordmark="foundry"
       showText={false}
       palette={palette}
@@ -37,6 +62,7 @@ export function HalftoneFooter() {
       dotGap={6}
       crop={0.12}
       height="19.7vw"
-    />
+      />
+    </>
   );
 }

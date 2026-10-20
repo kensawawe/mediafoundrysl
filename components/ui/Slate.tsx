@@ -73,7 +73,7 @@ export function Slate({
           className="animate-hero-breathe absolute -inset-[10%]"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 30%, rgba(36,81,214,0.3), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(185,138,46,0.2), transparent 55%)",
+              "radial-gradient(ellipse at 30% 30%, rgb(var(--accent-rgb) / 0.3), transparent 55%), radial-gradient(ellipse at 75% 70%, rgba(185,138,46,0.2), transparent 55%)",
             filter: "blur(50px)",
           }}
         />

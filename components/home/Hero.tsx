@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { AwarenessPinRibbon } from "@/components/layout/AwarenessPinRibbon";
 import { HeroHeadline } from "@/components/home/HeroHeadline";
 import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
 import { hero as heroEn } from "@/lib/content/home";
@@ -108,6 +109,7 @@ export function Hero() {
         {/* Framed media card — clears the floating pill nav via the
             section's own top padding above, rather than sitting full-bleed
             behind it like the previous edge-to-edge hero. */}
+        <div className="relative">
         <div
           ref={sectionRef}
           className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
@@ -138,6 +140,16 @@ export function Hero() {
             style={{
               background:
                 "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.15) 100%)",
+            }}
+          />
+
+          {/* October: a pink bloom over the footage, and the flowing awareness ribbon. */}
+          <div
+            aria-hidden
+            className="awareness-only pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 10% 105%, rgba(255,95,162,0.62), transparent 60%), radial-gradient(ellipse at 98% -5%, rgba(255,143,195,0.5), transparent 55%)",
             }}
           />
 
@@ -188,6 +200,8 @@ export function Hero() {
               </Magnetic>
             </div>
           </div>
+        </div>
+        <AwarenessPinRibbon />
         </div>
 
         <div className="mt-10 md:mt-14">

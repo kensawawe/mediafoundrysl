@@ -28,22 +28,22 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label="Lights"
       onClick={() => setTheme(lightsOn ? "dark" : "light")}
       className={clsx(
-        "focus-ring group relative h-5 w-[15px] shrink-0 rounded-[3px] border border-[#16338f] bg-[#2451d6] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_1px_2px_rgba(0,0,0,0.45)]",
+        "focus-ring group relative h-5 w-[15px] shrink-0 rounded-[3px] border border-[var(--sw-edge)] bg-[var(--sw-body)] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_1px_2px_rgba(0,0,0,0.45)]",
         className,
       )}
     >
       {/* the two mounting screws */}
-      <span aria-hidden className="absolute left-1/2 top-[1px] h-[1.5px] w-[1.5px] -translate-x-1/2 rounded-full bg-[#0f2a78]/70">
-        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 rotate-45 bg-[#0f2a78]" />
+      <span aria-hidden className="absolute left-1/2 top-[1px] h-[1.5px] w-[1.5px] -translate-x-1/2 rounded-full bg-[var(--sw-deep)]/70">
+        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 rotate-45 bg-[var(--sw-deep)]" />
       </span>
-      <span aria-hidden className="absolute bottom-[1px] left-1/2 h-[1.5px] w-[1.5px] -translate-x-1/2 rounded-full bg-[#0f2a78]/70">
-        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 -rotate-12 bg-[#0f2a78]" />
+      <span aria-hidden className="absolute bottom-[1px] left-1/2 h-[1.5px] w-[1.5px] -translate-x-1/2 rounded-full bg-[var(--sw-deep)]/70">
+        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 -rotate-12 bg-[var(--sw-deep)]" />
       </span>
 
       {/* recessed slot the rocker sits in */}
       <span
         aria-hidden
-        className="absolute left-1/2 top-1/2 h-[11px] w-[8px] -translate-x-1/2 -translate-y-1/2 rounded-[2px] bg-[#0f2a78]/60 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
+        className="absolute left-1/2 top-1/2 h-[11px] w-[8px] -translate-x-1/2 -translate-y-1/2 rounded-[2px] bg-[var(--sw-deep)]/60 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
         style={{ perspective: 36 }}
       >
         {/* the rocker paddle */}
@@ -53,8 +53,8 @@ export function ThemeToggle({ className }: { className?: string }) {
           animate={{
             rotateX: lightsOn ? -22 : 22,
             background: lightsOn
-              ? "linear-gradient(to bottom, #b9ccff 0%, #6f93f5 55%, #3a63e0 100%)"
-              : "linear-gradient(to bottom, #3a63e0 0%, #6f93f5 45%, #b9ccff 100%)",
+              ? "linear-gradient(to bottom, var(--sw-hi) 0%, var(--sw-mid) 55%, var(--sw-lo) 100%)"
+              : "linear-gradient(to bottom, var(--sw-lo) 0%, var(--sw-mid) 45%, var(--sw-hi) 100%)",
           }}
           whileTap={{ scale: 0.94 }}
           transition={{ type: "spring", stiffness: 700, damping: 30, mass: 0.6 }}

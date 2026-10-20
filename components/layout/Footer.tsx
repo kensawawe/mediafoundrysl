@@ -96,7 +96,7 @@ export function Footer() {
               <span className="block font-belmonte font-normal leading-[1.05] tracking-[-0.02em] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
                 {copy.ctaLine1}
               </span>
-              <span className="block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
+              <span className="awareness-pink-text block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
                 {copy.ctaLine2}
               </span>
             </a>

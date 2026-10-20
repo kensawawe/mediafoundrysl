@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { AwarenessRibbons } from "@/components/home/AwarenessRibbons";
 import { ClientFit } from "@/components/home/ClientFit";
 import { WorkWall } from "@/components/home/WorkWall";
 import { Roadblocks } from "@/components/home/Roadblocks";
@@ -14,6 +15,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <AwarenessRibbons />
       <ClientFit />
       <Services />
       <WorkWall workItems={workItems} />
