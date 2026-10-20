@@ -242,29 +242,6 @@ html[data-awareness="pink"] ::selection {
 html[data-awareness="pink"] {
   scrollbar-color: #ff5fa2 transparent;
 }
-/* A thin pink progress line across the top that fills as you scroll
-   (only in browsers that support scroll-driven animations). */
-@supports (animation-timeline: scroll()) {
-  html[data-awareness="pink"] body::before {
-    content: "";
-    position: fixed;
-    inset: 0 0 auto 0;
-    height: 3px;
-    z-index: 200;
-    background: linear-gradient(90deg, #ff8fc3, #ff5fa2);
-    transform-origin: 0 50%;
-    transform: scaleX(0);
-    animation: awareness-progress linear both;
-    animation-timeline: scroll(root);
-    pointer-events: none;
-  }
-  @keyframes awareness-progress {
-    to {
-      transform: scaleX(1);
-    }
-  }
-}
-
 /* Ingot rule — the brass hairline divider used above the Journal list. */
 .ingot-rule {
   height: 1px;

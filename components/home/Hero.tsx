@@ -112,7 +112,7 @@ export function Hero() {
         <div className="relative">
         <div
           ref={sectionRef}
-          className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
+          className="relative aspect-[5/7] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
         >
           <div ref={mediaRef} className="absolute inset-0">
             <video
@@ -158,7 +158,7 @@ export function Hero() {
                 whole card) — symmetric padding on every side means each
                 corner sits at an identical offset, so the frame stays
                 consistent regardless of how much text is inside it. */}
-            <div className="relative px-4 py-6 sm:px-14 sm:py-10">
+            <div className="relative px-5 py-9 sm:px-14 sm:py-10">
               {[
                 "left-0 top-0 border-l border-t",
                 "right-0 top-0 border-r border-t",
@@ -173,15 +173,15 @@ export function Hero() {
                 className="font-display font-black uppercase leading-[0.9] tracking-tight text-paper text-[6.5vw] sm:text-[6vw] md:text-[3.4vw] lg:text-[46px]"
               />
 
-              <p className="mx-auto mt-4 max-w-lg font-body text-[11px] font-bold text-paper sm:mt-5 sm:text-sm md:text-base">
+              <p className="mx-auto mt-6 max-w-lg font-body text-[12px] font-bold leading-relaxed text-paper sm:mt-5 sm:leading-normal sm:text-sm md:text-base">
                 {hero.supporting}
               </p>
-              <p className="mx-auto mt-3 max-w-2xl text-balance font-belmonte text-lg font-normal leading-tight tracking-[-0.04em] text-paper [-webkit-text-stroke:0.6px_currentColor] sm:mt-4 sm:text-2xl md:text-3xl">
+              <p className="mx-auto mt-6 max-w-2xl text-balance font-belmonte text-lg font-normal leading-snug sm:leading-tight tracking-[-0.04em] text-paper [-webkit-text-stroke:0.6px_currentColor] sm:mt-4 sm:text-2xl md:text-3xl">
                 {hero.supportingKrio}
               </p>
             </div>
 
-            <div className="pointer-events-auto mt-6 flex flex-nowrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
+            <div className="pointer-events-auto mt-9 flex flex-nowrap items-center justify-center gap-3 sm:mt-8 sm:gap-3">
               <Magnetic className="inline-flex">
                 <a
                   href={hero.primaryCta.href}
