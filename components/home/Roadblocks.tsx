@@ -30,7 +30,7 @@ export function Roadblocks() {
     <section className="relative bg-background pt-20 text-foreground sm:pt-40">
       <div className="mx-auto max-w-full">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center space-y-4 px-5 text-center md:px-10">
-          <h2 className="whitespace-nowrap font-display text-[clamp(22px,6.4vw,60px)] font-black uppercase leading-[0.95] tracking-tight">
+          <h2 className="whitespace-nowrap font-godthem text-[clamp(15px,4.4vw,46px)] font-normal uppercase leading-[1.05] tracking-[0.02em]">
             Great is no longer good enough.
           </h2>
           <p className="max-w-xl font-body text-base text-foreground/70 md:text-lg">

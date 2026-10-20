@@ -32,6 +32,8 @@ export function WorkThumb({
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
           <img
             src={item.restingImage}
+            loading="lazy"
+            decoding="async"
             alt={item.title}
             className={clsx(
               "absolute inset-0 h-full w-full",
@@ -44,15 +46,17 @@ export function WorkThumb({
             // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
             <img
               src={item.hoverImage}
+              loading="lazy"
+              decoding="async"
               alt=""
               aria-hidden
               className={clsx("object-contain", item.hoverImageSize ?? "mb-3 h-16 w-16 sm:h-20 sm:w-20")}
             />
           )}
-          <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
+          <span className="font-godthem text-[11px] uppercase tracking-[0.045em] text-paper/70">
             {item.category}
           </span>
-          <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
+          <h3 className="font-godthem text-lg font-normal leading-tight tracking-[0.02em] text-paper sm:text-xl">
             {item.hoverTitle ?? item.title}
           </h3>
         </PourOverlay>
@@ -70,10 +74,10 @@ export function WorkThumb({
         className={className}
       />
       <PourOverlay>
-        <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
+        <span className="font-godthem text-[11px] uppercase tracking-[0.045em] text-paper/70">
           {item.category}
         </span>
-        <h3 className="font-display text-xl font-black leading-tight text-paper sm:text-2xl">
+        <h3 className="font-godthem text-lg font-normal leading-tight tracking-[0.02em] text-paper sm:text-xl">
           {item.hoverTitle ?? item.title}
         </h3>
       </PourOverlay>

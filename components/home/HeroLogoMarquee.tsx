@@ -14,14 +14,14 @@ export function HeroLogoMarquee() {
   const track = [...lap, ...lap];
 
   return (
-    <div className="opacity-80">
+    <div>
       <p className="awareness-pink-text text-right font-belmonte text-[11px] font-normal uppercase tracking-[0.04em] text-foreground sm:text-[14px]">
         {trustedByLabel}
       </p>
 
       {/* No group-hover pause here, unlike the Team section's carousel —
           this one keeps scrolling regardless of hover. */}
-      <div className="relative mt-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <div className="relative mt-1 overflow-hidden opacity-80 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="animate-marquee flex w-max items-center gap-3">
           {track.map((client, i) => (
             <div
@@ -41,7 +41,7 @@ export function HeroLogoMarquee() {
                 aria-hidden
                 className="h-7 w-7 object-contain sm:h-8 sm:w-8"
               />
-              <span className="whitespace-nowrap font-mono text-xs uppercase tracking-[0.03em] text-foreground">
+              <span className="whitespace-nowrap font-godthem text-sm font-normal uppercase tracking-[0.045em] text-foreground">
                 {client.name}
               </span>
             </div>

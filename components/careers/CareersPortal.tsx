@@ -5,7 +5,9 @@ import GlyphPortal from "@/components/ui/GlyphPortal";
 import { Container } from "@/components/ui/Container";
 import { careersHero as careersHeroEn } from "@/lib/content/careers";
 import { careersHero as careersHeroKri } from "@/lib/content/careers.kri";
+import { GODTHEM_WORD_OUTLINES } from "@/lib/godthem-outlines";
 import { useTranslated } from "@/lib/content/useTranslated";
+import { useHeroVideoSrc } from "@/lib/useHeroVideoSrc";
 
 const FALLBACK_FONT = '"Arial Black", Arial, sans-serif';
 
@@ -13,14 +15,14 @@ const FALLBACK_FONT = '"Arial Black", Arial, sans-serif';
  * GlyphPortal freezes its font at mount and measures the ink, so the display
  * face must already be loaded when it mounts. next/font exposes the hashed
  * family name through a CSS variable on <html>; resolve it and wait for the
- * 900 weight. Returns null until ready (or falls back to a system heavy face
+ * regular weight. Returns null until ready (or falls back to a system heavy face
  * after 2s so the page can never hang on a slow font).
  */
 function useDisplayFont(sample: string): string | null {
   const [family, setFamily] = useState<string | null>(null);
 
   useLayoutEffect(() => {
-    const raw = getComputedStyle(document.documentElement).getPropertyValue("--font-big-shoulders");
+    const raw = getComputedStyle(document.documentElement).getPropertyValue("--font-godthem-face");
     const primary = raw.split(",")[0]?.trim();
     let settled = false;
     const settle = (value: string) => {
@@ -33,7 +35,7 @@ function useDisplayFont(sample: string): string | null {
       settle(FALLBACK_FONT);
       return;
     }
-    const face = `900 100px ${primary}`;
+    const face = `400 100px ${primary}`;
     // Already loaded (the usual case — it's preloaded in the layout): mount
     // before the first paint so there's no static-hero-then-portal flash.
     if (document.fonts.check(face, sample)) {
@@ -54,6 +56,7 @@ function useDisplayFont(sample: string): string | null {
 /** Freetown footage seen through the letters, darkening as the camera arrives. */
 function Footage() {
   const video = useRef<HTMLVideoElement>(null);
+  useHeroVideoSrc(video);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -81,9 +84,7 @@ function Footage() {
         loop
         playsInline
         preload="metadata"
-      >
-        <source src="/hero-freetown.mp4" type="video/mp4" />
-      </video>
+      />
       {/* Light tint while it's a window onto the footage; deep navy once the
           text has to be read over it (--gp-reveal runs 0 → 1 on arrival). */}
       <div
@@ -97,7 +98,7 @@ function Footage() {
 function HeroCopy({ title, statement }: { title: string; statement: string[] }) {
   return (
     <Container>
-      <h1 className="max-w-3xl font-belmonte text-6xl font-normal uppercase leading-[0.95] tracking-[-0.02em] sm:text-7xl md:text-8xl lg:max-w-none lg:whitespace-nowrap lg:text-[clamp(40px,4.6vw,72px)]">
+      <h1 className="max-w-3xl font-godthem text-4xl font-normal uppercase leading-[1.05] tracking-[0.02em] sm:text-5xl md:text-6xl lg:max-w-none lg:whitespace-nowrap lg:text-[clamp(28px,3.4vw,54px)]">
         {title}
       </h1>
       <div className="mt-8 flex max-w-lg flex-col gap-4 font-body text-lg leading-relaxed text-current/70 sm:text-xl">
@@ -133,7 +134,8 @@ export function CareersPortal() {
       className="careers-portal"
       word={hero.portalWord}
       fontFamily={fontFamily}
-      fontWeight={900}
+      fontWeight={400}
+      outlines={GODTHEM_WORD_OUTLINES}
       scrollLength={2}
       enterLabel={hero.portalEnter}
       style={{

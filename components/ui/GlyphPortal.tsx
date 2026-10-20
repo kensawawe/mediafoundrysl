@@ -29,6 +29,9 @@ export type GlyphPortalProps = {
   scrollLength?: number;
   fontFamily?: string;
   fontWeight?: number;
+  /** Exact outline paths (100px em, baseline y=0, y down) keyed by word. When one exists for `word`
+   *  the clip is drawn from it instead of SVG text, so it matches the font exactly. */
+  outlines?: Readonly<Record<string, string>>;
   annotations?: boolean;
   enterLabel?: string;
   className?: string;
@@ -88,7 +91,7 @@ function scrollParent(element: HTMLElement): HTMLElement | null {
 
 export default function GlyphPortal({
   word = "SUBLIME", focusChar, interactive = true, background, front, children, scrollLength = 2.4,
-  fontFamily = DEFAULT_FONT, fontWeight = 900, annotations = false,
+  fontFamily = DEFAULT_FONT, fontWeight = 900, annotations = false, outlines,
   enterLabel = "Enter section", className, style, onProgress,
 }: GlyphPortalProps) {
   const uid = `gp-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
@@ -104,6 +107,8 @@ export default function GlyphPortal({
   }, []);
   const length = Number.isFinite(scrollLength) ? clamp(scrollLength, 1, 8) : 2.4;
   const weight = Number.isFinite(fontWeight) ? clamp(fontWeight, 1, 1000) : 900;
+  // Exact outline for this word, if supplied.
+  const outlinePath = outlines?.[text] ?? null;
   const hasFront = front != null;
   const q = `:where(#${uid})`;
 
@@ -113,7 +118,8 @@ export default function GlyphPortal({
     const field = section.querySelector<HTMLElement>("[data-gp-field]")!;
     const art = section.querySelector<SVGSVGElement>("[data-gp-art]")!;
     const clip = section.querySelector<SVGClipPathElement>(`#${clipId}`)!;
-    const glyph = section.querySelector<SVGTextElement>("[data-gp-glyph]")!;
+    const glyph = section.querySelector<SVGElement>("[data-gp-glyph]")!;
+    const probe = section.querySelector<SVGTextElement>("[data-gp-font]") ?? (glyph as unknown as SVGTextElement);
     const marks = section.querySelector<SVGGElement>("[data-gp-marks]")!;
     const choices = section.querySelector<HTMLElement>("[data-gp-choices]")!;
     const buttons = Array.from(choices.querySelectorAll<HTMLButtonElement>("button"));
@@ -135,20 +141,21 @@ export default function GlyphPortal({
     let fontDirty = true;
     // Freeze an available face for this mount. Late font swaps move the ink under the camera.
     // Preload custom faces before mounting; pending/failed faces use the supplied fallback stack.
-    glyph.style.fontFamily = fontFamily;
-    const computedFamily = getComputedStyle(glyph).fontFamily;
+    probe.style.fontFamily = fontFamily;
+    const computedFamily = getComputedStyle(probe).fontFamily;
     const families = computedFamily.match(/(?:[^,"']+|"[^"]*"|'[^']*')+/g) ?? [];
     const available = families.filter((family) => {
       try { return document.fonts.check(`${weight} 100px ${family.trim()}`, text); }
       catch { return false; }
     });
-    glyph.style.fontFamily = [...available, DEFAULT_FONT].join(",");
+    probe.style.fontFamily = [...available, DEFAULT_FONT].join(",");
+    if (probe !== glyph) glyph.style.fontFamily = probe.style.fontFamily;
     // A pending requested face may also hold WebKit's render loop. Keep that mount static.
     stalled = available.length < families.length;
 
     const readInk = () => {
       if (!context) return false;
-      const font = getComputedStyle(glyph);
+      const font = getComputedStyle(probe);
       const scanFont = `${font.fontWeight} 300px ${font.fontFamily}`;
       context.font = `${font.fontWeight} 100px ${font.fontFamily}`;
       context.fontKerning = "none";
@@ -397,8 +404,15 @@ export default function GlyphPortal({
         <svg data-gp-art aria-hidden="true" focusable="false">
           <defs>
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <text data-gp-glyph x="0" y="0" style={{ fontFamily, fontWeight: weight, fontSize: 100, fontKerning: "none", fontVariantLigatures: "none", letterSpacing: 0 }}>{text}</text>
+              {outlinePath ? (
+                <path data-gp-glyph d={outlinePath} />
+              ) : (
+                <text data-gp-glyph x="0" y="0" style={{ fontFamily, fontWeight: weight, fontSize: 100, fontKerning: "none", fontVariantLigatures: "none", letterSpacing: 0 }}>{text}</text>
+              )}
             </clipPath>
+            {outlinePath && (
+              <text data-gp-font x="0" y="0" visibility="hidden" style={{ fontFamily, fontWeight: weight, fontSize: 100, fontKerning: "none", fontVariantLigatures: "none", letterSpacing: 0 }}>{text}</text>
+            )}
           </defs>
           <g data-gp-marks style={{ visibility: annotations ? "visible" : "hidden" }}><path /></g>
         </svg>

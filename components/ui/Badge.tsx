@@ -14,7 +14,7 @@ export function Badge({
   return (
     <span
       className={clsx(
-        "inline-flex items-center whitespace-nowrap font-body font-medium",
+        "inline-flex items-center whitespace-nowrap font-godthem font-normal tracking-[0.03em]",
         size === "lg" ? "text-base" : "text-xs",
         variant === "outline" ? "border" : "border-transparent",
         className,

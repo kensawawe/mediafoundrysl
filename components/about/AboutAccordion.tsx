@@ -52,7 +52,7 @@ export function AboutAccordion() {
               >
                 <h2
                   className={clsx(
-                    "font-display text-3xl font-black uppercase leading-[0.95] tracking-tight transition-colors duration-300 sm:text-4xl md:text-5xl",
+                    "font-godthem text-2xl font-normal uppercase leading-[1.05] tracking-[0.02em] transition-colors duration-300 sm:text-3xl md:text-4xl",
                     isActive ? "text-current" : "text-current/25 hover:text-current/50",
                   )}
                 >

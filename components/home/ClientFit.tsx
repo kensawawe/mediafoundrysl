@@ -21,7 +21,7 @@ export function ClientFit() {
             <span className="font-belmonte text-xl font-normal uppercase tracking-[-0.02em] text-accent-text sm:text-2xl">
               {clientFit.eyebrow}
             </span>
-            <h2 className="mt-6 font-display text-[clamp(12px,calc(4.6vw_-_2.2px),20px)] font-black uppercase leading-[1.15] tracking-tight sm:text-2xl md:text-xl lg:text-xl xl:text-2xl">
+            <h2 className="mt-6 font-godthem text-[clamp(10px,calc(3.4vw_-_1.5px),16px)] font-normal uppercase leading-[1.3] tracking-[0.03em] sm:text-xl md:text-sm lg:text-base xl:text-lg">
               {clientFit.headline.map((line) => (
                 <span
                   key={line}

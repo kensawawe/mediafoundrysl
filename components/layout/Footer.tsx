@@ -91,12 +91,12 @@ export function Footer() {
           <Magnetic strength={0.18} className="inline-block w-fit">
             <a
               href={`mailto:${site.email}`}
-              className="focus-ring block font-display font-black uppercase tracking-tight hover:text-accent-text"
+              className="focus-ring block font-godthem font-normal uppercase tracking-[0.02em] hover:text-accent-text"
             >
               <span className="block font-belmonte font-normal leading-[1.05] tracking-[-0.02em] text-[7vw] sm:whitespace-nowrap sm:text-[3.6vw] md:text-[2.8vw]">
                 {copy.ctaLine1}
               </span>
-              <span className="awareness-pink-text block leading-[0.88] text-[13vw] sm:text-[8vw] md:text-[6vw]">
+              <span className="awareness-pink-text block leading-[1] text-[9.5vw] sm:text-[6vw] md:text-[4.6vw]">
                 {copy.ctaLine2}
               </span>
             </a>
@@ -120,12 +120,12 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="focus-ring font-body text-sm text-foreground/70 hover:text-accent-text"
+                  className="focus-ring font-godthem text-sm tracking-[0.04em] text-foreground/70 hover:text-accent-text"
                 >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/#contact" className="focus-ring font-body text-sm text-foreground/70 hover:text-accent-text">
+              <Link href="/#contact" className="focus-ring font-godthem text-sm tracking-[0.04em] text-foreground/70 hover:text-accent-text">
                 {copy.contact}
               </Link>
             </nav>
@@ -147,7 +147,7 @@ export function Footer() {
                 <p className="font-body text-base leading-relaxed text-foreground/85">
                   {featuredQuote.quote}
                 </p>
-                <span className="mt-4 block font-mono text-[11px] uppercase tracking-[0.03em] text-foreground/50">
+                <span className="mt-4 block font-godthem text-xs uppercase tracking-[0.045em] text-foreground/70">
                   {featuredQuote.name}
                 </span>
               </motion.div>
@@ -177,7 +177,7 @@ export function Footer() {
                 className="focus-ring group flex flex-col items-center justify-center gap-2 p-6 text-foreground/70 transition-colors hover:text-accent-text"
               >
                 <SocialIcon platform={s.platform} className="h-5 w-5" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.03em]">
+                <span className="font-godthem text-[11px] uppercase tracking-[0.045em]">
                   {s.label}
                 </span>
               </a>
@@ -185,7 +185,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.03em] text-current/45 md:flex-row md:items-center">
+        <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 font-godthem text-xs uppercase tracking-[0.045em] text-current/70 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} The Media Foundry</span>
           <span className="flex items-center gap-3">
             <span>{site.location}</span>

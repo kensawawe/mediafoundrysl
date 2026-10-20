@@ -98,10 +98,12 @@ function ReviewCard({
       </blockquote>
       <figcaption className="mt-6 flex items-center justify-between gap-4 border-t border-current/10 pt-4">
         <div>
-          <p className="font-display text-lg font-bold tracking-tight">{item.name}</p>
+          <p className="font-godthem text-lg font-normal tracking-[0.03em]">{item.name}</p>
         </div>
         <img
           src={item.logo}
+          loading="lazy"
+          decoding="async"
           alt={`${item.name} logo`}
           className="h-9 w-9 shrink-0 object-contain grayscale"
         />
@@ -139,7 +141,7 @@ export function Testimonials() {
       <Container>
         <div aria-hidden className="border-t border-current/15 mb-12" />
 
-        <h2 className="font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+        <h2 className="font-godthem text-3xl font-normal uppercase leading-[1.05] tracking-[0.02em] sm:text-4xl">
           {whatClientsSay}
         </h2>
 
@@ -161,18 +163,22 @@ export function Testimonials() {
               <Arrow direction="left" />
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               {testimonials.map((item, i) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setIndex(i)}
                   aria-label={`Go to testimonial ${i + 1}`}
-                  className={clsx(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    i === index ? "w-8 bg-accent-fill" : "w-1.5 bg-current/20 hover:bg-current/40",
-                  )}
-                />
+                  className="group flex h-6 items-center justify-center px-[9px]"
+                >
+                  <span
+                    className={clsx(
+                      "block h-1.5 rounded-full transition-all duration-300",
+                      i === index ? "w-8 bg-accent-fill" : "w-1.5 bg-current/20 group-hover:bg-current/40",
+                    )}
+                  />
+                </button>
               ))}
             </div>
 

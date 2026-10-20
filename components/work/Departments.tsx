@@ -47,7 +47,7 @@ export function Departments() {
   return (
     <Section className="pb-0 md:pb-0">
       <Container>
-        <h2 className="max-w-2xl font-display text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl">
+        <h2 className="max-w-2xl font-godthem text-3xl font-normal uppercase leading-[1.05] tracking-[0.02em] sm:text-4xl">
           {heading}
         </h2>
 
@@ -67,7 +67,7 @@ export function Departments() {
                   <span className="flex-1">
                     <span
                       className={clsx(
-                        "block font-belmonte text-2xl font-normal uppercase transition-colors duration-300 sm:text-3xl",
+                        "block font-godthem text-xl font-normal uppercase tracking-[0.04em] transition-colors duration-300 sm:text-2xl",
                         isActive ? "text-foreground" : "text-foreground/40",
                       )}
                     >

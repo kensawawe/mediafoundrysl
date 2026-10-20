@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { useHeroVideoSrc } from "@/lib/useHeroVideoSrc";
 import { AwarenessPinRibbon } from "@/components/layout/AwarenessPinRibbon";
 import { HeroHeadline } from "@/components/home/HeroHeadline";
 import { HeroLogoMarquee } from "@/components/home/HeroLogoMarquee";
@@ -21,6 +22,7 @@ export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  useHeroVideoSrc(videoRef);
 
   useGSAP(
     () => {
@@ -115,23 +117,27 @@ export function Hero() {
           className="relative aspect-[5/7] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
         >
           <div ref={mediaRef} className="absolute inset-0">
+            {/* The still frame is a real image so it paints straight from the HTML; the video
+                (attached after hydration) fades over it once it is playing. */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+            <img
+              src="/hero-freetown-poster.jpg"
+              alt=""
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
             <video
               ref={videoRef}
               autoPlay
               muted
               loop
               playsInline
-              // The Preloader overlay covers the page for several seconds on
-              // first load (see components/layout/Preloader.tsx) — this
-              // component mounts underneath it immediately, so eager preload
-              // has a safe window to run without competing with anything
-              // actually visible yet.
-              preload="auto"
-              poster="/hero-freetown-poster.jpg"
-              className="h-full w-full object-cover"
-            >
-              <source src="/hero-freetown.mp4" type="video/mp4" />
-            </video>
+              // The poster paints first; useHeroVideoSrc then attaches the right-sized cut
+              // (720px phones / 1280px desktop) and autoplay starts it.
+              preload="metadata"
+              className="relative h-full w-full object-cover"
+            />
           </div>
 
           <div
@@ -185,7 +191,7 @@ export function Hero() {
               <Magnetic className="inline-flex">
                 <a
                   href={hero.primaryCta.href}
-                  className="whitespace-nowrap rounded-full bg-paper px-4 py-2 font-body text-xs font-medium text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper sm:px-6 sm:py-3 sm:text-sm"
+                  className="whitespace-nowrap rounded-full bg-paper px-4 py-2 font-godthem text-xs font-normal uppercase tracking-[0.045em] text-ink shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-colors hover:bg-accent-fill hover:text-paper sm:px-6 sm:py-3 sm:text-[15px]"
                 >
                   {hero.primaryCta.label}
                 </a>
@@ -193,7 +199,7 @@ export function Hero() {
               <Magnetic className="inline-flex">
                 <a
                   href={hero.secondaryCta.href}
-                  className="whitespace-nowrap rounded-full border border-paper/50 bg-white/10 px-4 py-2 font-body text-xs font-medium text-paper backdrop-blur-sm transition-colors hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm"
+                  className="whitespace-nowrap rounded-full border border-paper/50 bg-white/10 px-4 py-2 font-godthem text-xs font-normal uppercase tracking-[0.045em] text-paper backdrop-blur-sm transition-colors hover:bg-white/20 sm:px-6 sm:py-3 sm:text-[15px]"
                 >
                   {hero.secondaryCta.label}
                 </a>

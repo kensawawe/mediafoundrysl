@@ -118,7 +118,7 @@ export function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="whitespace-nowrap font-mono text-sm font-bold uppercase text-foreground/70 transition-colors hover:text-foreground"
+                  className="whitespace-nowrap font-godthem text-[15px] font-normal uppercase tracking-[0.045em] text-black dark:text-white transition-colors hover:text-accent-text"
                 >
                   {link.label}
                 </Link>
@@ -151,7 +151,7 @@ export function Navbar() {
               <Magnetic className="inline-flex">
                 <Link
                   href="/#contact"
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-mono text-sm font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-godthem text-[15px] font-normal uppercase tracking-[0.045em] text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
                 >
                   {startAProjectLabel}
                 </Link>
@@ -209,7 +209,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="font-mono text-2xl font-bold uppercase text-foreground"
+                    className="font-godthem text-3xl font-normal uppercase tracking-[0.035em] text-black dark:text-white"
                   >
                     {link.label}
                   </Link>
@@ -252,7 +252,7 @@ export function Navbar() {
                   <Link
                     href="/#contact"
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-mono text-base font-bold uppercase text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-godthem text-lg font-normal uppercase tracking-[0.035em] text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
                   >
                     {startAProjectLabel}
                   </Link>

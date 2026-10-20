@@ -50,6 +50,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <motion.span
           className="absolute inset-[0.75px] rounded-[1.5px] shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
           style={{ transformOrigin: "50% 50%" }}
+          tabIndex={-1}
           animate={{
             rotateX: lightsOn ? -22 : 22,
             background: lightsOn

@@ -76,7 +76,7 @@ export function DepartmentGrid() {
           <button
             key={service.code}
             type="button"
-            aria-label={`${service.title} — view details`}
+            aria-expanded={isActive}
             className={clsx(
               "focus-ring relative flex h-full w-full flex-col overflow-hidden rounded-2xl border bg-background text-left transition-colors duration-300",
               isActive ? "border-accent-fill" : "border-border-subtle",
@@ -90,7 +90,9 @@ export function DepartmentGrid() {
                 // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
                 <img
                   src={service.image}
-                  alt={service.title}
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               ) : (
@@ -106,7 +108,7 @@ export function DepartmentGrid() {
                 >
                   {service.code}
                 </span>
-                <span className="truncate font-body text-base font-bold text-foreground sm:text-lg">
+                <span className="truncate font-godthem text-sm font-normal uppercase tracking-[0.04em] text-foreground sm:text-base">
                   {service.title}
                 </span>
               </div>

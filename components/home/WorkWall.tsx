@@ -32,7 +32,7 @@ export function WorkWall({ workItems: workItemsByLang }: { workItems: { en: Work
 
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-5xl md:text-6xl">
+            <h2 className="font-godthem text-3xl font-normal uppercase leading-[1] tracking-[0.02em] sm:text-4xl md:text-5xl">
               {copy.castWallHeading}
             </h2>
           </div>
@@ -58,7 +58,7 @@ export function WorkWall({ workItems: workItemsByLang }: { workItems: { en: Work
                   />
                 </div>
                 <div className="mt-3 flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-sm font-bold leading-tight tracking-tight sm:text-base">
+                  <h3 className="font-godthem text-xs font-normal uppercase leading-snug tracking-[0.04em] sm:text-sm">
                     {item.title}
                   </h3>
                 </div>

@@ -9,6 +9,7 @@ import { Section } from "@/components/ui/Section";
 import { apertureReveal as contentEn } from "@/lib/content/about";
 import { apertureReveal as contentKri } from "@/lib/content/about.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
+import { useHeroVideoSrc } from "@/lib/useHeroVideoSrc";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,6 +51,7 @@ export function ApertureReveal() {
   const pinRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  useHeroVideoSrc(videoRef);
 
   useGSAP(
     () => {
@@ -145,15 +147,15 @@ export function ApertureReveal() {
 
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center leading-[0.85]"
+            className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center leading-[1.12]"
           >
-            <span className="whitespace-nowrap font-display text-[20vw] font-black uppercase tracking-tighter text-foreground/10">
+            <span className="whitespace-nowrap font-godthem text-[14vw] font-normal uppercase tracking-[0.06em] text-foreground/10">
               Welcome
             </span>
-            <span className="whitespace-nowrap font-display text-[20vw] font-black uppercase tracking-tighter text-foreground/10">
+            <span className="whitespace-nowrap font-godthem text-[14vw] font-normal uppercase tracking-[0.06em] text-foreground/10">
               to the
             </span>
-            <span className="whitespace-nowrap font-display text-[20vw] font-black uppercase tracking-tighter text-foreground/10">
+            <span className="whitespace-nowrap font-godthem text-[14vw] font-normal uppercase tracking-[0.06em] text-foreground/10">
               Foundry
             </span>
           </div>
@@ -178,9 +180,7 @@ export function ApertureReveal() {
                 autoPlay
                 preload="metadata"
                 poster="/hero-freetown-poster.jpg"
-              >
-                <source src="/hero-freetown.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@ export function ApertureReveal() {
       <Section className="pt-0 md:pt-0">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-display text-[10vw] font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+            <h1 className="font-godthem text-[7vw] font-normal uppercase leading-[1.1] tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
               {content.outroTitle.map((line) => (
                 <span key={line} className="block">
                   {line}

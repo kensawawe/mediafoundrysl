@@ -194,7 +194,7 @@ function useIsMobile() {
 
 // --- Components ---
 const stepVariants: Variants = {
-  inactive: { scale: 0.9, opacity: 0.7 },
+  inactive: { scale: 0.9, opacity: 0.92 },
   active: { scale: 1, opacity: 1 },
 }
 
@@ -206,6 +206,8 @@ const StepImage = forwardRef<HTMLImageElement, StepImageProps>(
         alt={alt}
         className={className}
         src={src}
+        loading="lazy"
+        decoding="async"
         style={{ position: "absolute", userSelect: "none", maxWidth: "unset", ...style }}
         onError={(e) => (e.currentTarget.src = placeholderImage(alt))}
         {...props}
@@ -238,7 +240,7 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
       onMouseMove={handleMouseMove}
       style={{ "--x": useMotionTemplate`${mouseX}px`, "--y": useMotionTemplate`${mouseY}px` } as WrapperStyle}
     >
-      <div className="relative w-full overflow-hidden rounded-3xl border border-sky-500 bg-sky-600 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900">
+      <div className="relative w-full overflow-hidden rounded-3xl border border-sky-600 bg-sky-700 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900">
         <div className="m-10 min-h-[450px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -250,7 +252,7 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
-                className="text-sm font-semibold uppercase tracking-wider text-sky-100 dark:text-sky-500"
+                className="font-godthem text-sm font-normal uppercase tracking-[0.08em] text-sky-100 dark:text-sky-500"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.05, duration: 0.3, ease: [0.22, 1, 0.36, 1]}}
@@ -258,7 +260,7 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
                   {`Stage ${String(step + 1).padStart(2, "0")}`}
               </motion.div>
               <motion.h2
-                className="text-2xl font-bold tracking-tight text-white dark:text-neutral-100 md:text-3xl"
+                className="awareness-no-pink font-godthem text-2xl font-normal tracking-[0.02em] text-white dark:text-neutral-100 md:text-3xl"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.3, ease: [0.22, 1, 0.36, 1]}}
@@ -294,9 +296,9 @@ function StepsNav({ steps: stepItems, current, onChange }: { steps: readonly Ste
                             <button
                                 type="button"
                                 className={cn(
-                                    "group flex items-center gap-2.5 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500 dark:focus-visible:ring-offset-black",
+                                    "group flex items-center gap-2.5 rounded-full px-3.5 py-1.5 font-godthem text-sm font-normal tracking-[0.04em] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500 dark:focus-visible:ring-offset-black",
                                     isCurrent
-                                        ? "bg-sky-600 text-white dark:bg-sky-500"
+                                        ? "bg-sky-700 text-white dark:bg-sky-500"
                                         : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
                                 )}
                                 onClick={() => onChange(stepIdx)}

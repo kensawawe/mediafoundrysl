@@ -55,7 +55,7 @@ export function HalftoneFooter() {
         <AwarenessRibbons className="py-2 md:py-4" />
       </div>
       <HalftoneWordmarkFooter
-      wordmark="foundry"
+      wordmark="the media foundry"
       showText={false}
       palette={palette}
       fontFamily={mounted ? wordmarkFamily() : undefined}
@@ -64,7 +64,8 @@ export function HalftoneFooter() {
       monoFamily={'var(--font-inter), "Helvetica Neue", Arial, sans-serif'}
       dotGap={6}
       crop={0.12}
-      height="19.7vw"
+      fill={0.95}
+      height="8.4vw"
       />
     </>
   );

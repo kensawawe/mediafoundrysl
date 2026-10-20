@@ -196,10 +196,10 @@ function Card({
       />
       {clickable && (
         <PourOverlay>
-          <span className="font-mono text-[10px] uppercase tracking-[0.03em] text-paper/70">
+          <span className="font-godthem text-[11px] uppercase tracking-[0.045em] text-paper/70">
             {item.category}
           </span>
-          <h3 className="font-display text-base font-black leading-tight text-paper sm:text-xl">
+          <h3 className="font-godthem text-sm font-normal leading-tight tracking-[0.02em] text-paper sm:text-lg">
             {item.hoverTitle ?? item.title}
           </h3>
         </PourOverlay>

@@ -46,7 +46,7 @@ const belmonte = localFont({
 
 // GC Godthem — self-hosted; used for the homepage hero headline.
 const godthem = localFont({
-  src: "./fonts/GcGodthem.otf",
+  src: "./fonts/GcGodthem.woff2",
   variable: "--font-godthem-face",
   weight: "400",
   display: "swap",

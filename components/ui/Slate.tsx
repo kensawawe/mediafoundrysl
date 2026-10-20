@@ -115,7 +115,7 @@ export function Slate({
 
       {variant === "video" && (
         <>
-          <div className="absolute left-4 top-4 flex items-center gap-2 font-mono text-[10px] tracking-wider text-white/80">
+          <div className="absolute left-4 top-4 flex items-center gap-2 font-godthem text-[11px] tracking-[0.06em] text-white/80">
             {/* Recording light stays red regardless of the site accent — that's a fixed broadcast convention, not a decorative color. */}
             <span className="animate-rec-pulse h-1.5 w-1.5 rounded-full bg-red-500" />
             REC {timecode}
@@ -132,7 +132,7 @@ export function Slate({
       )}
 
       {category && (
-        <span className="absolute right-4 top-4 border border-white/25 bg-black/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.03em] text-white/80 backdrop-blur-sm">
+        <span className="absolute right-4 top-4 border border-white/25 bg-black/40 px-2.5 py-1 font-godthem text-[11px] uppercase tracking-[0.045em] text-white/80 backdrop-blur-sm">
           {category}
         </span>
       )}
@@ -144,11 +144,11 @@ export function Slate({
       {caption && (
         <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1">
           {variant === "photo" && (
-            <div className="font-mono text-[10px] tracking-wider text-white/60">
+            <div className="font-godthem text-[11px] tracking-[0.06em] text-white/60">
               f/2.8 · 1/250 · ISO 400
             </div>
           )}
-          <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-white/50">
+          <p className="font-godthem text-[11px] uppercase tracking-[0.045em] text-white/50">
             {category ?? "FOOTAGE"} / PLACEHOLDER
             <span className="text-white/30"> — {label}</span>
           </p>

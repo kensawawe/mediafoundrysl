@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { FadeIn, RevealLines } from "@/components/ui/RevealText";
+import { FadeIn } from "@/components/ui/RevealText";
+import { LayeredText } from "@/components/ui/LayeredText";
 import {
   journalHero as journalHeroEn,
   readSuffix as readSuffixEn,
@@ -21,10 +22,22 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
     <>
       <div className="pt-32 pb-16 md:pt-40 md:pb-20">
         <Container>
-          <h1 className="max-w-3xl font-display text-6xl font-black uppercase leading-[0.86] tracking-tight sm:text-7xl md:text-8xl">
-            <RevealLines lines={[journalHero.title]} onMount />
-          </h1>
-          <p className="mt-8 max-w-md font-body text-base text-current/60 sm:text-lg">
+          <h1 className="sr-only">{journalHero.title}</h1>
+          <LayeredText
+            className="-ml-4 py-6 md:py-10"
+            fontSize="60px"
+            fontSizeMd="30px"
+            lineHeight={56}
+            lineHeightMd={32}
+            lines={[
+              { top: "\u00A0", bottom: "NOTES" },
+              { top: "NOTES", bottom: "FROM" },
+              { top: "FROM", bottom: "THE" },
+              { top: "THE", bottom: "FLOOR." },
+              { top: "FLOOR.", bottom: "\u00A0" },
+            ]}
+          />
+          <p className="mx-auto mt-8 max-w-md text-center font-body text-base text-current/60 sm:max-w-none sm:whitespace-nowrap sm:text-lg">
             {journalHero.body}
           </p>
         </Container>
@@ -41,7 +54,7 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
                   className="focus-ring grid gap-3 py-10 transition-colors hover:bg-surface sm:grid-cols-2 sm:gap-10"
                 >
                   <div>
-                    <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                    <h2 className="font-godthem text-xl font-normal tracking-[0.02em] sm:text-2xl">
                       {article.title}
                     </h2>
                     <p className="mt-3 max-w-xl font-body text-sm text-current/65 sm:text-base">
@@ -49,12 +62,12 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
                     </p>
                   </div>
                   <div className="sm:text-right">
-                    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.03em] text-current/50 sm:justify-end">
+                    <div className="flex items-center gap-3 font-godthem text-xs uppercase tracking-[0.06em] text-current/70 sm:justify-end">
                       <span>{article.author.name}</span>
                       <span>—</span>
                       <span>{article.date}</span>
                     </div>
-                    <span className="mt-3 block font-mono text-[11px] uppercase tracking-[0.03em] text-current/40">
+                    <span className="mt-3 block font-godthem text-[11px] uppercase tracking-[0.06em] text-current/70">
                       {article.readTime} {readSuffix}
                     </span>
                   </div>

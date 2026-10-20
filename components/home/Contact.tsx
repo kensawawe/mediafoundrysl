@@ -50,13 +50,13 @@ export function Contact() {
 
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
-            <h2 className="font-display text-5xl font-black uppercase leading-[0.88] tracking-tight sm:text-6xl md:text-7xl">
+            <h2 className="font-godthem text-4xl font-normal uppercase leading-[1] tracking-[0.02em] sm:text-5xl">
               {copy.heading}
             </h2>
             <p className="mt-6 max-w-xs font-body text-sm text-current/60">{copy.intro}</p>
             <a
               href={`mailto:${site.email}`}
-              className="focus-ring mt-8 inline-block font-mono text-sm text-accent-text"
+              className="focus-ring mt-8 inline-block font-godthem text-sm tracking-[0.04em] text-accent-text"
             >
               {site.email}
             </a>
@@ -124,7 +124,7 @@ export function Contact() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="font-mono text-[11px] uppercase tracking-[0.03em] text-current/50">
+      <span className="font-godthem text-xs uppercase tracking-[0.045em] text-current/70">
         {label}
       </span>
       {children}

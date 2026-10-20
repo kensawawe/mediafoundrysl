@@ -10,32 +10,6 @@ import { journalCopy as journalCopyEn, readSuffix as readSuffixEn, type Article 
 import { journalCopy as journalCopyKri, readSuffix as readSuffixKri } from "@/lib/content/journal.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-function AuthorAvatar({ name, image }: { name: string; image?: string }) {
-  if (image) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured
-      <img
-        src={image}
-        alt={name}
-        className="h-12 w-12 shrink-0 border border-border-subtle object-cover"
-      />
-    );
-  }
-
-  const initials = name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
-  return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border-subtle bg-surface font-display text-sm font-bold text-current/60">
-      {initials}
-    </div>
-  );
-}
-
 // `article` is the server-resolved English article (guaranteed to exist —
 // the page already 404s otherwise); this only needs to swap in the
 // same-slug Krio version when that language is active.
@@ -58,7 +32,7 @@ export function ArticlePageBody({
           <div className="mx-auto max-w-3xl">
             <Link
               href="/journal"
-              className="focus-ring font-mono text-xs uppercase tracking-[0.03em] text-current/50 hover:text-accent-text"
+              className="focus-ring font-godthem text-xs uppercase tracking-[0.06em] text-current/70 hover:text-accent-text"
             >
               {journalCopy.backToJournal}
             </Link>
@@ -68,22 +42,21 @@ export function ArticlePageBody({
                 {translated.category}
                 <span className="text-current/40"> — {translated.date}</span>
               </SlateTag>
-              <h1 className="mt-4 font-display text-4xl font-black uppercase leading-[0.92] tracking-tight sm:text-6xl md:text-7xl">
+              <h1 className="mt-4 font-godthem text-3xl font-normal uppercase leading-[1.12] tracking-[0.02em] sm:text-4xl md:text-5xl">
                 {translated.title}
               </h1>
-              <span className="mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.03em] text-current/40">
+              <span className="mt-4 inline-block font-godthem text-[11px] uppercase tracking-[0.06em] text-current/70">
                 {translated.readTime} {readSuffix}
               </span>
             </div>
 
             <div className="mt-10 flex items-center gap-4 border-y border-border-subtle py-6">
-              <AuthorAvatar name={translated.author.name} image={translated.author.image} />
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.03em] text-current/40">
+                <p className="font-godthem text-[11px] uppercase tracking-[0.06em] text-current/70">
                   {journalCopy.writtenBy}
                 </p>
-                <p className="font-display text-base font-bold tracking-tight">{translated.author.name}</p>
-                <p className="font-mono text-xs text-current/55">{translated.author.role}</p>
+                <p className="font-godthem text-base font-normal tracking-[0.02em]">{translated.author.name}</p>
+                <p className="font-godthem text-xs tracking-[0.04em] text-current/70">{translated.author.role}</p>
               </div>
               {translated.author.socials.length > 0 && (
                 <div className="ml-auto flex items-center gap-3">
