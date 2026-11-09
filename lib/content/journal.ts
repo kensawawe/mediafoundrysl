@@ -1,6 +1,6 @@
 export const journalHero = {
   eyebrow: "The Foundry Journal",
-  title: "Notes from the floor.",
+  title: "Notes from the foundry.",
   body:
     "Writing on craft, production and the studio's way of working — new pieces roughly twice a month.",
 };

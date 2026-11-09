@@ -33,8 +33,8 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
               { top: "\u00A0", bottom: "NOTES" },
               { top: "NOTES", bottom: "FROM" },
               { top: "FROM", bottom: "THE" },
-              { top: "THE", bottom: "FLOOR." },
-              { top: "FLOOR.", bottom: "\u00A0" },
+              { top: "THE", bottom: "FOUNDRY" },
+              { top: "FOUNDRY", bottom: "\u00A0" },
             ]}
           />
           <p className="mx-auto mt-8 max-w-md text-center font-body text-base text-current/60 sm:max-w-none sm:whitespace-nowrap sm:text-lg">
