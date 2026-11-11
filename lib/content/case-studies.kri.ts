@@ -4,6 +4,15 @@ export const caseStudyCopy = {
   backToWork: "← Go Bak To Wok",
   overview: "Ovavyu",
   gallery: "Galeri",
+  // The case-study template labels below were added after Krio was switched
+  // off, so they are still in English.
+  challenge: "The challenge",
+  approach: "Our approach",
+  execution: "The work",
+  deliverables: "Deliverables",
+  outcome: "Outcome",
+  related: "Next project",
+  clientWords: "In the client's words",
 };
 
 // Category (WorkCategory) stays English — shared filter taxonomy with

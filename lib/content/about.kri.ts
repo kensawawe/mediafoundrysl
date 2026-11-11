@@ -17,24 +17,22 @@ export const whoWeAre = {
   ],
 };
 
-export const ourPhilosophy = {
-  title: "Wi Filɔsɔfi",
-  body: [
-    "Gud wok de stat wit gud kwɛstshɔn.",
-    "Bifo wi fain wei aw wi go mek sɔntin, wi de aks wetin mek i fɔ de, udat na i fɔ, ɛn wetin i fɔ chenj.",
-    "Dat tinkin de kɔntinyu tru di ɔl prɔses. Wan stratejist kin chalinj wan kriyetiv aydiya. Wan filmeka kin shep di stratiji. Wan dizayna kin kwɛstshɔn di brif. Ɛvribɔdi de tay klos to di wok, we de brin difrent pɔsin fɔ luk to di sem prɔblɛm.",
-    "Lɛs pasin tin dɛn ɔraun. Mɔ bil tin dɛn togɛda. Dat klosnɛs mek wi mɔ kɔlabɔretiv, mɔ rɛspɔnsiv, ɛn mɔ invɛstɛd na di rizɔlt.",
-    "Bikɔs kriyetiviti wítaut pɔpɔs na jɔs dɛkorayshɔn, ɛn stratiji wítaut kriyetiviti fil lɛk jɔs papawok.",
-    "So wi tink fɔs. Dɛn wi kriyet wit intɛnshɔn.",
-  ],
-};
-
 export const ourApproach = {
   title: "Wi Aprowch",
   body: [
     "Wi nɔ biliv na wan-fɔɔmyula-fɔ-ɔl-tin. Wi biliv na fɔ ɔndastand di prɔblɛm, fɛn di rayt aydiya, ɛn mek am az gud az i kin bi.",
     "Wi de kɔlabɔret ɔli, wi de tɔk ɔftin, ɛn wi de tay insay bɔku pas we di wok dɔn dɛliva.",
     "Bikɔs di andova nɔ sɔpɔs to bi di ɛn ɔv di rileshɔnship ɔ di impakt.",
+  ],
+};
+
+// Added after Krio was switched off, so still in English.
+export const ourWork = {
+  title: "Our Work",
+  body: [
+    "For organisations and institutions, we document programmes, communicate impact and tell the human stories behind the work.",
+    "For brands and businesses, we bring identities, products and ideas to life through creative direction and professional production.",
+    "That work takes the form of documentaries, institutional and brand films, photography, campaigns, interviews and podcasts: whatever the story needs.",
   ],
 };
 

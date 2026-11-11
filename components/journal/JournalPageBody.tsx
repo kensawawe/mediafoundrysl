@@ -37,7 +37,7 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
               { top: "FOUNDRY", bottom: "\u00A0" },
             ]}
           />
-          <p className="mx-auto mt-8 max-w-md text-center font-body text-base text-current/60 sm:max-w-none sm:whitespace-nowrap sm:text-lg">
+          <p className="mx-auto mt-8 max-w-xl text-balance text-center font-body text-base text-current/60 sm:text-lg">
             {journalHero.body}
           </p>
         </Container>
@@ -45,8 +45,16 @@ export function JournalPageBody({ articles: articlesByLang }: { articles: { en: 
 
       <Section className="pt-0">
         <Container>
-          <div className="ingot-rule w-full" style={{ background: "#1eb53a" }} />
-          <div className="mt-4 divide-y divide-border-subtle">
+          <div className="flex items-center justify-between gap-4 pb-4 font-godthem text-xs uppercase tracking-[0.06em] text-current/70">
+            <span className="flex items-center gap-2.5">
+              <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-accent-fill" />
+              Latest notes
+            </span>
+            <span>
+              {articles.length} {articles.length === 1 ? "piece" : "pieces"}
+            </span>
+          </div>
+          <div className="divide-y divide-border-subtle">
             {articles.map((article, i) => (
               <FadeIn key={article.slug} delay={i * 0.06}>
                 <Link

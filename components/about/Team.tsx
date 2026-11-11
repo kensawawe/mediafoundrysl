@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SlateTag } from "@/components/ui/SlateTag";
-import { Slate } from "@/components/ui/Slate";
 import type { TeamMember } from "@/lib/content/team";
 import { useTranslated } from "@/lib/content/useTranslated";
 
@@ -50,7 +49,18 @@ export function Team({
                       className="h-full w-full object-cover grayscale transition-all duration-500 group-hover/card:grayscale-0"
                     />
                   ) : (
-                    <Slate label={member.name} variant="photo" aspect="h-full" className="w-full" grainOpacity={0.05} />
+                    // No headshot yet: a monogram rather than a "placeholder" frame.
+                    <div className="flex h-full w-full items-center justify-center bg-[#0d1b3f] pb-16">
+                      <span aria-hidden className="font-godthem text-6xl tracking-[0.04em] text-white/85">
+                        {member.name
+                          .split(/\s+/)
+                          .filter(Boolean)
+                          .map((part) => part[0])
+                          .filter((_, idx, arr) => idx === 0 || idx === arr.length - 1)
+                          .join("")
+                          .toUpperCase()}
+                      </span>
+                    </div>
                   )}
 
                   {/* Name/role overlay on the frame itself — sits above

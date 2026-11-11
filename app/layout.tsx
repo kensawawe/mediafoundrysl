@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Big_Shoulders, Instrument_Sans, Inter, Playfair_Display } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { LanguageProvider } from "@/components/layout/LanguageProvider";
@@ -13,26 +13,9 @@ import { Preloader } from "@/components/layout/Preloader";
 import { site } from "@/lib/content/site";
 import "./globals.css";
 
-const bigShoulders = Big_Shoulders({
-  variable: "--font-big-shoulders",
-  subsets: ["latin"],
-});
-
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
   subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["700", "900"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["italic"],
 });
 
 // Typeheist Belmonte Ballpoint (Print) — self-hosted; used for the Roadblocks
@@ -52,7 +35,7 @@ const godthem = localFont({
   display: "swap",
 });
 
-const title = `${site.name} — Creative Agency & Production Company`;
+const title = `${site.name} | Creative Communications & Media Production in Sierra Leone`;
 const ogImage = {
   url: "/hero-freetown-poster.jpg",
   width: 1920,
@@ -60,16 +43,19 @@ const ogImage = {
   alt: site.name,
 };
 
+const description =
+  "The Media Foundry is a creative communications and media production company in Sierra Leone, helping organisations and brands tell meaningful stories through strategy, film, photography and visual storytelling.";
+
 export const metadata: Metadata = {
   title,
-  description: site.description,
+  description,
   metadataBase: new URL(site.url),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title,
-    description: site.description,
+    description,
     type: "website",
     locale: "en_US",
     siteName: site.name,
@@ -79,7 +65,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title,
-    description: site.description,
+    description,
     images: [ogImage.url],
   },
 };
@@ -93,7 +79,7 @@ const organizationJsonLd = {
   name: site.name,
   alternateName: site.shortName,
   url: site.url,
-  logo: `${site.url}/logo-dark.png`,
+  logo: `${site.url}/icon.png`,
   description: site.description,
   email: site.email,
   areaServed: "Sierra Leone",
@@ -106,15 +92,14 @@ const organizationJsonLd = {
     },
   },
   knowsAbout: [
-    "Creative agency services",
+    "Strategic communications",
+    "Creative direction",
+    "Institutional storytelling",
     "Documentary production",
-    "Brand strategy",
-    "Brand identity design",
-    "Film and video production",
+    "Corporate and brand films",
+    "Campaign production",
     "Photography",
-    "Podcast production",
-    "Social and content campaigns",
-    "Digital product development",
+    "Podcast and interview production",
   ],
   sameAs: site.social.map((s) => s.href),
 };
@@ -128,7 +113,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bigShoulders.variable} ${belmonte.variable} ${godthem.variable} ${instrumentSans.variable} ${inter.variable} ${playfairDisplay.variable}`}
+      className={`${belmonte.variable} ${godthem.variable} ${instrumentSans.variable}`}
     >
       <head>
         {/* October = Breast Cancer Awareness Month. Runs before first paint so

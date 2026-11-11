@@ -277,13 +277,13 @@ export function ClientSpread({ workItems: workItemsByLang }: { workItems: { en: 
           className="pointer-events-none absolute inset-0 z-[5] flex flex-col items-center justify-center px-6 text-center max-md:px-8"
           style={{ opacity: copyOpacity, scale: noScale ? 1 : copyScale }}
         >
-          <h1 className="awareness-pink-text w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
+          <h2 className="awareness-pink-text w-full font-display text-[4.4vw] font-black uppercase leading-[0.95] tracking-tight max-md:text-[10vw]">
             {copy.clientSpreadHeading.map((line) => (
               <span key={line} className="block">
                 {line}
               </span>
             ))}
-          </h1>
+          </h2>
           <p className="mt-[1.2vw] w-full max-w-[36ch] font-body text-[1.1vw] leading-relaxed tracking-tight text-current/60 max-md:mt-3 max-md:text-[3.6vw]">
             {copy.clientSpreadSub}
           </p>

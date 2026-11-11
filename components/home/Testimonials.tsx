@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
@@ -63,6 +63,7 @@ function ReviewCard({
 
   return (
     <motion.figure
+      aria-hidden={!isActive}
       initial={false}
       animate={{
         y,
@@ -112,8 +113,12 @@ function ReviewCard({
   );
 }
 
-export function Testimonials() {
-  const testimonials = useTranslated(testimonialsEn, testimonialsKri);
+/** `ids` picks (and orders) a subset; all testimonials show when it is omitted. */
+export function Testimonials({ ids }: { ids?: string[] } = {}) {
+  const all = useTranslated(testimonialsEn, testimonialsKri);
+  const testimonials = ids
+    ? ids.map((id) => all.find((t) => t.id === id)).filter((t): t is Testimonial => !!t)
+    : all;
   const whatClientsSay = useTranslated(whatClientsSayEn, whatClientsSayKri);
   const [index, setIndex] = useState(0);
   const total = testimonials.length;
@@ -127,14 +132,16 @@ export function Testimonials() {
     setIndex((i) => clamp(i + 1, [0, maxIndex]));
   }, [maxIndex]);
 
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "ArrowLeft") handlePrev();
-      else if (event.key === "ArrowRight") handleNext();
+  // Arrow keys move the slider only while focus is inside it (not page-wide).
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      handlePrev();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      handleNext();
     }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handlePrev, handleNext]);
+  };
 
   return (
     <Section className="pb-0 md:pb-0">
@@ -145,7 +152,15 @@ export function Testimonials() {
           {whatClientsSay}
         </h2>
 
-        <div className="relative mt-12 h-[270px] md:mt-16">
+        <div
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Client testimonials (use the left and right arrow keys)"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          className="focus-ring rounded-2xl"
+        >
+        <div className="relative mt-12 h-[270px] md:mt-16" aria-live="polite">
           {testimonials.map((item, i) => (
             <ReviewCard key={item.id} item={item} index={i} activeIndex={index} />
           ))}
@@ -193,6 +208,7 @@ export function Testimonials() {
             </button>
           </div>
         )}
+        </div>
       </Container>
     </Section>
   );

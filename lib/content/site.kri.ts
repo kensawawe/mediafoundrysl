@@ -5,6 +5,9 @@ export const site = {
   description:
     "Di Media Foundry de dizayn brand dɛn ɛn de prɔdyus di film, foto, ɛn kɔntɛnt we de kyari dɛn go na di wɔl — stratiji, dizayn, ɛn prɔdɔkshɔn, wan studio de ran am frɔm di fɔs spak te rich di las kɔt.",
   email: "collab@themediafoundrysl.com",
+  /** WhatsApp number in international format, digits only (e.g. "23276123456").
+   *  Leave empty to hide the WhatsApp option on the Contact page. */
+  whatsapp: "",
   location: "Freetown, Sierra Leone",
   social: [
     { platform: "instagram", label: "Instagram", href: "https://www.instagram.com/the_media_foundry/" },
@@ -17,11 +20,14 @@ export const site = {
 export const startAProjectLabel = "Stat Wan Projɛkt";
 
 export const navLinks = [
+  { label: "Wetin Wi De Du", href: "/services" },
   { label: "Wok", href: "/work" },
-  { label: "Di Foundry", href: "/about" },
-  { label: "Jɔb Dɛn", href: "/careers" },
+  { label: "Bɔt Wi", href: "/about" },
   { label: "Jɔɔnal", href: "/journal" },
+  { label: "Kɔntakt", href: "/contact" },
 ];
+
+export const footerExtraLinks = [{ label: "Jɔb Dɛn", href: "/careers" }];
 
 export const footerCopy = {
   contact: "Kɔntakt",

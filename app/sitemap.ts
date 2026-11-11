@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/content/site";
+import { caseStudiesPublic } from "@/lib/content/work";
 import { getCaseStudies } from "@/lib/sanity/content/work";
 import { getJournalArticles } from "@/lib/sanity/content/journal";
 
@@ -13,12 +14,13 @@ const base = site.url;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [{ en: caseStudies }, { en: articles }] = await Promise.all([getCaseStudies(), getJournalArticles()]);
 
-  const staticRoutes = ["", "/about", "/work", "/journal", "/careers"].map((path) => ({
+  const staticRoutes = ["", "/services", "/work", "/about", "/journal", "/contact", "/careers"].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
   }));
 
-  const caseStudyRoutes = caseStudies.map((study) => ({
+  // Case-study pages stay out of the sitemap (and noindexed) until they are published.
+  const caseStudyRoutes = (caseStudiesPublic ? caseStudies : []).map((study) => ({
     url: `${base}/work/${study.slug}`,
     lastModified: new Date(),
   }));

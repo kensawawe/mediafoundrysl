@@ -21,6 +21,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
+    // Restoring the saved language after hydration (the server always renders English).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (stored === "en" || (stored === "kri" && krioEnabled)) setLangState(stored);
   }, []);
 

@@ -2,7 +2,7 @@ export const journalHero = {
   eyebrow: "The Foundry Journal",
   title: "Notes from the foundry.",
   body:
-    "Writing on craft, production and the studio's way of working — new pieces roughly twice a month.",
+    "Ideas and perspectives on storytelling, communication and production, from the people making the work in Sierra Leone.",
 };
 
 export const readSuffix = "read";

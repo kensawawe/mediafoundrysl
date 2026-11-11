@@ -1,40 +1,38 @@
 export const apertureReveal = {
-  outroTitle: ["We're built differently.", "We build differently."],
+  outroTitle: ["We believe stories have the power", "to move people and", "move things forward."],
   outroSubtitle: [
-    "We are a creative media company built for people with something worth saying, building, changing, or protecting.",
-    "We bring strategy, design, storytelling, media, and production together under one roof. But what makes us different isn't the list of things we do. It's how we think about the work.",
-    "We ask questions before we offer solutions. We challenge ideas before we polish them. We care about the details, but never lose sight of the bigger picture. And we stay close to the work from the first thought to the final frame.",
-    "We're not just interested in being bold and memorable — we're interested in making something worth seeing, hearing, and caring about.",
+    "The Media Foundry is a creative communications and media production company based in Sierra Leone. We help organisations and brands communicate what matters through strategy, film, photography and visual storytelling.",
+    "We work with institutions doing meaningful work and businesses with something to say, turning what they do into stories people can see, understand and care about.",
+    "We ask questions before we offer solutions, and we stay close to the work from the first question to the final frame.",
   ],
 };
 
 export const whoWeAre = {
   title: "Who We Are",
   body: [
-    "We're a close-knit team of strategists, designers, filmmakers, writers, producers, and problem-solvers working under one roof.",
-    "We believe the best ideas happen when different minds are in the room together. So we question, challenge, experiment, and make things better together.",
-    "We take the work seriously, and sometimes do not take ourselves too seriously because creativity should also feel like play.",
-  ],
-};
-
-export const ourPhilosophy = {
-  title: "Our Philosophy",
-  body: [
-    "Good work begins with good questions.",
-    "Before we figure out how to make something, we ask why it needs to exist, who it's for, and what it should change.",
-    "That thinking continues throughout the process. A strategist can challenge a creative idea. A filmmaker can shape the strategy. A designer can question the brief. Everyone stays close to the work, bringing a different perspective to the same problem.",
-    "Less passing things around. More building things together. That proximity makes us more collaborative, more responsive, and more invested in the outcome.",
-    "Because creativity without purpose is just decoration, and strategy without creativity feels a lot like paperwork.",
-    "So we think first. Then we create with intention.",
+    "We're a close-knit team of strategists, filmmakers, photographers, writers and producers based in Freetown.",
+    "We bring strategic thinking and creative production together under one roof, so the people who shape the message are the same people who make the work.",
+    "We take the work seriously, and sometimes do not take ourselves too seriously, because creativity should also feel like play.",
   ],
 };
 
 export const ourApproach = {
   title: "Our Approach",
   body: [
-    "We don't believe in one-size-fits-all formulas. We believe in understanding the problem, finding the right idea, and making it as good as it can be.",
-    "We collaborate early, communicate often, and stay involved beyond delivery.",
-    "Because the handoff shouldn't be the end of the relationship or the impact.",
+    "Good work begins with good questions.",
+    "Before we make anything, we take time to understand the organisation, the audience, the challenge and the story. We ask why the work needs to exist, who it's for and what it should change.",
+    "That understanding shapes the message, the creative direction and the best way to tell the story. Then we produce it, with the same team carrying the idea from strategy to the final edit.",
+    "We collaborate early, communicate often and stay involved beyond delivery.",
+    "So we think first. Then we create with intention.",
+  ],
+};
+
+export const ourWork = {
+  title: "Our Work",
+  body: [
+    "For organisations and institutions, we document programmes, communicate impact and tell the human stories behind the work.",
+    "For brands and businesses, we bring identities, products and ideas to life through creative direction and professional production.",
+    "That work takes the form of documentaries, institutional and brand films, photography, campaigns, interviews and podcasts: whatever the story needs.",
   ],
 };
 

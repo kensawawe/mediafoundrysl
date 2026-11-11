@@ -40,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- restoring the saved cart after hydration
       if (stored) setItems(JSON.parse(stored));
     } catch {
       // Malformed or inaccessible storage — start from an empty cart.

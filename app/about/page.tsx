@@ -9,9 +9,9 @@ import { getTeamSection } from "@/lib/sanity/content/team";
 // Metadata is generated server-side, before any client-side language
 // toggle can apply — it always reflects the English content.
 export const metadata: Metadata = {
-  title: `Studio — ${site.name}`,
+  title: `About | ${site.name}`,
   description:
-    "Meet the strategists, designers, filmmakers and producers behind The Media Foundry, a Freetown-based creative agency and production studio.",
+    "The Media Foundry is a creative communications and media production company in Freetown, Sierra Leone. Meet the team and how we work.",
   alternates: { canonical: "/about" },
 };
 

@@ -7,7 +7,7 @@ import { getJournalArticles } from "@/lib/sanity/content/journal";
 // Metadata is generated server-side, before any client-side language
 // toggle can apply — it always reflects the English content.
 export const metadata: Metadata = {
-  title: `Journal — ${site.name}`,
+  title: `Journal | ${site.name}`,
   description: journalHero.body,
   alternates: { canonical: "/journal" },
 };

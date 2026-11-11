@@ -1,6 +1,11 @@
 import type { WorkItem } from "./work";
 
 export const workCopy = {
+  selectedWorkHeading: "Tori dɛn we wi dɔn ɛp fɔ kam na layf.",
+  selectedWorkIntro: "Sɔm projɛkt dɛn we wi mek wit ɔganayzeshɔn dɛn ɛn brand dɛn.",
+  workPageHeading: "Wok We Wi Pik",
+  workPageIntro: "Tori dɛn, kampen dɛn ɛn prɔdɔkshɔn dɛn we wi mek wit ɔganayzeshɔn dɛn ɛn brand dɛn.",
+  allWork: "Ɔl Wok",
   castWallHeading: "Di Kast Wɔl",
   viewAllWork: "Luk Ɔl Wok",
   emptyCategory: "Nɔ wok na dis kategori yet.",

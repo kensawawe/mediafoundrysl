@@ -1,10 +1,16 @@
 export const workCopy = {
+  selectedWorkHeading: "Stories we've helped bring to life.",
+  selectedWorkIntro:
+    "A selection of projects developed with organisations and brands to communicate ideas, capture moments and tell stories worth remembering.",
+  workPageHeading: "Selected Work",
+  workPageIntro: "A collection of stories, campaigns and productions created with organisations and brands.",
+  allWork: "All work",
   castWallHeading: "The Cast Wall",
   viewAllWork: "View all work",
   emptyCategory: "No work in this category yet.",
   whatWeCast: "What we've cast.",
-  clientSpreadHeading: ["Brands we've", "worked with."],
-  clientSpreadSub: "The organizations and brands we've had the privilege of telling stories for.",
+  clientSpreadHeading: ["Who we've", "worked with."],
+  clientSpreadSub: "The organisations and brands we've had the privilege of telling stories for.",
   workIndexIntro:
     "A working record of brand identity, campaigns, film and production, digital and photography — browse by discipline.",
 };
@@ -32,6 +38,59 @@ export const workCategories: WorkCategory[] = [
   "Video Podcast",
   "Activation",
   "Cinematography & Photography",
+];
+
+/** The public portfolio taxonomy. Stored work items (here and in Sanity) still
+ *  carry the older, finer `category`; `portfolioCategoriesFor` maps them onto
+ *  these five so the filters stay simple without rewriting stored data. */
+export type PortfolioCategory =
+  | "Institutional & Impact Films"
+  | "Brand & Corporate Films"
+  | "Campaigns & Creative"
+  | "Photography"
+  | "Podcasts & Editorial";
+
+export const portfolioCategories: PortfolioCategory[] = [
+  "Institutional & Impact Films",
+  "Brand & Corporate Films",
+  "Campaigns & Creative",
+  "Photography",
+  "Podcasts & Editorial",
+];
+
+const categoryMap: Record<WorkCategory, PortfolioCategory> = {
+  "Brand Identity": "Campaigns & Creative",
+  Campaigns: "Campaigns & Creative",
+  "Film & Production": "Brand & Corporate Films",
+  Digital: "Podcasts & Editorial",
+  Photography: "Photography",
+  "Social & Content": "Campaigns & Creative",
+  "Music Video": "Brand & Corporate Films",
+  "Video Podcast": "Podcasts & Editorial",
+  Activation: "Campaigns & Creative",
+  "Cinematography & Photography": "Photography",
+};
+
+// Projects that honestly belong in more than one public category. The first
+// entry is the one shown on the card.
+const multiCategory: Record<string, PortfolioCategory[]> = {
+  slmda: ["Institutional & Impact Films", "Photography"],
+  "rotary-international": ["Campaigns & Creative", "Institutional & Impact Films"],
+};
+
+export function portfolioCategoriesFor(item: { slug: string; category: WorkCategory }): PortfolioCategory[] {
+  return multiCategory[item.slug] ?? [categoryMap[item.category] ?? "Campaigns & Creative"];
+}
+
+/** The work shown on the homepage, in order: a mix of institutional and
+ *  commercial work, chosen for clarity rather than volume. */
+export const featuredWorkSlugs = [
+  "rokel-commercial-bank",
+  "conex-campaign",
+  "slmda",
+  "the-feminist-cohort",
+  "rotary-international",
+  "foundations-and-futures",
 ];
 
 /** Flip to true once the case-study pages are ready for visitors. Until then

@@ -1,20 +1,18 @@
 "use client";
 
-import { DepartmentMarquee } from "@/components/ui/DepartmentMarquee";
-import { Departments } from "@/components/work/Departments";
+import { WorkIndex } from "@/components/work/WorkIndex";
 import { ClientSpread } from "@/components/work/ClientSpread";
 import type { WorkItem } from "@/lib/content/work";
 
 export function WorkPageBody({ workItems }: { workItems: { en: WorkItem[]; kri: WorkItem[] } }) {
   return (
     <>
-      <ClientSpread workItems={workItems} />
-
-      <Departments />
-
-      <section className="pb-16 pt-10 md:pb-20 md:pt-12">
-        <DepartmentMarquee fadeFrom="background" />
-      </section>
+      <WorkIndex workItems={workItems} />
+      {/* The client scatter is three screens of scroll; on phones it only repeats the
+          project index above, so it shows from tablet width up. */}
+      <div className="hidden md:block">
+        <ClientSpread workItems={workItems} />
+      </div>
     </>
   );
 }

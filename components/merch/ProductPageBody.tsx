@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
@@ -34,14 +34,17 @@ export function ProductPageBody({ item }: { item: MerchItem }) {
 
   // Reset gallery/selection state when navigating between products —
   // otherwise leftover state (e.g. image index 3) could point past the
-  // next product's shorter image list.
-  useEffect(() => {
+  // next product's shorter image list. Done during render (React's
+  // recommended pattern) rather than in an effect.
+  const [shownSlug, setShownSlug] = useState(translated.slug);
+  if (shownSlug !== translated.slug) {
+    setShownSlug(translated.slug);
     setActiveImage(0);
     setSize(null);
     setQuantity(1);
     setSizeError(false);
     setAdded(false);
-  }, [translated.slug]);
+  }
 
   const outOfStock = translated.stockQuantity <= 0;
   const requiresSize = !!translated.sizes?.length;

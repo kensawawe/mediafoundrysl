@@ -47,3 +47,14 @@ yarn-error.log*
 studio/node_modules/
 studio/dist/
 studio/.env
+
+# Separate projects stored inside this folder (each has its own repo)
+/form/
+/Home OS/
+/life-os/
+/media-foundry-discovery/
+/media-foundry-finance/
+/media-foundry-os/
+/media-foundry-os-infra/
+/tv-detox/
+/home_assistant_backup_emergency_kit_*.txt

@@ -1,4 +1,4 @@
-export const trustedByLabel = "Trusted by organizations across Sierra Leone";
+export const trustedByLabel = "Trusted by organisations and brands";
 export const whatClientsSay = "What clients say";
 
 export type Testimonial = {

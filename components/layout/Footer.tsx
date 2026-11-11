@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,11 +8,18 @@ import { Container } from "@/components/ui/Container";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcon";
-import { footerCopy as footerCopyEn, navLinks as navLinksEn, site as siteEn } from "@/lib/content/site";
-import { footerCopy as footerCopyKri, navLinks as navLinksKri, site as siteKri } from "@/lib/content/site.kri";
+import { footerCopy as footerCopyEn, footerExtraLinks as footerExtraLinksEn, navLinks as navLinksEn, site as siteEn } from "@/lib/content/site";
+import { footerCopy as footerCopyKri, footerExtraLinks as footerExtraLinksKri, navLinks as navLinksKri, site as siteKri } from "@/lib/content/site.kri";
 import { testimonials as testimonialsEn } from "@/lib/content/testimonials";
 import { testimonials as testimonialsKri } from "@/lib/content/testimonials.kri";
 import { useTranslated } from "@/lib/content/useTranslated";
+
+const noopSubscribe = () => () => {};
+function subscribeReducedMotion(callback: () => void) {
+  const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
 
 function LocalClock() {
   const [time, setTime] = useState<string | null>(null);
@@ -45,23 +52,33 @@ function LocalClock() {
     return () => clearInterval(id);
   }, []);
 
-  // Reserve the width from mount so hydration doesn't shift layout.
+  // Nothing until the browser knows the time: a server-rendered fallback
+  // would be a fake date (it used to show "1 January 1970").
+  if (!time || !date) return null;
   return (
-    <span suppressHydrationWarning>
-      {time ?? "00:00"} · {date ?? "1 January 1970"}
-    </span>
+    <>
+      <span aria-hidden>·</span>
+      <span>
+        {time} · {date}
+      </span>
+    </>
   );
 }
 
 export function Footer() {
   const site = useTranslated(siteEn, siteKri);
   const navLinks = useTranslated(navLinksEn, navLinksKri);
+  const footerExtraLinks = useTranslated(footerExtraLinksEn, footerExtraLinksKri);
   const copy = useTranslated(footerCopyEn, footerCopyKri);
   const testimonials = useTranslated(testimonialsEn, testimonialsKri);
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  // false on the server and during hydration, true once on the client.
+  const mounted = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
 
   // The footer sits on the page's normal background (no theme inversion),
   // so its surface is dark exactly when the resolved theme is dark. Default
@@ -69,13 +86,19 @@ export function Footer() {
   // markup (ThemeProvider's defaultTheme).
   const onDarkSurface = mounted && resolvedTheme === "dark";
   const [quoteIndex, setQuoteIndex] = useState(0);
+  // The quote rotates every 6s; it stops while hovered or focused, when the
+  // visitor presses pause, and never runs with reduced motion.
+  const [userPaused, setUserPaused] = useState(false);
+  const [holding, setHolding] = useState(false);
+  const rotating = !userPaused && !holding && !reducedMotion;
 
   useEffect(() => {
+    if (!rotating) return;
     const id = setInterval(() => {
       setQuoteIndex((i) => (i + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(id);
-  }, [testimonials.length]);
+  }, [rotating, testimonials.length]);
 
   const featuredQuote = testimonials[quoteIndex];
 
@@ -85,7 +108,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border-subtle">
+    <footer id="contact" className="border-t border-border-subtle">
       <Container className="pb-8 pt-20 md:pb-10 md:pt-28">
         <div className="flex flex-col">
           <Magnetic strength={0.18} className="inline-block w-fit">
@@ -108,10 +131,10 @@ export function Footer() {
             <Link href="/" className="focus-ring inline-flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
               <img
-                src={onDarkSurface ? "/logo-white.png" : "/logo-dark.png"}
+                src={onDarkSurface ? "/logo-white.svg" : "/logo-dark.svg"}
                 alt="The Media Foundry"
-                width={1516}
-                height={176}
+                width={1716}
+                height={210}
                 className="h-4 w-auto"
               />
             </Link>
@@ -125,16 +148,48 @@ export function Footer() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/#contact" className="focus-ring font-godthem text-sm tracking-[0.04em] text-foreground/70 hover:text-accent-text">
-                {copy.contact}
-              </Link>
+              {footerExtraLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="focus-ring font-godthem text-sm tracking-[0.04em] text-foreground/70 hover:text-accent-text"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 overflow-hidden bg-background p-8 text-foreground">
-            <span aria-hidden className="font-display text-4xl leading-none text-foreground/20">
-              &ldquo;
-            </span>
+          <div
+            className="flex flex-col justify-between gap-8 overflow-hidden bg-background p-8 text-foreground"
+            onMouseEnter={() => setHolding(true)}
+            onMouseLeave={() => setHolding(false)}
+            onFocus={() => setHolding(true)}
+            onBlur={() => setHolding(false)}
+          >
+            <div className="flex items-start justify-between">
+              <span aria-hidden className="font-display text-4xl leading-none text-foreground/20">
+                &ldquo;
+              </span>
+              {!reducedMotion && (
+                <button
+                  type="button"
+                  onClick={() => setUserPaused((p) => !p)}
+                  aria-label={userPaused ? "Resume rotating client quotes" : "Pause rotating client quotes"}
+                  className="focus-ring flex h-8 w-8 items-center justify-center rounded-full border border-border-subtle text-foreground/70 transition-colors hover:border-accent-fill hover:text-foreground"
+                >
+                  {userPaused ? (
+                    <svg aria-hidden viewBox="0 0 12 12" className="h-3 w-3" fill="currentColor">
+                      <path d="M3 1.5v9l7-4.5z" />
+                    </svg>
+                  ) : (
+                    <svg aria-hidden viewBox="0 0 12 12" className="h-3 w-3" fill="currentColor">
+                      <path d="M2.5 1.5h2.5v9H2.5zM7 1.5h2.5v9H7z" />
+                    </svg>
+                  )}
+                </button>
+              )}
+            </div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={featuredQuote.id}
@@ -161,7 +216,7 @@ export function Footer() {
               </span>
               <p className="mt-3 font-body text-sm text-foreground/70">{copy.startProjectBody}</p>
             </div>
-            <Button href="/#contact" variant="primary">
+            <Button href="/contact" variant="primary">
               {copy.letsTalk}
             </Button>
           </div>
@@ -189,7 +244,6 @@ export function Footer() {
           <span>© {new Date().getFullYear()} The Media Foundry</span>
           <span className="flex items-center gap-3">
             <span>{site.location}</span>
-            <span aria-hidden>·</span>
             <LocalClock />
           </span>
         </div>

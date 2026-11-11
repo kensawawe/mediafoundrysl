@@ -1,13 +1,16 @@
 import { Hero } from "@/components/home/Hero";
 import { AwarenessRibbons } from "@/components/home/AwarenessRibbons";
 import { ClientFit } from "@/components/home/ClientFit";
+import { Pillars } from "@/components/home/Pillars";
+import { Audiences } from "@/components/home/Audiences";
 import { WorkWall } from "@/components/home/WorkWall";
-import { Roadblocks } from "@/components/home/Roadblocks";
+import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
-import { Services } from "@/components/home/Services";
-import { FeatureCarouselSection } from "@/components/home/FeatureCarouselSection";
-import { Contact } from "@/components/home/Contact";
 import { getWorkItems } from "@/lib/sanity/content/work";
+
+// The three strongest client quotes for the homepage; the rest stay in
+// lib/content/testimonials.ts for case studies.
+const HOME_TESTIMONIALS = ["conex", "rokel-commercial-bank", "the-feminist-cohort"];
 
 export default async function Home() {
   const workItems = await getWorkItems();
@@ -17,12 +20,11 @@ export default async function Home() {
       <Hero />
       <AwarenessRibbons />
       <ClientFit />
-      <Services />
+      <Pillars />
+      <Audiences />
       <WorkWall workItems={workItems} />
-      <Roadblocks />
-      <Testimonials />
-      <FeatureCarouselSection />
-      <Contact />
+      <Process />
+      <Testimonials ids={HOME_TESTIMONIALS} />
     </>
   );
 }

@@ -19,7 +19,7 @@ function toTeamMembers(people: SanityPerson[], lang: "en" | "kri"): TeamMember[]
     id: person._id,
     name: person.name,
     role: person.role[lang],
-    image: urlForImage(person.image),
+    image: urlForImage(person.image, 640),
   }));
 }
 

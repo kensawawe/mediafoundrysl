@@ -1,11 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 
-const SESSION_KEY = "mf-preloader-seen";
-const WORDS = ["Discovering", "Designing", "Developing", "Producing", "Delivering"];
+const SEEN_KEY = "mf-preloader-seen";
+const SEEN_FOR_MS = 7 * 24 * 60 * 60 * 1000; // returning visitors skip it for a week
+// The four steps of how we work (Discover, Define, Create, Deliver).
+const WORDS = ["Discovering", "Defining", "Creating", "Delivering"];
+
+/**
+ * Decided once per page load, on the client: is the theme dark, and should the
+ * intro be skipped (seen within the last week, or reduced motion)? Memoised so
+ * marking it "seen" doesn't flip the answer mid-animation.
+ */
+let decision: string | null = null;
+function decide(): string {
+  if (decision !== null) return decision;
+  const dark = document.documentElement.classList.contains("dark");
+  let seenRecently = false;
+  try {
+    const seen = Number(window.localStorage.getItem(SEEN_KEY) || 0);
+    seenRecently = Date.now() - seen < SEEN_FOR_MS;
+    if (!seenRecently) window.localStorage.setItem(SEEN_KEY, String(Date.now()));
+  } catch {
+    // Storage blocked (private mode etc.): just show the intro.
+  }
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  decision = `${dark ? 1 : 0}${seenRecently || reduced ? 1 : 0}`;
+  return decision;
+}
+const noopSubscribe = () => () => {};
 const WORD_INTERVAL = 440;
 const WORD_FADE = 0.14;
 const EXIT_DURATION = 0.45;
@@ -15,37 +40,19 @@ const EXIT_DURATION = 0.45;
  * slides away in one hard-edged sweep (no molten curve — that motif is
  * reserved for hover/reveal moments, not this one-off entrance).
  *
- * Persisted via sessionStorage, but in practice this component only ever
- * mounts once per tab anyway — internal navigation is client-side routing
- * through the root layout, so the sessionStorage check mainly guards actual
- * hard reloads within the same session.
+ * Shown on a first visit only: returning visitors skip it for a week
+ * (see SEEN_KEY), and it never shows with reduced motion.
  */
 export function Preloader() {
-  const [themeMounted, setThemeMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  // null on the server (and during hydration), then the client's decision.
+  const decided = useSyncExternalStore(noopSubscribe, decide, () => null);
+  const themeMounted = decided !== null;
+  const isDark = decided?.[0] === "1";
+  const skip = decided?.[1] === "1";
   const [wordIndex, setWordIndex] = useState(0);
   const [exiting, setExiting] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [skip, setSkip] = useState(false);
-
-  useEffect(() => {
-    // Read the class directly rather than next-themes' useTheme(): that
-    // value only settles once ThemeProvider's own effect has run and
-    // propagated through context, which is one extra hop slower than
-    // checking the class next-themes' blocking script already set on
-    // <html> pre-paint — and this component's first paint is the one place
-    // on the site where that extra hop would actually be visible.
-    setIsDark(document.documentElement.classList.contains("dark"));
-    setThemeMounted(true);
-    const alreadySeen = window.sessionStorage.getItem(SESSION_KEY);
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (alreadySeen || prefersReduced) {
-      setSkip(true);
-      setHidden(true);
-      return;
-    }
-    window.sessionStorage.setItem(SESSION_KEY, "1");
-  }, []);
+  const [done, setDone] = useState(false);
+  const hidden = skip || done;
 
   useEffect(() => {
     if (skip || exiting) return;
@@ -59,7 +66,7 @@ export function Preloader() {
 
   useEffect(() => {
     if (!exiting) return;
-    const t = setTimeout(() => setHidden(true), EXIT_DURATION * 1000);
+    const t = setTimeout(() => setDone(true), EXIT_DURATION * 1000);
     return () => clearTimeout(t);
   }, [exiting]);
 
@@ -92,10 +99,10 @@ export function Preloader() {
         />
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
         <img
-          src={isDark ? "/logo-white.png" : "/logo-dark.png"}
+          src={isDark ? "/logo-white.svg" : "/logo-dark.svg"}
           alt="The Media Foundry"
-          width={1516}
-          height={176}
+          width={1716}
+          height={210}
           className={clsx("h-5 w-auto transition-opacity duration-150", themeMounted ? "opacity-100" : "opacity-0")}
         />
       </span>

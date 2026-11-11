@@ -8,8 +8,8 @@ export type TeamMember = {
   image?: string;
 };
 
-// Headshot still needed for Francis — using the site's Slate placeholder
-// convention until real photography exists.
+// Headshot still needed for Francis — the About page shows a monogram
+// until real photography exists.
 export const teamMembers: TeamMember[] = [
   { id: "1", name: "Ken Saro-Wiwa Fofana", role: "Founder & Creative Director", image: "/ken.JPG" },
   { id: "2", name: "Frankvin Bob McEwen", role: "Producer & Operations Manager", image: "/frankvin.jpg" },

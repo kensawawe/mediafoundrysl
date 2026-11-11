@@ -4,6 +4,8 @@ import { CaseStudyHero } from "@/components/case-study/CaseStudyHero";
 import { Overview } from "@/components/case-study/Overview";
 import { Gallery } from "@/components/case-study/Gallery";
 import { Outcome } from "@/components/case-study/Outcome";
+import { Details } from "@/components/case-study/Details";
+import { ClientQuote, Related } from "@/components/case-study/ClientQuote";
 import type { CaseStudy } from "@/lib/content/case-studies";
 import type { WorkItem } from "@/lib/content/work";
 import { useTranslated } from "@/lib/content/useTranslated";
@@ -29,8 +31,11 @@ export function CaseStudyPageBody({
     <>
       <CaseStudyHero study={translated} workItems={workItems} />
       <Overview study={translated} />
+      <Details study={translated} />
       <Gallery study={translated} />
       <Outcome study={translated} />
+      <ClientQuote study={translated} />
+      <Related study={translated} caseStudies={caseStudies} />
     </>
   );
 }

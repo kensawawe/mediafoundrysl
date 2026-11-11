@@ -46,10 +46,11 @@
 }
 
 .dark {
-  --background: #0d1b3f;
+  --background: #010f1b;
   --foreground: #ffffff;
-  --surface: #1c1914;
-  --surface-2: #242019;
+  /* Navy panels a step and two up from the #010f1b page. */
+  --surface: #0b1d30;
+  --surface-2: #122840;
   --border-subtle: rgba(255, 255, 255, 0.14);
   --border-strong: rgba(255, 255, 255, 0.9);
 
@@ -62,8 +63,8 @@
 
   --ink: #14120f;
   --paper: #ffffff;
-  --nav-bg: rgba(20, 18, 15, 0.82);
-  /* The page background is navy (#112250) in dark mode — a same-navy rule
+  --nav-bg: rgba(8, 24, 40, 0.85);
+  /* The page background is near-black navy (#010f1b) in dark mode — a navy rule
      would vanish against it, so this lightens toward the accent blue just
      enough to stay visibly "navy" without disappearing. */
   --navy-rule: #4a63a8;
@@ -85,12 +86,16 @@
   --color-paper: var(--paper);
   --color-nav-bg: var(--nav-bg);
   --color-navy-rule: var(--navy-rule);
-  --font-display: var(--font-big-shoulders);
-  --font-body: var(--font-instrument-sans);
-  --font-mono: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  /* Former Big Shoulders headings now use Godthem too. */
+  --font-display: var(--font-godthem-face), sans-serif;
+  /* Avenir Next ships with every Mac, iPhone and iPad but isn't licensed for
+     web embedding, so it's used where installed; other devices fall back to
+     Instrument Sans. */
+  --font-body: "Avenir Next", var(--font-instrument-sans);
+  /* Small technical labels use the body face (formerly Inter). */
+  --font-mono: "Avenir Next", var(--font-instrument-sans);
   --font-belmonte: var(--font-belmonte-face), cursive;
-  --font-godthem: var(--font-godthem-face), var(--font-big-shoulders), sans-serif;
+  --font-godthem: var(--font-godthem-face), sans-serif;
 }
 
 html {
@@ -109,6 +114,18 @@ html.lenis-smooth {
 }
 html.lenis-stopped {
   overflow: hidden;
+}
+
+/* Body text: Avenir Next Medium, set slightly tight. Base layer, so an
+   explicit weight or tracking utility on an element still wins. */
+@layer base {
+  .font-body,
+  input,
+  textarea,
+  select {
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
 }
 
 body {
@@ -138,6 +155,8 @@ body::after {
 
 .font-display {
   font-family: var(--font-display), sans-serif;
+  /* Godthem has a single (bold) cut: never let font-black/font-bold fake a heavier one. */
+  font-synthesis-weight: none;
 }
 
 .font-mono {
@@ -212,8 +231,8 @@ html[data-awareness="pink"] .awareness-pink-text {
 }
 /* Sections that stay in the original palette (pink on the navy cards reads mauve). */
 html[data-awareness="pink"].dark .awareness-keep-blue {
-  --surface: #1c1914;
-  --surface-2: #242019;
+  --surface: #0b1d30;
+  --surface-2: #122840;
   --border-subtle: rgba(255, 255, 255, 0.14);
 }
 html[data-awareness="pink"]:not(.dark) .awareness-keep-blue {

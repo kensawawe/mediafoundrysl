@@ -7,10 +7,10 @@ import { AwarenessRibbons } from "@/components/home/AwarenessRibbons";
 
 // Site colours for the halftone dots. Dark = the site's navy background with
 // the Sierra Leone green as the "warm" colour dots shift to when pushed.
-const DARK = { background: "#0d1b3f", ink: "#dfe7ff", warm: "#1eb53a" };
+const DARK = { background: "#010f1b", ink: "#dfe7ff", warm: "#1eb53a" };
 const LIGHT = { background: "#ffffff", ink: "#14120f", warm: "#2451d6" };
 // October (Breast Cancer Awareness Month): the dots print in pink.
-const DARK_PINK = { background: "#0d1b3f", ink: "#ffb3d6", warm: "#ffffff" };
+const DARK_PINK = { background: "#010f1b", ink: "#ffb3d6", warm: "#ffffff" };
 const LIGHT_PINK = { background: "#ffffff", ink: "#e5338a", warm: "#14120f" };
 
 const noopSubscribe = () => () => {};
@@ -24,12 +24,13 @@ function useAwareness() {
   );
 }
 
-/** next/font hashes its family names; the CSS variable holds the real one. */
+/** Avenir Next (Apple devices), else Instrument Sans. next/font hashes its
+ *  family names, so the real Instrument Sans name is read from its CSS variable. */
 function wordmarkFamily() {
   if (typeof document === "undefined") return undefined;
-  const raw = getComputedStyle(document.documentElement).getPropertyValue("--font-inter");
-  const primary = raw.split(",")[0]?.trim();
-  return primary ? `${primary}, "Helvetica Neue", Arial, sans-serif` : undefined;
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--font-instrument-sans");
+  const fallback = raw.split(",")[0]?.trim();
+  return `"Avenir Next", ${fallback ? fallback + ", " : ""}"Helvetica Neue", Arial, sans-serif`;
 }
 
 /**
@@ -50,7 +51,7 @@ export function HalftoneFooter() {
     <>
       <div
         className="awareness-only overflow-hidden"
-        style={{ background: light ? "#ffffff" : "#0d1b3f" }}
+        style={{ background: light ? "#ffffff" : "#010f1b" }}
       >
         <AwarenessRibbons className="py-2 md:py-4" />
       </div>
@@ -61,7 +62,7 @@ export function HalftoneFooter() {
       fontFamily={mounted ? wordmarkFamily() : undefined}
       fontWeight={900}
       letterSpacing="-0.06em"
-      monoFamily={'var(--font-inter), "Helvetica Neue", Arial, sans-serif'}
+      monoFamily={'"Avenir Next", var(--font-instrument-sans), "Helvetica Neue", Arial, sans-serif'}
       dotGap={6}
       crop={0.12}
       fill={0.95}

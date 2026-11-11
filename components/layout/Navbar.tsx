@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useMounted } from "@/lib/useMounted";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
@@ -53,10 +54,8 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const lastY = useRef(0);
-
-  useEffect(() => setMounted(true), []);
 
   // The pill carries its own background at every scroll position (unlike
   // the old edge-to-edge bar, which stayed transparent until scrolled), so
@@ -99,10 +98,10 @@ export function Navbar() {
             />
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
             <img
-              src={isDark ? "/logo-white.png" : "/logo-dark.png"}
+              src={isDark ? "/logo-white.svg" : "/logo-dark.svg"}
               alt="The Media Foundry"
-              width={1516}
-              height={176}
+              width={1716}
+              height={210}
               className="h-[13px] w-auto md:h-[18px]"
             />
           </Link>
@@ -150,7 +149,7 @@ export function Navbar() {
             >
               <Magnetic className="inline-flex">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-foreground px-5 py-2 font-godthem text-[15px] font-normal uppercase tracking-[0.045em] text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
                 >
                   {startAProjectLabel}
@@ -250,7 +249,7 @@ export function Navbar() {
               >
                 <Magnetic className="flex w-full">
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     onClick={() => setMenuOpen(false)}
                     className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 font-godthem text-lg font-normal uppercase tracking-[0.035em] text-background transition-colors hover:bg-accent-fill hover:text-accent-fill-ink"
                   >

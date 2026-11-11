@@ -91,7 +91,7 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
   { title: "Contact", links: [{ label: "hello@halden.co" }, { label: "+47 22 00 41 00" }] },
 ]
 
-const SANS_STACK = '"Inter Tight", "Inter Variable", "Inter", "Helvetica Neue", Arial, system-ui, sans-serif'
+const SANS_STACK = '"Avenir Next", "Helvetica Neue", Arial, system-ui, sans-serif'
 const MONO_STACK = '"JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace'
 
 // #region halftone
@@ -231,7 +231,9 @@ export default function HalftoneWordmarkFooter({
     let px = -1e5
     let py = -1e5
     let raf = 0
-    let visible = true
+    let visible = false
+    // The dot layout is built the first time the footer scrolls into view, not on page load.
+    let laidOut = false
     let awake = true
     let ring = { x: 0, y: 0, t: -1 }
     // Flat arrays: x, y, vx, vy, hx, hy, r per dot.
@@ -428,28 +430,33 @@ export default function HalftoneWordmarkFooter({
       wake()
     }
 
-    layout()
-    draw(performance.now())
-    wake()
-
     root.addEventListener("pointermove", onMove)
     root.addEventListener("pointerleave", onLeave)
     root.addEventListener("pointerdown", onDown)
     const ro = new ResizeObserver(() => {
+      if (!laidOut) return
       layout()
       wake()
     })
     ro.observe(root)
-    const io = new IntersectionObserver((entries) => {
-      visible = entries[0] ? entries[0].isIntersecting : true
-      if (visible) wake()
-    })
+    const io = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0] ? entries[0].isIntersecting : true
+        if (!visible) return
+        if (!laidOut) {
+          laidOut = true
+          layout()
+        }
+        wake()
+      },
+      { rootMargin: "200px 0px" },
+    )
     io.observe(root)
     // A web font that lands late re-sets the word in its real face.
     let alive = true
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
-        if (!alive) return
+        if (!alive || !laidOut) return
         layout()
         wake()
       })

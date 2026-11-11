@@ -1,11 +1,14 @@
 export const site = {
   name: "The Media Foundry",
   shortName: "Media Foundry",
-  tagline: "An independent creative agency and production company.",
+  tagline: "A creative communications and media production company.",
   description:
-    "The Media Foundry designs brands and produces the film, photography and content that carries them into the world — strategy, design and production, run by one studio from first spark to final cut.",
+    "The Media Foundry is a creative communications and media production company in Freetown, Sierra Leone, helping organisations and brands tell meaningful stories through strategy, film and visual media.",
   url: "https://themediafoundrysl.com",
   email: "collab@themediafoundrysl.com",
+  /** WhatsApp number in international format, digits only (e.g. "23276123456").
+   *  Leave empty to hide the WhatsApp option on the Contact page. */
+  whatsapp: "",
   location: "Freetown, Sierra Leone",
   // `platform` is a stable, never-translated id used to pick the right
   // icon; `label` is the display text. Social platform names are proper
@@ -21,19 +24,23 @@ export const site = {
 export const startAProjectLabel = "Start a project";
 
 export const navLinks = [
+  { label: "What We Do", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "The Foundry", href: "/about" },
-  { label: "Careers", href: "/careers" },
+  { label: "About", href: "/about" },
   { label: "Journal", href: "/journal" },
+  { label: "Contact", href: "/contact" },
 ];
+
+/** Secondary links that live in the footer rather than the main navigation. */
+export const footerExtraLinks = [{ label: "Careers", href: "/careers" }];
 
 export const footerCopy = {
   contact: "Contact",
-  ctaLine1: "Ready to craft something different?",
-  ctaLine2: "Good, so are we.",
+  ctaLine1: "Have something worth saying?",
+  ctaLine2: "Let's tell its story.",
   emailLabel: "Email",
   startProjectHeading: "Start a project",
   startProjectBody:
-    "Brand, campaign, film or something in between — tell us what you have in mind and we'll follow up within two working days.",
+    "Whether you are documenting meaningful work, launching a campaign or building a brand, we'd like to hear what you have in mind.",
   letsTalk: "Let's talk",
 };

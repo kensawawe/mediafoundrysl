@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMounted } from "@/lib/useMounted";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import clsx from "clsx";
@@ -13,9 +13,7 @@ import clsx from "clsx";
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useMounted();
 
   // Lights "on" = light mode. The site defaults to light, so lights start on.
   const lightsOn = mounted && resolvedTheme === "light";

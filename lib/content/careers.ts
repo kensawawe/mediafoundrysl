@@ -55,13 +55,16 @@ export type Role = {
 
 // Plain string[], not `as const` — the Krio list holds different literal
 // values, and both must share the same type for useTranslated.
-export const departments: string[] = ["All", "Creative", "Production", "Strategy", "Operations"];
+export const departments: string[] = ["All", "Strategy", "Production", "Storytelling", "Operations"];
 
+// Mirrors the open roles in Sanity (which is what the live site shows). Graphic
+// design sits under Production now that it supports campaigns rather than being
+// a service of its own; social media management is no longer offered, so that
+// role is closed.
 export const roles: Role[] = [
   { title: "Videographer", department: "Production", type: "Full-time", location: "Freetown / On location" },
   { title: "Editor", department: "Production", type: "Full-time", location: "Freetown" },
-  { title: "Graphic Designer", department: "Creative", type: "Full-time", location: "Freetown" },
-  { title: "Content & Social Media Manager", department: "Strategy", type: "Full-time", location: "Freetown" },
+  { title: "Graphic Designer", department: "Production", type: "Full-time", location: "Freetown" },
   { title: "Studio Operations Manager", department: "Operations", type: "Full-time", location: "Freetown" },
 ];
 

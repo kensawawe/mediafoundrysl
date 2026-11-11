@@ -44,13 +44,12 @@ export const pillars: Pillar[] = [
 // location qualifiers are translated. Department values here MUST match
 // between `departments` and each role's `department` field (RolesList
 // filters by direct string equality), so both are translated together.
-export const departments: string[] = ["Ɔl", "Kriyetiv", "Prɔdɔkshɔn", "Stratiji", "Ɔpareshɔn"];
+export const departments: string[] = ["Ɔl", "Stratiji", "Prɔdɔkshɔn", "Tori Tɛlin", "Ɔpareshɔn"];
 
 export const roles: Role[] = [
   { title: "Videographer", department: "Prɔdɔkshɔn", type: "Full-time", location: "Freetown / Na Sayt" },
   { title: "Editor", department: "Prɔdɔkshɔn", type: "Full-time", location: "Freetown" },
-  { title: "Graphic Designer", department: "Kriyetiv", type: "Full-time", location: "Freetown" },
-  { title: "Content & Social Media Manager", department: "Stratiji", type: "Full-time", location: "Freetown" },
+  { title: "Graphic Designer", department: "Prɔdɔkshɔn", type: "Full-time", location: "Freetown" },
   { title: "Studio Operations Manager", department: "Ɔpareshɔn", type: "Full-time", location: "Freetown" },
 ];
 

@@ -110,6 +110,8 @@ export function AwarenessRibbons({ className }: { className?: string } = {}) {
     const canvas = canvasRef.current;
     const probe = probeRef.current;
     if (!section || !canvas || !probe) return;
+    // Outside October the ribbons are hidden by CSS; don't spin up WebGL for nothing.
+    if (document.documentElement.dataset.awareness !== "pink") return;
 
     const gl = canvas.getContext("webgl", { alpha: true, antialias: true, premultipliedAlpha: true });
     if (!gl) return; // no WebGL: leave the section empty rather than stutter

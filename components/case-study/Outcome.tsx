@@ -5,12 +5,21 @@ import { Section } from "@/components/ui/Section";
 import { FadeIn } from "@/components/ui/RevealText";
 import { type CaseStudy } from "@/lib/content/case-studies";
 
+const isDev = process.env.NODE_ENV === "development";
+
+/** Headline figures. Hidden on the live site until the client has confirmed them. */
 export function Outcome({ study }: { study: CaseStudy }) {
   if (study.impact.length === 0) return null;
+  if (!study.factsConfirmed && !isDev) return null;
 
   return (
     <Section className="py-20 md:py-24">
       <Container>
+        {!study.factsConfirmed && (
+          <p className="mb-8 rounded-lg border border-dashed border-amber-500/60 bg-amber-500/10 px-4 py-3 font-mono text-xs text-amber-700 dark:text-amber-300">
+            Unconfirmed figures: hidden on the live site until the client confirms them (only visible in development)
+          </p>
+        )}
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
           {study.impact.map((item, i) => (
             <FadeIn key={item.label} delay={i * 0.08}>

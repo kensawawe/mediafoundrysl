@@ -141,7 +141,8 @@ export function Slate({
           absolutely-positioned) so they never overlap regardless of how
           many lines either wraps to on a narrow tile — a fixed offset
           between two absolute blocks can't account for that. */}
-      {caption && (
+      {/* The placeholder caption (and its sample camera settings) is a working note, so it only shows in development. */}
+      {caption && process.env.NODE_ENV === "development" && (
         <div className="absolute inset-x-4 bottom-4 flex flex-col gap-1">
           {variant === "photo" && (
             <div className="font-godthem text-[11px] tracking-[0.06em] text-white/60">

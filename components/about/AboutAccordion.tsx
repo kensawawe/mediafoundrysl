@@ -7,14 +7,14 @@ import { Container } from "@/components/ui/Container";
 import { framerEase } from "@/lib/motion/easing";
 import {
   whoWeAre as whoWeAreEn,
-  ourPhilosophy as ourPhilosophyEn,
+  ourWork as ourWorkEn,
   ourApproach as ourApproachEn,
   ourVision as ourVisionEn,
   ourPromise as ourPromiseEn,
 } from "@/lib/content/about";
 import {
   whoWeAre as whoWeAreKri,
-  ourPhilosophy as ourPhilosophyKri,
+  ourWork as ourWorkKri,
   ourApproach as ourApproachKri,
   ourVision as ourVisionKri,
   ourPromise as ourPromiseKri,
@@ -28,12 +28,12 @@ import { useTranslated } from "@/lib/content/useTranslated";
  */
 export function AboutAccordion() {
   const whoWeAre = useTranslated(whoWeAreEn, whoWeAreKri);
-  const ourPhilosophy = useTranslated(ourPhilosophyEn, ourPhilosophyKri);
+  const ourWork = useTranslated(ourWorkEn, ourWorkKri);
   const ourApproach = useTranslated(ourApproachEn, ourApproachKri);
   const ourVision = useTranslated(ourVisionEn, ourVisionKri);
   const ourPromise = useTranslated(ourPromiseEn, ourPromiseKri);
 
-  const items = [whoWeAre, ourPhilosophy, ourApproach, ourVision, ourPromise];
+  const items = [whoWeAre, ourApproach, ourWork, ourVision, ourPromise];
   // All five start collapsed — nothing opens until the visitor clicks one.
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -53,7 +53,7 @@ export function AboutAccordion() {
                 <h2
                   className={clsx(
                     "font-godthem text-2xl font-normal uppercase leading-[1.05] tracking-[0.02em] transition-colors duration-300 sm:text-3xl md:text-4xl",
-                    isActive ? "text-current" : "text-current/25 hover:text-current/50",
+                    isActive ? "text-current" : "text-current/55 hover:text-current/80",
                   )}
                 >
                   {item.title}

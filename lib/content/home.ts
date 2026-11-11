@@ -7,27 +7,20 @@ export const hero = {
     objects: ["people", "change"],
   },
   supporting:
-    "The Media Foundry is a Creative Media Partner helping organizations, brands, and ideas find their voice, shape their identity, and tell stories worth remembering. Because meaningful work shouldn't just exist, it should move people.",
+    "We help organisations and brands communicate what matters through strategic storytelling, film and visual media.",
   supportingKrio: "Wi de prodyus. Wi de tɛl di tori. Wi de ɛp yu sho yu wok",
-  primaryCta: { label: "Start a project", href: "/#contact" },
-  secondaryCta: { label: "See the work", href: "/work" },
+  primaryCta: { label: "Start a project", href: "/contact" },
+  secondaryCta: { label: "Explore our work", href: "/work" },
 };
 
 export const clientFit = {
   eyebrow: "The cost of being forgettable",
-  headline: [
-    "Forgettable institutions do not create change",
-    "Forgettable brands don't grow",
-    "Forgettable stories do not move people",
-  ],
+  headline: "Important work deserves to be seen, understood and remembered.",
   body: [
-    "The problem is not your work or your product.",
-    "It is that no one built you a brand or told your story in a way worth paying attention to.",
-    "Your work may speak for itself, it may even change lives, but if people don't see it, they can't support it.",
-    "If they don't understand it, they can't believe in it.",
-    "And if they don't remember it, they can't carry it forward.",
-    "We make important work impossible to overlook.",
+    "Good work does not always speak for itself.",
+    "An organisation can transform communities, a brand can offer something exceptional, and an idea can have the potential to change how people think.",
+    "But if people don't see it, they cannot support it. If they don't understand it, they cannot connect with it. And if they don't remember it, its impact can be limited.",
+    "We help organisations and brands turn what they do into stories people can see, understand and care about.",
   ],
-  ctaLabel: "Get in touch",
-  ctaHref: "/#contact",
+  closing: "We make important work impossible to overlook.",
 };

@@ -107,14 +107,17 @@ export function Hero() {
     <Section
       className="relative bg-background pt-28 pb-16 md:pt-36 md:pb-24"
     >
-      <Container>
+      {/* Full width with the site's usual side gutters, rather than the
+          1440px content cap, so on large screens the frame runs almost to
+          the edges instead of floating in wide margins. */}
+      <Container className="max-w-none">
         {/* Framed media card — clears the floating pill nav via the
             section's own top padding above, rather than sitting full-bleed
             behind it like the previous edge-to-edge hero. */}
         <div className="relative">
         <div
           ref={sectionRef}
-          className="relative aspect-[5/7] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:rounded-[2.5rem]"
+          className="relative aspect-[5/7] w-full overflow-hidden rounded-[2rem] shadow-[0_18px_50px_rgba(0,0,0,0.22)] sm:aspect-[16/11] md:aspect-[16/8] md:max-h-[calc(100svh-11rem)] md:rounded-[2.5rem]"
         >
           <div ref={mediaRef} className="absolute inset-0">
             {/* The still frame is a real image so it paints straight from the HTML; the video
@@ -176,10 +179,10 @@ export function Hero() {
 
               <HeroHeadline
                 wrap={false}
-                className="font-godthem font-normal uppercase leading-[0.9] tracking-[0.02em] [font-kerning:none] text-paper text-[5.7vw] sm:text-[5.4vw] md:text-[3.2vw] lg:text-[46px]"
+                className="font-godthem font-normal uppercase leading-[0.9] tracking-[0.02em] [font-kerning:none] text-paper text-[5.7vw] sm:text-[5.4vw] md:text-[3.2vw] lg:text-[clamp(46px,2.6vw,68px)]"
               />
 
-              <p className="mx-auto mt-6 max-w-lg font-body text-[12px] font-bold leading-relaxed text-paper sm:mt-5 sm:leading-normal sm:text-sm md:text-base">
+              <p className="mx-auto mt-6 max-w-lg font-body text-[12px] font-bold leading-relaxed text-paper sm:mt-5 sm:leading-normal sm:text-sm md:text-base 2xl:text-lg">
                 {hero.supporting}
               </p>
               <p className="mx-auto mt-6 max-w-2xl text-balance font-belmonte text-lg font-normal leading-snug sm:leading-tight tracking-[-0.04em] text-paper [-webkit-text-stroke:0.6px_currentColor] sm:mt-4 sm:text-2xl md:text-3xl">

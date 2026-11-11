@@ -4,6 +4,13 @@ export const caseStudyCopy = {
   backToWork: "← Back to work",
   overview: "Overview",
   gallery: "Gallery",
+  challenge: "The challenge",
+  approach: "Our approach",
+  execution: "The work",
+  deliverables: "Deliverables",
+  outcome: "Outcome",
+  related: "Next project",
+  clientWords: "In the client's words",
 };
 
 export type CaseStudy = {
@@ -18,8 +25,26 @@ export type CaseStudy = {
    *  instead of the Slate placeholder. */
   realHero?: boolean;
   overview: string;
-  /** Empty arrays hide the Gallery / Outcome sections. */
-  gallery: { variant: "video" | "photo"; label: string; category?: string }[];
+  // The case-study template. Every section is optional and only renders when
+  // it has real, client-confirmed content; in development a "to supply" note
+  // shows where content is still missing.
+  challenge?: string;
+  approach?: string;
+  execution?: string;
+  deliverables?: string[];
+  /** A verified, client-confirmed outcome. Never estimated. */
+  outcome?: string;
+  /** Testimonial id in lib/content/testimonials.ts; defaults to the slug. */
+  testimonialId?: string;
+  /** Slug of the project to suggest next; defaults to the next case study. */
+  relatedSlug?: string;
+  /**
+   * True once the client has confirmed the `impact` figures and the gallery
+   * has real images. Until then both are hidden on the live site.
+   */
+  factsConfirmed?: boolean;
+  /** Gallery items show only with a real image (`src`); the rest are shot-list placeholders. */
+  gallery: { variant: "video" | "photo"; label: string; category?: string; src?: string }[];
   impact: { stat: string; label: string }[];
 };
 
@@ -38,6 +63,7 @@ export const caseStudies: CaseStudy[] = [
       { variant: "video", label: "Broadcast cutdown, 30s" },
       { variant: "photo", label: "Cast, real account holders" },
     ],
+    // The figures and shot list below are drafts awaiting client confirmation.
     impact: [
       { stat: "1", label: "Original anthem track produced" },
       { stat: "3", label: "Cities filmed across" },
@@ -91,6 +117,7 @@ export const caseStudies: CaseStudy[] = [
   // added, so nothing here is invented.
   {
     slug: "conex-campaign",
+    testimonialId: "conex",
     title: "Conex",
     category: "Campaigns",
     heroMedia: { variant: "video", label: "Conex, brand campaign" },
@@ -112,6 +139,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "rotary-international",
+    testimonialId: "rotary",
     title: "Rotary",
     category: "Social & Content",
     heroMedia: { variant: "photo", label: "Rotary International, social content" },

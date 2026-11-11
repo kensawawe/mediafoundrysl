@@ -45,7 +45,7 @@ function toArticle(row: SanityArticle, lang: "en" | "kri"): Article {
       ? {
           name: row.author.name,
           role: row.author.role[lang],
-          image: urlForImage(row.author.image),
+          image: urlForImage(row.author.image, 200),
           socials: row.author.socials ?? [],
         }
       : { name: "", role: "", socials: [] },

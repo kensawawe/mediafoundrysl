@@ -188,8 +188,8 @@ export function ApertureReveal() {
 
       <Section className="pt-0 md:pt-0">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="font-godthem text-[7vw] font-normal uppercase leading-[1.1] tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="text-balance font-godthem text-[6.4vw] font-normal uppercase leading-[1.1] tracking-[0.02em] text-foreground sm:text-4xl md:text-5xl">
               {content.outroTitle.map((line) => (
                 <span key={line} className="block">
                   {line}

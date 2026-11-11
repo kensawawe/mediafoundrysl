@@ -7,7 +7,7 @@ import { getCareersContent } from "@/lib/sanity/content/careers";
 // Metadata is generated server-side, before any client-side language
 // toggle can apply — it always reflects the English content.
 export const metadata: Metadata = {
-  title: `Careers — ${site.name}`,
+  title: `Careers | ${site.name}`,
   description: careersHero.statement.join(" "),
   alternates: { canonical: "/careers" },
 };

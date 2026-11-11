@@ -40,9 +40,16 @@ export function HeroHeadline({
 
   const hasSuffix = morph.suffix.some(Boolean);
 
+  // Screen readers get the whole line once, as plain text; the morphing
+  // letters (and their mid-crossfade duplicates) are hidden from them.
+  const spoken = morph.subjects
+    .map((subject, i) => `${subject} ${morph.connector}${morph.suffix[i] ?? ""} ${morph.objects[i] ?? ""}.`)
+    .join(" ");
+
   return (
     <h1 className={className}>
-      <span className={clsx("flex items-baseline gap-x-[0.28em]", wrap ? "flex-wrap" : "flex-nowrap")}>
+      <span className="sr-only">{spoken}</span>
+      <span aria-hidden className={clsx("flex items-baseline gap-x-[0.28em]", wrap ? "flex-wrap" : "flex-nowrap")}>
         <TextMorphSlot
           variants={morph.subjects}
           activeIndex={index}
