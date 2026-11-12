@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import {
@@ -11,203 +11,174 @@ import {
   type Testimonial,
 } from "@/lib/content/testimonials";
 import { testimonials as testimonialsKri, whatClientsSay as whatClientsSayKri } from "@/lib/content/testimonials.kri";
+import { portfolioCategoriesFor, workItems } from "@/lib/content/work";
 import { useTranslated } from "@/lib/content/useTranslated";
 
-const FRAME_OFFSET = -28;
-const FRAMES_VISIBLE = 3;
+// Testimonial ids that differ from their project's slug in lib/content/work.ts.
+const PROJECT_SLUG: Record<string, string> = { conex: "conex-campaign", rotary: "rotary-international" };
 
-function clamp(value: number, [min, max]: [number, number]): number {
-  return Math.min(Math.max(value, min), max);
+/** The kind of work behind the quote, e.g. "Brand & Corporate Films". */
+function workLabel(t: Testimonial) {
+  const item = workItems.find((w) => w.slug === (PROJECT_SLUG[t.id] ?? t.id));
+  return item ? portfolioCategoriesFor(item).join(" · ") : "";
 }
+
+const pad = (n: number) => String(n).padStart(2, "0");
 
 function Arrow({ direction }: { direction: "left" | "right" }) {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      className={clsx(direction === "left" && "rotate-180")}
-    >
-      <path
-        d="M2 8h11.5M8.5 3l5 5-5 5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="square"
-      />
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden className={clsx(direction === "left" && "rotate-180")}>
+      <path d="M2 8h11.5M8.5 3l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
     </svg>
   );
 }
 
-function ReviewCard({
-  item,
-  index,
-  activeIndex,
-}: {
-  item: Testimonial;
-  index: number;
-  activeIndex: number;
-}) {
-  const shouldReduceMotion = useReducedMotion();
-  const offset = index - activeIndex;
-  const isActive = index === activeIndex;
-  const isPast = activeIndex > index;
-
-  const scale = shouldReduceMotion ? 1 : clamp(1 - offset * 0.08, [0.08, 2]);
-  const y = shouldReduceMotion
-    ? 0
-    : clamp(offset * FRAME_OFFSET, [FRAME_OFFSET * FRAMES_VISIBLE, Number.POSITIVE_INFINITY]);
-  const blur = isPast ? 3 : 0;
-  const opacity = isPast ? 0 : 1;
-
-  return (
-    <motion.figure
-      aria-hidden={!isActive}
-      initial={false}
-      animate={{
-        y,
-        scale,
-        transition: { type: "spring", stiffness: 250, damping: 20, mass: 0.5 },
-      }}
-      className={clsx(
-        "absolute bottom-0 left-1/2 w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 rounded-2xl border bg-surface p-6 sm:p-8",
-        isActive ? "border-accent-fill/40" : "border-border-subtle",
-      )}
-      style={{
-        borderWidth: 1 / scale,
-        willChange: "opacity, filter, transform",
-        filter: `blur(${blur}px)`,
-        opacity,
-        transitionProperty: "opacity, filter",
-        transitionDuration: shouldReduceMotion ? "0ms" : "300ms",
-        transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-        zIndex: 100 - offset,
-        pointerEvents: isActive ? "auto" : "none",
-      }}
-    >
-      <blockquote className="relative">
-        <span
-          aria-hidden
-          className="absolute -top-3 -left-1 font-display text-5xl leading-none text-accent-fill/10"
-        >
-          &ldquo;
-        </span>
-        <p className="relative line-clamp-4 font-body text-sm leading-relaxed text-current/70 sm:text-base">
-          {item.quote}
-        </p>
-      </blockquote>
-      <figcaption className="mt-6 flex items-center justify-between gap-4 border-t border-current/10 pt-4">
-        <div>
-          <p className="font-godthem text-lg font-normal tracking-[0.03em]">{item.name}</p>
-        </div>
-        <img
-          src={item.logo}
-          loading="lazy"
-          decoding="async"
-          alt={`${item.name} logo`}
-          className="h-9 w-9 shrink-0 object-contain grayscale"
-        />
-      </figcaption>
-    </motion.figure>
-  );
-}
-
-/** `ids` picks (and orders) a subset; all testimonials show when it is omitted. */
+/**
+ * "What clients say": one quote at a time, set large on a deep navy panel,
+ * with the clients as tabs underneath. `ids` picks (and orders) a subset;
+ * all testimonials show when it is omitted.
+ */
 export function Testimonials({ ids }: { ids?: string[] } = {}) {
   const all = useTranslated(testimonialsEn, testimonialsKri);
+  const whatClientsSay = useTranslated(whatClientsSayEn, whatClientsSayKri);
   const testimonials = ids
     ? ids.map((id) => all.find((t) => t.id === id)).filter((t): t is Testimonial => !!t)
     : all;
-  const whatClientsSay = useTranslated(whatClientsSayEn, whatClientsSayKri);
-  const [index, setIndex] = useState(0);
   const total = testimonials.length;
-  const maxIndex = total - 1;
+  const [index, setIndex] = useState(0);
+  const reduce = useReducedMotion();
 
-  const handlePrev = useCallback(() => {
-    setIndex((i) => clamp(i - 1, [0, maxIndex]));
-  }, [maxIndex]);
+  const go = useCallback((i: number) => setIndex((i + total) % total), [total]);
+  const current = testimonials[index];
+  if (!current) return null;
+  const label = workLabel(current);
 
-  const handleNext = useCallback(() => {
-    setIndex((i) => clamp(i + 1, [0, maxIndex]));
-  }, [maxIndex]);
-
-  // Arrow keys move the slider only while focus is inside it (not page-wide).
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      handlePrev();
-    } else if (event.key === "ArrowRight") {
-      event.preventDefault();
-      handleNext();
+  // Arrow keys move between quotes only while focus is inside the panel.
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      go(index - 1);
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      go(index + 1);
     }
   };
 
   return (
-    <Section className="pb-0 md:pb-0">
+    <Section className="pb-20 md:pb-28">
       <Container>
-        <div aria-hidden className="border-t border-current/15 mb-12" />
-
-        <h2 className="font-godthem text-3xl font-normal uppercase leading-[1.05] tracking-[0.02em] sm:text-4xl">
-          {whatClientsSay}
-        </h2>
+        <div aria-hidden className="mb-12 border-t border-current/15" />
 
         <div
           role="region"
           aria-roledescription="carousel"
-          aria-label="Client testimonials (use the left and right arrow keys)"
+          aria-label={`${whatClientsSay} (use the left and right arrow keys)`}
           tabIndex={0}
-          onKeyDown={handleKeyDown}
+          onKeyDown={onKeyDown}
           className="focus-ring rounded-2xl"
         >
-        <div className="relative mt-12 h-[270px] md:mt-16" aria-live="polite">
-          {testimonials.map((item, i) => (
-            <ReviewCard key={item.id} item={item} index={i} activeIndex={index} />
-          ))}
-        </div>
-
-        {total > 1 && (
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <button
-              type="button"
-              onClick={handlePrev}
-              disabled={index === 0}
-              aria-label="Previous testimonial"
-              className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
-            >
-              <Arrow direction="left" />
-            </button>
-
-            <div className="flex items-center">
-              {testimonials.map((item, i) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setIndex(i)}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                  className="group flex h-6 items-center justify-center px-[9px]"
-                >
-                  <span
-                    className={clsx(
-                      "block h-1.5 rounded-full transition-all duration-300",
-                      i === index ? "w-8 bg-accent-fill" : "w-1.5 bg-current/20 group-hover:bg-current/40",
-                    )}
-                  />
-                </button>
-              ))}
+          {/* Heading row: same eyebrow + heading pattern as the other sections, arrows on the right. */}
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="font-belmonte text-xl uppercase tracking-[-0.02em] text-accent-text sm:text-2xl">
+                In their words
+              </span>
+              <h2 className="mt-5 font-godthem text-3xl font-normal uppercase leading-[1.05] tracking-[0.02em] sm:text-4xl md:text-5xl">
+                {whatClientsSay}
+              </h2>
             </div>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={index === maxIndex}
-              aria-label="Next testimonial"
-              className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border-strong disabled:hover:bg-transparent disabled:hover:text-current"
-            >
-              <Arrow direction="right" />
-            </button>
+            {total > 1 && (
+              <div className="flex items-center gap-4">
+                <p aria-hidden className="font-godthem text-sm tracking-[0.08em] text-foreground/60">
+                  <span className="text-foreground">{pad(index + 1)}</span> / {pad(total)}
+                </p>
+                {(["left", "right"] as const).map((dir) => (
+                  <button
+                    key={dir}
+                    type="button"
+                    onClick={() => go(index + (dir === "left" ? -1 : 1))}
+                    aria-label={dir === "left" ? "Previous testimonial" : "Next testimonial"}
+                    className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-current transition-colors duration-300 hover:border-accent-fill hover:bg-accent-fill hover:text-accent-fill-ink"
+                  >
+                    <Arrow direction={dir} />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+
+          <div className="mt-12 rounded-2xl border border-border-subtle bg-surface md:mt-14">
+            {/* The quote */}
+            <figure className="px-6 py-8 sm:px-10 sm:py-10 md:px-14 md:py-12">
+              <div aria-live="polite" className="grid min-h-[14rem] sm:min-h-[12rem]">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={current.id}
+                    initial={{ opacity: 0, y: reduce ? 0 : 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: reduce ? 0 : -6 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col justify-between gap-8"
+                  >
+                    <blockquote className="max-w-4xl font-body text-lg leading-relaxed text-foreground/85 sm:text-xl md:text-2xl">
+                      <span aria-hidden className="mr-1 font-godthem text-accent-text">
+                        &ldquo;
+                      </span>
+                      {current.quote}
+                      <span aria-hidden className="ml-0.5 font-godthem text-accent-text">
+                        &rdquo;
+                      </span>
+                    </blockquote>
+                    <figcaption className="flex items-center gap-4">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border-subtle bg-white p-1.5">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image loader configured */}
+                        <img src={current.logo} alt="" decoding="async" className="h-full w-full object-contain" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-godthem text-base uppercase tracking-[0.03em]">{current.name}</span>
+                        {label && <span className="mt-0.5 block font-body text-sm text-foreground/60">{label}</span>}
+                      </span>
+                    </figcaption>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </figure>
+
+            {/* Client tabs */}
+            {total > 1 && (
+              <div className="grid border-t border-border-subtle sm:grid-cols-3" role="tablist" aria-label="Choose a client">
+                {testimonials.map((t, i) => {
+                  const active = i === index;
+                  return (
+                    <button
+                      key={t.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={active}
+                      onClick={() => go(i)}
+                      className={clsx(
+                        "focus-ring group relative flex items-center gap-3 px-6 py-4 text-left transition-colors duration-300 sm:px-8",
+                        "border-border-subtle max-sm:[&:not(:first-child)]:border-t sm:[&:not(:first-child)]:border-l",
+                      )}
+                    >
+                      <span
+                        aria-hidden
+                        className={clsx(
+                          "absolute inset-x-0 -top-px h-0.5 origin-left bg-accent-fill transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                          active ? "scale-x-100" : "scale-x-0",
+                        )}
+                      />
+                      <span className="truncate font-godthem text-xs uppercase tracking-[0.06em] sm:text-sm">
+                        <span className={clsx("transition-colors", active ? "text-foreground" : "text-foreground/50 group-hover:text-foreground/80")}>
+                          {t.name}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </Container>
     </Section>

@@ -157,6 +157,11 @@ body::after {
   font-family: var(--font-display), sans-serif;
   /* Godthem has a single (bold) cut: never let font-black/font-bold fake a heavier one. */
   font-synthesis-weight: none;
+  /* These headings were set tight for the narrow Big Shoulders face. Godthem is
+     wider, so they take its usual spacing instead, or letters touch. (Plain CSS
+     outside Tailwind's layers, so it overrides the old tracking/leading utilities.) */
+  letter-spacing: 0.02em;
+  line-height: 1.05;
 }
 
 .font-mono {
