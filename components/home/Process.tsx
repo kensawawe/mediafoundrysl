@@ -22,8 +22,7 @@ export function Process({ id = "how-we-work" }: { id?: string }) {
           {processSteps.map((step, i) => (
             <li key={step.number} className="bg-background">
               <FadeIn delay={i * 0.08} className="flex h-full flex-col p-6 sm:p-8">
-                <span className="font-godthem text-sm tracking-[0.08em] text-accent-text">{step.number}</span>
-                <h3 className="mt-8 font-godthem text-2xl font-normal uppercase tracking-[0.02em] sm:text-3xl">
+                <h3 className="font-godthem text-2xl font-normal uppercase tracking-[0.02em] sm:text-3xl">
                   {step.name}
                 </h3>
                 <p className="mt-3 font-body text-[15px] leading-relaxed text-foreground/70">{step.body}</p>

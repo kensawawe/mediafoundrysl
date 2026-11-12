@@ -23,7 +23,7 @@
   --border-subtle: rgba(20, 18, 15, 0.14);
   --border-strong: rgba(20, 18, 15, 0.85);
 
-  --accent-text: #2445c0;
+  --accent-text: #2451d6; /* one accent blue for fills and text (6.5:1 on white) */
   --accent-fill: #2451d6;
   --accent-fill-ink: #ffffff;
   --accent-rgb: 36 81 214;
